@@ -1,6 +1,20 @@
 
 import math
+"""
+can be converted to tuple, dict and str  but not list
+can acces values with Vec(3,7)["x"] or Vec(3,7)["y"] or Vec(3,7)[0] or Vec(3,7)[1] or Vec(3,7).x or Vec(3,7).y
 
+operation:
+    Vec+Vec
+    -Vec
+    +Vec
+    ~Vec
+    Vec-Vec
+    Vec*(int|float)
+    (int|float)*Vec
+    Vec/(int|float)  
+    Vec//(int|float) 
+"""
 class Vec:
     
     def __init__(self,x=None,y=None):
@@ -23,9 +37,11 @@ class Vec:
                 else:
                     raise Exception(f"len of x is {'greater' if len(x)>2 else 'less'} than 2")
             elif isinstance(x,Vec):
-                return Vec(x.x,x.y)
+                self.x=x.x
+                self.y=x.y
             elif isinstance(x,complex):
-                return Vec(x.real,x.imag)
+                self.x=x.real
+                self.y=x.imag
             else:
                 raise Exception("x not a tuple nor a list nor a Vec in Vec")
         else:
@@ -67,7 +83,7 @@ class Vec:
             return(Vec(self.x//other,self.y//other))
         return NotImplemented
     
-    def __add__(self,other):
+    def __radd__(self,other):
         if isinstance(other,(Vec,tuple,list)):
             other=Vec(other)
             return(Vec(self.x+other.x,self.y+other.y))
@@ -113,5 +129,25 @@ class Vec:
         """
         return (self.x**2 + self.y**2)**-0.5
     
+    def __getitem__(self, index):
+        if index in [0,"x"]:
+            return self.x
+        if index in [1,"y"]:
+            return self.y
+        return NotImplemented
 
+    def __setitem__(self, index, value):
+        if not isinstance(value,(int,float)):
+            return NotImplemented
+        if index==0:
+            self.x=value
+        if index==1:
+            self.y=value
+        return NotImplemented
 
+    def __tuple__(self):
+        return (self.x,self.y)
+
+    def __iter__(self):
+        yield "x",self.x
+        yield "y",self.y

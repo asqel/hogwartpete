@@ -23,7 +23,7 @@ Textures={}
 for i in folder_to_check:
     if os.path.isdir(path+"/src/"+i):
         for k in os.listdir(path+"/src/"+i):
-            Textures["src/"+i+"/"+k]=py.image.load(path+"/src/"+i+"/"+k)
+            Textures["src/"+i+"/"+k]=py.transform.scale(py.image.load(path+"/src/"+i+"/"+k),(64,64))
     else:
         print(f"ERROR src/{i} is not a folder")
         exit(1)
