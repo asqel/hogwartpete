@@ -34,4 +34,4 @@ class Character:
         Vec(self.position-(2,0))
 
     def flip(self):
-        self.texture=py.transform.flip(self.texture,0,1)
+        self.texture=py.transform.flip(self.texture,1,0)
