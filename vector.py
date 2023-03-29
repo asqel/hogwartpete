@@ -6,9 +6,13 @@ class Vec:
     def __init__(self,x=None,y=None):
         """
         if x and y are set to None then the vector will be (0,0)
+
         if y is None and x is a tuple or a list and if its len is equal to 2 the vector will be (x[0],x[1])
         """
-        if(x is None and y is None):
+        if((x is not None ) and (y is not None)):
+            self.x=x
+            self.y=y
+        elif((x is None ) and (y is None)):
             self.x=0
             self.y=0
         elif y is None :
@@ -18,8 +22,12 @@ class Vec:
                     self.y=x[1]
                 else:
                     raise Exception(f"len of x is {'greater' if len(x)>2 else 'less'} than 2")
+            elif isinstance(x,Vec):
+                return Vec(x.x,x.y)
+            elif isinstance(x,complex):
+                return Vec(x.real,x.imag)
             else:
-                raise Exception("x not a tuple nor a list in Vec")
+                raise Exception("x not a tuple nor a list nor a Vec in Vec")
         else:
             raise Exception("missing value for x in Vec")
         
@@ -27,52 +35,83 @@ class Vec:
         if isinstance(other,(Vec,tuple,list)):
             other=Vec(other)
             return(Vec(self.x+other.x,self.y+other.y))
+        return NotImplemented
         
     def __sub__(self,other):
-        return(self+(-other))
+        if isinstance(other,(Vec,tuple,list)):
+            other=Vec(other)
+            return(Vec(self.x-other.x,self.y-other.y))
+        return NotImplemented
+    
     def __neg__(self): 
         return(Vec(-self.x,-self.y,))
+    
     def __pos__(self):
         return(self)
+    
     def __invert__(self):
         return(Vec(~self.x,~self.y))
-    def __mul__(self,other):
-        if (isinstance(other,int) or isinstance(other,float)) and isinstance(self,Vec):
-            return(Vec(self.x*other,self.y*other,))
-        if (isinstance(self,int) or isinstance(self,float)) and isinstance(other,Vec):
-            return(Vec(other.x*self,other.y*self))
-        raise NotImplementedError()
-    def __truediv__(self,other):
-        if isinstance(other,int)or isinstance(other,float):
-            return self*(1/other)
-    def __truediv__(self,other):
-        if isinstance(other,int)or isinstance(other,float):
-            return self*(1/other)
     
-    def __radd__(self,other):
-        if isinstance(self,Vec) and isinstance(other,Vec):
+    def __mul__(self,other):
+        if isinstance(other,int) or isinstance(other,float):
+            return(Vec(self.x*other,self.y*other))
+        return NotImplemented
+    
+    def __truediv__(self,other):
+        if isinstance(other,int) or isinstance(other,float):
+            return(Vec(self.x/other,self.y/other))
+        return NotImplemented
+    
+    def __floordiv__(self,other):
+        if isinstance(other,int) or isinstance(other,float):
+            return(Vec(self.x//other,self.y//other))
+        return NotImplemented
+    
+    def __add__(self,other):
+        if isinstance(other,(Vec,tuple,list)):
+            other=Vec(other)
             return(Vec(self.x+other.x,self.y+other.y))
+        return NotImplemented
+        
     def __rsub__(self,other):
-        return(self+(-other))
+        if isinstance(other,(Vec,tuple,list)):
+            other=Vec(other)
+            return(Vec(self.x-other.x,self.y-other.y))
+        return NotImplemented
+    
     def __rmul__(self,other):
-        if (isinstance(other,int) or isinstance(other,float)) and isinstance(self,Vec):
-            return(Vec(self.x*other,self.y*other,))
-        if (isinstance(self,int) or isinstance(self,float)) and isinstance(other,Vec):
-            return(Vec(other.x*self,other.y*self))
-        raise NotImplementedError()
+        if isinstance(other,int) or isinstance(other,float):
+            return(Vec(self.x*other,self.y*other))
+        return NotImplemented
+    
     def __rtruediv__(self,other):
-        if isinstance(other,int)or isinstance(other,float):
-            return self*(1/other)    
+        if isinstance(other,int) or isinstance(other,float):
+            return(Vec(self.x/other,self.y/other))
+        return NotImplemented
+    
+    def __rfloordiv__(self,other):
+        if isinstance(other,int) or isinstance(other,float):
+            return(Vec(self.x//other,self.y//other))
+        return NotImplemented
+    
     def __str__(self):
         return str((self.x,self.y))
-
-    def length(self)->float:
+    
+    def len(self)->float:
         """
         return the length of the Vector
         """
-        return(math.sqrt(self.squareLength()))
+        return(math.sqrt(self.x**2 + self.y**2))
     def squareLength(self)->float:
         """
         return the squared length of the Vector
         """
-        return(self.x*self.x+self.y*self.y)
+        return(self.x**2 +self.y**2)
+    def invertedLen(self)->float:
+        """
+        return 1/len
+        """
+        return (self.x**2 + self.y**2)**-0.5
+    
+
+
