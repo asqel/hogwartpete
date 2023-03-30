@@ -6,7 +6,7 @@ from time import time ,sleep
 
 screen=py.display.set_mode((500,500))
 
-main_player=Character("jean","magie","pouffsoufle",None,None,None,None,tx.Textures["src/player/p1.png"],None,0,0,None)
+main_player=Character("jean","Magie","Pouffsoufle",None,None,None,None,tx.Textures["src/player/p1.png"],None,0,0,None)
 
 def main():
     while 1:
