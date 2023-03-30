@@ -39,15 +39,9 @@ class Character:
 
 
     def up(self):
-        if not self.dir:
-            self.flip()
-            self.dir=not self.dir
         self.position-=(0,2)
 
     def down(self):
-        if self.dir:
-            self.flip()
-            self.dir=not self.dir
         self.position+=(0,2)
 
     def flip(self):

@@ -122,7 +122,7 @@ class Vec:
         """
         return the squared length of the Vector
         """
-        return(self.x**2 +self.y**2)
+        return self.x**2 +self.y**2
     def invertedLen(self)->float:
         """
         return 1/len
