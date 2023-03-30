@@ -1,14 +1,27 @@
 import uuid 
 from world import *
+from vector import *
 
-AVADA_KEDAVRA="avada kedavra"
 
 class Spell:
-    def __init__(self,name,sender:uuid.UUID) -> None:
+    def __init__(self,name_of_spell,sender:uuid.UUID) -> None:
         self.sender=sender
-        self.name=name
+        self.name=name_of_spell
+    
+    def getname(self):
+        return self.name
+    
+    def shoot(self,w:World,mouse_pos:Vec):
+        ...#ya rien ici c'est chaque sort qui doit le changer lui meme
         
-    def shoot(self,world:World):
-        if self.name==AVADA_KEDAVRA:
-            print("Vous avez lancé 'avada kedavra'.")
+        
+AVADA_KEDAVRA="avada kedavra"
+class Avada_kedavra(Spell):
+    def __init__(self, sender: uuid.UUID) -> None:
+        super().__init__(AVADA_KEDAVRA, sender)
+    
+    def shoot(self,w:World,mouse_pos:Vec):
+        pass
+        
+        
             
