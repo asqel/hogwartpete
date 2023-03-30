@@ -11,6 +11,12 @@ for i in folder_to_check:
     if not os.path.exists(path+"/src/"+i):
         missing.append(i)
         
+folder_to_check_1=["Spells"]
+missing=[]
+for i in folder_to_check:
+    if not os.path.exists(path+"/src/"+i):
+        missing.append(i)
+
 #print errors
 if missing:
     print(f"ERROR missing folder{'s' if len(missing)>1 else ''} :")
@@ -19,13 +25,22 @@ if missing:
     exit(1)
 
 
-Textures={}
+Texturesplayer={}
+Texturesspells={}
 for i in folder_to_check:
     if os.path.isdir(path+"/src/"+i):
         for k in os.listdir(path+"/src/"+i):
-            Textures["src/"+i+"/"+k]=py.transform.scale(py.image.load(path+"/src/"+i+"/"+k),(64,64))
+            Texturesplayer["src/"+i+"/"+k]=py.transform.scale(py.image.load(path+"/src/"+i+"/"+k),(64,64))
+    else:
+        print(f"ERROR src/{i} is not a folder")
+        exit(1)
+for i in folder_to_check_1:
+    if os.path.isdir(path+"/src/"+i):
+        for k in os.listdir(path+"/src/"+i):
+            Texturesspells["src/"+i+"/"+k]=py.transform.scale(py.image.load(path+"/src/"+i+"/"+k),(64,64))
     else:
         print(f"ERROR src/{i} is not a folder")
         exit(1)
     
-print(Textures)
+print(Texturesplayer)
+print(Texturesspells)

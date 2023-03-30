@@ -10,5 +10,5 @@ class Spell:
         
     def shoot(self,world:World):
         if self.name==AVADA_KEDAVRA:
-            print("vous avez lancer avada kedavra")
+            print("Vous avez lancé 'avada kedavra'.")
             
