@@ -1,12 +1,16 @@
 #Hogwarts Legacy en version pétée by Léa et Asqel
 import pygame as py
-import textures as tx
-from character import *
+import uti.textures as tx
+from entities import *
 from time import time ,sleep
+from world import *
+from spells.unforgivable_curses import *
+
 
 screen=py.display.set_mode((500,500))
 
-main_player=Character("Jean","magie","pouffsoufle",None,None,None,None,tx.Textures["player"]["harry_potter.png"],None,0,0,None)
+worlds[0].registerPlayer(Character("Jean","Magie","pouffsoufle",None,None,None,None,tx.Textures["player"]["harry_potter.png"],None,0,0))
+worlds[0].registerEntity(Npc("choixpeau","",tx.Textures["npc"]["choixpeau.png"],None,20,20))
 
 def main():
     while 1:
@@ -18,17 +22,18 @@ def main():
                 exit(0)
         keys=py.key.get_pressed()
         if keys[py.K_z]:
-            main_player.up()
+            players[0].up()
         if keys[py.K_q]:
-            main_player.left()
+            players[0].left()
         if keys[py.K_s]:
-            main_player.down()
+            players[0].down()
         if keys[py.K_d]:
-            main_player.right()
+            players[0].right()
+        if keys[py.K_SPACE]:
+            Avada_kedavra(players[0].uuid).shoot(worlds[0],Vec(py.mouse.get_pos()))
 
-
-        screen.blit(main_player.texture,(main_player.position.x,main_player.position.y))
-
+        worlds[0].show(screen)
+        worlds[0].update()
         py.display.update()
         t=time()-t0
         if t<1/60:

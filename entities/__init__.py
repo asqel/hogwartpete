@@ -1,11 +1,11 @@
 import clothes as c
-from vector import *
+from uti.vector import *
 import pygame as py
+from  spells import *
 import uuid
-from world import *
 
 class Character:
-    def __init__(self,name:str,surname:str,maison:str,sorts,potions,inventaire,genre:str,texture:py.surface,clothes,x:float,y:float,world:World):
+    def __init__(self,name:str,surname:str,maison:str,sorts,potions,inventaire,genre:str,texture:py.surface,clothes,x:float,y:float):
         self.name=name
         self.surname=surname
         self.maison=maison
@@ -14,11 +14,11 @@ class Character:
         self.inventaire=inventaire
         self.pv=100
         self.pvmax=100
+        self.effects=[]
         self.genre=genre
         self.texture=texture
         self.clothes=clothes
         self.position=Vec(x,y)
-        self.world=world
         self.protection=0
         self.dir:bool=0 #0 c'est droite et 1 c'est gauche
         self.level=0
@@ -47,14 +47,22 @@ class Character:
     def flip(self):
         self.texture=py.transform.flip(self.texture,1,0)
 
-    
 
-players=[]
-entitys=[]#npcs / animals /moving things 
+class Npc:
+    def __init__(self,name:str,surname:str,texture:py.Surface,spells:list[Spell],x,y) -> None:
+        self.name=name
+        self.surname=surname
+        self.texture=texture
+        self.spells=spells
+        self.pv=100
+        self.position=Vec(x,y)
+        
 
-def registerPlayer(p:Character)->None:
-    players.append(Character)
+players:list[Character]=[]
+entitys:list[Npc]=[]#npcs / animals /moving things 
 
-def registerEntity(n:Character)->None:
-    entitys.append(n)
+
+
+
+
 
