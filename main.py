@@ -9,10 +9,11 @@ from spells.unforgivable_curses import *
 
 screen=py.display.set_mode((500,500))
 
-worlds[0].registerPlayer(Character("Jean","Magie","pouffsoufle",None,None,None,None,tx.Textures["player"]["harry_potter.png"],None,0,0))
-worlds[0].registerEntity(Npc("choixpeau","",tx.Textures["npc"]["choixpeau.png"],None,20,20))
+worlds[0].addPlayer(Character("Jean","Magie","pouffsoufle",None,None,None,None,tx.Textures["player"]["harry_potter.png"],None,0,0))
+worlds[0].addEntity(Npc("choixpeau","",tx.Textures["npc"]["choixpeau.png"],None,20,20))
 
 def main():
+    TPS=0
     while 1:
         screen.fill((0,255,255))
         t0=time()
@@ -36,8 +37,11 @@ def main():
         worlds[0].update()
         py.display.update()
         t=time()-t0
+        
         if t<1/60:
             sleep(1/60-t)
+        TPS=1/(time()-t0)
+        py.display.set_caption(str(TPS))
         
 
 main()

@@ -19,6 +19,6 @@ Spells={}
 """
 register classes of spells
 """
-def registerSpell(spell:Spell,name:str):
+def registerSpell(spell:type,name:str):
     Spells[name]=spell
             

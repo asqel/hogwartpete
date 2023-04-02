@@ -1,6 +1,6 @@
 import pygame as py
 import os
-path=os.path.dirname(os.path.abspath(__file__))
+path=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     
 folders=[i for i in os.listdir(path+"/src")]
 
@@ -20,10 +20,9 @@ Textures={i:{} for i in folders}
 for i in folders:
     if os.path.isdir(path+"/src/"+i):
         for k in os.listdir(path+"/src/"+i):
-            Textures[i][k]=py.transform.scale(py.image.load(path+"/src/"+i+"/"+k),(32,32))
+            Textures[i][k]=py.image.load(path+"/src/"+i+"/"+k)
     else:
-        print(f"ERROR src/{i} is not a folder")
-        exit(1)
+        Textures[i]=py.image.load(path+"/src/"+i)
     
 
     
