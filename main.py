@@ -9,7 +9,7 @@ from spells.unforgivable_curses import *
 
 screen=py.display.set_mode((500,500))
 
-worlds[0].addPlayer(Character("Jean","Magie","pouffsoufle",None,None,None,None,tx.Textures["player"]["harry_potter.png"],None,0,0))
+worlds[0].addPlayer(Character("Jean","Magie","pouffsoufle",None,None,None,None,tx.Textures["player"]["mc_front_poufsouffle.png"],None,0,0))
 worlds[0].addEntity(Npc("choixpeau","",tx.Textures["npc"]["choixpeau.png"],None,20,20))
 
 def main():

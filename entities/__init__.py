@@ -5,7 +5,7 @@ from  spells import *
 import uuid
 
 class Character:
-    def __init__(self,name:str,surname:str,maison:str,sorts,potions,inventaire,genre:str,texture:py.surface,clothes,x:float,y:float):
+    def __init__(self,name:str,surname:str,maison:str,sorts,potions,inventaire,genre:str,texture:list[py.Surface],clothes,x:float,y:float):
         self.name=name
         self.surname=surname
         self.maison=maison
@@ -20,7 +20,7 @@ class Character:
         self.clothes=clothes
         self.pos=Vec(x,y)
         self.protection=0
-        self.dir:bool=0 #0 c'est droite et 1 c'est gauche
+        self.dir:str="d" #d -> down  |  u -> up  |  r -> right  |  l -> left  |
         self.level=0
         self.puissance=0
         self.uuid=uuid.uuid4()

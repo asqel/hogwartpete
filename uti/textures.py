@@ -20,7 +20,7 @@ Textures={i:{} for i in folders}
 for i in folders:
     if os.path.isdir(path+"/src/"+i):
         for k in os.listdir(path+"/src/"+i):
-            Textures[i][k]=py.image.load(path+"/src/"+i+"/"+k)
+            Textures[i][k]=py.transform.scale(py.image.load(path+"/src/"+i+"/"+k),(50,50))
     else:
         Textures[i]=py.image.load(path+"/src/"+i)
     
