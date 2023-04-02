@@ -34,16 +34,3 @@ class World:
                 continue
             p+=1
 worlds:list[World]=[World("a",(0,255,255),[])]
-        
-        
-def root(x):
-    if 0<=x<10:
-        return x
-    if 10<=x<20:
-        return x-10+1
-    return root(sum([int(i) for i in str(x)]))
-
-def root2(x):
-    return (x - 1) % 9 + 1 if x else 0
-print(root(3997))
-print(root2(0))
