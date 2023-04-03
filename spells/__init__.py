@@ -22,3 +22,5 @@ register classes of spells
 def registerSpell(spell:type,name:str):
     Spells[name]=spell
             
+
+
