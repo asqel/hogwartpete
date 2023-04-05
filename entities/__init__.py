@@ -1,4 +1,4 @@
-import clothes as c
+import Clothes as c
 from uti.vector import *
 import pygame as py
 from  spells import *

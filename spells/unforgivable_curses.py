@@ -7,7 +7,7 @@ class Avada_kedavra(Spell):
     
     def shoot(self,world,mouse_pos:Vec):
         for i in world.entities:
-            if((mouse_pos-i.pos).squareLength()<=2*16**2):
+            if((mouse_pos-i.pos).squareLength()<=4*16**2):
                 i.pv=0
                 
 IMPERO="impero"
