@@ -22,7 +22,7 @@ class World:
             if(not i.toplayer):
                 screen.blit(i.texture,(i.pos.x,i.pos.y))
         for i in self.players:
-            screen.blit(i.texture,(i.pos.x,i.pos.y))
+            screen.blit(i.current_texture,(i.pos.x,i.pos.y))
         for i in self.entities:
             screen.blit(i.texture,(i.pos.x,i.pos.y))
             

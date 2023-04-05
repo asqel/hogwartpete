@@ -19,7 +19,7 @@ class Impero(Spell):
         pass#TODO : implement Impero:shoot
                 
 
-CRUCIO="curcio"
+CRUCIO="crucio"
 class Crucio(Spell):
     def __init__(self, sender: uuid.UUID) -> None:
         super().__init__(CRUCIO, sender)
