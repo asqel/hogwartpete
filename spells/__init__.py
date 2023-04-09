@@ -16,7 +16,7 @@ class Spell:
         ...
         
         
-Spells={}
+Spells:dict[str,Spell]={}
 
 """
 register classes of spells
@@ -28,15 +28,13 @@ def registerSpell(spell:type,name:str):
 #import every spells
 module_names=os.listdir(os.path.dirname(os.path.abspath(__file__)))
 
-for i in range(len(module_names)):
-    if module_names[i]=="__init__.py":
-        module_names.pop(i)
+for i in range(len(module_names)): #pour tous les fichiers dans modules_names
+    if module_names[i]=="__init__.py": #si le nom du fichier est lui même
+        module_names.pop(i) #il se supprime de la liste
         break
-for i in range(len(module_names)):
-    if module_names[i].endswith(".py"):
-        module_names[i]=module_names[i][:-3]
+for i in range(len(module_names)): #pour tous les fichiers dans modules_names
+    if module_names[i].endswith(".py"): #si le fichier finit par py
+        module_names[i]=module_names[i][:-3] #on enlève l'extension ".py"
         
-for i in module_names:
-    imp.import_module("."+i,__package__)
-        
-        
+for i in module_names: 
+    imp.import_module("."+i,__package__) #import les choses dans le init
