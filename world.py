@@ -119,7 +119,7 @@ class World:
             screen.blit(i.current_texture,(int(p.x),int(p.y)))
         for i in __entities:
             p=i.pos+__offset
-            screen.blit(i.current_texture,(int(p.x),int(p.y)))
+            screen.blit(i.texture,(int(p.x),int(p.y)))
             
     def update(self)->None:
         ...
@@ -130,6 +130,7 @@ worlds:list[World]=[]
 
 def newChunk(pos:Vec,world:World)->Chunk:
     c=Chunk(pos,world)
+    c.objects.append(Objs["Stone"](randint(0,999)+c.top_left_pos.x,randint(0,999)+c.top_left_pos.y))
     return c
 
 from random import randint
