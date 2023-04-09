@@ -1,4 +1,4 @@
-import pygame as py
+import pygame
 from objs import *
 from entities import *
 from objs import *
@@ -15,6 +15,18 @@ class Chunk:
         self.objects:list[Obj]=[]
         self.dyn_objects:list[Dynamic_Obj]=[]
 
+    def getBorders(self)->list[Vec]:
+        """
+        return corners of the chunk
+        (Top-left, Top-right, bottom-left, bottom-right)
+        each corner are in the chunk
+        if chunk is at 0:
+            return ( (0,0), (999,0), (0,999), (999,999) )
+        """
+        x=self.top_left_pos.x
+        y=self.top_left_pos.y
+        return (Vec(x,y),Vec(x+999,y),Vec(x,y+999),Vec(x+999,y+999))
+        
 class World:
     def __init__(self,name,background_col:list[int])->None:
         self.name=name
@@ -23,10 +35,32 @@ class World:
         self.id=uuid.uuid4()
         
     def addEntity(self,n:Npc)->None:
-        x=n.pos.x
-        y=n.pos.y
+        self.getChunkfromPos(n.pos).entities.append(n)
+        
+    def addObj(self,n:Obj)->None:
+        self.getChunkfromPos(n.pos).objects.append(n)
+    def addDyn_Obj(self,n:Obj)->None:
+        self.getChunkfromPos(n.pos).dyn_objects.append(n)
+        
+    def genChunkat(self,pos:Vec):
+        """
+        generate a new chunk a {pos}
+        if chunk already exist it will be erased
+        """
+        if pos.x not in self.chuncks.keys():
+            self.chuncks[pos.x]={}
+        self.chuncks[pos.x][pos.y]=newChunk(pos,self)
+        
+    def genChunkatfromPos(self,pos:Vec):
+        """
+        generate a new chunk a {pos}
+        if chunk already exist it will be erased
+        """
+        self.genChunkat(pos//CHUNK_SIZE)
         
     def getChunk(self, pos:Vec)->Chunk:
+        if not self.chunkExists(pos):
+            self.genChunkat(pos)
         return self.chuncks[pos.x][pos.y]
     
     def getChunkfromPos(self,pos:Vec)->Chunk:
@@ -53,16 +87,39 @@ class World:
     def getEntitiesInChunkfromPos(self,pos:Vec)->list[Npc]:
         return self.getChunkfromPos(pos).entities
     
-    def show(self,screen:py.Surface)->None:  
+    def show(self,screen:pygame.Surface)->None:  
         screen.fill(self.bg)
+        __objects:list[Obj]=[]
+        __dyn_obj:list[Dynamic_Obj]=[]
+        __players:list[Character]=[players[i] for i in range(1,len(players))]
+        __entities:list[Npc]=[]
+        __chunks:list[Chunk]=[]
+        x=(players[0].pos//CHUNK_SIZE).x
+        y=(players[0].pos//CHUNK_SIZE).y
+        for i in range(-1,2):
+            for k in range(-1,2):
+                __chunks.append(self.getChunk(Vec(x+i,y+k)))
+        for i in __chunks:
+            __objects.extend(i.objects)
+            __dyn_obj.extend(i.dyn_objects)
+            __entities.extend(i.entities)
         
-        #for i in self.objects:
-        #    if(not i.toplayer):
-        #        screen.blit(i.texture,(i.pos.x,i.pos.y))
+        __offset=Vec(500/2,500/2)-players[0].pos-Vec(players[0].current_texture.get_width()//2,players[0].current_texture.get_height()//2)
+        
+        for i in __objects:
+            if (not i.toplayer):
+                p=i.pos+__offset
+                screen.blit(i.texture,(int(p.x),int(p.y)))
+                
+        p=players[0].pos+__offset
+        screen.blit(players[0].current_texture,(int(p.x),int(p.y)))
+        
         for i in players:
-            screen.blit(i.current_texture,(i.pos.x,i.pos.y))
-        for i in self.entities:
-            screen.blit(i.texture,(i.pos.x,i.pos.y))
+            p=i.pos+__offset
+            screen.blit(i.current_texture,(int(p.x),int(p.y)))
+        for i in __entities:
+            p=i.pos+__offset
+            screen.blit(i.current_texture,(int(p.x),int(p.y)))
             
     def update(self)->None:
         ...

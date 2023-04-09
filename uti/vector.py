@@ -147,7 +147,3 @@ class Vec:
 
     def __tuple__(self):
         return (self.x,self.y)
-
-    def __iter__(self):
-        yield "x",self.x
-        yield "y",self.y

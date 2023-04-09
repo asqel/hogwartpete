@@ -15,9 +15,8 @@ screen=py.display.set_mode((500,500))
 a=py.font.SysFont("Arial",25,False,False)
 
 players.append(Character("Jean","Magie","pouffsoufle",None,None,None,None,[tx.Textures["player"]["mc_back.png"], tx.Textures["player"]["mc_right_0_poufsouffle.png"],tx.Textures["player"]["mc_front_poufsouffle.png"],tx.Textures["player"]["mc_left_0_poufsouffle.png"]],None,0,0))
-worlds[0].addEntity(Npc("choixpeau","",tx.Textures["npc"]["choixpeau.png"],None,20,20))
-
-
+worlds.append(newWorld("1"))
+worlds[0].addObj(Objs["Stone"](players[0].pos.x,players[0].pos.y))
 
 def main():
     TPS=0
@@ -81,4 +80,4 @@ def main():
         TPS=1/(time()-t0)
         
 
-#main()
+main()
