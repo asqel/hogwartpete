@@ -6,7 +6,7 @@ py.font.init()
 mc_font=py.font.Font(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))+"/fonts/Minecraft.otf",10)
 
 class Text:
-    def __init__(self,txt:str,pos:Vec,color:list[int,int,int],action:function,width:int,height:int) -> None:
+    def __init__(self,txt:str,pos:Vec,color:list[int,int,int],action,width:int,height:int) -> None:
         self.txt
         self.pos=pos
         self.color=color
@@ -15,7 +15,7 @@ class Text:
         self.height=height
 
 class Button:
-    def __init__(self,txt:str,txt_col:list[int,int,int],pos:Vec,texture:py.Surface,action:function,width:int,height:int) -> None:
+    def __init__(self,txt:str,txt_col:list[int,int,int],pos:Vec,texture:py.Surface,action,width:int,height:int) -> None:
         self.txt=txt
         self.pos=pos
         self.txt_col=txt_col
@@ -26,7 +26,7 @@ class Button:
         
         
 class Image:
-    def __init__(self,texture:py.Surface,pos:Vec,action:function,width:int,height:int) -> None:
+    def __init__(self,texture:py.Surface,pos:Vec,action,width:int,height:int) -> None:
         self.texture=texture
         self.pos=pos
         self.action=action
@@ -34,7 +34,7 @@ class Image:
         self.height=height
 
 class Interface:
-    def __init__(self,texts:list[Text],buttons:list[Button],images:list[Image],action:function,background:py.Surface,pos:Vec,width:int,height:int) -> None:
+    def __init__(self,texts:list[Text],buttons:list[Button],images:list[Image],action,background:py.Surface,pos:Vec,width:int,height:int) -> None:
         self.texts=texts
         self.buttons=buttons
         self.images=images
@@ -45,7 +45,8 @@ class Interface:
         self.height=height
     
     def on_tick(self,world,user,mouse_pose:Vec):
-        self.action(world,user,mouse_pose)
+        if self.action is not None:
+            self.action(world,user,mouse_pose)
         
         
     def draw(self,screen:py.Surface):

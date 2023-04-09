@@ -1,5 +1,7 @@
 from uti.vector import *
 import pygame as py
+import os 
+import importlib as imp
 
 class Obj:
     def __init__(self,id:str,x:float,y:float,istop:bool,texture:py.Surface) -> None:
@@ -37,3 +39,17 @@ def registerObj(obj:type,name:str):
 def registerDynamic_Obj(dyn_obj:type,name:str):
     Dynamic_Objs[name]=dyn_obj
 
+
+#import every spells
+module_names=os.listdir(os.path.dirname(os.path.abspath(__file__)))
+
+for i in range(len(module_names)):
+    if module_names[i]=="__init__.py":
+        module_names.pop(i)
+        break
+for i in range(len(module_names)):
+    if module_names[i].endswith(".py"):
+        module_names[i]=module_names[i][:-3]
+        
+for i in module_names:
+    imp.import_module("."+i,__package__)

@@ -8,7 +8,7 @@ class Character:
     def __init__(self,name:str,surname:str,maison:str,sorts,potions,inventaire,genre:str,texture:list[py.Surface],clothes,x:float,y:float):
         self.name=name
         self.surname=surname
-        self.maison=maison
+        self.house=maison
         self.sorts=sorts
         self.potions=potions
         self.inventaire=inventaire

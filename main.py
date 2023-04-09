@@ -14,8 +14,10 @@ screen=py.display.set_mode((500,500))
 
 a=py.font.SysFont("Arial",25,False,False)
 
-worlds[0].addPlayer(Character("Jean","Magie","pouffsoufle",None,None,None,None,[tx.Textures["player"]["mc_back.png"], tx.Textures["player"]["mc_right_0_poufsouffle.png"],tx.Textures["player"]["mc_front_poufsouffle.png"],tx.Textures["player"]["mc_left_0_poufsouffle.png"]],None,0,0))
+players.append(Character("Jean","Magie","pouffsoufle",None,None,None,None,[tx.Textures["player"]["mc_back.png"], tx.Textures["player"]["mc_right_0_poufsouffle.png"],tx.Textures["player"]["mc_front_poufsouffle.png"],tx.Textures["player"]["mc_left_0_poufsouffle.png"]],None,0,0))
 worlds[0].addEntity(Npc("choixpeau","",tx.Textures["npc"]["choixpeau.png"],None,20,20))
+
+
 
 def main():
     TPS=0
@@ -68,7 +70,7 @@ def main():
             Avada_kedavra(players[0].uuid).shoot(worlds[0],Vec(py.mouse.get_pos()))
         
         worlds[0].show(screen)
-        worlds[0].update()
+        #worlds[0].update()
         screen.blit(a.render(str(int(TPS)),False,(255,0,0)),(0,0))
         
         py.display.update()
@@ -79,4 +81,4 @@ def main():
         TPS=1/(time()-t0)
         
 
-main()
+#main()

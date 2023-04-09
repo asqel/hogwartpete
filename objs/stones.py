@@ -4,7 +4,7 @@ from objs import *
 class Stone(Obj):
     def __init__(self, x: float, y: float) -> None:
         self.hitbox=None
-        super().__init__("Stone", x, y,False,Textures["Obj"]["stone"])
+        super().__init__("Stone", x, y,False,Textures["Obj"]["stone.png"])
         
 
 class Diorite(Obj):
