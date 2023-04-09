@@ -39,6 +39,7 @@ class World:
         
     def addObj(self,n:Obj)->None:
         self.getChunkfromPos(n.pos).objects.append(n)
+        
     def addDyn_Obj(self,n:Obj)->None:
         self.getChunkfromPos(n.pos).dyn_objects.append(n)
         
@@ -88,6 +89,7 @@ class World:
         return self.getChunkfromPos(pos).entities
     
     def show(self,screen:pygame.Surface)->None:  
+        global show_chunk_border
         screen.fill(self.bg)
         __objects:list[Obj]=[]
         __dyn_obj:list[Dynamic_Obj]=[]
@@ -114,12 +116,22 @@ class World:
         p=players[0].pos+__offset
         screen.blit(players[0].current_texture,(int(p.x),int(p.y)))
         
-        for i in players:
+        for i in __players:
             p=i.pos+__offset
             screen.blit(i.current_texture,(int(p.x),int(p.y)))
         for i in __entities:
             p=i.pos+__offset
             screen.blit(i.texture,(int(p.x),int(p.y)))
+        
+        if players[0].chunk_border:
+            for i in __chunks:
+                corn=i.getBorders()
+                py.draw.line(screen,(255,0,0),tuple(corn[0]+__offset),tuple(corn[1]+__offset))
+                py.draw.line(screen,(255,0,0),tuple(corn[2]+__offset),tuple(corn[3]+__offset))
+                py.draw.line(screen,(255,0,0),tuple(corn[0]+__offset),tuple(corn[2]+__offset))
+                py.draw.line(screen,(255,0,0),tuple(corn[1]+__offset),tuple(corn[3]+__offset))
+            
+        
             
     def update(self)->None:
         ...

@@ -145,5 +145,6 @@ class Vec:
             self.y=value
         return NotImplemented
 
-    def __tuple__(self):
-        return (self.x,self.y)
+    def __iter__(self):
+        yield self.x
+        yield self.y

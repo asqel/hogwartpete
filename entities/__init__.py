@@ -5,7 +5,7 @@ from  spells import *
 import uuid
 
 class Character:
-    def __init__(self,name:str,surname:str,maison:str,sorts,potions,inventaire,genre:str,texture:list[py.Surface],clothes,x:float,y:float):
+    def __init__(self,name:str,surname:str,maison:str,sorts,potions,inventaire,genre:str,texture:list[py.Surface],clothes,x:float,y:float,world):
         self.name=name
         self.surname=surname
         self.house=maison
@@ -24,32 +24,36 @@ class Character:
         self.dir:str="d" #d -> down  |  u -> up  |  r -> right  |  l -> left  |
         self.level=0
         self.puissance=0
+        self.speed=1
+        self.world=world
+        self.chunk_border=False
         self.uuid=uuid.uuid4()
 
     def left(self):
         if self.dir!="l":
             self.dir="l"
             self.current_texture=self.texture[3]
-        self.pos-=(2,0)
+        self.pos-=Vec(2,0)*self.speed
 
     def right(self):
         if self.dir!="r":
             self.dir="r"
             self.current_texture=self.texture[1]
-        self.pos+=(2,0)
+        self.pos+=Vec(2,0)*self.speed
 
 
     def up(self):
         if self.dir!="u":
             self.dir="u"
             self.current_texture=self.texture[0]
-        self.pos-=(0,2)
+        self.pos-=Vec(0,2)*self.speed
 
     def down(self):
         if self.dir!="d":
             self.dir="d"
             self.current_texture=self.texture[2]
-        self.pos+=(0,2)
+        self.pos+=Vec(0,2)*self.speed
+    
     def update_texture(self,vec):
         corner=math.sqrt(2)/2
         if -corner<=vec.x<=corner and corner<=vec.y<=1:

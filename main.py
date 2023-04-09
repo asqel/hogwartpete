@@ -8,20 +8,20 @@ from time import time ,sleep
 from world import *
 from spells.unforgivable_curses import *
 from spells import *
-print(__package__)
+
+py.joystick.init()
 py.font.init()
-screen=py.display.set_mode((500,500))
-
-a=py.font.SysFont("Arial",25,False,False)
-
-players.append(Character("Jean","Magie","pouffsoufle",None,None,None,None,[tx.Textures["player"]["mc_back.png"], tx.Textures["player"]["mc_right_0_poufsouffle.png"],tx.Textures["player"]["mc_front_poufsouffle.png"],tx.Textures["player"]["mc_left_0_poufsouffle.png"]],None,0,0))
-worlds.append(newWorld("1"))
-worlds[0].addObj(Objs["Stone"](players[0].pos.x,players[0].pos.y))
 
 def main():
     TPS=0
+    screen=py.display.set_mode((500,500))
+
+    arial=py.font.SysFont("Arial",25,False,False)
     
-    py.joystick.init()
+    starting_world=newWorld("first_world",(194, 154, 128))
+    players.append(Character("Jean","Magie","pouffsoufle",None,None,None,None,[tx.Textures["player"]["mc_back.png"], tx.Textures["player"]["mc_right_0_poufsouffle.png"],tx.Textures["player"]["mc_front_poufsouffle.png"],tx.Textures["player"]["mc_left_0_poufsouffle.png"]],None,0,0,starting_world))
+    players[0].world.addObj(Objs["Stone"](0,0))
+    
     joystick_count=py.joystick.get_count()
     if joystick_count:
         joysticks = []
@@ -29,7 +29,7 @@ def main():
             joystick = py.joystick.Joystick(i)
             joystick.init()
             joysticks.append(joystick)
-
+    global show_chunk_border
     while 1:
         screen.fill((0,255,255))
         t0=time()
@@ -66,11 +66,13 @@ def main():
         if keys[py.K_s]:
             players[0].down()
         if keys[py.K_SPACE]:
-            Avada_kedavra(players[0].uuid).shoot(worlds[0],Vec(py.mouse.get_pos()))
-        
-        worlds[0].show(screen)
-        #worlds[0].update()
-        screen.blit(a.render(str(int(TPS)),False,(255,0,0)),(0,0))
+            players[0].chunk_border=not players[0].chunk_border
+            
+        players[0].world:World=players[0].world
+        players[0].world.show(screen)
+        players[0].world.update()
+        screen.blit(arial.render(str(int(TPS)),False,(255,0,0)),(0,0))
+        screen.blit(arial.render(str(players[0].pos),False,(255,0,0)),(0,30))
         
         py.display.update()
         t=time()-t0
