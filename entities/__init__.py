@@ -25,6 +25,8 @@ class Character:
         self.level=0
         self.puissance=0
         self.speed=1
+        self.isvisible=True
+        self.render_distance=3
         self.world=world
         self.chunk_border=False
         self.uuid=uuid.uuid4()

@@ -89,7 +89,8 @@ class World:
         return self.getChunkfromPos(pos).entities
     
     def show(self,screen:pygame.Surface)->None:  
-        global show_chunk_border
+        scr_w=screen.get_width()
+        scr_h=screen.get_height()
         screen.fill(self.bg)
         __objects:list[Obj]=[]
         __dyn_obj:list[Dynamic_Obj]=[]
@@ -98,6 +99,7 @@ class World:
         __chunks:list[Chunk]=[]
         x=(players[0].pos//CHUNK_SIZE).x
         y=(players[0].pos//CHUNK_SIZE).y
+        
         for i in range(-1,2):
             for k in range(-1,2):
                 __chunks.append(self.getChunk(Vec(x+i,y+k)))
@@ -106,22 +108,27 @@ class World:
             __dyn_obj.extend(i.dyn_objects)
             __entities.extend(i.entities)
         
-        __offset=Vec(500/2,500/2)-players[0].pos-Vec(players[0].current_texture.get_width()//2,players[0].current_texture.get_height()//2)
+        __offset=Vec(scr_w//2,scr_h//2)-players[0].pos+Vec(players[0].current_texture.get_width()//2,players[0].current_texture.get_height()//2)
         
         for i in __objects:
             if (not i.toplayer):
                 p=i.pos+__offset
-                screen.blit(i.texture,(int(p.x),int(p.y)))
-                
-        p=players[0].pos+__offset
-        screen.blit(players[0].current_texture,(int(p.x),int(p.y)))
+                if -50<=p.x<scr_w and -50<=p.y<scr_h:
+                    screen.blit(i.texture,tuple(p))
+        
+        if players[0].isvisible:
+            p=players[0].pos+__offset
+            screen.blit(players[0].current_texture,(int(p.x),int(p.y)))
         
         for i in __players:
             p=i.pos+__offset
-            screen.blit(i.current_texture,(int(p.x),int(p.y)))
+            if -50<=p.x<scr_w and -50<=p.y<scr_h:
+                screen.blit(i.current_texture,(int(p.x),int(p.y)))
+        
         for i in __entities:
             p=i.pos+__offset
-            screen.blit(i.texture,(int(p.x),int(p.y)))
+            if -50<=p.x<scr_w and -50<=p.y<scr_h:
+                screen.blit(i.texture,(int(p.x),int(p.y)))
         
         if players[0].chunk_border:
             for i in __chunks:
@@ -133,29 +140,30 @@ class World:
             
         
             
-    def update(self)->None:
+    def update(self)->int:
         ...
         #TODO : entity with pv<=0 have to die npc.die() 
         #TODO : return a certain value when the players[0] die
 worlds:list[World]=[]
 
 
+from random import randint
+
 def newChunk(pos:Vec,world:World)->Chunk:
     c=Chunk(pos,world)
+    #TODO temporary
+    for i in range(20):
+        for k in range(20):
+            c.objects.append(Objs["Grass"](i*50+c.top_left_pos.x,k*50+c.top_left_pos.y))
     c.objects.append(Objs["Stone"](randint(0,999)+c.top_left_pos.x,randint(0,999)+c.top_left_pos.y))
     return c
 
-from random import randint
 def newWorld(name:str,background_color:list[int]=(0,0,0)):
     w=World(name,background_color)
-    w.chuncks[-1]={}
-    w.chuncks[0]={}
-    w.chuncks[1]={}
-    for i in range(-1,2):
-        for k in range(-1,2):
-            w.chuncks[i][k]=newChunk(Vec(i,k),w)
-            a:Chunk=w.getChunk(Vec(i,k))
-            a.objects.append(Objs["Stone"](randint(0,999)+a.top_left_pos.x,randint(0,999)+a.top_left_pos.y))
+    #for i in range(-1,2):
+    #    for k in range(-1,2):
+    #        a:Chunk=w.getChunk(Vec(i,k))
+    #        a.objects.append(Objs["Stone"](randint(0,999)+a.top_left_pos.x,randint(0,999)+a.top_left_pos.y))
 
     return w
 

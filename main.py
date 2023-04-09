@@ -2,7 +2,7 @@
 import pygame as py
 from pygame.locals import *
 
-import uti.textures as tx
+from uti.textures import *
 from entities import *
 from time import time ,sleep
 from world import *
@@ -14,13 +14,12 @@ py.font.init()
 
 def main():
     TPS=0
-    screen=py.display.set_mode((500,500))
+    py.display.init()
 
     arial=py.font.SysFont("Arial",25,False,False)
     
     starting_world=newWorld("first_world",(194, 154, 128))
-    players.append(Character("Jean","Magie","pouffsoufle",None,None,None,None,[tx.Textures["player"]["mc_back.png"], tx.Textures["player"]["mc_right_0_poufsouffle.png"],tx.Textures["player"]["mc_front_poufsouffle.png"],tx.Textures["player"]["mc_left_0_poufsouffle.png"]],None,0,0,starting_world))
-    players[0].world.addObj(Objs["Stone"](0,0))
+    players.append(Character("Jean","Magie","pouffsoufle",None,None,None,None,[Textures["player"]["mc_back.png"], Textures["player"]["mc_right_0_poufsouffle.png"], Textures["player"]["mc_front_poufsouffle.png"], Textures["player"]["mc_left_0_poufsouffle.png"]],None,0,0,starting_world))
     
     joystick_count=py.joystick.get_count()
     if joystick_count:
@@ -29,7 +28,8 @@ def main():
             joystick = py.joystick.Joystick(i)
             joystick.init()
             joysticks.append(joystick)
-    global show_chunk_border
+
+    
     while 1:
         screen.fill((0,255,255))
         t0=time()
@@ -67,12 +67,14 @@ def main():
             players[0].down()
         if keys[py.K_SPACE]:
             players[0].chunk_border=not players[0].chunk_border
-            
+
         players[0].world:World=players[0].world
         players[0].world.show(screen)
         players[0].world.update()
+        
         screen.blit(arial.render(str(int(TPS)),False,(255,0,0)),(0,0))
         screen.blit(arial.render(str(players[0].pos),False,(255,0,0)),(0,30))
+        screen.blit(arial.render(str(players[0].world.getChunkfromPos(players[0].pos).pos),False,(255,0,0)),(0,60))
         
         py.display.update()
         t=time()-t0
