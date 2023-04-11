@@ -69,17 +69,12 @@ class World:
         return self.getChunk(pos//CHUNK_SIZE)
         
     def chunkExists(self,pos:Vec) -> bool:
-        return self._extracted_from_chunkExistsfromPos_2(pos)
-
-    def chunkExistsfromPos(self,pos:Vec) -> bool:
-        pos=pos//CHUNK_SIZE
-        return self._extracted_from_chunkExistsfromPos_2(pos)
-
-    # TODO Rename this here and in `chunkExists` and `chunkExistsfromPos`
-    def _extracted_from_chunkExistsfromPos_2(self, pos):
         if pos.x not in self.chuncks.keys():
             return False
         return pos.y in self.chuncks[pos.x].keys()
+
+    def chunkExistsfromPos(self,pos:Vec) -> bool:
+        return self.chunckExists(pos//CHUNK_SIZE)
     
     def getEntitiesInChunk(self,pos:Vec)->list[Npc]:
         return self.getChunk(pos).entities
@@ -88,60 +83,116 @@ class World:
         return self.getChunkfromPos(pos).entities
     
     def show(self,screen:pygame.Surface, zoom_out: int) -> None:  
-        scr_w=screen.get_width() * zoom_out
-        scr_h=screen.get_height() * zoom_out
-        screen.fill(self.bg)
-        __objects:list[Obj]=[]
-        __dyn_obj:list[Dynamic_Obj]=[]
-        __players:list[Character]=[players[i] for i in range(1,len(players))]
-        __entities:list[Npc]=[]
-        __chunks:list[Chunk]=[]
-        x=(players[0].pos//CHUNK_SIZE).x
-        y=(players[0].pos//CHUNK_SIZE).y
+        if zoom_out!=1:
+            scr_w=screen.get_width() * zoom_out
+            scr_h=screen.get_height() * zoom_out
+            screen.fill(self.bg)
+            __objects:list[Obj]=[]
+            __dyn_obj:list[Dynamic_Obj]=[]
+            __players:list[Character]=[players[i] for i in range(1,len(players))]
+            __entities:list[Npc]=[]
+            __chunks:list[Chunk]=[]
+            x=(players[0].pos//CHUNK_SIZE).x
+            y=(players[0].pos//CHUNK_SIZE).y
 
-        for i in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1):
-            __chunks.extend(self.getChunk(Vec(x+i,y+k)) for k in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1))
-        for i in __chunks:
-            __objects.extend(i.objects)
-            __dyn_obj.extend(i.dyn_objects)
-            __entities.extend(i.entities)
-
-        __offset=Vec(scr_w//2,scr_h//2)-players[0].pos+Vec(players[0].current_texture.get_width()*zoom_out//2,players[0].current_texture.get_height()*zoom_out//2)
-
-        for i in __objects:
-            if (not i.toplayer):
-                p=(i.pos+__offset) // zoom_out
-                screen.blit(pygame.transform.scale(i.texture,(i.texture.get_width()//zoom_out,i.texture.get_height()//zoom_out)),(int(p.x),int(p.y)))
-
-        if players[0].isvisible:
-            p=(players[0].pos+__offset) // zoom_out
-            screen.blit(pygame.transform.scale(players[0].current_texture,(players[0].current_texture.get_width()//zoom_out,players[0].current_texture.get_height()//zoom_out)),(int(p.x),int(p.y)))
-
-        for i in __players:
-            p=i.pos+__offset
-            if -50<=p.x<scr_w and -50<=p.y<scr_h and i.isvisible:
-                screen.blit(i.current_texture,(int(p.x),int(p.y)))
-
-        for i in __entities:
-            p=i.pos+__offset
-            if -50<=p.x<scr_w and -50<=p.y<scr_h and i.isvisible:
-                screen.blit(i.texture,(int(p.x),int(p.y)))
-        
-        for i in __objects:
-            if i.toplayer:
-                p=i.pos+__offset
-                if -50<=p.x<scr_w and -50<=p.y<scr_h:
-                    screen.blit(i.texture,tuple(p))
-        
-        if players[0].chunk_border:
+            for i in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1):
+                __chunks.extend(self.getChunk(Vec(x+i,y+k)) for k in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1))
             for i in __chunks:
-                corn=i.getBorders()
+                __objects.extend(i.objects)
+                __dyn_obj.extend(i.dyn_objects)
+                __entities.extend(i.entities)
 
-                py.draw.line(screen,(255,0,0),tuple((corn[0]+__offset) // zoom_out),tuple((corn[1]+__offset) // zoom_out))
-                py.draw.line(screen,(255,0,0),tuple((corn[2]+__offset) // zoom_out),tuple((corn[3]+__offset) // zoom_out))
-                py.draw.line(screen,(255,0,0),tuple((corn[0]+__offset) // zoom_out),tuple((corn[2]+__offset) // zoom_out))
-                py.draw.line(screen,(255,0,0),tuple((corn[1]+__offset) // zoom_out),tuple((corn[3]+__offset) // zoom_out))
+            __offset=Vec(scr_w//2,scr_h//2)-players[0].pos+Vec(players[0].current_texture.get_width()*zoom_out//2,players[0].current_texture.get_height()*zoom_out//2)
 
+            for i in __objects:
+                if (not i.toplayer):
+                    p=(i.pos+__offset) // zoom_out
+                    if -50<p.x<scr_w and -50<p.y<scr_h:
+                        screen.blit(pygame.transform.scale(i.texture,(i.texture.get_width()//zoom_out,i.texture.get_height()//zoom_out)),(int(p.x),int(p.y)))
+
+            if players[0].isvisible:
+                p=(players[0].pos+__offset) // zoom_out
+                screen.blit(pygame.transform.scale(players[0].current_texture,(players[0].current_texture.get_width()//zoom_out,players[0].current_texture.get_height()//zoom_out)),(int(p.x),int(p.y)))
+
+            for i in __players:
+                p=i.pos+__offset
+                if -50<=p.x<scr_w and -50<=p.y<scr_h and i.isvisibleC:
+                    screen.blit(i.current_texture,(int(p.x),int(p.y)))
+
+            for i in __entities:
+                p=i.pos+__offset
+                if -50<=p.x<scr_w and -50<=p.y<scr_h and i.isvisible:
+                    screen.blit(i.texture,(int(p.x),int(p.y)))
+
+            for i in __objects:
+                if i.toplayer:
+                    p=i.pos+__offset
+                    if -50<=p.x<scr_w and -50<=p.y<scr_h:
+                        screen.blit(i.texture,tuple(p))
+
+            if players[0].chunk_border:
+                for i in __chunks:
+                    corn=i.getBorders()
+
+                    py.draw.line(screen,(255,0,0),tuple((corn[0]+__offset) // zoom_out),tuple((corn[1]+__offset) // zoom_out))
+                    py.draw.line(screen,(255,0,0),tuple((corn[2]+__offset) // zoom_out),tuple((corn[3]+__offset) // zoom_out))
+                    py.draw.line(screen,(255,0,0),tuple((corn[0]+__offset) // zoom_out),tuple((corn[2]+__offset) // zoom_out))
+                    py.draw.line(screen,(255,0,0),tuple((corn[1]+__offset) // zoom_out),tuple((corn[3]+__offset) // zoom_out))
+        else:
+            scr_w=screen.get_width() 
+            scr_h=screen.get_height()
+            screen.fill(self.bg)
+            __objects:list[Obj]=[]
+            __dyn_obj:list[Dynamic_Obj]=[]
+            __players:list[Character]=[players[i] for i in range(1,len(players))]
+            __entities:list[Npc]=[]
+            __chunks:list[Chunk]=[]
+            x=(players[0].pos//CHUNK_SIZE).x
+            y=(players[0].pos//CHUNK_SIZE).y
+
+            for i in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1):
+                __chunks.extend(self.getChunk(Vec(x+i,y+k)) for k in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1))
+            for i in __chunks:
+                __objects.extend(i.objects)
+                __dyn_obj.extend(i.dyn_objects)
+                __entities.extend(i.entities)
+
+            __offset=Vec(scr_w//2,scr_h//2)-players[0].pos+Vec(players[0].current_texture.get_width()//2,players[0].current_texture.get_height()//2)
+
+            for i in __objects:
+                if (not i.toplayer):
+                    p= i.pos+__offset
+                    if -50<p.x<scr_w and -50<p.y<scr_h:
+                        screen.blit(i.texture,(int(p.x),int(p.y)))
+
+            if players[0].isvisible:
+                p= players[0].pos+__offset
+                screen.blit(players[0].current_texture,(int(p.x),int(p.y)))
+
+            for i in __players:
+                p=i.pos+__offset
+                if -50<=p.x<scr_w and -50<=p.y<scr_h and i.isvisibleC:
+                    screen.blit(i.current_texture,(int(p.x),int(p.y)))
+
+            for i in __entities:
+                p=i.pos+__offset
+                if -50<=p.x<scr_w and -50<=p.y<scr_h and i.isvisible:
+                    screen.blit(i.texture,(int(p.x),int(p.y)))
+
+            for i in __objects:
+                if i.toplayer:
+                    p=i.pos+__offset
+                    if -50<=p.x<scr_w and -50<=p.y<scr_h:
+                        screen.blit(i.texture,tuple(p))
+
+            if players[0].chunk_border:
+                for i in __chunks:
+                    corn=i.getBorders()
+
+                    py.draw.line(screen,(255,0,0),tuple(corn[0]+__offset),tuple(corn[1]+__offset))
+                    py.draw.line(screen,(255,0,0),tuple(corn[2]+__offset),tuple(corn[3]+__offset))
+                    py.draw.line(screen,(255,0,0),tuple(corn[0]+__offset),tuple(corn[2]+__offset))
+                    py.draw.line(screen,(255,0,0),tuple(corn[1]+__offset),tuple(corn[3]+__offset))
 
 
     def update(self)->int:

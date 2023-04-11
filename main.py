@@ -19,8 +19,9 @@ def main():
     starting_world=newWorld("first_world",(194, 154, 128))
     players.append(Character("Jean","Magie","pouffsoufle",None,None,None,[Textures["player"]["mc_back.png"], Textures["player"]["mc_right_0_poufsouffle.png"], Textures["player"]["mc_front_poufsouffle.png"], Textures["player"]["mc_left_0_poufsouffle.png"]],None,0,0,starting_world))
     
-    players[0].speed=20
-    players[0].zoom_out = 10
+    players[0].speed=1
+    players[0].zoom_out = 1
+    players[0].render_distance=3
 
     joystick_count=py.joystick.get_count()
     if joystick_count:
@@ -29,7 +30,9 @@ def main():
             joystick = py.joystick.Joystick(i)
             joystick.init()
             joysticks.append(joystick)
-
+            
+    fps_cooldown=1
+    FPS_MAX=1/60
     
     while 1:
         screen.fill((0,255,255))
@@ -48,11 +51,11 @@ def main():
                 num_axes = joysticks[0].get_numaxes()
                 
                 # Obtenez les vecteurs des axes X et Y pour chaque axe
-                for j in range(num_axes):
-                    axis = joysticks[0].get_axis(i)
-                    if j == 0:  # axe X
+                for k in range(num_axes):
+                    axis = joysticks[0].get_axis(k)
+                    if k == 0:  # axe X
                         joystick_vec.x=axis
-                    elif j == 1:  # axe Y
+                    elif k == 1:  # axe Y
                         joystick_vec.y=axis
 
             elif i.type == py.KEYDOWN:
@@ -69,7 +72,7 @@ def main():
                 
 
         if joystick_count:
-            players[0].pos+=joystick_vec*2
+            players[0].pos+=joystick_vec*2*players[0].speed
             players[0].update_texture(joystick_vec)
 
         pushed_keys=py.key.get_pressed()
@@ -86,14 +89,22 @@ def main():
         players[0].world.show(screen, players[0].zoom_out)
         players[0].world.update()
         
+        
         screen.blit(arial.render(str(int(TPS)),False,(255,0,0)),(0,0))
         screen.blit(arial.render(str(players[0].pos.floor()),False,(255,0,0)),(0,30))
         screen.blit(arial.render(str(players[0].world.getChunkfromPos(players[0].pos).pos),False,(255,0,0)),(0,60))
         
         py.display.update()
         t=time()-t0
-
-        TPS=1/(time()-t0)
+        
+        if t<FPS_MAX:
+            sleep(FPS_MAX-t)
+        
+        fps_cooldown-=1
+        if not fps_cooldown:
+            TPS=1/(time()-t0)
+            fps_cooldown=5
+        
         
 
 main()
