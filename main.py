@@ -19,7 +19,7 @@ def main():
     arial=py.font.SysFont("Arial",25,False,False)
     
     starting_world=newWorld("first_world",(194, 154, 128))
-    players.append(Character("Jean","Magie","pouffsoufle",None,None,None,None,[Textures["player"]["mc_back.png"], Textures["player"]["mc_right_0_poufsouffle.png"], Textures["player"]["mc_front_poufsouffle.png"], Textures["player"]["mc_left_0_poufsouffle.png"]],None,0,0,starting_world))
+    players.append(Character("Jean","Magie","pouffsoufle",None,None,None,[Textures["player"]["mc_back.png"], Textures["player"]["mc_right_0_poufsouffle.png"], Textures["player"]["mc_front_poufsouffle.png"], Textures["player"]["mc_left_0_poufsouffle.png"]],None,0,0,starting_world))
     
     joystick_count=py.joystick.get_count()
     if joystick_count:
@@ -73,7 +73,7 @@ def main():
         players[0].world.update()
         
         screen.blit(arial.render(str(int(TPS)),False,(255,0,0)),(0,0))
-        screen.blit(arial.render(str(players[0].pos),False,(255,0,0)),(0,30))
+        screen.blit(arial.render(str(players[0].pos.floor()),False,(255,0,0)),(0,30))
         screen.blit(arial.render(str(players[0].world.getChunkfromPos(players[0].pos).pos),False,(255,0,0)),(0,60))
         
         py.display.update()

@@ -148,3 +148,6 @@ class Vec:
     def __iter__(self):
         yield self.x
         yield self.y
+
+    def floor(self):
+        return Vec(int(self.x),int(self.y))

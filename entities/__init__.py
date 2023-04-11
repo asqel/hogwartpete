@@ -5,12 +5,11 @@ from  spells import *
 import uuid
 
 class Character:
-    def __init__(self,name:str,surname:str,maison:str,sorts,potions,inventaire,genre:str,texture:list[py.Surface],clothes,x:float,y:float,world):
+    def __init__(self,name:str,surname:str,maison:str,spells:list[Spell],inventaire,genre:str,texture:list[py.Surface],clothes,x:float,y:float,world):
         self.name=name
         self.surname=surname
         self.house=maison
-        self.sorts=sorts
-        self.potions=potions
+        self.spells=spells
         self.inventaire=inventaire
         self.pv=100
         self.pvmax=100
@@ -74,6 +73,7 @@ class Npc:
         self.surname=surname
         self.texture=texture
         self.spells=spells
+        self.isvisible=True
         self.pv=100
         self.pos=Vec(x,y)
         

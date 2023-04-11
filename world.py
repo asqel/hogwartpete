@@ -122,13 +122,19 @@ class World:
         
         for i in __players:
             p=i.pos+__offset
-            if -50<=p.x<scr_w and -50<=p.y<scr_h:
+            if -50<=p.x<scr_w and -50<=p.y<scr_h and i.isvisible:
                 screen.blit(i.current_texture,(int(p.x),int(p.y)))
         
         for i in __entities:
             p=i.pos+__offset
-            if -50<=p.x<scr_w and -50<=p.y<scr_h:
+            if -50<=p.x<scr_w and -50<=p.y<scr_h and i.isvisible:
                 screen.blit(i.texture,(int(p.x),int(p.y)))
+        
+        for i in __objects:
+            if i.toplayer:
+                p=i.pos+__offset
+                if -50<=p.x<scr_w and -50<=p.y<scr_h:
+                    screen.blit(i.texture,tuple(p))
         
         if players[0].chunk_border:
             for i in __chunks:
