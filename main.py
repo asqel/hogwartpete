@@ -6,8 +6,6 @@ from uti.textures import *
 from entities import *
 from time import time ,sleep
 from world import *
-from spells.unforgivable_curses import *
-from spells import *
 
 py.joystick.init()
 py.font.init()
@@ -21,6 +19,9 @@ def main():
     starting_world=newWorld("first_world",(194, 154, 128))
     players.append(Character("Jean","Magie","pouffsoufle",None,None,None,[Textures["player"]["mc_back.png"], Textures["player"]["mc_right_0_poufsouffle.png"], Textures["player"]["mc_front_poufsouffle.png"], Textures["player"]["mc_left_0_poufsouffle.png"]],None,0,0,starting_world))
     
+    players[0].speed=20
+    players[0].zoom_out = 10
+
     joystick_count=py.joystick.get_count()
     if joystick_count:
         joysticks = []
@@ -47,29 +48,42 @@ def main():
                 num_axes = joysticks[0].get_numaxes()
                 
                 # Obtenez les vecteurs des axes X et Y pour chaque axe
-                for i in range(num_axes):
+                for j in range(num_axes):
                     axis = joysticks[0].get_axis(i)
-                    if i == 0:  # axe X
+                    if j == 0:  # axe X
                         joystick_vec.x=axis
-                    elif i == 1:  # axe Y
+                    elif j == 1:  # axe Y
                         joystick_vec.y=axis
+
+            elif i.type == py.KEYDOWN:
+                if i.key == K_SPACE:
+                    players[0].chunk_border=not players[0].chunk_border
+                elif i.key == K_p:
+                    players[0].zoom_out+=1
+                elif i.key == K_m:
+                    players[0].zoom_out = max(1, players[0].zoom_out-1)
+                elif i.key == K_o:
+                    players[0].render_distance+=2
+                elif i.key == K_l:
+                    players[0].render_distance = max(1, players[0].render_distance-2)
+                
+
         if joystick_count:
             players[0].pos+=joystick_vec*2
             players[0].update_texture(joystick_vec)
-        keys=py.key.get_pressed()
-        if keys[py.K_q]:
+
+        pushed_keys=py.key.get_pressed()
+        if pushed_keys[py.K_q]:
             players[0].left()
-        if keys[py.K_d]:
+        if pushed_keys[py.K_d]:
             players[0].right()
-        if keys[py.K_z]:
+        if pushed_keys[py.K_z]:
             players[0].up()
-        if keys[py.K_s]:
+        if pushed_keys[py.K_s]:
             players[0].down()
-        if keys[py.K_SPACE]:
-            players[0].chunk_border=not players[0].chunk_border
 
         players[0].world:World=players[0].world
-        players[0].world.show(screen)
+        players[0].world.show(screen, players[0].zoom_out)
         players[0].world.update()
         
         screen.blit(arial.render(str(int(TPS)),False,(255,0,0)),(0,0))
@@ -78,9 +92,7 @@ def main():
         
         py.display.update()
         t=time()-t0
-        
-        if t<1/60:
-            sleep(1/60-t)
+
         TPS=1/(time()-t0)
         
 

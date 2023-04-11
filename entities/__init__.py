@@ -29,6 +29,7 @@ class Character:
         self.world=world
         self.chunk_border=False
         self.uuid=uuid.uuid4()
+        self.zoom_out=1
 
     def left(self):
         if self.dir!="l":
