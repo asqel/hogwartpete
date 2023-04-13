@@ -3,14 +3,18 @@ import pygame as py
 from pygame.locals import *
 
 from uti.textures import *
+from uti.sound import play_sound
 from entities import *
 from time import time ,sleep
 from world import *
+
+from _thread import start_new_thread
 
 py.joystick.init()
 py.font.init()
 
 def main():
+    start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
     TPS=0
     py.display.init()
 
