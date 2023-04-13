@@ -5,7 +5,7 @@ from pygame.locals import *
 from uti.textures import *
 from uti.sound import play_sound
 from entities import *
-from time import time ,sleep
+from time import time, sleep
 from world import *
 
 from _thread import start_new_thread
@@ -13,39 +13,61 @@ from _thread import start_new_thread
 py.joystick.init()
 py.font.init()
 
-def main():
-    start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
-    TPS=0
-    py.display.init()
+FPS_MAX = 60
+TPS_MAX = 150
 
+global g_tps, running_dict
+g_tps = 0
+
+running_dict = {
+    "global": True,
+    "graphic": True,
+    "server": True
+}
+
+def graphic_thread():
     arial=py.font.SysFont("Arial",25,False,False)
-    
-    starting_world=newWorld("first_world",(194, 154, 128))
-    players.append(Character("Jean","Magie","pouffsoufle",None,None,None,[Textures["player"]["mc_back.png"], Textures["player"]["mc_right_0_poufsouffle.png"], Textures["player"]["mc_front_poufsouffle.png"], Textures["player"]["mc_left_0_poufsouffle.png"]],None,0,0,starting_world))
-    
-    players[0].speed=1
-    players[0].zoom_out = 1
-    players[0].render_distance=3
+    fps = 0
+    while running_dict["global"]:
+        start_time = time()
+        players[0].world: World = players[0].world
+        players[0].world.show(screen, players[0].zoom_out)
+        players[0].world.update()
+ 
+        screen.blit(arial.render(f"fps: {int(fps)}", False, (255, 0, 0)), (0, 0))
+        screen.blit(arial.render(f"mid tps: {int(g_tps)}", False, (255, 0, 0)), (0, 30))
+        screen.blit(arial.render(str(players[0].pos.floor()), False, (255, 0, 0)), (0, 60))
+        screen.blit(arial.render(str(players[0].world.getChunkfromPos(players[0].pos).pos), False, (255, 0, 0)), (0, 90))
 
-    joystick_count=py.joystick.get_count()
+        py.display.update()
+
+        fps = 1 / (time() - start_time)
+
+    running_dict["graphic"] = False
+
+def server_thread():  # sourcery skip: low-code-quality
+    global running_dict, g_tps
+
+    loop_start = time()
+    loop_count = 0
+
+    joystick_count = py.joystick.get_count()
     if joystick_count:
         joysticks = []
         for i in range(joystick_count):
             joystick = py.joystick.Joystick(i)
             joystick.init()
             joysticks.append(joystick)
-            
-    fps_cooldown=1
-    FPS_MAX=1/60
-    
-    while 1:
-        screen.fill((0,255,255))
-        t0=time()
-        e=py.event.get()
-        joystick_vec=Vec(0,0)
+
+    while running_dict["global"]:
+        iter_start = time()
+        loop_count += 1
+
+        e = py.event.get()
+        joystick_vec = Vec(0,0)
         for i in e:
             if i.type == py.QUIT:
-                exit(0)
+                running_dict["global"] = False
             if i.type == py.JOYBUTTONDOWN:
                 print("Bouton appuyé : ", i.button)
             elif i.type == py.JOYBUTTONUP:
@@ -73,7 +95,6 @@ def main():
                     players[0].render_distance+=2
                 elif i.key == K_l:
                     players[0].render_distance = max(1, players[0].render_distance-2)
-                
 
         if joystick_count:
             players[0].pos+=joystick_vec*2*players[0].speed
@@ -89,26 +110,29 @@ def main():
         if pushed_keys[py.K_s]:
             players[0].down()
 
-        players[0].world:World=players[0].world
-        players[0].world.show(screen, players[0].zoom_out)
-        players[0].world.update()
-        
-        
-        screen.blit(arial.render(str(int(TPS)),False,(255,0,0)),(0,0))
-        screen.blit(arial.render(str(players[0].pos.floor()),False,(255,0,0)),(0,30))
-        screen.blit(arial.render(str(players[0].world.getChunkfromPos(players[0].pos).pos),False,(255,0,0)),(0,60))
-        
-        py.display.update()
-        t=time()-t0
-        
-        if t<FPS_MAX:
-            sleep(FPS_MAX-t)
-        
-        fps_cooldown-=1
-        if not fps_cooldown:
-            TPS=1/(time()-t0)
-            fps_cooldown=5
-        
-        
+        # tps moyenizer
+        moy_fps = 1 / (time() - loop_start) * loop_count if loop_count > 10 else TPS_MAX
+        to_sleep = (1 / TPS_MAX - (time() - iter_start)) - (1 - (moy_fps / TPS_MAX))
+        if to_sleep > 0: sleep(to_sleep)
+
+        g_tps = 1 / (time() - loop_start) * loop_count
+
+    running_dict["server"] = False
+
+def main():
+    start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
+
+    starting_world=newWorld("first_world",(194, 154, 128))
+    players.append(Character("Jean","Magie","pouffsoufle",None,None,None,[Textures["player"]["mc_back.png"], Textures["player"]["mc_right_0_poufsouffle.png"], Textures["player"]["mc_front_poufsouffle.png"], Textures["player"]["mc_left_0_poufsouffle.png"]],None,0,0,starting_world))
+
+    players[0].speed=1
+    players[0].zoom_out = 1
+    players[0].render_distance=3
+
+    start_new_thread(graphic_thread, ())
+    start_new_thread(server_thread, ())
+
+    while running_dict["global"] and running_dict["graphic"] and running_dict["server"]:
+        sleep(0.1)
 
 main()
