@@ -27,8 +27,8 @@ class Chunk:
         """
         x=self.top_left_pos.x
         y=self.top_left_pos.y
-        return (Vec(x,y),Vec(x+999,y),Vec(x,y+999),Vec(x+999,y+999))
-        
+        return (Vec(x, y), Vec(x + 999, y), Vec(x, y + 999), Vec(x + 999, y + 999))
+
 class World:
     def __init__(self,name,background_col:list[int])->None:
         self.name=name
@@ -94,7 +94,7 @@ class World:
         if zoom_out != 1:
             scr_w = screen.get_width() * zoom_out
             scr_h = screen.get_height() * zoom_out
-            self._extracted_from_show_12(screen, __chunks, x)
+            self.dcrg_xffhvgvguy(screen, __chunks, x)
             for e in __chunks:
                 __objects.extend([o.obj_copy() for o in e.objects])
                 __dyn_obj.extend(e.dyn_objects)
@@ -146,7 +146,7 @@ class World:
         else:
             scr_w=screen.get_width()
             scr_h=screen.get_height()
-            self._extracted_from_show_12(screen, __chunks, x)
+            self.dcrg_xffhvgvguy(screen, __chunks, x)
             for i in __chunks:
                 __objects.extend(i.objects)
                 __dyn_obj.extend(i.dyn_objects)
@@ -190,7 +190,7 @@ class World:
                     py.draw.line(screen,(255,0,0),tuple(corn[1]+__offset),tuple(corn[3]+__offset))
 
     # TODO Rename this here and in `show`
-    def _extracted_from_show_12(self, screen, __chunks, x):
+    def dcrg_xffhvgvguy(self, screen, __chunks, x):
         screen.fill(self.bg)
         y = (players[0].pos // CHUNK_SIZE).y
 
