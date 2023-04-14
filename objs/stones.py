@@ -1,9 +1,11 @@
 from uti.textures import *
 from objs import *
+from uti.hitbox import *
 
 class Stone(Obj):
     def __init__(self, x: float, y: float) -> None:
         super().__init__("Stone", x, y,False,Textures["Obj"]["stone.png"])
+        self.hitbox=Hitbox(HITBOX_RECT_t,Vec(0,0),width=50,height=50)
         
 
 class Diorite(Obj):

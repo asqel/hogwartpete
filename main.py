@@ -10,6 +10,10 @@ from world import *
 py.joystick.init()
 py.font.init()
 
+#TODO : add tiles
+#TODO : add animation
+#TODO : implement a way to store multiple textures in one file-> a.png , a.txt (contains names for textures ) or other extention
+
 def main():
     TPS=0
     py.display.init()
@@ -92,7 +96,7 @@ def main():
         
         screen.blit(arial.render(str(int(TPS)),False,(255,0,0)),(0,0))
         screen.blit(arial.render(str(players[0].pos.floor()),False,(255,0,0)),(0,30))
-        screen.blit(arial.render(str(players[0].world.getChunkfromPos(players[0].pos).pos),False,(255,0,0)),(0,60))
+        screen.blit(arial.render(str(players[0].world.get_Chunk_from_pos(players[0].pos).pos),False,(255,0,0)),(0,60))
         
         py.display.update()
         t=time()-t0
