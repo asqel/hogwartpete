@@ -73,6 +73,10 @@ def main():
                     players[0].render_distance+=2
                 elif i.key == K_l:
                     players[0].render_distance = max(1, players[0].render_distance-2)
+                elif i.key == K_i:
+                    players[0].speed+=2
+                elif i.key == K_k:
+                    players[0].speed-=2
                 
 
         if joystick_count:

@@ -296,6 +296,7 @@ def newChunk(pos:Vec,world:World) -> Chunk:
     #TODO temporary
     for i, k in itertools.product(range(20), range(20)):
         c.objects.append(Objs["Grass"](i*50+c.top_left_pos.x,k*50+c.top_left_pos.y))
+    c.objects.append(Objs["Pebble"](randint(0,999)+c.top_left_pos.x,randint(0,999)+c.top_left_pos.y))
     c.objects.append(Objs["Stone"](randint(0,999)+c.top_left_pos.x,randint(0,999)+c.top_left_pos.y))
     return c
 
