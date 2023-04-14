@@ -17,7 +17,7 @@ class Chunk:
         self.objects:list[Obj]=[]
         self.dyn_objects:list[Dynamic_Obj]=[]
 
-    def getBorders(self)->list[Vec]:
+    def get_borders(self)->list[Vec]:
         """
         return corners of the chunk
         (Top-left, Top-right, bottom-left, bottom-right)
@@ -28,60 +28,114 @@ class Chunk:
         x=self.top_left_pos.x
         y=self.top_left_pos.y
         return (Vec(x,y),Vec(x+999,y),Vec(x,y+999),Vec(x+999,y+999))
-        
+
+    def on_tick(self):
+        p=0
+        while p<len(self.objects):
+            obj=self.objects[p]
+            if obj.pos.x < self.top_left_pos.x:
+                if obj.pos.y < self.top_left_pos.y:#CHECK TOP-LEFT
+                    self.world.get_Chunk_at(self.pos-(1,1)).objects.append(obj)
+                    self.objects.pop(p)
+                    continue
+                if obj.pos.y >= self.top_left_pos.y+CHUNK_SIZE:#CHECK BOTTOM-LEFT
+                    self.world.get_Chunk_at(self.pos-(1,-1)).objects.append(obj)
+                else:#CHECK LEFT
+                    self.world.get_Chunk_at(self.pos-(1,0)).objects.append(obj)
+                self.objects.pop(p)
+                continue
+            if obj.pos.x >= self.top_left_pos.x+CHUNK_SIZE:
+                if obj.pos.y < self.top_left_pos.y:#CHECK TOP-RIGHT
+                    self.world.get_Chunk_at(self.pos+(1,-1)).objects.append(obj)
+                    self.objects.pop(p)
+                    continue
+                if obj.pos.y >= self.top_left_pos.y+CHUNK_SIZE:#CHECK BOTTOM-RIGHT
+                    self.world.get_Chunk_at(self.pos+(1,1)).objects.append(obj)
+                else:#CHECK RIGHT
+                    self.world.get_Chunk_at(self.pos+(1,0)).objects.append(obj)
+                self.objects.pop(p)
+                continue
+            if obj.pos.y < self.top_left_pos.y:#CHECK UP
+                self.world.get_Chunk_at(self.pos+(0,-1)).objects.append(obj)
+                self.objects.pop(p)
+                continue
+            self.world.get_Chunk_at(self.pos+(0,1)).objects.append(obj)
+            self.objects.pop(p)
+            continue
+
+
+
 class World:
+    """
+    difference between function called ...at and ...from_pos:
+        ...at : pos in the chunks dictionary of ther world
+        ...from_pos : pos of an entity or player or an object
+    
+    """
     def __init__(self,name,background_col:list[int])->None:
         self.name=name
         self.bg=background_col
         self.chuncks:dict[int,dict[int,Chunk]]={}# chuncks[x][y]
         self.id=uuid.uuid4()
         
-    def addEntity(self,n:Npc)->None:
-        self.getChunkfromPos(n.pos).entities.append(n)
-        
-    def addObj(self,n:Obj)->None:
-        self.getChunkfromPos(n.pos).objects.append(n)
-        
-    def addDyn_Obj(self,n:Obj)->None:
-        self.getChunkfromPos(n.pos).dyn_objects.append(n)
-        
-    def genChunkat(self,pos:Vec):
+    def add_entity(self,n:Npc)->None:
         """
-        generate a new chunk a {pos}
+        add an entity to the world
+        if the entity is in a chunk that doesn't exists the chunk will be generated 
+        """
+        self.get_Chunk_from_pos(n.pos).entities.append(n)
+        
+    def add_Obj(self,n:Obj)->None:
+        """
+        add an Obj to the world
+        if the Obj is in a chunk that doesn't exists the chunk will be generated 
+        """
+        self.get_Chunk_from_pos(n.pos).objects.append(n)
+    
+    def add_Dyn_Obj(self,n:Obj)->None:
+        """
+        add an Dyn_Obj to the world
+        if the Dyn_Obj is in a chunk that doesn't exists the chunk will be generated 
+        """
+        self.get_Chunk_from_pos(n.pos).dyn_objects.append(n)
+        
+    def gen_Chunk_at(self,pos:Vec):
+        """
+        generate a new chunk at {pos}
         if chunk already exist it will be erased
         """
         if pos.x not in self.chuncks.keys():
             self.chuncks[pos.x]={}
         self.chuncks[pos.x][pos.y]=newChunk(pos,self)
         
-    def genChunkatfromPos(self,pos:Vec):
+    def gen_Chunk_from_pos(self,pos:Vec):
         """
         generate a new chunk a {pos}
         if chunk already exist it will be erased
         """
-        self.genChunkat(pos//CHUNK_SIZE)
+        self.gen_Chunk_at(pos//CHUNK_SIZE)
         
-    def getChunk(self, pos:Vec)->Chunk:
-        if not self.chunkExists(pos):
-            self.genChunkat(pos)
+    def get_Chunk_at(self, pos:Vec)->Chunk:
+        if not self.chunk_exists_at(pos):
+            self.gen_Chunk_at(pos)
         return self.chuncks[pos.x][pos.y]
     
-    def getChunkfromPos(self,pos:Vec)->Chunk:
-        return self.getChunk(pos//CHUNK_SIZE)
+    def get_Chunk_from_pos(self,pos:Vec)->Chunk:
+        return self.get_Chunk_at(pos//CHUNK_SIZE)
         
-    def chunkExists(self,pos:Vec) -> bool:
+    def chunk_exists_at(self,pos:Vec) -> bool:
         if pos.x not in self.chuncks.keys():
             return False
         return pos.y in self.chuncks[pos.x].keys()
 
-    def chunkExistsfromPos(self,pos:Vec) -> bool:
-        return self.chunckExists(pos//CHUNK_SIZE)
+    def chunk_exists_from_pos(self,pos:Vec) -> bool:
+        return self.chunk_exists_at(pos//CHUNK_SIZE)
     
-    def getEntitiesInChunk(self,pos:Vec)->list[Npc]:
-        return self.getChunk(pos).entities
+    def get_entities_in_Chunk_at(self,pos:Vec)->list[Npc]:
+        return self.get_Chunk_at(pos).entities
     
-    def getEntitiesInChunkfromPos(self,pos:Vec)->list[Npc]:
-        return self.getChunkfromPos(pos).entities
+    def get_entities_in_Chunk_from_pos(self,pos:Vec)->list[Npc]:
+        return self.get_Chunk_from_pos(pos).entities
     
     def show(self,screen:pygame.Surface, zoom_out: int) -> None:
         __objects:list[Obj]=[]
@@ -137,7 +191,7 @@ class World:
 
             if players[0].chunk_border:
                 for i in __chunks:
-                    corn=i.getBorders()
+                    corn=i.get_borders()
 
                     py.draw.line(screen,(255,0,0),tuple((corn[0]+__offset) // zoom_out),tuple((corn[1]+__offset) // zoom_out))
                     py.draw.line(screen,(255,0,0),tuple((corn[2]+__offset) // zoom_out),tuple((corn[3]+__offset) // zoom_out))
@@ -166,7 +220,7 @@ class World:
 
             for i in __players:
                 p=i.pos+__offset
-                if -50<=p.x<scr_w and -50<=p.y<scr_h and i.isvisibleC:
+                if -50<=p.x<scr_w and -50<=p.y<scr_h and i.isvisible:
                     screen.blit(i.current_texture,(int(p.x),int(p.y)))
 
             for i in __entities:
@@ -182,7 +236,7 @@ class World:
 
             if players[0].chunk_border:
                 for i in __chunks:
-                    corn=i.getBorders()
+                    corn=i.get_borders()
 
                     py.draw.line(screen,(255,0,0),tuple(corn[0]+__offset),tuple(corn[1]+__offset))
                     py.draw.line(screen,(255,0,0),tuple(corn[2]+__offset),tuple(corn[3]+__offset))
@@ -199,6 +253,7 @@ class World:
 
 
     def update(self)->int:
+        self.resolve_collision()
         ...
         #TODO : entity with pv<=0 have to die npc.die() 
         #TODO : return a certain value when the players[0] die
