@@ -133,7 +133,7 @@ class World:
     
     def get_entities_in_Chunk_at(self,pos:Vec)->list[Npc]:
         return self.get_Chunk_at(pos).entities
-    
+
     def get_entities_in_Chunk_from_pos(self,pos:Vec)->list[Npc]:
         return self.get_Chunk_from_pos(pos).entities
     
@@ -249,7 +249,7 @@ class World:
         y = (players[0].pos // CHUNK_SIZE).y
 
         for i in range(-players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1):
-            __chunks.extend(self.getChunk(Vec(x + i, y + k)) for k in range(-players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1))
+            __chunks.extend(self.gen_Chunk_at(Vec(x + i, y + k)) for k in range(-players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1))
 
 
     def update(self)->int:

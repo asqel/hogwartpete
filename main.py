@@ -37,7 +37,7 @@ def graphic_thread():
         screen.blit(arial.render(f"fps: {int(fps)}", False, (255, 0, 0)), (0, 0))
         screen.blit(arial.render(f"mid tps: {int(g_tps)}", False, (255, 0, 0)), (0, 30))
         screen.blit(arial.render(str(players[0].pos.floor()), False, (255, 0, 0)), (0, 60))
-        screen.blit(arial.render(str(players[0].world.getChunkfromPos(players[0].pos).pos), False, (255, 0, 0)), (0, 90))
+        screen.blit(arial.render(str(players[0].world.gen_Chunk_atfromPos(players[0].pos).pos), False, (255, 0, 0)), (0, 90))
 
         py.display.update()
 

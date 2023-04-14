@@ -33,35 +33,34 @@ class Character:
         self.zoom_out=1
 
     def left(self):
-        if self.dir!="l":
-            self.dir="l"
-            self.current_texture=self.texture[3]
-        self.pos-=Vec(2,0)*self.speed
-        self.collisions("l")
+        self._extracted_from_up_2("l", 3, 2, 0)
 
     def right(self):
-        if self.dir!="r":
-            self.dir="r"
-            self.current_texture=self.texture[1]
-        self.pos+=Vec(2,0)*self.speed
-        self.collisions("r")
-
+        self._extracted_from_down_2("r", 1, 2, 0)
 
     def up(self):
-        if self.dir!="u":
-            self.dir="u"
-            self.current_texture=self.texture[0]
-        self.pos-=Vec(0,2)*self.speed
-        self.collisions("u")
+        self._extracted_from_up_2("u", 0, 0, 2)
+
+    # TODO Rename this here and in `left` and `up`
+    def _extracted_from_up_2(self, arg0, arg1, arg2, arg3):
+        if self.dir != arg0:
+            self.dir = arg0
+            self.current_texture = self.texture[arg1]
+        self.pos -= Vec(arg2, arg3) * self.speed
+        self.collisions(arg0)
     
         
 
     def down(self):
-        if self.dir!="d":
-            self.dir="d"
-            self.current_texture=self.texture[2]
-        self.pos+=Vec(0,2)*self.speed
-        self.collisions("d")
+        self._extracted_from_down_2("d", 2, 0, 2)
+
+    # TODO Rename this here and in `right` and `down`
+    def _extracted_from_down_2(self, arg0, arg1, arg2, arg3):
+        if self.dir != arg0:
+            self.dir = arg0
+            self.current_texture = self.texture[arg1]
+        self.pos += Vec(arg2, arg3) * self.speed
+        self.collisions(arg0)
 
     def collisions(self,dir:str):
         x=(players[0].pos//1000).x
@@ -79,14 +78,14 @@ class Character:
                 hit2=players[0].hitbox.copy()
                 hit2.pos+=players[0].pos
                 if hit1.iscolliding(hit2):
-                    if dir=="d":
+                    if dir == "d":
                         self.pos-=Vec(0,2)*self.speed
-                    if dir=="u":
-                        self.pos-=Vec(0,-2)*self.speed
-                    if dir=="l":
+                    elif dir == "l":
                         self.pos-=Vec(-2,0)*self.speed
-                    if dir=="r":
+                    elif dir == "r":
                         self.pos-=Vec(2,0)*self.speed
+                    elif dir == "u":
+                        self.pos-=Vec(0,-2)*self.speed
                     return 0    
     def update_texture(self,vec):
         corner=math.sqrt(2)/2
