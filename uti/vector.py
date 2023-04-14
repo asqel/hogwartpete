@@ -23,19 +23,18 @@ class Vec:
 
         if y is None and x is a tuple or a list and if its len is equal to 2 the vector will be (x[0],x[1])
         """
-        if((x is not None ) and (y is not None)):
+        if ((x is not None ) and (y is not None)):
             self.x=x
             self.y=y
         elif((x is None ) and (y is None)):
             self.x=0
             self.y=0
-        elif y is None :
+        elif y is None:
             if isinstance(x,(tuple,list)):
-                if len(x)==2:
-                    self.x=x[0]
-                    self.y=x[1]
-                else:
+                if len(x) != 2:
                     raise Exception(f"len of x is {'greater' if len(x)>2 else 'less'} than 2")
+                self.x=x[0]
+                self.y=x[1]
             elif isinstance(x,Vec):
                 self.x=x.x
                 self.y=x.y
@@ -69,17 +68,17 @@ class Vec:
         return(Vec(~self.x,~self.y))
     
     def __mul__(self,other):
-        if isinstance(other,int) or isinstance(other,float):
+        if isinstance(other, (int, float)):
             return(Vec(self.x*other,self.y*other))
         return NotImplemented
     
     def __truediv__(self,other):
-        if isinstance(other,int) or isinstance(other,float):
+        if isinstance(other, (int, float)):
             return(Vec(self.x/other,self.y/other))
         return NotImplemented
     
     def __floordiv__(self,other):
-        if isinstance(other,int) or isinstance(other,float):
+        if isinstance(other, (int, float)):
             return(Vec(self.x//other,self.y//other))
         return NotImplemented
     
@@ -96,17 +95,17 @@ class Vec:
         return NotImplemented
     
     def __rmul__(self,other):
-        if isinstance(other,int) or isinstance(other,float):
+        if isinstance(other, (int, float)):
             return(Vec(self.x*other,self.y*other))
         return NotImplemented
     
     def __rtruediv__(self,other):
-        if isinstance(other,int) or isinstance(other,float):
+        if isinstance(other, (int, float)):
             return(Vec(self.x/other,self.y/other))
         return NotImplemented
     
     def __rfloordiv__(self,other):
-        if isinstance(other,int) or isinstance(other,float):
+        if isinstance(other, (int, float)):
             return(Vec(self.x//other,self.y//other))
         return NotImplemented
     
@@ -132,16 +131,14 @@ class Vec:
     def __getitem__(self, index):
         if index in [0,"x"]:
             return self.x
-        if index in [1,"y"]:
-            return self.y
-        return NotImplemented
+        return self.y if index in [1,"y"] else NotImplemented
 
     def __setitem__(self, index, value):
         if not isinstance(value,(int,float)):
             return NotImplemented
-        if index==0:
+        if index == 0:
             self.x=value
-        if index==1:
+        elif index == 1:
             self.y=value
         return NotImplemented
 
