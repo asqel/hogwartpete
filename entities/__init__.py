@@ -1,8 +1,8 @@
+import Clothes as c
 from uti.vector import *
 import pygame as py
 from  spells import *
 import uuid
-from uti.hitbox import *
 
 class Character:
     def __init__(self,name:str,surname:str,maison:str,spells:list[Spell],inventaire,genre:str,texture:list[py.Surface],clothes,x:float,y:float,world):
@@ -15,7 +15,6 @@ class Character:
         self.pvmax=100
         self.effects=[]
         self.genre=genre
-        self.hitbox=Hitbox(HITBOX_RECT_t,Vec(0,0),width=50,height=50)
         self.texture=texture#[UP,RIGHT,DOWN,LEFT]
         self.current_texture=texture[2]
         self.clothes=clothes
@@ -32,62 +31,31 @@ class Character:
         self.uuid=uuid.uuid4()
         self.zoom_out=1
 
-    def left(self):
+    def left(self, speed=1):
         if self.dir!="l":
             self.dir="l"
             self.current_texture=self.texture[3]
-        self.pos-=Vec(2,0)*self.speed
-        self.collisions("l")
+        self.pos-=Vec(2,0)*self.speed*speed
 
-    def right(self):
+    def right(self, speed=1):
         if self.dir!="r":
             self.dir="r"
             self.current_texture=self.texture[1]
-        self.pos+=Vec(2,0)*self.speed
-        self.collisions("r")
+        self.pos+=Vec(2,0)*self.speed*speed
 
 
-    def up(self):
+    def up(self, speed=1):
         if self.dir!="u":
             self.dir="u"
             self.current_texture=self.texture[0]
-        self.pos-=Vec(0,2)*self.speed
-        self.collisions("u")
-    
-        
+        self.pos-=Vec(0,2)*self.speed*speed
 
-    def down(self):
+    def down(self, speed=1):
         if self.dir!="d":
             self.dir="d"
             self.current_texture=self.texture[2]
-        self.pos+=Vec(0,2)*self.speed
-        self.collisions("d")
-
-    def collisions(self,dir:str):
-        x=(players[0].pos//1000).x
-        y=(players[0].pos//1000).y
-        __chunks:list=[]
-        __objects:list=[]
-        for i in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1):
-            __chunks.extend(self.world.get_Chunk_at(Vec(x+i,y+k)) for k in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1))
-        for i in __chunks:
-            __objects.extend(i.objects)
-        for i in __objects:
-            if i.hitbox and players[0].hitbox:
-                hit1=i.hitbox.copy()
-                hit1.pos+=i.pos
-                hit2=players[0].hitbox.copy()
-                hit2.pos+=players[0].pos
-                if hit1.iscolliding(hit2):
-                    if dir=="d":
-                        self.pos-=Vec(0,2)*self.speed
-                    if dir=="u":
-                        self.pos-=Vec(0,-2)*self.speed
-                    if dir=="l":
-                        self.pos-=Vec(-2,0)*self.speed
-                    if dir=="r":
-                        self.pos-=Vec(2,0)*self.speed
-                    return 0    
+        self.pos+=Vec(0,2)*self.speed*speed
+    
     def update_texture(self,vec):
         corner=math.sqrt(2)/2
         if -corner<=vec.x<=corner and corner<=vec.y<=1:
