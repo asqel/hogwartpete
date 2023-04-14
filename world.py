@@ -91,14 +91,21 @@ class World:
         __chunks:list[Chunk]=[]
         x = (players[0].pos//CHUNK_SIZE).x
 
+        scr_w = screen.get_width() * zoom_out
+        scr_h = screen.get_height() * zoom_out
+
+        screen.fill(self.bg)
+        y = (players[0].pos // CHUNK_SIZE).y
+
+        for i in range(-players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1):
+            __chunks.extend(self.getChunk(Vec(x + i, y + k)) for k in range(-players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1))
+
+        for e in __chunks:
+            __objects.extend([o.obj_copy() for o in e.objects])
+            __dyn_obj.extend(e.dyn_objects)
+            __entities.extend(e.entities)
+
         if zoom_out != 1:
-            scr_w = screen.get_width() * zoom_out
-            scr_h = screen.get_height() * zoom_out
-            self.dcrg_xffhvgvguy(screen, __chunks, x)
-            for e in __chunks:
-                __objects.extend([o.obj_copy() for o in e.objects])
-                __dyn_obj.extend(e.dyn_objects)
-                __entities.extend(e.entities)
 
             # scale all the textures
             scaled_textures = {}
@@ -144,14 +151,6 @@ class World:
                     py.draw.line(screen,(255,0,0),tuple((corn[0]+__offset) // zoom_out),tuple((corn[2]+__offset) // zoom_out))
                     py.draw.line(screen,(255,0,0),tuple((corn[1]+__offset) // zoom_out),tuple((corn[3]+__offset) // zoom_out))
         else:
-            scr_w=screen.get_width()
-            scr_h=screen.get_height()
-            self.dcrg_xffhvgvguy(screen, __chunks, x)
-            for i in __chunks:
-                __objects.extend(i.objects)
-                __dyn_obj.extend(i.dyn_objects)
-                __entities.extend(i.entities)
-
             __offset=Vec(scr_w//2,scr_h//2)-players[0].pos+Vec(players[0].current_texture.get_width()//2,players[0].current_texture.get_height()//2)
 
             for i in __objects:
@@ -188,14 +187,6 @@ class World:
                     py.draw.line(screen,(255,0,0),tuple(corn[2]+__offset),tuple(corn[3]+__offset))
                     py.draw.line(screen,(255,0,0),tuple(corn[0]+__offset),tuple(corn[2]+__offset))
                     py.draw.line(screen,(255,0,0),tuple(corn[1]+__offset),tuple(corn[3]+__offset))
-
-    # TODO Rename this here and in `show`
-    def dcrg_xffhvgvguy(self, screen, __chunks, x):
-        screen.fill(self.bg)
-        y = (players[0].pos // CHUNK_SIZE).y
-
-        for i in range(-players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1):
-            __chunks.extend(self.getChunk(Vec(x + i, y + k)) for k in range(-players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1))
 
 
     def update(self)->int:
