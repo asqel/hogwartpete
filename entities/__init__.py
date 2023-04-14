@@ -31,30 +31,30 @@ class Character:
         self.uuid=uuid.uuid4()
         self.zoom_out=1
 
-    def left(self, speed=1):
+    def left(self):
         if self.dir!="l":
             self.dir="l"
             self.current_texture=self.texture[3]
-        self.pos-=Vec(2,0)*self.speed*speed
+        self.pos-=Vec(2,0)*self.speed
 
-    def right(self, speed=1):
+    def right(self):
         if self.dir!="r":
             self.dir="r"
             self.current_texture=self.texture[1]
-        self.pos+=Vec(2,0)*self.speed*speed
+        self.pos+=Vec(2,0)*self.speed
 
 
-    def up(self, speed=1):
+    def up(self):
         if self.dir!="u":
             self.dir="u"
             self.current_texture=self.texture[0]
-        self.pos-=Vec(0,2)*self.speed*speed
+        self.pos-=Vec(0,2)*self.speed
 
-    def down(self, speed=1):
+    def down(self):
         if self.dir!="d":
             self.dir="d"
             self.current_texture=self.texture[2]
-        self.pos+=Vec(0,2)*self.speed*speed
+        self.pos+=Vec(0,2)*self.speed
     
     def update_texture(self,vec):
         corner=math.sqrt(2)/2
