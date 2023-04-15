@@ -80,10 +80,12 @@ class Character:
         y=(players[0].pos//1000).y
         __chunks:list=[]
         __objects:list=[]
+        __hitboxes:list[Hitbox]=[]
         for i in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1):
             __chunks.extend(self.world.get_Chunk_at(Vec(x+i,y+k)) for k in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1))
         for i in __chunks:
             __objects.extend(i.objects)
+            __hitboxes.extend(i.hitboxes)
         for i in __objects:
             if i.hitbox and players[0].hitbox:
                 hit1=i.hitbox.copy()
@@ -91,6 +93,20 @@ class Character:
                 hit2=players[0].hitbox.copy()
                 hit2.pos+=players[0].pos
                 if hit1.iscolliding(hit2):
+                    if dir=="d":
+                        self.pos-=Vec(0,2)*self.speed
+                    if dir=="u":
+                        self.pos-=Vec(0,-2)*self.speed
+                    if dir=="l":
+                        self.pos-=Vec(-2,0)*self.speed
+                    if dir=="r":
+                        self.pos-=Vec(2,0)*self.speed
+                    return 0 
+        for i in __hitboxes:
+            if i and players[0].hitbox:
+                hit2=players[0].hitbox.copy()
+                hit2.pos+=players[0].pos
+                if i.iscolliding(hit2):
                     if dir=="d":
                         self.pos-=Vec(0,2)*self.speed
                     if dir=="u":

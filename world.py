@@ -17,6 +17,8 @@ class Chunk:
         self.objects:list[Obj]=[]
         self.dyn_objects:list[Dynamic_Obj]=[]
         self.tiles=[[None]*10 for i in range(10)]
+        self.background_obj:list[Obj]=[]
+        self.hitboxes:list[Hitbox]=[]
 
     def get_borders(self)->list[Vec]:
         """
@@ -103,6 +105,7 @@ class World:
         return self.get_Chunk_from_pos(pos).entities
     
     def show(self,screen:pygame.Surface, zoom_out: int) -> None:
+        __bg_obj:list[Obj]=[]
         __objects:list[Obj]=[]
         __dyn_obj:list[Dynamic_Obj]=[]
         __players:list[Character]=[players[i] for i in range(1,len(players))]
@@ -123,6 +126,7 @@ class World:
             __objects.extend(e.objects)
             __dyn_obj.extend(e.dyn_objects)
             __entities.extend(e.entities)
+            __bg_obj.extend(e.background_obj)
 
         if zoom_out != 1:
 
@@ -171,6 +175,10 @@ class World:
                     py.draw.line(screen,(255,0,0),tuple((corn[1]+__offset) // zoom_out),tuple((corn[3]+__offset) // zoom_out))
         else:
             __offset=Vec(scr_w//2,scr_h//2)-players[0].pos+Vec(players[0].current_texture.get_width()//2,players[0].current_texture.get_height()//2)
+            for i in __bg_obj:
+                p= i.pos+__offset
+                if -50<p.x<scr_w and -50<p.y<scr_h:
+                    screen.blit(i.texture,tuple(p))
             for i in __objects:
                 if (not i.toplayer):
                     p= i.pos+__offset
@@ -241,11 +249,27 @@ from random import randint
 def newChunk(pos:Vec,world:World) -> Chunk:
     c=Chunk(pos,world)
     #TODO temporary
-    for i, k in itertools.product(range(20), range(20)):
-        c.objects.append(Objs["Grass"](i*50+c.top_left_pos.x,k*50+c.top_left_pos.y))
-    c.objects.append(Objs["Pebble"](randint(0,999)+c.top_left_pos.x,randint(0,999)+c.top_left_pos.y))
-    c.objects.append(Objs["Stone"](randint(0,999)+c.top_left_pos.x,randint(0,999)+c.top_left_pos.y))
+    #for i, k in itertools.product(range(20), range(20)):
+    #    c.objects.append(Objs["Grass"](i*50+c.top_left_pos.x,k*50+c.top_left_pos.y))
+    #c.objects.append(Objs["Pebble"](randint(0,999)+c.top_left_pos.x,randint(0,999)+c.top_left_pos.y))
+    #c.objects.append(Objs["Stone"](randint(0,999)+c.top_left_pos.x,randint(0,999)+c.top_left_pos.y))
     return c
 
 def newWorld(name:str,background_color:list[int]=(0,0,0)):
     return World(name,background_color)
+
+
+def new_bed_room():
+    w=newWorld("bed room")
+    w.get_Chunk_at(Vec(0,0)).hitboxes.extend([
+        Hitbox(HITBOX_RECT_t,Vec(0,0),0,10,CHUNK_SIZE),
+        Hitbox(HITBOX_RECT_t,Vec(0,0),0,CHUNK_SIZE,10),
+        Hitbox(HITBOX_RECT_t,Vec(CHUNK_SIZE-10,0),0,10,CHUNK_SIZE),
+        Hitbox(HITBOX_RECT_t,Vec(0,CHUNK_SIZE-10),0,CHUNK_SIZE,10),
+        ]
+    )
+    chun=w.get_Chunk_at(Vec(0,0))
+    for x,y in itertools.product(range(20),range(20)):
+        chun.background_obj.append(Objs["Wood"](x*50,y*50))
+    #faire le contour et mettre du plancher sur le chun 0 0
+    return w

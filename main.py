@@ -113,8 +113,8 @@ def main():
     global pygame_events
     start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
 
-    starting_world=newWorld("first_world",(194, 154, 128))
-    players.append(Character("Jean","Magie","pouffsoufle",None,None,None,[Textures["player"]["mc_back.png"], Textures["player"]["mc_right_0_poufsouffle.png"], Textures["player"]["mc_front_poufsouffle.png"], Textures["player"]["mc_left_0_poufsouffle.png"]],None,0,0,starting_world))
+    starting_world=new_bed_room()
+    players.append(Character("Jean","Magie","pouffsoufle",None,None,None,[Textures["player"]["mc_back.png"], Textures["player"]["mc_right_0_poufsouffle.png"], Textures["player"]["mc_front_poufsouffle.png"], Textures["player"]["mc_left_0_poufsouffle.png"]],None,50,50,starting_world))
 
     players[0].speed=1
     players[0].zoom_out = 1
