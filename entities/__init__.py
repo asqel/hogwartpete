@@ -1,5 +1,6 @@
 import Clothes as c
 from uti.vector import *
+from uti.hitbox import *
 import pygame as py
 from  spells import *
 import uuid
@@ -15,6 +16,7 @@ class Character:
         self.pvmax=100
         self.effects=[]
         self.genre=genre
+        self.hitbox=Hitbox(HITBOX_RECT_t,Vec(0,0),width=50,height=50)
         self.texture=texture#[UP,RIGHT,DOWN,LEFT]
         self.current_texture=texture[2]
         self.clothes=clothes
@@ -31,30 +33,34 @@ class Character:
         self.uuid=uuid.uuid4()
         self.zoom_out=1
 
-    def left(self, speed=1):
+    def left(self):
         if self.dir!="l":
             self.dir="l"
             self.current_texture=self.texture[3]
-        self.pos-=Vec(2,0)*self.speed*speed
+        self.pos-=Vec(2,0)*self.speed
+        self.collisions("l")
 
-    def right(self, speed=1):
+    def right(self):
         if self.dir!="r":
             self.dir="r"
             self.current_texture=self.texture[1]
-        self.pos+=Vec(2,0)*self.speed*speed
+        self.pos+=Vec(2,0)*self.speed
+        self.collisions("r")
 
 
-    def up(self, speed=1):
+    def up(self):
         if self.dir!="u":
             self.dir="u"
             self.current_texture=self.texture[0]
-        self.pos-=Vec(0,2)*self.speed*speed
+        self.pos-=Vec(0,2)*self.speed
+        self.collisions("u")
 
-    def down(self, speed=1):
+    def down(self):
         if self.dir!="d":
             self.dir="d"
             self.current_texture=self.texture[2]
-        self.pos+=Vec(0,2)*self.speed*speed
+        self.pos+=Vec(0,2)*self.speed
+        self.collisions("d")
     
     def update_texture(self,vec):
         corner=math.sqrt(2)/2
@@ -68,6 +74,33 @@ class Character:
             self.current_texture=self.texture[3]
         else:
             self.current_texture=self.texture[1]
+            
+    def collisions(self,dir:str):
+        x=(players[0].pos//1000).x
+        y=(players[0].pos//1000).y
+        __chunks:list=[]
+        __objects:list=[]
+        for i in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1):
+            __chunks.extend(self.world.get_Chunk_at(Vec(x+i,y+k)) for k in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1))
+        for i in __chunks:
+            __objects.extend(i.objects)
+        for i in __objects:
+            if i.hitbox and players[0].hitbox:
+                hit1=i.hitbox.copy()
+                hit1.pos+=i.pos
+                hit2=players[0].hitbox.copy()
+                hit2.pos+=players[0].pos
+                if hit1.iscolliding(hit2):
+                    if dir=="d":
+                        self.pos-=Vec(0,2)*self.speed
+                    if dir=="u":
+                        self.pos-=Vec(0,-2)*self.speed
+                    if dir=="l":
+                        self.pos-=Vec(-2,0)*self.speed
+                    if dir=="r":
+                        self.pos-=Vec(2,0)*self.speed
+                    return 0 
+
 class Npc:
     def __init__(self,name:str,surname:str,texture:py.Surface,spells:list[Spell],x,y) -> None:
         self.name=name
@@ -76,6 +109,7 @@ class Npc:
         self.spells=spells
         self.isvisible=True
         self.pv=100
+        self.hitbox=Hitbox(HITBOX_RECT_t,Vec(0,0),0,50,50)#TODO : add support for hitbox on NPC
         self.pos=Vec(x,y)
         
 

@@ -16,7 +16,7 @@ py.font.init()
 FPS_MAX = 60
 TPS_MAX = 150
 
-global g_tps, running_dict
+global g_tps, running_dict 
 g_tps = 0
 
 running_dict = {
@@ -25,28 +25,11 @@ running_dict = {
     "server": True
 }
 
-def graphic_thread():
-    arial=py.font.SysFont("Arial",25,False,False)
-    fps = 0
-    while running_dict["global"]:
-        start_time = time()
-        players[0].world: World = players[0].world
-        players[0].world.show(screen, players[0].zoom_out)
-        players[0].world.update()
- 
-        screen.blit(arial.render(f"fps: {int(fps)}", False, (255, 0, 0)), (0, 0))
-        screen.blit(arial.render(f"mid tps: {int(g_tps)}", False, (255, 0, 0)), (0, 30))
-        screen.blit(arial.render(str(players[0].pos.floor()), False, (255, 0, 0)), (0, 60))
-        screen.blit(arial.render(str(players[0].world.getChunkfromPos(players[0].pos).pos), False, (255, 0, 0)), (0, 90))
+pygame_events=[]
+    
 
-        py.display.update()
-
-        fps = 1 / (time() - start_time)
-
-    running_dict["graphic"] = False
-
-def server_thread():  # sourcery skip: low-code-quality
-    global running_dict, g_tps
+def server_thread():
+    global running_dict, g_tps, pygame_events
 
     loop_start = time()
     loop_count = 0
@@ -63,9 +46,8 @@ def server_thread():  # sourcery skip: low-code-quality
         iter_start = time()
         loop_count += 1
 
-        e = py.event.get()
         joystick_vec = Vec(0,0)
-        for i in e:
+        for i in pygame_events:
             if i.type == py.QUIT:
                 running_dict["global"] = False
             if i.type == py.JOYBUTTONDOWN:
@@ -100,7 +82,7 @@ def server_thread():  # sourcery skip: low-code-quality
                 elif i.key == K_k:
                     players[0].speed-=2
                 
-
+        pygame_events=[]
         if joystick_count:
             players[0].pos+=joystick_vec*2*players[0].speed
             players[0].update_texture(joystick_vec)
@@ -115,6 +97,9 @@ def server_thread():  # sourcery skip: low-code-quality
         if pushed_keys[py.K_s]:
             players[0].down()
 
+
+        players[0].world.update()
+
         # tps moyenizer
         moy_fps = 1 / (time() - loop_start) * loop_count if loop_count > 10 else TPS_MAX
         to_sleep = (1 / TPS_MAX - (time() - iter_start)) - (1 - (moy_fps / TPS_MAX))
@@ -125,6 +110,7 @@ def server_thread():  # sourcery skip: low-code-quality
     running_dict["server"] = False
 
 def main():
+    global pygame_events
     start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
 
     starting_world=newWorld("first_world",(194, 154, 128))
@@ -134,10 +120,32 @@ def main():
     players[0].zoom_out = 1
     players[0].render_distance=3
 
-    start_new_thread(graphic_thread, ())
     start_new_thread(server_thread, ())
 
+    arial=py.font.SysFont("Arial",25,False,False)
+    fps = 0
+    
     while running_dict["global"] and running_dict["graphic"] and running_dict["server"]:
-        sleep(0.1)
+        start_time = time()
+        pygame_events=py.event.get()
+        for i in pygame_events:
+            if i.type == py.QUIT:
+                running_dict["global"]=False
+        
+                
+        players[0].world: World = players[0].world
+        players[0].world.show(screen, players[0].zoom_out)
+ 
+        screen.blit(arial.render(f"fps: {int(fps)}", False, (255, 0, 0)), (0, 0))
+        screen.blit(arial.render(f"mid tps: {int(g_tps)}", False, (255, 0, 0)), (0, 30))
+        screen.blit(arial.render(str(players[0].pos.floor()), False, (255, 0, 0)), (0, 60))
+        screen.blit(arial.render(str(players[0].world.get_Chunk_from_pos(players[0].pos).pos), False, (255, 0, 0)), (0, 90))
+
+        py.display.update()
+        t=time()
+        if  t - start_time <1/60:
+            sleep(1/60 -t+start_time)
+        fps = 1/(time()-start_time)
+
 
 main()

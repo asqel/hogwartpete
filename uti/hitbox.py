@@ -20,14 +20,9 @@ class Hitbox:
     def __init__(self,type:int,pos:Vec,radius=0,width=0,height=0) -> None:
         self.type=type
         self.pos=pos
-        if type==HITBOX_RECT_t:
-            self.width=width
-            self.height=height
-        elif type==HITBOX_CIRCLE_t:
-            self.radius=radius
-        else:
-            print(f"ERROR: type of hitbox is invalid : {type}")
-            exit(1)
+        self.width=width
+        self.height=height
+        self.radius=radius
             
     def iscolliding(self,other) -> bool:
         if not isinstance(other,Hitbox):
@@ -48,3 +43,6 @@ class Hitbox:
                 return (self.pos-other.pos).squareLength() <= (self.radius+other.radius)**2
             print("ERROR collision between circle and other not implemented yet")
             exit(1)
+            
+    def copy(self):
+        return Hitbox(self.type,self.pos.copy(),self.radius,self.width,self.height)

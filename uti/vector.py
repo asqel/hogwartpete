@@ -148,3 +148,9 @@ class Vec:
 
     def floor(self):
         return Vec(int(self.x),int(self.y))
+
+    def normalize(self):
+        return self/self.len
+
+    def copy(self):
+        return Vec(self.x,self.y)
