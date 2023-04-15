@@ -29,7 +29,7 @@ pygame_events=[]
     
 
 def server_thread():
-    global running_dict, g_tps, pygame_events
+    global running_dict, g_tps, pygame_events, show_hitbox
 
     loop_start = time()
     loop_count = 0
@@ -81,6 +81,14 @@ def server_thread():
                     players[0].speed+=2
                 elif i.key == K_k:
                     players[0].speed-=2
+                elif i.key == K_ASTERISK:
+                    toggle_hitbox()
+                elif i.key == K_LCTRL:
+                    players[0].speed=0.85
+                
+            elif i.type ==py.KEYUP:
+                if i.key == py.K_LCTRL:
+                    players[0].speed=0.5  
                 
         pygame_events=[]
         if joystick_count:
@@ -116,7 +124,7 @@ def main():
     starting_world=new_bed_room()
     players.append(Character("Jean","Magie","pouffsoufle",None,None,None,[Textures["player"]["mc_back.png"], Textures["player"]["mc_right_0_poufsouffle.png"], Textures["player"]["mc_front_poufsouffle.png"], Textures["player"]["mc_left_0_poufsouffle.png"]],None,50,50,starting_world))
 
-    players[0].speed=1
+    players[0].speed=0.5
     players[0].zoom_out = 1
     players[0].render_distance=3
 

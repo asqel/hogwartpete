@@ -7,6 +7,7 @@ from math import ceil
 
 #in pixel (its a square)
 CHUNK_SIZE=1000
+show_hitbox=True
 
 class Chunk:
     def __init__(self,chunk_pos:'Vec',world:'World') -> None:
@@ -204,7 +205,14 @@ class World:
                     p=i.pos+__offset
                     if -50<=p.x<scr_w and -50<=p.y<scr_h:
                         screen.blit(i.texture,tuple(p))
-
+            if show_hitbox:
+                for i in __chunks:
+                    for k in i.hitboxes:
+                        s=py.Surface((k.width,k.height))
+                        s.fill((0,255,0))
+                        s.set_alpha(50)
+                        screen.blit(s,tuple(k.pos+__offset))
+                        
             if players[0].chunk_border:
                 for i in __chunks:
                     corn=i.get_borders()
@@ -262,14 +270,23 @@ def newWorld(name:str,background_color:list[int]=(0,0,0)):
 def new_bed_room():
     w=newWorld("bed room")
     w.get_Chunk_at(Vec(0,0)).hitboxes.extend([
-        Hitbox(HITBOX_RECT_t,Vec(0,0),0,10,CHUNK_SIZE),
-        Hitbox(HITBOX_RECT_t,Vec(0,0),0,CHUNK_SIZE,10),
-        Hitbox(HITBOX_RECT_t,Vec(CHUNK_SIZE-10,0),0,10,CHUNK_SIZE),
-        Hitbox(HITBOX_RECT_t,Vec(0,CHUNK_SIZE-10),0,CHUNK_SIZE,10),
+        Hitbox(HITBOX_RECT_t,Vec(0,0),0,10,8*50),
+        Hitbox(HITBOX_RECT_t,Vec(0,0),0,10*50,10),
+        Hitbox(HITBOX_RECT_t,Vec(10*50,0),0,10,8*50),
+        Hitbox(HITBOX_RECT_t,Vec(0,8*50),0,10*50,10),
         ]
     )
     chun=w.get_Chunk_at(Vec(0,0))
-    for x,y in itertools.product(range(20),range(20)):
+    for x,y in itertools.product(range(10),range(8)):
         chun.background_obj.append(Objs["Wood"](x*50,y*50))
-    #faire le contour et mettre du plancher sur le chun 0 0
+    chun=w.get_Chunk_at(Vec(0,-1))
+    for i in range(10):
+        chun.background_obj.append(Objs["Wall"](i*50+chun.top_left_pos.x,CHUNK_SIZE-50+chun.top_left_pos.y))
+    #6,9
+    chun.objects.append(Objs["Bed_head"](8*50,5*50))
+    chun.objects.append(Objs["Bed_feet"](8*50,6*50))
     return w
+
+def toggle_hitbox():
+    global show_hitbox
+    show_hitbox = not show_hitbox
