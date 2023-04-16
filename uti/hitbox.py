@@ -46,3 +46,6 @@ class Hitbox:
             
     def copy(self):
         return Hitbox(self.type,self.pos.copy(),self.radius,self.width,self.height)
+
+
+HITBOX_50X50=Hitbox(HITBOX_RECT_t,NULL_VEC,0,50,50)

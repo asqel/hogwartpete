@@ -154,3 +154,5 @@ class Vec:
 
     def copy(self):
         return Vec(self.x,self.y)
+    
+NULL_VEC=Vec(0,0)
