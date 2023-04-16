@@ -122,7 +122,7 @@ def main():
     start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
 
     starting_world=new_bed_room()
-    players.append(Character("Jean","Magie","pouffsoufle",None,None,None,[Textures["player"]["mc_back.png"], Textures["player"]["mc_right_0_poufsouffle.png"], Textures["player"]["mc_front_poufsouffle.png"], Textures["player"]["mc_left_0_poufsouffle.png"]],None,50,50,starting_world))
+    players.append(Character("Jean","Magie","pouffsoufle",None,None,None,[Textures["player"]["mc_back_0"], Textures["player"]["mc_right_0_poufsouffle"], Textures["player"]["mc_front_poufsouffle"], Textures["player"]["mc_left_0_poufsouffle"]],None,50,50,starting_world))
 
     players[0].speed=0.5
     players[0].zoom_out = 1

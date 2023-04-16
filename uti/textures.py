@@ -5,17 +5,7 @@ path=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 folders = list(os.listdir(f"{path}/src"))
 
 Textures:dict[str,dict[str,py.Surface]]={i:{} for i in folders}
-"""
-{
-    folder_name:{
-        file_name,
-        file2
-    },
-    folder2:{
-        file3
-    }
-}
-"""
+
 py.display.init()
 screen=py.display.set_mode((1080,720),py.RESIZABLE)
 
@@ -31,15 +21,97 @@ ex :
                                |- frame_2
                                |- delay (contains : 0)
 """
+
+def cut_image(image, x, y, width, height):
+    print(width,height)
+    sous_image = py.Surface((width, height), py.SRCALPHA)
+    sous_image.blit(image, (0, 0), py.Rect(x, y, width, height))
+    return sous_image
+
+def make_texture(folder:str,tx_file:str):
+    global Textures
+    png_file=tx_file[:-3]+".png"
+    
+    if not os.path.exists(f"{path}/src/{folder}/{png_file}"):
+        print(f"ERROR {path}/src/{folder}/{tx_file} doesent have a matching .png file")
+        exit(1)
+    if not os.path.isfile(f"{path}/src/{folder}/{png_file}"):
+        print(f"ERROR {path}/src/{folder}/{tx_file} doesent have a matching .png file")
+        exit(1)
+        
+    images:list[list[str|int]]=[] #name x y w h resize_w resize_h
+    with open(f"{path}/src/{folder}/{tx_file}","r") as f:
+        lines=f.read().rstrip('\n').split('\n')
+        for i in lines:
+            if not i.startswith("-"):
+                if " $ " not in i:
+                    print(f"ERROR in {path}/src/{folder}/{tx_file} missing separator ' $ '")
+                    exit(1)
+                name=i.split(" $ ")[0]
+                numbers=i.split(' $ ')[1].split(" ")
+                for i in range(6):
+                    if not numbers[i].isdigit():
+                        print(f"ERROR in {path}/src/{folder}/{tx_file} values not number")
+                        exit(1)
+                images.append([name,
+                    int(numbers[0]),
+                    int(numbers[1]),
+                    int(numbers[2]),
+                    int(numbers[3]),
+                    int(numbers[4]),
+                    int(numbers[5])
+                ])
+    print(images)
+    for i in images:
+        if folder!="":
+            if i[0] in Textures[folder].keys():
+                print(f"ERROR in textures redefinition of texture in {path}/src/{folder}/{tx_file}")
+                exit(1)
+            to_cut=py.image.load(f'{path}/src/{folder}/{png_file}')
+            Textures[folder][i[0]]=py.transform.scale(cut_image(to_cut,i[1],i[2],i[3],i[4]),(i[5],i[6]))
+            continue
+        to_cut=py.image.load(f'{path}/src/{folder}/{png_file}')
+        Textures[folder][i[0]]=py.transform.scale(cut_image(to_cut,i[1],i[2],i[3],i[4]),(i[5],i[6]))
+
 for i in folders:
     if os.path.isdir(f"{path}/src/{i}"):
-        if i!="tiles_animation":
+        if i not in ["tiles_animation","not_texture"]:
             for k in os.listdir(f"{path}/src/{i}"):
-                if k.endswith(".png"):
-                    Textures[i][k] = py.transform.scale(
-                        py.image.load(f"{path}/src/{i}/{k}"), ( (50, 50) if i!="tiles" else (100,100) )
-                    ).convert_alpha()
+                if k.endswith(".tx"):
+                    make_texture(i,k)
         else:...
             #TODO : implement support for animations
-    elif i.endswith(".png"):
-        Textures[i] = py.image.load(f"{path}/src/{i}")
+    elif i.endswith(".tx"):
+        make_texture("",i)
+
+
+#to acces a texture , Textures[FOLDER_NAME][TEXTURE_NAME]
+#if texture not in folder , Textures[TEXTURE_NAME]
+
+"""
+creation of textures:
+    create a file .png and a .tx file that has the same name
+    in the .tx you'll have to put :
+        the name of the texture then a space and a ' $' then 6 four numbers 
+        separated by spaces (posX, posY, width, height, in-game_width, in-game_height)
+        to make another texture repeate this but on a new line
+
+    you can start a line by a - and it will be treated as a comment
+    
+    so .tx should look like this:
+        texture1 $ posX posY width height in-game_width in-game_height
+        texture2 $ posX posY width height in-game_width in-game_height
+        ...
+    
+    exemple:
+        text.png
+        text.tx :
+            texture1 $ 0 0 16 16 50 50
+            texture2 $ 0 16 16 32  50 100
+    that means that text.png contains a texture called textures1 at (0,0) with a
+    width of 16 and a height of 16 and which will be resized to (50,50) and
+    a texture called textures1 at (0,16) with a
+    width of 16 and a height of 32 and which will be resized to (50,100)
+"""
+
+print(Textures)
