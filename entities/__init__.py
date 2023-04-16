@@ -85,6 +85,7 @@ class Character:
             __chunks.extend(self.world.get_Chunk_at(Vec(x+i,y+k)) for k in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1))
         for i in __chunks:
             __objects.extend(i.objects)
+            __objects.extend(i.background_obj)
             __hitboxes.extend(i.hitboxes)
         for i in __objects:
             if i.hitbox and players[0].hitbox:

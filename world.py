@@ -279,12 +279,13 @@ def new_bed_room():
     chun=w.get_Chunk_at(Vec(0,0))
     for x,y in itertools.product(range(10),range(8)):
         chun.background_obj.append(Objs["Wood"](x*50,y*50))
+    chun.objects.append(Objs["Bed_head"](8*50,5*50))
+    chun.objects.append(Objs["Bed_feet"](8*50,6*50))
     chun=w.get_Chunk_at(Vec(0,-1))
     for i in range(10):
         chun.background_obj.append(Objs["Wall"](i*50+chun.top_left_pos.x,CHUNK_SIZE-50+chun.top_left_pos.y))
-    #6,9
-    chun.objects.append(Objs["Bed_head"](8*50,5*50))
-    chun.objects.append(Objs["Bed_feet"](8*50,6*50))
+    chun.background_obj[2]=Objs["Mandalorian_poster"](2*50+chun.top_left_pos.x,CHUNK_SIZE-50+chun.top_left_pos.y)
+    
     return w
 
 def toggle_hitbox():
