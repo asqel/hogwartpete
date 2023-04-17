@@ -1,14 +1,14 @@
-bed_0 $ 0 0 16 16 50 50
-bed_1 $ 16 0 16 16 50 50
-grass $ 32 0 16 16 50 50
-mandalorian_poster $ 48 0 16 16 50 50
-pebble $ 64 0 16 16 50 50
-sign $ 80 0 16 16 50 50
+0  0 16 16 50 50 $ bed_0
+16 0 16 16 50 50 $ bed_1
+32 0 16 16 50 50 $ grass
+48 0 16 16 50 50 $ mandalorian_poster
+64 0 16 16 50 50 $ pebble
+80 0 16 16 50 50 $ sign
 -
 -second line
 -
-cobblestone $ 0 16 16 16 50 50
-taintedglass $ 16 16 16 16 50 50
-void $ 32 16 16 16 50 50
-wall $ 48 16 16 16 50 50
-wood $ 64 16 16 16 50 50
+0  16 16 16 50 50 $ cobblestone
+16 16 16 16 50 50 $ taintedglass
+32 16 16 16 50 50 $ void
+48 16 16 16 50 50 $ wall
+64 16 16 16 50 50 $ wood

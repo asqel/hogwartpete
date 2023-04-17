@@ -85,6 +85,17 @@ def server_thread():
                     toggle_hitbox()
                 elif i.key == K_LCTRL:
                     players[0].speed=0.85
+                elif i.key == K_BACKSPACE:
+                    print('i')
+                    players[0].texture=next_texture()
+                    if players[0].dir=="u":
+                        players[0].current_texture=players[0].texture[0]
+                    if players[0].dir=="r":
+                        players[0].current_texture=players[0].texture[1]
+                    if players[0].dir=="d":
+                        players[0].current_texture=players[0].texture[2]
+                    if players[0].dir=="l":
+                        players[0].current_texture=players[0].texture[3]
                 
             elif i.type ==py.KEYUP:
                 if i.key == py.K_LCTRL:
@@ -122,7 +133,7 @@ def main():
     start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
 
     starting_world=new_bed_room()
-    players.append(Character("Jean","Magie","pouffsoufle",None,None,None,[Textures["player"]["mc_back_0"], Textures["player"]["mc_right_0_poufsouffle"], Textures["player"]["mc_front_poufsouffle"], Textures["player"]["mc_left_0_poufsouffle"]],None,50,50,starting_world))
+    players.append(Character("Jean","Magie","pouffsoufle",None,None,None,POUFSOUFFLE_TEXTURES_0,None,50,50,starting_world))
 
     players[0].speed=0.5
     players[0].zoom_out = 1
