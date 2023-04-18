@@ -284,7 +284,7 @@ def new_bed_room():
     chun=w.get_Chunk_at(Vec(0,-1))
     for i in range(10):
         chun.background_obj.append(Objs["Wall"](i*50+chun.top_left_pos.x,CHUNK_SIZE-50+chun.top_left_pos.y))
-    chun.background_obj[2]=Objs["Mandalorian_poster"](2*50+chun.top_left_pos.x,CHUNK_SIZE-50+chun.top_left_pos.y)
+    chun.background_obj.append(Objs["Mandalorian_poster"](2*50+chun.top_left_pos.x+5,CHUNK_SIZE-50+chun.top_left_pos.y+2))
     
     return w
 

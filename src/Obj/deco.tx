@@ -1,7 +1,7 @@
 0  0 16 16 50 50 $ bed_0
 16 0 16 16 50 50 $ bed_1
 32 0 16 16 50 50 $ grass
-48 0 16 16 50 50 $ mandalorian_poster
+48 0 16 16 50 50 $ grogu
 64 0 16 16 50 50 $ pebble
 80 0 16 16 50 50 $ sign
 -
@@ -12,3 +12,8 @@
 32 16 16 16 50 50 $ void
 48 16 16 16 50 50 $ wall
 64 16 16 16 50 50 $ wood
+80 16 18 32 25 40 $ mandalorian_poster
+-
+-third line
+-
+0 32 32 16 40 25 $ commode
