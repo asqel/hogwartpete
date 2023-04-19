@@ -69,10 +69,10 @@ def server_thread():
             elif i.type == py.KEYDOWN:
                 if i.key == K_SPACE:
                     players[0].chunk_border=not players[0].chunk_border
-                elif i.key == K_p:
-                    players[0].zoom_out+=1
-                elif i.key == K_m:
-                    players[0].zoom_out = max(1, players[0].zoom_out-1)
+                #elif i.key == K_p:
+                #    players[0].zoom_out+=1
+                #elif i.key == K_m:
+                #    players[0].zoom_out = max(1, players[0].zoom_out-1)
                 elif i.key == K_o:
                     players[0].render_distance+=2
                 elif i.key == K_l:

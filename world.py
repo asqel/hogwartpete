@@ -281,6 +281,9 @@ def new_bed_room():
         chun.background_obj.append(Objs["Wood"](x*50,y*50))
     chun.objects.append(Objs["Bed_head"](8*50,5*50))
     chun.objects.append(Objs["Bed_feet"](8*50,6*50))
+    chun.objects.append(Objs["Commode"](6*50,0*50))
+    chun.objects.append(Objs["Grogu"](0*50,0*50))
+    chun.objects.append(Objs["Stairs"](0,7*50))
     chun=w.get_Chunk_at(Vec(0,-1))
     for i in range(10):
         chun.background_obj.append(Objs["Wall"](i*50+chun.top_left_pos.x,CHUNK_SIZE-50+chun.top_left_pos.y))
