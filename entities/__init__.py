@@ -95,6 +95,7 @@ class Character:
                 hit2=players[0].hitbox.copy()
                 hit2.pos+=players[0].pos
                 if hit1.iscolliding(hit2):
+                    i.on_walk_in(self.world,self)
                     if dir=="d":
                         self.pos-=Vec(0,2)*self.speed
                     if dir=="u":

@@ -4,6 +4,7 @@ from objs import *
 from entities import *
 from objs import *
 from math import ceil
+from worldlist import*
 
 #in pixel (its a square)
 CHUNK_SIZE=1000
@@ -52,7 +53,13 @@ class World:
         if the entity is in a chunk that doesn't exists the chunk will be generated 
         """
         self.get_Chunk_from_pos(n.pos).entities.append(n)
+    
+    def add_hitbox(self,n:'Hitbox'):
+        self.get_Chunk_from_pos(n.pos).hitboxes.append(n)
         
+    def add_backgroung_Obj(self,n:'Obj'):
+        self.get_Chunk_from_pos(n.pos).background_obj.append(n) 
+    
     def add_Obj(self,n:Obj)->None:
         """
         add an Obj to the world
@@ -257,10 +264,8 @@ class World:
             
     def update(self)->int:
         self.resolve_collision()
-        ...
         #TODO : entity with pv<=0 have to die npc.die() 
         #TODO : return a certain value when the players[0] die
-worlds:list[World]=[]
 
 
 from random import randint
@@ -280,28 +285,38 @@ def newWorld(name:str,background_color:list[int]=(0,0,0)):
 
 def new_bed_room():
     w=newWorld("bed room")
-    w.get_Chunk_at(Vec(0,0)).hitboxes.extend([
-        Hitbox(HITBOX_RECT_t,Vec(0,0),0,10,8*50),
-        Hitbox(HITBOX_RECT_t,Vec(0,0),0,10*50,10),
-        Hitbox(HITBOX_RECT_t,Vec(10*50,0),0,10,8*50),
-        Hitbox(HITBOX_RECT_t,Vec(0,8*50),0,10*50,10),
-        ]
-    )
+    w.add_hitbox(Hitbox(HITBOX_RECT_t,Vec(0,0),0,10,8*50))
+    w.add_hitbox(Hitbox(HITBOX_RECT_t,Vec(0,0),0,10*50,10))
+    w.add_hitbox(Hitbox(HITBOX_RECT_t,Vec(10*50,0),0,10,8*50))
+    w.add_hitbox(Hitbox(HITBOX_RECT_t,Vec(0,8*50),0,10*50,10))
+    
     chun=w.get_Chunk_at(Vec(0,0))
     for x,y in itertools.product(range(10),range(8)):
-        chun.background_obj.append(Objs["Wood"](x*50,y*50))
-    chun.objects.append(Objs["Bed_head"](8*50,5*50))
-    chun.objects.append(Objs["Bed_feet"](8*50,6*50))
-    chun.objects.append(Objs["Commode"](6*50,-0.45*50))
-    chun.objects.append(Objs["Grogu"](0*50,0*50))
-    chun.objects.append(Objs["Stairs"](0,7*50))
+        w.add_backgroung_Obj(Objs["Wood"](x*50,y*50))
+    
+    w.add_Obj(Objs["Bed_head"](8*50,5*50))
+    w.add_Obj(Objs["Bed_feet"](8*50,6*50))
+    w.add_Obj(Objs["Commode"](6*50,0*50))
+    w.add_Obj(Objs["Grogu"](0*50,0*50))
+    w.add_Obj(Objs["Stairs"](0,7*50))
     chun=w.get_Chunk_at(Vec(0,-1))
     for i in range(10):
-        chun.background_obj.append(Objs["Wall"](i*50+chun.top_left_pos.x,CHUNK_SIZE-50+chun.top_left_pos.y))
-    chun.background_obj.append(Objs["Mandalorian_poster"](2*50+chun.top_left_pos.x+5,CHUNK_SIZE-50+chun.top_left_pos.y+2))
+        w.add_backgroung_Obj(Objs["Wall"](i*50+chun.top_left_pos.x,CHUNK_SIZE-50+chun.top_left_pos.y))
+    w.add_backgroung_Obj(Objs["Mandalorian_poster"](2*50+chun.top_left_pos.x+5,CHUNK_SIZE-50+chun.top_left_pos.y+2))
     w.add_entity(new_farine())
     return w
+
+
+def new_house_lvl_0():
+    w=newWorld("house_lvl_0")
+    
 
 def toggle_hitbox():
     global show_hitbox
     show_hitbox = not show_hitbox
+    
+def init_worlds():
+    Worlds["bed_room"]=new_bed_room()
+    
+
+    
