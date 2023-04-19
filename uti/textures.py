@@ -70,7 +70,7 @@ def make_texture(folder:str,tx_file:str):
                 ])
     for i in images:
         if folder!="":
-            if i[0] in Textures[folder].keys():
+            if i[0] in Textures[folder].keys():    
                 print(f"ERROR in textures redefinition of texture in {path}/src/{folder}/{tx_file}")
                 exit(1)
             to_cut=py.image.load(f'{path}/src/{folder}/{png_file}')
@@ -173,11 +173,20 @@ SERPENTARD_TEXTURES_1=[
     Textures["player"]["mc_down_sp"],
     Textures["player"]["mc_left_1_sp"],
 ]
+
+
+FARINE_TEXTURE=[
+    Textures["player"]["farine_up"],
+    Textures["player"]["farine_right"],
+    Textures["player"]["farine_down"],
+    Textures["player"]["farine_left"],
+
+]
 texture_ptr=0
 def next_texture():
     global texture_ptr
     texture_ptr+=1
-    if texture_ptr >=8:
+    if texture_ptr >=9:
         texture_ptr=0
     return[
         POUFSOUFFLE_TEXTURES_0,
@@ -187,6 +196,7 @@ def next_texture():
         SERDAIGLE_TEXTURES_0,
         SERDAIGLE_TEXTURES_1,
         SERPENTARD_TEXTURES_0,
-        SERPENTARD_TEXTURES_1
+        SERPENTARD_TEXTURES_1,
+        FARINE_TEXTURE
     ][texture_ptr]
         

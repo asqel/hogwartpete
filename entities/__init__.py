@@ -1,6 +1,7 @@
 import Clothes as c
 from uti.vector import *
 from uti.hitbox import *
+from uti.textures import *
 import pygame as py
 from  spells import *
 import uuid
@@ -119,19 +120,24 @@ class Character:
                     return 0 
 
 class Npc:
-    def __init__(self,name:str,surname:str,texture:py.Surface,spells:list[Spell],x,y) -> None:
+    def __init__(self,name:str,surname:str,texture:py.Surface,spells:list[Spell],pos:Vec,texture_pos:Vec=NULL_VEC,hitbox:Hitbox=HITBOX_50X50) -> None:
         self.name=name
         self.surname=surname
         self.texture=texture
+        self.current_texture=self.texture[2]
+        self.dir="d"
         self.spells=spells
         self.isvisible=True
         self.pv=100
-        self.hitbox=Hitbox(HITBOX_RECT_t,Vec(0,0),0,50,50)#TODO : add support for hitbox on NPC
-        self.pos=Vec(x,y)
+        self.hitbox=hitbox
+        self.pos=pos
+        self.texture_pos=texture_pos
         
 
 players:list[Character]=[]
-entitys:list[Npc]=[]#npcs / animals /moving things 
+
+def new_farine():
+    return Npc("farine","gomez",FARINE_TEXTURE,[],Vec(90,90),Vec(8,0),Hitbox(HITBOX_RECT_t,Vec(0,0),0,50,75))
 
 
 

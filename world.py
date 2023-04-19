@@ -198,7 +198,7 @@ class World:
             for i in __entities:
                 p=i.pos+__offset
                 if -50<=p.x<scr_w and -50<=p.y<scr_h and i.isvisible:
-                    screen.blit(i.texture,tuple(p))
+                    screen.blit(i.current_texture,tuple(p+i.texture_pos))
 
             for i in __objects:
                 if i.toplayer:
@@ -228,22 +228,33 @@ class World:
         __chunks:list[Chunk]=[]
         __objects:list[Obj]=[]
         __entities:list[Npc]=[]
+        __hitboxes:list[Hitbox]=[]
         for i in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1):
             __chunks.extend(self.get_Chunk_at(Vec(x+i,y+k)) for k in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1))
         for i in __chunks:
             __objects.extend(i.objects)
             __entities.extend(i.entities)
+            __hitboxes.extend(i.hitboxes)
         for i in __entities:
-            if i.hitbox and players[0].hitbox:
-                hit1=i.hitbox.copy()
-                hit1.pos+=i.pos
-                hit2=players[0].hitbox.copy()
-                hit2.pos+=players[0].pos
-                if hit1.iscolliding(hit2):
-                    v=( i.pos-players[0].pos )
-                    v=v/v.len()  
-                    players[0].pos-=v*2*players[0].speed
-                    i.pos+=v*2*players[0].speed
+            if i.hitbox :
+                if players[0].hitbox:
+                    hit1=i.hitbox.copy()
+                    hit1.pos+=i.pos
+                    hit2=players[0].hitbox.copy()
+                    hit2.pos+=players[0].pos
+                    if hit1.iscolliding(hit2):
+                        v=( i.pos-players[0].pos )
+                        v=v/v.len()  
+                        players[0].pos-=v*2*players[0].speed
+                        initial_pos=i.pos
+                        i.pos+=v*2*players[0].speed
+                        for k in __hitboxes:
+                            hit1=i.hitbox.copy()
+                            hit1.pos+=i.pos
+                            if hit1.iscolliding(k):
+                                i.pos=initial_pos
+
+            
     def update(self)->int:
         self.resolve_collision()
         ...
@@ -281,14 +292,14 @@ def new_bed_room():
         chun.background_obj.append(Objs["Wood"](x*50,y*50))
     chun.objects.append(Objs["Bed_head"](8*50,5*50))
     chun.objects.append(Objs["Bed_feet"](8*50,6*50))
-    chun.objects.append(Objs["Commode"](6*50,0*50))
+    chun.objects.append(Objs["Commode"](6*50,-0.45*50))
     chun.objects.append(Objs["Grogu"](0*50,0*50))
     chun.objects.append(Objs["Stairs"](0,7*50))
     chun=w.get_Chunk_at(Vec(0,-1))
     for i in range(10):
         chun.background_obj.append(Objs["Wall"](i*50+chun.top_left_pos.x,CHUNK_SIZE-50+chun.top_left_pos.y))
     chun.background_obj.append(Objs["Mandalorian_poster"](2*50+chun.top_left_pos.x+5,CHUNK_SIZE-50+chun.top_left_pos.y+2))
-    
+    w.add_entity(new_farine())
     return w
 
 def toggle_hitbox():
