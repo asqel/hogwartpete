@@ -23,7 +23,7 @@ class Grass(Obj):
     def __init__(self, x: float, y: float) -> None:
         super().__init__("Grass", x, y,False,grass_rotate[randint(0,3)])
 
-registerObj(Stone,"Stone")
-registerObj(Diorite,"Diorite")
-registerObj(Grass,"Grass")
-registerObj(Pebble,"Pebble")
+registerObj(Stone)
+registerObj(Diorite)
+registerObj(Grass)
+registerObj(Pebble)

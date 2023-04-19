@@ -7,6 +7,7 @@ from uti.sound import play_sound
 from entities import *
 from time import time, sleep
 from world import *
+from worldlist import*
 
 from _thread import start_new_thread
 
@@ -131,8 +132,8 @@ def server_thread():
 def main():
     global pygame_events
     start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
-
-    starting_world=new_bed_room()
+    init_worlds()
+    starting_world=Worlds["bed_room"]
     players.append(Character("Jean","Magie","pouffsoufle",None,None,None,POUFSOUFFLE_TEXTURES_0,None,50,50,starting_world))
 
     players[0].speed=0.5

@@ -1,15 +1,17 @@
 from uti.vector import *
+from uti.hitbox import *
 import pygame as py
 import os 
 import importlib as imp
 
 class Obj:
-    def __init__(self, id: str, x: float, y: float, istop: bool, texture: py.Surface, hitbox = None, data:dict = None) -> None:
+    def __init__(self, id: str, x: float, y: float, istop: bool, texture: py.Surface, hitbox = HITBOX_50X50, data:dict = None) -> None:
         self.id = id
         self.texture = texture
         self.toplayer = istop # object is under or above player and entities
         self.pos = Vec(x, y)
         self.hitbox = hitbox
+        self.transparent=False #si on peut passer a travvers ou pas
         self.data = ({} if data is None or not isinstance(data, dict) else data)
     
     def on_rClick(self):
@@ -27,6 +29,7 @@ class Dynamic_Obj:  #Object that can be updated on each tick
         self.texture=texture
         self.toplayer=istop# object is under or above player and entities
         self.pos=Vec(x,y)
+        
 
     def on_tick(self):
         ...
@@ -39,8 +42,8 @@ Objs={}
 Dynamic_Objs={}
 
 
-def registerObj(obj:type,name:str):
-    Objs[name]=obj
+def registerObj(obj:type):
+    Objs[obj.__name__]=obj
     
 def registerDynamic_Obj(dyn_obj:type,name:str):
     Dynamic_Objs[name]=dyn_obj

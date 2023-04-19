@@ -1,5 +1,7 @@
 from uti import *
 from objs import *
+import world as w
+from worldlist import *
 
 class Wood(Obj):
     def __init__(self, x:float, y:float) -> None:
@@ -31,13 +33,18 @@ class Grogu(Obj):
 
 class Stairs(Obj):
     def __init__(self, x:float, y:float):
-        super().__init__("Stairs", x, y, False, Textures["Obj"]["stairs"],None)
+        super().__init__("Stairs", x, y, False, Textures["Obj"]["stairs"],HITBOX_50X50)
+        
+    def on_walk_in(self, world, user):
+        Worlds["bed2"]=w.new_bed_room()
+        user.world=Worlds["bed2"]
+        user.pos=Vec(100,100)
 
-registerObj(Wood,"Wood")
-registerObj(Wall,"Wall")
-registerObj(Bed_head,"Bed_head")
-registerObj(Bed_feet,"Bed_feet")
-registerObj(Mandalorian_poster,"Mandalorian_poster")
-registerObj(Grogu,"Grogu")
-registerObj(Commode,"Commode")
-registerObj(Stairs,"Stairs")
+registerObj(Wood)
+registerObj(Wall)
+registerObj(Bed_head)
+registerObj(Bed_feet)
+registerObj(Mandalorian_poster)
+registerObj(Grogu)
+registerObj(Commode)
+registerObj(Stairs)
