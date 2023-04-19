@@ -26,7 +26,7 @@ class Character:
         self.dir:str="d" #d -> down  |  u -> up  |  r -> right  |  l -> left  |
         self.level=0
         self.puissance=0
-        self.speed=1
+        self.speed=0.5
         self.isvisible=True
         self.render_distance=3
         self.world=world
@@ -133,6 +133,7 @@ class Npc:
         self.hitbox=hitbox
         self.pos=pos
         self.texture_pos=texture_pos
+        self.speed=0.5
         
 
 players:list[Character]=[]

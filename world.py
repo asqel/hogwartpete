@@ -260,6 +260,19 @@ class World:
                             hit1.pos+=i.pos
                             if hit1.iscolliding(k):
                                 i.pos=initial_pos
+                        for k in __entities:
+                            if k!=i:
+                                hit1=i.hitbox.copy()
+                                hit1.pos+=i.pos
+                                hit2=k.hitbox.copy()
+                                hit2.pos+=k.pos
+                                if hit1.iscolliding(hit2):
+                                    v=( i.pos-k.pos )
+                                    v=v/v.len()  
+                                    k.pos-=v*2*k.speed
+                                    initial_pos=i.pos
+                                    i.pos+=v*2*k.speed
+
 
             
     def update(self)->int:
@@ -304,6 +317,10 @@ def new_bed_room():
         w.add_backgroung_Obj(Objs["Wall"](i*50+chun.top_left_pos.x,CHUNK_SIZE-50+chun.top_left_pos.y))
     w.add_backgroung_Obj(Objs["Mandalorian_poster"](2*50+chun.top_left_pos.x+5,CHUNK_SIZE-50+chun.top_left_pos.y+2))
     w.add_entity(new_farine())
+    w.add_entity(new_farine())
+    w.get_Chunk_at(Vec(0,0)).entities[-1].pos+=Vec(0,1)
+    w.add_entity(new_farine())
+    w.get_Chunk_at(Vec(0,0)).entities[-1].pos+=Vec(0,2)
     return w
 
 

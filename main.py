@@ -136,7 +136,6 @@ def main():
     starting_world=Worlds["bed_room"]
     players.append(Character("Jean","Magie","pouffsoufle",None,None,None,POUFSOUFFLE_TEXTURES_0,None,50,50,starting_world))
 
-    players[0].speed=0.5
     players[0].zoom_out = 1
     players[0].render_distance=3
 
