@@ -1,0 +1,1287 @@
+{
+    "background": [
+        0,
+        0,
+        0
+    ],
+    "chunks": {
+        "0": {
+            "0": {
+                "background_obj": [
+                    {
+                        "pos": [
+                            0,
+                            0
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            50
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            100
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            150
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            200
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            250
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            300
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            350
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            50,
+                            0
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            50,
+                            50
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            50,
+                            100
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            50,
+                            150
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            50,
+                            200
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            50,
+                            250
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            50,
+                            300
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            50,
+                            350
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            100,
+                            0
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            100,
+                            50
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            100,
+                            100
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            100,
+                            150
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            100,
+                            200
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            100,
+                            250
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            100,
+                            300
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            100,
+                            350
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            150,
+                            0
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            150,
+                            50
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            150,
+                            100
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            150,
+                            150
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            150,
+                            200
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            150,
+                            250
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            150,
+                            300
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            150,
+                            350
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            0
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            50
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            100
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            150
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            200
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            250
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            300
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            350
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            0
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            50
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            100
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            150
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            200
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            250
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            300
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            350
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            0
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            50
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            100
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            150
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            200
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            250
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            300
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            350
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            0
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            50
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            100
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            150
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            200
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            250
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            300
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            350
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            0
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            50
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            100
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            150
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            200
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            250
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            300
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            350
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            0
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            50
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            100
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            150
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            200
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            250
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            300
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            350
+                        ],
+                        "date": {},
+                        "hitbox": null,
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    }
+                ],
+                "Dyn_Obj": [],
+                "entities": [],
+                "hitboxes": [
+                    {
+                        "type": 0,
+                        "h": 400,
+                        "w": 10,
+                        "r": 0,
+                        "pos": [
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "type": 0,
+                        "h": 10,
+                        "w": 500,
+                        "r": 0,
+                        "pos": [
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "type": 0,
+                        "h": 400,
+                        "w": 10,
+                        "r": 0,
+                        "pos": [
+                            500,
+                            0
+                        ]
+                    },
+                    {
+                        "type": 0,
+                        "h": 10,
+                        "w": 500,
+                        "r": 0,
+                        "pos": [
+                            0,
+                            400
+                        ]
+                    }
+                ],
+                "objects": [
+                    {
+                        "pos": [
+                            400,
+                            250
+                        ],
+                        "date": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Bed_head",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            300
+                        ],
+                        "date": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Bed_feet",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            0
+                        ],
+                        "date": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 100,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Commode",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            0
+                        ],
+                        "date": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 25,
+                            "w": 25,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Grogu",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            350
+                        ],
+                        "date": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Stairs",
+                        "toplayer": false,
+                        "transparent": false
+                    }
+                ],
+                "tiles": [],
+                "pos": [
+                    0,
+                    0
+                ],
+                "top-left": [
+                    0,
+                    0
+                ]
+            },
+            "-1": {
+                "background_obj": [
+                    {
+                        "pos": [
+                            0,
+                            -50
+                        ],
+                        "date": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            50,
+                            -50
+                        ],
+                        "date": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            100,
+                            -50
+                        ],
+                        "date": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            150,
+                            -50
+                        ],
+                        "date": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            -50
+                        ],
+                        "date": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            -50
+                        ],
+                        "date": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            -50
+                        ],
+                        "date": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            -50
+                        ],
+                        "date": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            -50
+                        ],
+                        "date": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            -50
+                        ],
+                        "date": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Pebble",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            105,
+                            -48
+                        ],
+                        "date": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Mandalorian_poster",
+                        "toplayer": false,
+                        "transparent": false
+                    }
+                ],
+                "Dyn_Obj": [],
+                "entities": [],
+                "hitboxes": [],
+                "objects": [],
+                "tiles": [],
+                "pos": [
+                    0,
+                    -1
+                ],
+                "top-left": [
+                    0,
+                    -1000
+                ]
+            }
+        }
+    }
+}
