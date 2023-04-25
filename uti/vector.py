@@ -145,6 +145,9 @@ class Vec:
     def __iter__(self):
         yield self.x
         yield self.y
+        
+    def __eq__(self,other):
+        return type(other) == Vec and self.x == other.x and self.y == other.y
 
     def floor(self):
         return Vec(int(self.x),int(self.y))

@@ -21,7 +21,7 @@ def save_hitbox(hit:Hitbox):
 def save_Obj(o:Obj):
     return {
         "pos":save_vec(o.pos),
-        "date":o.data,
+        "data":o.data,
         "hitbox":save_hitbox(o.hitbox),
         "id":o.id,
         "toplayer":o.toplayer,
@@ -36,7 +36,6 @@ def save_chunk(c:Chunk):
         "entities":[],
         "hitboxes":[save_hitbox(i) for i in c.hitboxes],
         "objects":[save_Obj(i) for i in c.objects],
-        "tiles":[],
         "pos":save_vec(c.pos),
         "top-left":save_vec(c.top_left_pos)
     }
@@ -73,20 +72,22 @@ def load_chunk(d,w):
     c=Chunk(load_vec(d["pos"]),w)    
     c.background_obj=[load_obj(i) for i in d["background_obj"]]   
     c.hitboxes=[load_hitbox(i) for i in d["hitboxes"]] 
-    c.hitboxes=[load_obj(i) for i in d["objects"]] 
+    c.objects=[load_obj(i) for i in d["objects"]] 
     c.top_left_pos=load_vec(d["top-left"])
+    return c
 
 def load_world(name:str):
     d={}
-    with open(f"{path}/{name}") as f:
+    with open(f"{path}/{name}.json") as f:
         d=json.load(f)
     w=World(name,d["background"])
     w.chuncks={}
     for i in d["chunks"].keys():
-        if i not in w.chuncks:
-            w.chuncks[i]={}  
-        for k in d["chunks"][i].keys():
-            w.chuncks[i][k]=load_chunk(d["chunks"][i][k],w)      
+        for k in d['chunks'][i].keys():
+            x=int(i)
+            y=int(k)
+            w.get_Chunk_at(Vec(x,y))
+            w.chuncks[x][y]=load_chunk(d["chunks"][i][k],w)#here i,k because str
+    return w
+
 save_world(new_bed_room())
-
-

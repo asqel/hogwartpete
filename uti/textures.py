@@ -182,6 +182,10 @@ FARINE_TEXTURE=[
     Textures["player"]["farine_left"],
 
 ]
+
+NOTHING_TEXTURE=py.Surface((50,50)).convert_alpha()
+NOTHING_TEXTURE.fill(py.Color(0,0,0,0))
+
 texture_ptr=0
 def next_texture():
     global texture_ptr

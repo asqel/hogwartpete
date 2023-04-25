@@ -18,7 +18,6 @@ class Chunk:
         self.entities:list[Npc]=[]
         self.objects:list[Obj]=[]
         self.dyn_objects:list[Dynamic_Obj]=[]
-        self.tiles=[[None]*10 for i in range(10)]
         self.background_obj:list[Obj]=[]
         self.hitboxes:list[Hitbox]=[]
 
