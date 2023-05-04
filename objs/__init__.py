@@ -14,9 +14,7 @@ class Obj:
         self.transparent=False #si on peut passer a travvers ou pas
         self.data = ({} if data is None or not isinstance(data, dict) else data)
     
-    def on_rClick(self):
-        ...
-    def on_lClick(self):
+    def on_interact(self,world,user):
         ...
     def on_walk_in(self,world,user):
         ...
@@ -24,19 +22,23 @@ class Obj:
         return Obj(self.id,self.pos.x,self.pos.y,self.toplayer,self.texture,self.hitbox,self.data)
 
 class Dynamic_Obj:  #Object that can be updated on each tick
-    def __init__(self,id:str,x:float,y:float,istop:bool,texture:py.Surface)->None:
-        self.id=id
-        self.texture=texture
-        self.toplayer=istop# object is under or above player and entities
-        self.pos=Vec(x,y)
-        
-
-    def on_tick(self):
+    def __init__(self, id: str, x: float, y: float, istop: bool, texture: py.Surface, hitbox = HITBOX_50X50, data:dict = None) -> None:
+        self.id = id
+        self.texture = texture
+        self.toplayer = istop # object is under or above player and entities
+        self.pos = Vec(x, y)
+        self.hitbox = hitbox
+        self.transparent=False #si on peut passer a travvers ou pas
+        self.data = ({} if data is None or not isinstance(data, dict) else data)
+    
+    def on_interact(self,world,user):
         ...
-    def on_rClick(self):
+    def on_walk_in(self,world,user):
         ...
-    def on_lClick(self):
+    def tick(self,world):
         ...
+    def dyn_obj_copy(self):
+        return Obj(self.id,self.pos.x,self.pos.y,self.toplayer,self.texture,self.hitbox,self.data)
 
 Objs={}
 Dynamic_Objs={}

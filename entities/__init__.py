@@ -33,6 +33,7 @@ class Character:
         self.chunk_border=False
         self.uuid=uuid.uuid4()
         self.zoom_out=1
+        self.transparent=False # si on peut passer a travers != de invisble
 
     def left(self):
         if self.dir!="l":
@@ -121,7 +122,7 @@ class Character:
                     return 0 
 
 class Npc:
-    def __init__(self,name:str,surname:str,texture:py.Surface,spells:list[Spell],pos:Vec,texture_pos:Vec=NULL_VEC,hitbox:Hitbox=HITBOX_50X50) -> None:
+    def __init__(self,name:str,surname:str,texture:py.Surface,spells:list[Spell],pos:Vec,texture_pos:Vec=NULL_VEC,hitbox:Hitbox=HITBOX_50X50,action=None,tick=None) -> None:
         self.name=name
         self.surname=surname
         self.texture=texture
@@ -134,6 +135,9 @@ class Npc:
         self.pos=pos
         self.texture_pos=texture_pos
         self.speed=0.5
+        self.transparent=False # si on peut passer a travers != de invisble
+        self.action=action # a function -> action(self, world, user)
+        self.tick=tick # tick(self, world)
         
 
 players:list[Character]=[]

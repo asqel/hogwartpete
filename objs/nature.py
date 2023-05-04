@@ -1,6 +1,10 @@
 from objs import *
 from uti import *
 
+class Air(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, False, NOTHING_TEXTURE,Hitbox(HITBOX_RECT_t,Vec(0,0),0,50,50))
+
 class Pebble(Obj):
     def __init__(self, x:float, y:float) -> None:
         super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["pebble"],Hitbox(HITBOX_RECT_t,Vec(0,0),0,50,50))
@@ -27,3 +31,4 @@ registerObj(Stone)
 registerObj(Diorite)
 registerObj(Grass)
 registerObj(Pebble)
+registerObj(Air)

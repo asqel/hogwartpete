@@ -33,6 +33,10 @@ class Chunk:
         y=self.top_left_pos.y
         return (Vec(x, y), Vec(x + 999, y), Vec(x, y + 999), Vec(x + 999, y + 999))
 
+    def tick(self):
+        ... # TODO les obj entity ect en dehors du chunk doivent etre deplacer dans le bon chunk
+            #  genre si un obj(x,y)  et chunk(x2,y2,w,h)  si not(x2 <= x < x2+w and y2h <=y < y2+h )
+
 class World:
     """
     difference between function called ...at and ...from_pos:
@@ -45,6 +49,10 @@ class World:
         self.bg=background_col
         self.chuncks:dict[int,dict[int,Chunk]]={}# chuncks[x][y]
         self.id=uuid.uuid4()
+        self.has_to_collide=False # this check if collisions have to be computed when player moves it is set to True
+                                  # will call chunk.tick if true 
+    def activate_collision(self):
+        self.has_to_collide=True
         
     def add_entity(self,n:Npc)->None:
         """
@@ -111,7 +119,7 @@ class World:
     def get_entities_in_Chunk_from_pos(self,pos:Vec)->list[Npc]:
         return self.get_Chunk_from_pos(pos).entities
     
-    def get_Obj_at(self,pos:Vec) ->Obj:
+    def get_Obj(self,pos:Vec) ->Obj:
         x=pos.x//CHUNK_SIZE
         y=pos.y//CHUNK_SIZE
         chunks=[
@@ -136,7 +144,7 @@ class World:
                 new_hitbox.pos+=k.pos
                 if collide_rect_dot(new_hitbox,pos):
                     return k
-        return None
+        return Objs["Air"](*tuple(pos))
             
     def show(self,screen:pygame.Surface, zoom_out: int) -> None:
         __bg_obj:list[Obj]=[]
@@ -162,160 +170,119 @@ class World:
             __entities.extend(e.entities)
             __bg_obj.extend(e.background_obj)
 
-        if zoom_out != 1:
-
-            # scale all the textures
-            scaled_textures = {}
-            for e in __objects:
-                if e.id not in scaled_textures.keys():
-                    scaled_textures[e.id] = pygame.transform.scale(e.texture, (ceil(e.texture.get_width() / zoom_out), ceil(e.texture.get_height() / zoom_out)))
-                e.texture = scaled_textures[e.id]
-
-            __offset = Vec(scr_w // 2, scr_h // 2) - players[0].pos + Vec(players[0].current_texture.get_width() * zoom_out // 2,players[0].current_texture.get_height() * zoom_out // 2)
-
-            for i in __objects:
-                if not i.toplayer:
-                    p = (i.pos + __offset) // zoom_out
-                    if -50 < p.x < scr_w and -50 < p.y < scr_h:
-                        screen.blit(i.texture, (int(p.x), int(p.y)))
-
-            if players[0].isvisible:
-                p=(players[0].pos+__offset) // zoom_out
-                screen.blit(pygame.transform.scale(players[0].current_texture,(players[0].current_texture.get_width()//zoom_out,players[0].current_texture.get_height()//zoom_out)),(int(p.x),int(p.y)))
-
-            for i in __players:
-                p = i.pos + __offset
-                if -50<=p.x<scr_w and -50<=p.y<scr_h and i.isvisible:
-                    screen.blit(i.current_texture,(int(p.x),int(p.y)))
-
-            for i in __entities:
-                p = i.pos + __offset
-                if -50<=p.x<scr_w and -50<=p.y<scr_h and i.isvisible:
-                    screen.blit(i.texture,(int(p.x),int(p.y)))
-
-            for i in __objects:
-                if i.toplayer:
-                    p=i.pos+__offset
-                    if -50<=p.x<scr_w and -50<=p.y<scr_h:
-                        screen.blit(i.texture,tuple(p))
-
-            if players[0].chunk_border:
-                for i in __chunks:
-                    corn=i.get_borders()
-
-                    py.draw.line(screen,(255,0,0),tuple((corn[0]+__offset) // zoom_out),tuple((corn[1]+__offset) // zoom_out))
-                    py.draw.line(screen,(255,0,0),tuple((corn[2]+__offset) // zoom_out),tuple((corn[3]+__offset) // zoom_out))
-                    py.draw.line(screen,(255,0,0),tuple((corn[0]+__offset) // zoom_out),tuple((corn[2]+__offset) // zoom_out))
-                    py.draw.line(screen,(255,0,0),tuple((corn[1]+__offset) // zoom_out),tuple((corn[3]+__offset) // zoom_out))
-        else:
-            __offset=Vec(scr_w//2,scr_h//2)-players[0].pos+Vec(players[0].current_texture.get_width()//2,players[0].current_texture.get_height()//2)
-            for i in __bg_obj:
+        __offset=Vec(scr_w//2,scr_h//2)-players[0].pos+Vec(players[0].current_texture.get_width()//2,players[0].current_texture.get_height()//2)
+        for i in __bg_obj:
+            p= i.pos+__offset
+            if -50<p.x<scr_w and -50<p.y<scr_h:
+                screen.blit(i.texture,tuple(p))
+        for i in __objects:
+            if (not i.toplayer):
                 p= i.pos+__offset
                 if -50<p.x<scr_w and -50<p.y<scr_h:
                     screen.blit(i.texture,tuple(p))
-            for i in __objects:
-                if (not i.toplayer):
-                    p= i.pos+__offset
-                    if -50<p.x<scr_w and -50<p.y<scr_h:
-                        screen.blit(i.texture,tuple(p))
 
-            if players[0].isvisible:
-                p= players[0].pos+__offset
-                screen.blit(players[0].current_texture,tuple(p))
+        if players[0].isvisible:
+            p= players[0].pos+__offset
+            screen.blit(players[0].current_texture,tuple(p))
 
-            for i in __players:
+        for i in __players:
+            p=i.pos+__offset
+            if -50<=p.x<scr_w and -50<=p.y<scr_h and i.isvisible:
+                screen.blit(i.current_texture,tuple(p))
+
+        for i in __entities:
+            p=i.pos+__offset
+            if -50<=p.x<scr_w and -50<=p.y<scr_h and i.isvisible:
+                screen.blit(i.current_texture,tuple(p+i.texture_pos))
+
+        for i in __objects:
+            if i.toplayer:
                 p=i.pos+__offset
-                if -50<=p.x<scr_w and -50<=p.y<scr_h and i.isvisible:
-                    screen.blit(i.current_texture,tuple(p))
+                if -50<=p.x<scr_w and -50<=p.y<scr_h:
+                    screen.blit(i.texture,tuple(p))
+        if show_hitbox:
+            for i in __chunks:
+                for k in i.hitboxes:
+                    s=py.Surface((k.width,k.height))
+                    s.fill((0,255,0))
+                    s.set_alpha(50)
+                    screen.blit(s,tuple(k.pos+__offset))
+                    
+        if players[0].chunk_border:
+            for i in __chunks:
+                corn=i.get_borders()
 
-            for i in __entities:
-                p=i.pos+__offset
-                if -50<=p.x<scr_w and -50<=p.y<scr_h and i.isvisible:
-                    screen.blit(i.current_texture,tuple(p+i.texture_pos))
-
-            for i in __objects:
-                if i.toplayer:
-                    p=i.pos+__offset
-                    if -50<=p.x<scr_w and -50<=p.y<scr_h:
-                        screen.blit(i.texture,tuple(p))
-            if show_hitbox:
-                for i in __chunks:
-                    for k in i.hitboxes:
-                        s=py.Surface((k.width,k.height))
-                        s.fill((0,255,0))
-                        s.set_alpha(50)
-                        screen.blit(s,tuple(k.pos+__offset))
-                        
-            if players[0].chunk_border:
-                for i in __chunks:
-                    corn=i.get_borders()
-
-                    py.draw.line(screen,(255,0,0),tuple(corn[0]+__offset),tuple(corn[1]+__offset))
-                    py.draw.line(screen,(255,0,0),tuple(corn[2]+__offset),tuple(corn[3]+__offset))
-                    py.draw.line(screen,(255,0,0),tuple(corn[0]+__offset),tuple(corn[2]+__offset))
-                    py.draw.line(screen,(255,0,0),tuple(corn[1]+__offset),tuple(corn[3]+__offset))
+                py.draw.line(screen,(255,0,0),tuple(corn[0]+__offset),tuple(corn[1]+__offset))
+                py.draw.line(screen,(255,0,0),tuple(corn[2]+__offset),tuple(corn[3]+__offset))
+                py.draw.line(screen,(255,0,0),tuple(corn[0]+__offset),tuple(corn[2]+__offset))
+                py.draw.line(screen,(255,0,0),tuple(corn[1]+__offset),tuple(corn[3]+__offset))
 
     def resolve_collision(self):
         x=(players[0].pos//CHUNK_SIZE).x
         y=(players[0].pos//CHUNK_SIZE).y
-        __chunks:list[Chunk]=[]
-        __objects:list[Obj]=[]
-        __entities:list[Npc]=[]
-        __hitboxes:list[Hitbox]=[]
+        __chunks : list[Chunk] = []
+        __objects : list[Obj] = []
+        __entities : list[Npc] = []
+        __hitboxes : list[Hitbox] = []
+        __dyn_obj : list[Dynamic_Obj] = []
         for i in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1):
-            __chunks.extend(self.get_Chunk_at(Vec(x+i,y+k)) for k in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1))
+            __chunks.extend(self.get_Chunk_at(Vec(x + i, y + k)) for k in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1))
         for i in __chunks:
             __objects.extend(i.objects)
             __entities.extend(i.entities)
             __hitboxes.extend(i.hitboxes)
+            __dyn_obj.extend(i.dyn_objects)
         for i in __entities:
             if i.hitbox :
                 if players[0].hitbox:
-                    hit1=i.hitbox.copy()
-                    hit1.pos+=i.pos
-                    hit2=players[0].hitbox.copy()
-                    hit2.pos+=players[0].pos
+                    hit1 = i.hitbox.copy()
+                    hit1.pos += i.pos
+                    hit2 = players[0].hitbox.copy()
+                    hit2.pos += players[0].pos
                     if hit1.iscolliding(hit2):
-                        v=( i.pos-players[0].pos )
-                        v=v/v.len()  
-                        players[0].pos-=v*2*players[0].speed
-                        initial_pos=i.pos
-                        i.pos+=v*2*players[0].speed
-                        for k in __hitboxes:
-                            hit1=i.hitbox.copy()
-                            hit1.pos+=i.pos
-                            if hit1.iscolliding(k):
-                                i.pos=initial_pos
-                        for k in __entities:
-                            if k!=i:
-                                hit1=i.hitbox.copy()
-                                hit1.pos+=i.pos
-                                hit2=k.hitbox.copy()
-                                hit2.pos+=k.pos
-                                if hit1.iscolliding(hit2):
-                                    v=( i.pos-k.pos )
-                                    v=v/v.len()  
-                                    k.pos-=v*2*k.speed
-                                    initial_pos=i.pos
-                                    i.pos+=v*2*k.speed
+                        v = ( i.pos - players[0].pos )
+                        v = v / v.len()  
+                        players[0].pos -= v * 2 * players[0].speed
+                        i.pos += v * 2 * players[0].speed
 
 
             
-    def update(self)->int:
-        self.resolve_collision()
-        #TODO : entity with pv<=0 have to die npc.die() 
-        #TODO : return a certain value when the players[0] die
+    def update(self) -> int :
+        if self.has_to_collide:
+            self.resolve_collision()
+
+        chunks : list[Chunk] = []
+        for i in range(-players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1):
+            for k in range(-players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1):
+                chunks.append(self.get_Chunk_at(Vec(i, k)))
+        
+        if self.has_to_collide:
+            for i in chunks:
+                i.tick()
+            
+        __objs : list[Obj] = []
+        __dyn_objs : list[Dynamic_Obj] = []
+        __entities : list[Npc] = []
+
+        p = 0
+        while p < len(__entities):
+            if __entities[p].pv <= 0:
+                if __entities[p].die():
+                    __entities.pop(p)
+                    continue
+            p += 1
+        for i in __entities:
+            if i.tick:
+                i.tick(i, self)
+        for i in __dyn_objs:
+            i.tick(self)
 
 
-from random import randint
+        self.has_to_collide=False
+
 
 def newChunk(pos:Vec,world:World) -> Chunk:
     c=Chunk(pos,world)
-    #TODO temporary
-    #for i, k in itertools.product(range(20), range(20)):
-    #    c.objects.append(Objs["Grass"](i*50+c.top_left_pos.x,k*50+c.top_left_pos.y))
-    #c.objects.append(Objs["Pebble"](randint(0,999)+c.top_left_pos.x,randint(0,999)+c.top_left_pos.y))
-    #c.objects.append(Objs["Stone"](randint(0,999)+c.top_left_pos.x,randint(0,999)+c.top_left_pos.y))
     return c
 
 def newWorld(name:str,background_color:list[int]=(0,0,0)):
@@ -342,11 +309,6 @@ def new_bed_room():
     for i in range(10):
         w.add_backgroung_Obj(Objs["Wall"](i*50+chun.top_left_pos.x,CHUNK_SIZE-50+chun.top_left_pos.y))
     w.add_backgroung_Obj(Objs["Mandalorian_poster"](2*50+chun.top_left_pos.x+5,CHUNK_SIZE-50+chun.top_left_pos.y+2))
-    w.add_entity(new_farine())
-    w.add_entity(new_farine())
-    w.get_Chunk_at(Vec(0,0)).entities[-1].pos+=Vec(0,1)
-    w.add_entity(new_farine())
-    w.get_Chunk_at(Vec(0,0)).entities[-1].pos+=Vec(0,2)
     return w
 
 

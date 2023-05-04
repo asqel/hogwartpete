@@ -35,7 +35,7 @@ class Stairs(Obj):
     def __init__(self, x:float, y:float):
         super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["stairs"],HITBOX_50X50)
         
-    def on_walk_in(self, world, user):
+    def on_interact(self, world, user):
         Worlds["bed2"]=w.new_bed_room()
         user.world=Worlds["bed2"]
         user.pos=Vec(100,100)

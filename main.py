@@ -87,7 +87,6 @@ def server_thread():
                 elif i.key == K_LCTRL:
                     players[0].speed=0.85
                 elif i.key == K_BACKSPACE:
-                    print('i')
                     players[0].texture=next_texture()
                     if players[0].dir=="u":
                         players[0].current_texture=players[0].texture[0]
@@ -97,6 +96,18 @@ def server_thread():
                         players[0].current_texture=players[0].texture[2]
                     if players[0].dir=="l":
                         players[0].current_texture=players[0].texture[3]
+                elif i.key ==K_e:
+                    if players[0].dir=="u":
+                        players[0].world.get_Obj(players[0].pos+(0,-10)).on_interact(players[0].world,players[0])
+
+                    if players[0].dir=="r":
+                        players[0].world.get_Obj(players[0].pos+(10,0)).on_interact(players[0].world,players[0])
+
+                    if players[0].dir=="d":
+                        players[0].world.get_Obj(players[0].pos+(0,10)).on_interact(players[0].world,players[0])
+
+                    if players[0].dir=="l":
+                        players[0].world.get_Obj(players[0].pos+(-10,0)).on_interact(players[0].world,players[0])
                 
             elif i.type ==py.KEYUP:
                 if i.key == py.K_LCTRL:
