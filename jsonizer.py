@@ -29,7 +29,7 @@ def save_Obj(o:Obj):
     }
     
     
-def save_chunk(c:Chunk):
+def save_chunk(c:"Chunk"):
     return {
         "background_obj":[save_Obj(i) for i in c.background_obj] ,   
         "Dyn_Obj":[],
@@ -41,7 +41,7 @@ def save_chunk(c:Chunk):
     }
 
 
-def save_world(w:World):
+def save_world(w:"World"):
     d={
         "background":[w.bg[0],w.bg[1],w.bg[2]],
         "chunks":{}
@@ -69,7 +69,8 @@ def load_obj(d):
     return x
          
 def load_chunk(d,w):
-    c=Chunk(load_vec(d["pos"]),w)    
+    import world as wo
+    c=wo.Chunk(load_vec(d["pos"]),w)    
     c.background_obj=[load_obj(i) for i in d["background_obj"]]   
     c.hitboxes=[load_hitbox(i) for i in d["hitboxes"]] 
     c.objects=[load_obj(i) for i in d["objects"]] 
@@ -77,10 +78,11 @@ def load_chunk(d,w):
     return c
 
 def load_world(name:str):
+    import world as wo
     d={}
     with open(f"{path}/{name}.json") as f:
         d=json.load(f)
-    w=World(name,d["background"])
+    w=wo.World(name,d["background"])
     w.chuncks={}
     for i in d["chunks"].keys():
         for k in d['chunks'][i].keys():
@@ -89,5 +91,3 @@ def load_world(name:str):
             w.get_Chunk_at(Vec(x,y))
             w.chuncks[x][y]=load_chunk(d["chunks"][i][k],w)#here i,k because str
     return w
-
-save_world(new_bed_room())

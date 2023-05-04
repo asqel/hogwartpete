@@ -7,7 +7,6 @@ from uti.sound import play_sound
 from entities import *
 from time import time, sleep
 from world import *
-from worldlist import*
 
 from _thread import start_new_thread
 
@@ -150,11 +149,13 @@ def main():
         #draw crusor
         if cursor_cooldown:
             cursor_cooldown-=1
-        if 0<cursor_cooldown<10:
-            s=py.Surface((50,50))
-            s.fill((255,0,0))
+        if 0<cursor_cooldown<=30: # draw obj
+            texture=Objs[list(Objs.keys())[obj_idx]](0,0).texture
+            s=py.Surface((texture.get_width(), texture.get_height()))
+            s.blit(texture,(0,0))
             s.set_alpha(100)
             screen.blit(s,(screen.get_width()//2+25,screen.get_height()//2+25))
+
         if not cursor_cooldown:
             cursor_cooldown=40
         py.display.update()

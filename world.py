@@ -3,8 +3,6 @@ import pygame
 from objs import *
 from entities import *
 from objs import *
-from math import ceil
-from worldlist import*
 
 #in pixel (its a square)
 CHUNK_SIZE=1000
@@ -288,40 +286,11 @@ def newChunk(pos:Vec,world:World) -> Chunk:
 def newWorld(name:str,background_color:list[int]=(0,0,0)):
     return World(name,background_color)
 
-
-def new_bed_room():
-    w=newWorld("bed room")
-    w.add_hitbox(Hitbox(HITBOX_RECT_t,Vec(0,0),0,10,8*50))
-    w.add_hitbox(Hitbox(HITBOX_RECT_t,Vec(0,0),0,10*50,10))
-    w.add_hitbox(Hitbox(HITBOX_RECT_t,Vec(10*50,0),0,10,8*50))
-    w.add_hitbox(Hitbox(HITBOX_RECT_t,Vec(0,8*50),0,10*50,10))
-    
-    chun=w.get_Chunk_at(Vec(0,0))
-    for x,y in itertools.product(range(10),range(8)):
-        w.add_backgroung_Obj(Objs["Wood"](x*50,y*50))
-    
-    w.add_Obj(Objs["Bed_head"](8*50,5*50))
-    w.add_Obj(Objs["Bed_feet"](8*50,6*50))
-    w.add_Obj(Objs["Commode"](6*50,0*50))
-    w.add_Obj(Objs["Grogu"](0*50,0*50))
-    w.add_Obj(Objs["Stairs"](0,7*50))
-    chun=w.get_Chunk_at(Vec(0,-1))
-    for i in range(10):
-        w.add_backgroung_Obj(Objs["Wall"](i*50+chun.top_left_pos.x,CHUNK_SIZE-50+chun.top_left_pos.y))
-    w.add_backgroung_Obj(Objs["Mandalorian_poster"](2*50+chun.top_left_pos.x+5,CHUNK_SIZE-50+chun.top_left_pos.y+2))
-    return w
-
-
-def new_house_lvl_0():
-    w=newWorld("house_lvl_0")
-    
-
 def toggle_hitbox():
     global show_hitbox
     show_hitbox = not show_hitbox
     
-def init_worlds():
-    Worlds["bed_room"]=new_bed_room()
+
     
 
     
