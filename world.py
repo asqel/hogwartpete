@@ -111,6 +111,33 @@ class World:
     def get_entities_in_Chunk_from_pos(self,pos:Vec)->list[Npc]:
         return self.get_Chunk_from_pos(pos).entities
     
+    def get_Obj_at(self,pos:Vec) ->Obj:
+        x=pos.x//CHUNK_SIZE
+        y=pos.y//CHUNK_SIZE
+        chunks=[
+            self.get_Chunk_at(Vec(x,y)),
+            self.get_Chunk_at(Vec(x-1,y)),
+            self.get_Chunk_at(Vec(x+1,y)),
+            self.get_Chunk_at(Vec(x,y-1)),
+            self.get_Chunk_at(Vec(x,y+1)),
+            self.get_Chunk_at(Vec(x-1,y-1)),
+            self.get_Chunk_at(Vec(x-1,y-1)),
+            self.get_Chunk_at(Vec(x-1,y+1)),
+            self.get_Chunk_at(Vec(x+1,y-1))
+        ]
+        # check for pos
+        for i in chunks:
+            for k in i.objects:
+                if k.pos ==pos:
+                    return k
+        for i in chunks:
+            for k in i.objects:
+                new_hitbox=k.hitbox.copy()
+                new_hitbox.pos+=k.pos
+                if collide_rect_dot(new_hitbox,pos):
+                    return k
+        return None
+            
     def show(self,screen:pygame.Surface, zoom_out: int) -> None:
         __bg_obj:list[Obj]=[]
         __objects:list[Obj]=[]

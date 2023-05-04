@@ -47,5 +47,10 @@ class Hitbox:
     def copy(self):
         return Hitbox(self.type,self.pos.copy(),self.radius,self.width,self.height)
 
+def collide_rect_dot(rect:Hitbox,dot:Vec):
+    if rect.pos.x <= dot.x <= rect.pos.x+rect.width:
+        if rect.pos.y <= dot.y <= rect.pos.y+rect.height:
+            return True
+    return False
 
 HITBOX_50X50=Hitbox(HITBOX_RECT_t,NULL_VEC,0,50,50)
