@@ -63,6 +63,9 @@ class Character:
             self.current_texture=self.texture[2]
         self.pos+=Vec(0,2)*self.speed
         self.collisions("d")
+
+    def on_draw(self,world,has_been_drawn):
+        ...
     
     def update_texture(self,vec):
         corner=math.sqrt(2)/2
@@ -138,7 +141,11 @@ class Npc:
         self.transparent=False # si on peut passer a travers != de invisble
         self.action=action # a function -> action(self, world, user)
         self.tick=tick # tick(self, world)
-        
+    
+    def on_draw(self,world,has_been_drawn):
+        ...
+    def die():
+        ...
 
 players:list[Character]=[]
 

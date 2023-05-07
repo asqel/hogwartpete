@@ -38,8 +38,10 @@ class Stairs(Obj):
     def on_interact(self, world, user):
         user.world=js.load_world("bed room")
         user.pos=Vec(100,100)
+
 import random
-class Tv(Dynamic_Obj):
+
+class Tv(Obj):
     def __init__(self, x:float, y:float):
         self.max_count = 0
         self.count = 20
@@ -47,7 +49,7 @@ class Tv(Dynamic_Obj):
         self.frames=[[Textures["Obj"]["tv"],Textures["Obj"]["tv_2"]][random.randint(0,1)] for i in range(random.randint(3,20))]
         super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["tv"],HITBOX_50X50)
 
-    def tick(self, world):
+    def on_draw(self, world,has_been_drawn):
         self.count += 1
         if self.count >= self.max_count:
             self.count=0
@@ -76,5 +78,5 @@ registerObj(Mandalorian_poster)
 registerObj(Grogu)
 registerObj(Commode)
 registerObj(Stairs)
-registerDynamic_Obj(Tv)
+registerObj(Tv)
 registerObj(Empty_commode)

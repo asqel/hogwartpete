@@ -17,12 +17,10 @@ py.font.init()
 FPS_MAX = 60
 TPS_MAX = 150
 
-global g_tps, running_dict 
 g_tps = 0
 
 running_dict = {
     "global": True,
-    "graphic": True,
     "server": True
 }
 
@@ -68,63 +66,48 @@ def server_thread():
                         joystick_vec.y=axis
 
             elif i.type == py.KEYDOWN:
-                if i.key == K_SPACE:
+                if i.key == K_F3:
                     players[0].chunk_border=not players[0].chunk_border
-                #elif i.key == K_p:
-                #    players[0].zoom_out+=1
-                #elif i.key == K_m:
-                #    players[0].zoom_out = max(1, players[0].zoom_out-1)
-                elif i.key == K_o:
-                    players[0].render_distance+=2
-                elif i.key == K_l:
-                    players[0].render_distance = max(1, players[0].render_distance-2)
-                elif i.key == K_i:
-                    players[0].speed+=2
-                elif i.key == K_k:
-                    players[0].speed-=2
+
                 elif i.key == K_ASTERISK:
                     toggle_hitbox()
+
                 elif i.key == K_LCTRL:
-                    players[0].speed=0.85
-                elif i.key == K_BACKSPACE:
-                    players[0].texture=next_texture()
-                    if players[0].dir=="u":
-                        players[0].current_texture=players[0].texture[0]
-                    if players[0].dir=="r":
-                        players[0].current_texture=players[0].texture[1]
-                    if players[0].dir=="d":
-                        players[0].current_texture=players[0].texture[2]
-                    if players[0].dir=="l":
-                        players[0].current_texture=players[0].texture[3]
+                    players[0].speed = 0.85
+
                 elif i.key ==K_e:
-                    if players[0].dir=="u":
+                    if players[0].dir == 'u':
                         players[0].world.get_Obj(players[0].pos+(0,-10)).on_interact(players[0].world,players[0])
 
-                    if players[0].dir=="r":
+                    if players[0].dir == 'r':
                         players[0].world.get_Obj(players[0].pos+(10,0)).on_interact(players[0].world,players[0])
 
-                    if players[0].dir=="d":
+                    if players[0].dir == 'd':
                         players[0].world.get_Obj(players[0].pos+(0,10)).on_interact(players[0].world,players[0])
 
-                    if players[0].dir=="l":
+                    if players[0].dir == 'l':
                         players[0].world.get_Obj(players[0].pos+(-10,0)).on_interact(players[0].world,players[0])
                 
-            elif i.type ==py.KEYUP:
+            elif i.type == py.KEYUP:
                 if i.key == py.K_LCTRL:
-                    players[0].speed=0.5  
+                    players[0].speed = 0.5  
                 
-        pygame_events=[]
+        pygame_events = []
         if joystick_count:
-            players[0].pos+=joystick_vec*2*players[0].speed
+            players[0].pos += joystick_vec * 2 * players[0].speed
             players[0].update_texture(joystick_vec)
 
         pushed_keys=py.key.get_pressed()
+
         if pushed_keys[py.K_q]:
             players[0].left()
+
         if pushed_keys[py.K_d]:
             players[0].right()
+
         if pushed_keys[py.K_z]:
             players[0].up()
+
         if pushed_keys[py.K_s]:
             players[0].down()
 
@@ -140,42 +123,44 @@ def server_thread():
 
     running_dict["server"] = False
 
+
 def main():
+
     global pygame_events
     start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
-    starting_world=js.load_world("bed room")
-    starting_world.add_Dyn_Obj(Dynamic_Objs["Tv"](-50,-50))
-    players.append(Character("Jean","Magie","pouffsoufle",None,None,None,POUFSOUFFLE_TEXTURES_0,None,50,50,starting_world))
+    
+    starting_world = js.load_world("bed room")
+    starting_world.add_Dyn_Obj(Dynamic_Objs["Tv"](-50, -50))
+
+    players.append(Character("Jean", "Magie", "pouffsoufle", None, None, None, POUFSOUFFLE_TEXTURES_0, None, 50, 50, starting_world))
 
     players[0].zoom_out = 1
-    players[0].render_distance=3
+    players[0].render_distance = 3
 
     start_new_thread(server_thread, ())
 
-    arial=py.font.SysFont("Arial",25,False,False)
+    arial = py.font.SysFont("Arial", 25, False, False)
     fps = 0
-    
-    while running_dict["global"] and running_dict["graphic"] and running_dict["server"]:
+    while running_dict["global"] and running_dict["server"]:
         start_time = time()
-        pygame_events=py.event.get()
+        pygame_events = py.event.get()
         for i in pygame_events:
             if i.type == py.QUIT:
-                running_dict["global"]=False
+                running_dict["global"] = False
         
                 
-        players[0].world: World = players[0].world
+        players[0].world : World = players[0].world
         players[0].world.show(screen, players[0].zoom_out)
  
         screen.blit(arial.render(f"fps: {int(fps)}", False, (255, 0, 0)), (0, 0))
         screen.blit(arial.render(f"mid tps: {int(g_tps)}", False, (255, 0, 0)), (0, 30))
         screen.blit(arial.render(str(players[0].pos.floor()), False, (255, 0, 0)), (0, 60))
         screen.blit(arial.render(str(players[0].world.get_Chunk_from_pos(players[0].pos).pos), False, (255, 0, 0)), (0, 90))
-
+        
         py.display.update()
-        t=time()
-        if  t - start_time <1/60:
-            sleep(1/60 -t+start_time)
-        fps = 1/(time()-start_time)
-
+        t = time()
+        if  t - start_time < 1 / 60:
+            sleep(1 / 60 - t + start_time)
+        fps = 1 / (time() - start_time)
 
 main()
