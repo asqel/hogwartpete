@@ -47,8 +47,8 @@ Dynamic_Objs={}
 def registerObj(obj:type):
     Objs[obj.__name__]=obj
     
-def registerDynamic_Obj(dyn_obj:type,name:str):
-    Dynamic_Objs[name]=dyn_obj
+def registerDynamic_Obj(obj:type):
+    Dynamic_Objs[obj.__name__]=obj
 
 
 #import every spells

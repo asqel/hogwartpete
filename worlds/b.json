@@ -550,6 +550,17 @@
                     {
                         "pos": [
                             300,
+                            50
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
                             100
                         ],
                         "data": {},
@@ -583,6 +594,17 @@
                     {
                         "pos": [
                             300,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
                             300
                         ],
                         "data": {},
@@ -604,7 +626,62 @@
                     },
                     {
                         "pos": [
-                            300,
+                            350,
+                            0
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            50
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            100
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            150
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            200
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
                             250
                         ],
                         "data": {},
@@ -615,8 +692,195 @@
                     },
                     {
                         "pos": [
-                            300,
+                            350,
+                            300
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            350
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            0
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
                             50
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            100
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            150
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            200
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            300
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            350
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            0
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            50
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            100
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            150
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            200
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            300
+                        ],
+                        "data": {},
+                        "hitbox": null,
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            350
                         ],
                         "data": {},
                         "hitbox": null,
@@ -654,7 +918,7 @@
                         "w": 10,
                         "r": 0,
                         "pos": [
-                            350,
+                            500,
                             0
                         ]
                     },
@@ -670,6 +934,66 @@
                     }
                 ],
                 "objects": [
+                    {
+                        "pos": [
+                            400,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Bed_head",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            300
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Bed_feet",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            0
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 100,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Commode",
+                        "toplayer": false,
+                        "transparent": false
+                    },
                     {
                         "pos": [
                             0,
@@ -707,66 +1031,6 @@
                             ]
                         },
                         "id": "Stairs",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            200,
-                            -25
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 50,
-                            "w": 100,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Commode",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            150,
-                            -15
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 50,
-                            "w": 50,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Bed_head",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            150,
-                            35
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 50,
-                            "w": 50,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Bed_feet",
                         "toplayer": false,
                         "transparent": false
                     }
@@ -904,6 +1168,86 @@
                     },
                     {
                         "pos": [
+                            300,
+                            -50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            -50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            -50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            -50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
                             105,
                             -48
                         ],
@@ -926,28 +1270,7 @@
                 "Dyn_Obj": [],
                 "entities": [],
                 "hitboxes": [],
-                "objects": [
-                    {
-                        "pos": [
-                            300,
-                            -50
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 50,
-                            "w": 50,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wall",
-                        "toplayer": 1,
-                        "transparent": false
-                    }
-                ],
+                "objects": [],
                 "pos": [
                     0,
                     -1
@@ -955,160 +1278,6 @@
                 "top-left": [
                     0,
                     -1000
-                ]
-            },
-            "1": {
-                "background_obj": [],
-                "Dyn_Obj": [],
-                "entities": [],
-                "hitboxes": [],
-                "objects": [],
-                "pos": [
-                    0,
-                    1
-                ],
-                "top-left": [
-                    0,
-                    1000
-                ]
-            },
-            "-2": {
-                "background_obj": [],
-                "Dyn_Obj": [],
-                "entities": [],
-                "hitboxes": [],
-                "objects": [],
-                "pos": [
-                    0,
-                    -2
-                ],
-                "top-left": [
-                    0,
-                    -2000
-                ]
-            }
-        },
-        "-1": {
-            "-1": {
-                "background_obj": [],
-                "Dyn_Obj": [],
-                "entities": [],
-                "hitboxes": [],
-                "objects": [],
-                "pos": [
-                    -1,
-                    -1
-                ],
-                "top-left": [
-                    -1000,
-                    -1000
-                ]
-            },
-            "0": {
-                "background_obj": [],
-                "Dyn_Obj": [],
-                "entities": [],
-                "hitboxes": [],
-                "objects": [],
-                "pos": [
-                    -1,
-                    0
-                ],
-                "top-left": [
-                    -1000,
-                    0
-                ]
-            },
-            "1": {
-                "background_obj": [],
-                "Dyn_Obj": [],
-                "entities": [],
-                "hitboxes": [],
-                "objects": [],
-                "pos": [
-                    -1,
-                    1
-                ],
-                "top-left": [
-                    -1000,
-                    1000
-                ]
-            },
-            "-2": {
-                "background_obj": [],
-                "Dyn_Obj": [],
-                "entities": [],
-                "hitboxes": [],
-                "objects": [],
-                "pos": [
-                    -1,
-                    -2
-                ],
-                "top-left": [
-                    -1000,
-                    -2000
-                ]
-            }
-        },
-        "1": {
-            "-1": {
-                "background_obj": [],
-                "Dyn_Obj": [],
-                "entities": [],
-                "hitboxes": [],
-                "objects": [],
-                "pos": [
-                    1,
-                    -1
-                ],
-                "top-left": [
-                    1000,
-                    -1000
-                ]
-            },
-            "0": {
-                "background_obj": [],
-                "Dyn_Obj": [],
-                "entities": [],
-                "hitboxes": [],
-                "objects": [],
-                "pos": [
-                    1,
-                    0
-                ],
-                "top-left": [
-                    1000,
-                    0
-                ]
-            },
-            "1": {
-                "background_obj": [],
-                "Dyn_Obj": [],
-                "entities": [],
-                "hitboxes": [],
-                "objects": [],
-                "pos": [
-                    1,
-                    1
-                ],
-                "top-left": [
-                    1000,
-                    1000
-                ]
-            },
-            "-2": {
-                "background_obj": [],
-                "Dyn_Obj": [],
-                "entities": [],
-                "hitboxes": [],
-                "objects": [],
-                "pos": [
-                    1,
-                    -2
-                ],
-                "top-left": [
-                    1000,
-                    -2000
                 ]
             }
         }

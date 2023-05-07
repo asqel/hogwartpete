@@ -144,6 +144,7 @@ def main():
     global pygame_events
     start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
     starting_world=js.load_world("bed room")
+    starting_world.add_Dyn_Obj(Dynamic_Objs["Tv"](-50,-50))
     players.append(Character("Jean","Magie","pouffsoufle",None,None,None,POUFSOUFFLE_TEXTURES_0,None,50,50,starting_world))
 
     players[0].zoom_out = 1

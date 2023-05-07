@@ -44,16 +44,9 @@ class Interface:
         self.width=width
         self.height=height
     
-    def on_tick(self,world,user,mouse_pose:Vec):
-        if self.action is not None:
-            self.action(world,user,mouse_pose)
+    def on_tick(self,world,user):
+        ...
         
         
     def draw(self,screen:py.Surface):
-        screen.blit(self.bag,(self.pos.x,self.pos.y))
-        for i in self.images:
-            screen.blit(i.texture,tuple(i.pos))
-        for i in self.buttons:
-            screen.blit(i.texture,tuple(i.pos))
-        for i in self.texts:
-            screen.blit(mc_font,tuple(i.pos))
+        ...

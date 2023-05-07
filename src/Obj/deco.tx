@@ -16,5 +16,20 @@
 -
 -third line
 -
-0 32 32 16 100 50 $ commode
-32 32 16 16 50 50 $ stairs
+0  32 32 16 100 50 $ commode
+32 32 16 16 50  50 $ stairs
+0  32 32 16 100 50 $ empty_commode
+-red carpet top
+0  48 16 16 50  50 $ red_carpet_top_left
+16 48 16 16 50  50 $ red_carpet_top
+32 48 16 16 50  50 $ red_carpet_top_right
+-
+-fourth line
+-
+-red carpet middle
+0  64 16 16 50  50 $ red_carpet_middle_left
+16 64 16 16 50  50 $ red_carpet_middle
+32 64 16 16 50  50 $ red_carpet_middle_right
+
+
+

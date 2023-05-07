@@ -174,6 +174,7 @@ if not os.path.exists(f"{os.path.dirname(os.path.abspath(__file__))}/worlds/{wor
 else:
     starting_world=js.load_world(world_name)
 
+starting_world.has_to_collide=True
 players.append(Character("","","",None,None,None,[NOTHING_TEXTURE for i in range(4)],None,0,0,starting_world))
 obj_idx=0
 main()

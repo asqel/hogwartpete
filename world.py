@@ -19,7 +19,7 @@ class Chunk:
         self.background_obj:list[Obj]=[]
         self.hitboxes:list[Hitbox]=[]
 
-    def get_borders(self)->list[Vec]:
+    def get_borders(self)->list['Vec']:
         """
         return corners of the chunk
         (Top-left, Top-right, bottom-left, bottom-right)
@@ -32,6 +32,70 @@ class Chunk:
         return (Vec(x, y), Vec(x + 999, y), Vec(x, y + 999), Vec(x + 999, y + 999))
 
     def tick(self):
+        p = 0
+        corners = self.get_borders()
+        new_chunk_pos = Vec(0,0)
+        while p < self.entities:
+            if self.entities[p].pos.x < corners[0].x:
+                new_chunk_pos += (-1, 0)
+            elif self.entities[p].pos.x > corners[3].x:
+                new_chunk_pos += (1, 0)
+
+            if self.entities[p].pos.y < corners[0].y:
+                new_chunk_pos += (0, -1)
+            elif self.entities[p].pos.y > corners[3].y:
+                new_chunk_pos += (0, 1)
+
+            if new_chunk_pos != (0,0):
+                self.world.add_entity(self.entities.pop(p))
+        
+        new_chunk_pos = Vec(0,0)
+        while p < self.objects:
+            if self.objects[p].pos.x < corners[0].x:
+                new_chunk_pos += (-1, 0)
+            elif self.objects[p].pos.x > corners[3].x:
+                new_chunk_pos += (1, 0)
+
+            if self.objects[p].pos.y < corners[0].y:
+                new_chunk_pos += (0, -1)
+            elif self.objects[p].pos.y > corners[3].y:
+                new_chunk_pos += (0, 1)
+
+            if new_chunk_pos != (0,0):
+                self.world.add_entity(self.objects.pop(p))
+        
+        new_chunk_pos = Vec(0,0)
+        while p < self.background_obj:
+            if self.background_obj[p].pos.x < corners[0].x:
+                new_chunk_pos += (-1, 0)
+            elif self.background_obj[p].pos.x > corners[3].x:
+                new_chunk_pos += (1, 0)
+
+            if self.background_obj[p].pos.y < corners[0].y:
+                new_chunk_pos += (0, -1)
+            elif self.background_obj[p].pos.y > corners[3].y:
+                new_chunk_pos += (0, 1)
+
+            if new_chunk_pos != (0,0):
+                self.world.add_entity(self.background_obj.pop(p))
+
+        new_chunk_pos = Vec(0,0)
+        while p < self.dyn_objects:
+            if self.dyn_objects[p].pos.x < corners[0].x:
+                new_chunk_pos += (-1, 0)
+            elif self.dyn_objects[p].pos.x > corners[3].x:
+                new_chunk_pos += (1, 0)
+
+            if self.dyn_objects[p].pos.y < corners[0].y:
+                new_chunk_pos += (0, -1)
+            elif self.dyn_objects[p].pos.y > corners[3].y:
+                new_chunk_pos += (0, 1)
+
+            if new_chunk_pos != (0,0):
+                self.world.add_entity(self.dyn_objects.pop(p))
+        
+            
+
         ... # TODO les obj entity ect en dehors du chunk doivent etre deplacer dans le bon chunk
             #  genre si un obj(x,y)  et chunk(x2,y2,w,h)  si not(x2 <= x < x2+w and y2h <=y < y2+h )
 
@@ -178,6 +242,12 @@ class World:
                 p= i.pos+__offset
                 if -50<p.x<scr_w and -50<p.y<scr_h:
                     screen.blit(i.texture,tuple(p))
+        
+        for i in __dyn_obj:
+            if (not i.toplayer):
+                p= i.pos+__offset
+                if -50<p.x<scr_w and -50<p.y<scr_h:
+                    screen.blit(i.texture,tuple(p))
 
         if players[0].isvisible:
             p= players[0].pos+__offset
@@ -198,6 +268,13 @@ class World:
                 p=i.pos+__offset
                 if -50<=p.x<scr_w and -50<=p.y<scr_h:
                     screen.blit(i.texture,tuple(p))
+
+        for i in __dyn_obj:
+            if i.toplayer:
+                p= i.pos+__offset
+                if -50<p.x<scr_w and -50<p.y<scr_h:
+                    screen.blit(i.texture,tuple(p))
+
         if show_hitbox:
             for i in __chunks:
                 for k in i.hitboxes:
@@ -261,6 +338,12 @@ class World:
         __objs : list[Obj] = []
         __dyn_objs : list[Dynamic_Obj] = []
         __entities : list[Npc] = []
+
+        for i in chunks:
+            __objs.extend(i.objects)
+            __entities.extend(i.entities)
+            __dyn_objs.extend(i.dyn_objects)
+
 
         p = 0
         while p < len(__entities):

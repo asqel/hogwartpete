@@ -147,7 +147,10 @@ class Vec:
         yield self.y
         
     def __eq__(self,other):
-        return type(other) == Vec and self.x == other.x and self.y == other.y
+        if isinstance(other,(Vec,tuple,list)):
+            other=Vec(other)
+            return self.x == other.x and self.y == other.y
+        return False
 
     def floor(self):
         return Vec(int(self.x),int(self.y))

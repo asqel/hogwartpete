@@ -9,7 +9,7 @@ class Wood(Obj):
 
 class Wall(Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["wall"],HITBOX_50X50)
 
 class Bed_head(Obj):
     def __init__(self, x:float, y:float) -> None:
@@ -34,10 +34,39 @@ class Grogu(Obj):
 class Stairs(Obj):
     def __init__(self, x:float, y:float):
         super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["stairs"],HITBOX_50X50)
-        
+
     def on_interact(self, world, user):
         user.world=js.load_world("bed room")
         user.pos=Vec(100,100)
+import random
+class Tv(Dynamic_Obj):
+    def __init__(self, x:float, y:float):
+        self.max_count = 0
+        self.count = 20
+        self.frame_idx=0
+        self.frames=[[Textures["Obj"]["tv"],Textures["Obj"]["tv_2"]][random.randint(0,1)] for i in range(random.randint(3,20))]
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["tv"],HITBOX_50X50)
+
+    def tick(self, world):
+        self.count += 1
+        if self.count >= self.max_count:
+            self.count=0
+            self.frame_idx +=1
+            if self.frame_idx >= len(self.frames):
+                self.frame_idx=0
+            self.texture = self.frames[self.frame_idx]
+
+
+
+
+
+
+class Empty_commode(Obj):
+    def __init__(self, x:float, y:float):
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["empty_commode"],HITBOX_50X50)
+
+
+
 
 registerObj(Wood)
 registerObj(Wall)
@@ -47,3 +76,5 @@ registerObj(Mandalorian_poster)
 registerObj(Grogu)
 registerObj(Commode)
 registerObj(Stairs)
+registerDynamic_Obj(Tv)
+registerObj(Empty_commode)
