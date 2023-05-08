@@ -1,8 +1,8 @@
 {
     "background": [
-        0,
-        0,
-        0
+        125,
+        125,
+        125
     ],
     "chunks": {
         "0": {
@@ -76,28 +76,6 @@
                     },
                     {
                         "pos": [
-                            0,
-                            300
-                        ],
-                        "data": {},
-                        "hitbox": null,
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            0,
-                            350
-                        ],
-                        "data": {},
-                        "hitbox": null,
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
                             50,
                             0
                         ],
@@ -155,28 +133,6 @@
                         "pos": [
                             50,
                             250
-                        ],
-                        "data": {},
-                        "hitbox": null,
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            50,
-                            300
-                        ],
-                        "data": {},
-                        "hitbox": null,
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            50,
-                            350
                         ],
                         "data": {},
                         "hitbox": null,
@@ -252,28 +208,6 @@
                     },
                     {
                         "pos": [
-                            100,
-                            300
-                        ],
-                        "data": {},
-                        "hitbox": null,
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            100,
-                            350
-                        ],
-                        "data": {},
-                        "hitbox": null,
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
                             150,
                             0
                         ],
@@ -331,28 +265,6 @@
                         "pos": [
                             150,
                             250
-                        ],
-                        "data": {},
-                        "hitbox": null,
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            150,
-                            300
-                        ],
-                        "data": {},
-                        "hitbox": null,
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            150,
-                            350
                         ],
                         "data": {},
                         "hitbox": null,
@@ -428,28 +340,6 @@
                     },
                     {
                         "pos": [
-                            200,
-                            300
-                        ],
-                        "data": {},
-                        "hitbox": null,
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            200,
-                            350
-                        ],
-                        "data": {},
-                        "hitbox": null,
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
                             250,
                             0
                         ],
@@ -516,28 +406,6 @@
                     },
                     {
                         "pos": [
-                            250,
-                            300
-                        ],
-                        "data": {},
-                        "hitbox": null,
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            250,
-                            350
-                        ],
-                        "data": {},
-                        "hitbox": null,
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
                             300,
                             0
                         ],
@@ -573,28 +441,6 @@
                         "pos": [
                             300,
                             200
-                        ],
-                        "data": {},
-                        "hitbox": null,
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            300,
-                            300
-                        ],
-                        "data": {},
-                        "hitbox": null,
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            300,
-                            350
                         ],
                         "data": {},
                         "hitbox": null,
@@ -692,26 +538,6 @@
                     },
                     {
                         "pos": [
-                            0,
-                            350
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 50,
-                            "w": 50,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Stairs",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
                             200,
                             -25
                         ],
@@ -767,6 +593,286 @@
                             ]
                         },
                         "id": "Bed_feet",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            50,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            150,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            100,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right_down",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            200
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            150
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            100
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            0
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            200
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Stairs",
                         "toplayer": false,
                         "transparent": false
                     }
@@ -946,6 +1052,26 @@
                         "id": "Wall",
                         "toplayer": 1,
                         "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            -50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right_up",
+                        "toplayer": false,
+                        "transparent": false
                     }
                 ],
                 "pos": [
@@ -994,7 +1120,28 @@
                 "Dyn_Obj": [],
                 "entities": [],
                 "hitboxes": [],
-                "objects": [],
+                "objects": [
+                    {
+                        "pos": [
+                            -50,
+                            -50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_left_up",
+                        "toplayer": false,
+                        "transparent": false
+                    }
+                ],
                 "pos": [
                     -1,
                     -1
@@ -1009,7 +1156,128 @@
                 "Dyn_Obj": [],
                 "entities": [],
                 "hitboxes": [],
-                "objects": [],
+                "objects": [
+                    {
+                        "pos": [
+                            -50,
+                            0
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_left",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            -50,
+                            50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_left",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            -50,
+                            100
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_left",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            -50,
+                            150
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_left",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            -50,
+                            200
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_left",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            -50,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_left_down",
+                        "toplayer": false,
+                        "transparent": false
+                    }
+                ],
                 "pos": [
                     -1,
                     0
@@ -1109,6 +1377,68 @@
                 "top-left": [
                     1000,
                     -2000
+                ]
+            }
+        },
+        "-2": {
+            "-2": {
+                "background_obj": [],
+                "Dyn_Obj": [],
+                "entities": [],
+                "hitboxes": [],
+                "objects": [],
+                "pos": [
+                    -2,
+                    -2
+                ],
+                "top-left": [
+                    -2000,
+                    -2000
+                ]
+            },
+            "-1": {
+                "background_obj": [],
+                "Dyn_Obj": [],
+                "entities": [],
+                "hitboxes": [],
+                "objects": [],
+                "pos": [
+                    -2,
+                    -1
+                ],
+                "top-left": [
+                    -2000,
+                    -1000
+                ]
+            },
+            "0": {
+                "background_obj": [],
+                "Dyn_Obj": [],
+                "entities": [],
+                "hitboxes": [],
+                "objects": [],
+                "pos": [
+                    -2,
+                    0
+                ],
+                "top-left": [
+                    -2000,
+                    0
+                ]
+            },
+            "1": {
+                "background_obj": [],
+                "Dyn_Obj": [],
+                "entities": [],
+                "hitboxes": [],
+                "objects": [],
+                "pos": [
+                    -2,
+                    1
+                ],
+                "top-left": [
+                    -2000,
+                    1000
                 ]
             }
         }

@@ -68,6 +68,25 @@ class Empty_commode(Obj):
         super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["empty_commode"],HITBOX_50X50)
 
 
+class Wall_left_up(Obj):
+    def __init__(self, x:float, y:float):
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_left_up"],HITBOX_50X50)
+class Wall_left(Obj):
+    def __init__(self, x:float, y:float):
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_left"],HITBOX_50X50)
+class Wall_right_up(Obj):
+    def __init__(self, x:float, y:float):
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_right_up"],HITBOX_50X50)
+class Wall_right(Obj):
+    def __init__(self, x:float, y:float):
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_right"],HITBOX_50X50)
+class Wall_left_down(Obj):
+    def __init__(self, x:float, y:float):
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_left_down"],HITBOX_50X50)
+class Wall_right_down(Obj):
+    def __init__(self, x:float, y:float):
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_right_down"],HITBOX_50X50)
+
 
 
 registerObj(Wood)
@@ -80,3 +99,9 @@ registerObj(Commode)
 registerObj(Stairs)
 registerObj(Tv)
 registerObj(Empty_commode)
+registerObj(Wall_left_up)
+registerObj(Wall_left)
+registerObj(Wall_right_up)
+registerObj(Wall_right)
+registerObj(Wall_left_down)
+registerObj(Wall_right_down)
