@@ -1,0 +1,2982 @@
+{
+    "background": [
+        0,
+        0,
+        0
+    ],
+    "chunks": {
+        "-1": {
+            "-1": {
+                "background_obj": [],
+                "Dyn_Obj": [],
+                "entities": [],
+                "hitboxes": [],
+                "objects": [
+                    {
+                        "pos": [
+                            -50,
+                            -50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_left_up",
+                        "toplayer": false,
+                        "transparent": false
+                    }
+                ],
+                "pos": [
+                    -1,
+                    -1
+                ],
+                "top-left": [
+                    -1000,
+                    -1000
+                ]
+            },
+            "0": {
+                "background_obj": [],
+                "Dyn_Obj": [],
+                "entities": [],
+                "hitboxes": [],
+                "objects": [
+                    {
+                        "pos": [
+                            -50,
+                            0
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_left",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            -50,
+                            50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_left",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            -50,
+                            100
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_left",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            -50,
+                            150
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_left",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            -50,
+                            200
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_left",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            -50,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_left",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            -50,
+                            300
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_left",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            -50,
+                            350
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_left",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            -50,
+                            400
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_left",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            -50,
+                            450
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_left_down",
+                        "toplayer": false,
+                        "transparent": false
+                    }
+                ],
+                "pos": [
+                    -1,
+                    0
+                ],
+                "top-left": [
+                    -1000,
+                    0
+                ]
+            },
+            "1": {
+                "background_obj": [],
+                "Dyn_Obj": [],
+                "entities": [],
+                "hitboxes": [],
+                "objects": [],
+                "pos": [
+                    -1,
+                    1
+                ],
+                "top-left": [
+                    -1000,
+                    1000
+                ]
+            },
+            "-2": {
+                "background_obj": [],
+                "Dyn_Obj": [],
+                "entities": [],
+                "hitboxes": [],
+                "objects": [],
+                "pos": [
+                    -1,
+                    -2
+                ],
+                "top-left": [
+                    -1000,
+                    -2000
+                ]
+            }
+        },
+        "0": {
+            "-1": {
+                "background_obj": [],
+                "Dyn_Obj": [],
+                "entities": [],
+                "hitboxes": [],
+                "objects": [
+                    {
+                        "pos": [
+                            50,
+                            -50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            100,
+                            -50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            -50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            -50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            -50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            -50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            -50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            500,
+                            -50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right_up",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            -50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 100,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Frigo",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            150,
+                            -50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            -50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    }
+                ],
+                "pos": [
+                    0,
+                    -1
+                ],
+                "top-left": [
+                    0,
+                    -1000
+                ]
+            },
+            "0": {
+                "background_obj": [
+                    {
+                        "pos": [
+                            0,
+                            0
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            50,
+                            0
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            100,
+                            0
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            0
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            0
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            0
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            0
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Air",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            150
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            100
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            200
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            300
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            350
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            400
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            400
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            400
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            400
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            400
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            400
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            150,
+                            400
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            100,
+                            400
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            50,
+                            400
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            400
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            350
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            300
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            200
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            100
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            150
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            50,
+                            50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            100,
+                            50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            150,
+                            50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            100
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            150
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            200
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            300
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            350
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            350
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            350
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            350
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            350
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            150,
+                            350
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            50,
+                            350
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            100,
+                            350
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            50,
+                            200
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            50,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            50,
+                            150
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            50,
+                            100
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            150,
+                            100
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            100,
+                            100
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            100
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            100
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            100
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            100
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            150
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            200
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            300
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            300
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            300
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            300
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            150,
+                            300
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            50,
+                            300
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            100,
+                            300
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            100,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            100,
+                            200
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            100,
+                            150
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            150,
+                            150
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            150
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            150
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            150
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            200
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            150,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            150,
+                            200
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            200
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            200
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            0
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            0
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            150,
+                            0
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    }
+                ],
+                "Dyn_Obj": [],
+                "entities": [],
+                "hitboxes": [],
+                "objects": [
+                    {
+                        "pos": [
+                            450,
+                            450
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            400,
+                            450
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            350,
+                            450
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            300,
+                            450
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            450
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            450
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            150,
+                            450
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            100,
+                            450
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            50,
+                            450
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            450
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            500,
+                            0
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            500,
+                            50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            500,
+                            100
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            500,
+                            150
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            500,
+                            200
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            500,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            500,
+                            300
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            500,
+                            400
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            500,
+                            350
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            500,
+                            450
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right_down",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            250,
+                            0
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Wood",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            400
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Stairs",
+                        "toplayer": false,
+                        "transparent": false
+                    }
+                ],
+                "pos": [
+                    0,
+                    0
+                ],
+                "top-left": [
+                    0,
+                    0
+                ]
+            },
+            "1": {
+                "background_obj": [],
+                "Dyn_Obj": [],
+                "entities": [],
+                "hitboxes": [],
+                "objects": [],
+                "pos": [
+                    0,
+                    1
+                ],
+                "top-left": [
+                    0,
+                    1000
+                ]
+            },
+            "-2": {
+                "background_obj": [],
+                "Dyn_Obj": [],
+                "entities": [],
+                "hitboxes": [],
+                "objects": [],
+                "pos": [
+                    0,
+                    -2
+                ],
+                "top-left": [
+                    0,
+                    -2000
+                ]
+            }
+        },
+        "1": {
+            "-1": {
+                "background_obj": [],
+                "Dyn_Obj": [],
+                "entities": [],
+                "hitboxes": [],
+                "objects": [],
+                "pos": [
+                    1,
+                    -1
+                ],
+                "top-left": [
+                    1000,
+                    -1000
+                ]
+            },
+            "0": {
+                "background_obj": [],
+                "Dyn_Obj": [],
+                "entities": [],
+                "hitboxes": [],
+                "objects": [],
+                "pos": [
+                    1,
+                    0
+                ],
+                "top-left": [
+                    1000,
+                    0
+                ]
+            },
+            "1": {
+                "background_obj": [],
+                "Dyn_Obj": [],
+                "entities": [],
+                "hitboxes": [],
+                "objects": [],
+                "pos": [
+                    1,
+                    1
+                ],
+                "top-left": [
+                    1000,
+                    1000
+                ]
+            },
+            "-2": {
+                "background_obj": [],
+                "Dyn_Obj": [],
+                "entities": [],
+                "hitboxes": [],
+                "objects": [],
+                "pos": [
+                    1,
+                    -2
+                ],
+                "top-left": [
+                    1000,
+                    -2000
+                ]
+            }
+        },
+        "-2": {
+            "-2": {
+                "background_obj": [],
+                "Dyn_Obj": [],
+                "entities": [],
+                "hitboxes": [],
+                "objects": [],
+                "pos": [
+                    -2,
+                    -2
+                ],
+                "top-left": [
+                    -2000,
+                    -2000
+                ]
+            },
+            "-1": {
+                "background_obj": [],
+                "Dyn_Obj": [],
+                "entities": [],
+                "hitboxes": [],
+                "objects": [],
+                "pos": [
+                    -2,
+                    -1
+                ],
+                "top-left": [
+                    -2000,
+                    -1000
+                ]
+            },
+            "0": {
+                "background_obj": [],
+                "Dyn_Obj": [],
+                "entities": [],
+                "hitboxes": [],
+                "objects": [],
+                "pos": [
+                    -2,
+                    0
+                ],
+                "top-left": [
+                    -2000,
+                    0
+                ]
+            },
+            "1": {
+                "background_obj": [],
+                "Dyn_Obj": [],
+                "entities": [],
+                "hitboxes": [],
+                "objects": [],
+                "pos": [
+                    -2,
+                    1
+                ],
+                "top-left": [
+                    -2000,
+                    1000
+                ]
+            }
+        }
+    }
+}

@@ -57,7 +57,7 @@ def load_vec(d):
     return Vec(d[0],d[1])
 
 def load_hitbox(d):
-    return None if d is None else Hitbox(d["type"],load_vec(d["pos"]),d["r"],d["w"],d["h"]) 
+    return HITBOX_0x0 if d is None else Hitbox(d["type"],load_vec(d["pos"]),d["r"],d["w"],d["h"]) 
         
            
 def load_obj(d):

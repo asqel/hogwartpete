@@ -30,6 +30,8 @@ class Hitbox:
             exit(1)
         if self.type==HITBOX_RECT_t:
             if other.type==HITBOX_RECT_t:
+                if self.height == self.width == 0 or other.height == other.width == 0  :
+                    return False
                 return (
                     self.pos.x + self.width > other.pos.x
                     and self.pos.x < other.pos.x + other.width
@@ -54,3 +56,4 @@ def collide_rect_dot(rect:Hitbox,dot:Vec):
     return False
 
 HITBOX_50X50=Hitbox(HITBOX_RECT_t,NULL_VEC,0,50,50)
+HITBOX_0x0 = Hitbox(HITBOX_RECT_t, Vec(0, 0), 0, 0, 0)

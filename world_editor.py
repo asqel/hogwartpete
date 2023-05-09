@@ -105,7 +105,7 @@ def server_thread():
             cooldown-=1
         
         
-        if pushed_keys[py.K_LCTRL] and pushed_keys[py.K_SPACE]:
+        if pushed_keys[py.K_LCTRL] and pushed_keys[py.K_s]:
             js.save_world(starting_world)
 
         # tps moyenizer

@@ -35,6 +35,38 @@ class Character:
         self.zoom_out=1
         self.transparent=False # si on peut passer a travers != de invisble
 
+    def upleft(self):
+        if self.dir!="u":
+            self.dir="u"
+            self.current_texture=self.texture[0]
+        self.pos += Vec(-2,-2)*self.speed
+        self.collisions("u")
+        self.collisions("l")
+
+    def upright(self):
+        if self.dir!="u":
+            self.dir="u"
+            self.current_texture=self.texture[0]
+        self.pos += Vec(2,-2)*self.speed
+        self.collisions("u")
+        self.collisions("r")
+
+    def downleft(self):
+        if self.dir!="d":
+            self.dir="d"
+            self.current_texture=self.texture[2]
+        self.pos += Vec(-2,2)*self.speed
+        self.collisions("d")
+        self.collisions("l")
+    
+    def downright(self):
+        if self.dir!="d":
+            self.dir="d"
+            self.current_texture=self.texture[2]
+        self.pos += Vec(2,2)*self.speed
+        self.collisions("d")
+        self.collisions("r")
+
     def left(self):
         if self.dir!="l":
             self.dir="l"
@@ -51,7 +83,7 @@ class Character:
 
 
     def up(self):
-        if self.dir!="u":
+        if self.dir!="":
             self.dir="u"
             self.current_texture=self.texture[0]
         self.pos-=Vec(0,2)*self.speed

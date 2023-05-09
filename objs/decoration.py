@@ -5,7 +5,7 @@ import jsonizer as js
 
 class Wood(Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wood"],None)
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wood"],HITBOX_0x0)
 
 class Wall(Obj):
     def __init__(self, x:float, y:float) -> None:
@@ -27,6 +27,10 @@ class Commode(Obj):
     def __init__(self, x: float, y: float):
         super().__init__(self.__class__.__name__,x,y,False,Textures["Obj"]["commode"],Hitbox(HITBOX_RECT_t,Vec(0,0),0,100,50))
 
+class Frigo(Obj):
+    def __init__(self, x: float, y: float):
+        super().__init__(self.__class__.__name__,x,y,False,Textures["Obj"]["frigo"],Hitbox(HITBOX_RECT_t,Vec(0,0),0,50,100))
+
 class Grogu(Obj):
     def __init__(self, x: float, y: float):
         super().__init__(self.__class__.__name__,x,y,False,Textures["Obj"]["grogu"],Hitbox(HITBOX_RECT_t,Vec(0,0),0,25,25))
@@ -36,8 +40,12 @@ class Stairs(Obj):
         super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["stairs"],HITBOX_50X50)
 
     def on_interact(self, world, user):
-        user.world=js.load_world("bed room")
-        user.pos=Vec(100,100)
+        if world.name=="bed room":
+            user.world=js.load_world("rdc")
+            user.pos=Vec(100,100)
+        else:
+            user.world=js.load_world("bed room")
+            user.pos=Vec(100,100)
 
 import random
 
@@ -105,3 +113,4 @@ registerObj(Wall_right_up)
 registerObj(Wall_right)
 registerObj(Wall_left_down)
 registerObj(Wall_right_down)
+registerObj(Frigo)

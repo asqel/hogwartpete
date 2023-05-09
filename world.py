@@ -222,6 +222,7 @@ class World:
         
         for i in chunks:
             for k in i.objects:
+                print(k)
                 new_hitbox = k.hitbox.copy()
                 new_hitbox.pos += k.pos
                 if collide_rect_dot(new_hitbox, pos):
@@ -326,7 +327,7 @@ class World:
         if players[0].isvisible:
             p = players[0].pos + __offset
             screen.blit(players[0].current_texture, tuple(p))
-            i.on_draw(self, True)
+            players[0].on_draw(self, True)
 
         #draw other players
         for i in __players:

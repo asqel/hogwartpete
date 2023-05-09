@@ -1,4 +1,4 @@
-#Hogwarts Legacy en version pétée by Léa et Asqel
+#Prettystick en version pétée by Léa et Asqel
 import pygame as py
 from pygame.locals import *
 
@@ -98,17 +98,29 @@ def server_thread():
             players[0].update_texture(joystick_vec)
 
         pushed_keys=py.key.get_pressed()
+        
+        if pushed_keys[py.K_q] and pushed_keys[py.K_s]:
+            players[0].downleft()
+        
+        elif pushed_keys[py.K_q] and pushed_keys[py.K_z]:
+            players[0].upleft()
+        
+        elif pushed_keys[py.K_d] and pushed_keys[py.K_z]:
+            players[0].upright()
 
-        if pushed_keys[py.K_q]:
+        elif pushed_keys[py.K_d] and pushed_keys[py.K_s]:
+            players[0].downright()
+
+        elif pushed_keys[py.K_q]:
             players[0].left()
 
-        if pushed_keys[py.K_d]:
+        elif pushed_keys[py.K_d]:
             players[0].right()
 
-        if pushed_keys[py.K_z]:
+        elif pushed_keys[py.K_z]:
             players[0].up()
 
-        if pushed_keys[py.K_s]:
+        elif pushed_keys[py.K_s]:
             players[0].down()
 
 
@@ -130,7 +142,7 @@ def main():
     start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
     
     starting_world = js.load_world("bed room")
-    starting_world.add_Dyn_Obj(Dynamic_Objs["Tv"](-50, -50))
+    starting_world.add_Obj(Objs["Tv"](-50, -50))
 
     players.append(Character("Jean", "Magie", "pouffsoufle", None, None, None, POUFSOUFFLE_TEXTURES_0, None, 50, 50, starting_world))
 
