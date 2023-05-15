@@ -151,6 +151,8 @@ def main():
                 
         players[0].world : World = players[0].world
         players[0].world.show(screen, players[0].zoom_out)
+        if players[0].gui : 
+            players[0].gui.draw()
  
         screen.blit(arial.render(f"fps: {int(fps)}", False, (255, 0, 0)), (0, 0))
         screen.blit(arial.render(f"mid tps: {int(g_tps)}", False, (255, 0, 0)), (0, 30))
