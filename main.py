@@ -142,7 +142,6 @@ def main():
     start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
     
     starting_world = js.load_world("bed room")
-    starting_world.add_Obj(Objs["Tv"](-50, -50))
 
     players.append(Character("Jean", "Magie", "pouffsoufle", None, None, None, POUFSOUFFLE_TEXTURES_0, None, 50, 50, starting_world))
 
