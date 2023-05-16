@@ -77,17 +77,17 @@ def server_thread():
 
                 elif i.key ==K_e:
                     if players[0].dir == 'u':
-                        players[0].world.get_Obj(players[0].pos+(0,-10)).on_interact(players[0].world,players[0])
+                        players[0].world.get_Obj(players[0].pos+(25,-10)).on_interact(players[0].world,players[0])
 
                     if players[0].dir == 'r':
-                        players[0].world.get_Obj(players[0].pos+(10,0)).on_interact(players[0].world,players[0])
+                        players[0].world.get_Obj(players[0].pos+(10+50, -25)).on_interact(players[0].world,players[0])
 
                     if players[0].dir == 'd':
-                        players[0].world.get_Obj(players[0].pos+(0,10)).on_interact(players[0].world,players[0])
+                        players[0].world.get_Obj(players[0].pos+(25,50+10)).on_interact(players[0].world,players[0])
 
                     if players[0].dir == 'l':
-                        players[0].world.get_Obj(players[0].pos+(-10,0)).on_interact(players[0].world,players[0])
-                
+                        players[0].world.get_Obj(players[0].pos+(-10,-25)).on_interact(players[0].world,players[0])
+
             elif i.type == py.KEYUP:
                 if i.key == py.K_LCTRL:
                     players[0].speed = 0.5  
@@ -170,7 +170,7 @@ def main():
         screen.blit(arial.render(f"mid tps: {int(g_tps)}", False, (255, 0, 0)), (0, 30))
         screen.blit(arial.render(str(players[0].pos.floor()), False, (255, 0, 0)), (0, 60))
         screen.blit(arial.render(str(players[0].world.get_Chunk_from_pos(players[0].pos).pos), False, (255, 0, 0)), (0, 90))
-        
+
         py.display.update()
         t = time()
         if  t - start_time < 1 / 60:

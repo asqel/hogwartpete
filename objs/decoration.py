@@ -51,8 +51,8 @@ import random
 
 class Tv(Obj):
     def __init__(self, x:float, y:float):
-        self.max_count = 0
-        self.count = 20
+        self.max_count = 20
+        self.count = 0
         self.frame_idx=0
         self.frames=[[Textures["Obj"]["tv"],Textures["Obj"]["tv_2"]][random.randint(0,1)] for i in range(random.randint(3,20))]
         super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["tv"],HITBOX_50X50)
@@ -78,22 +78,22 @@ class Empty_commode(Obj):
 
 class Wall_left_up(Obj):
     def __init__(self, x:float, y:float):
-        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_left_up"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_left_up"], Hitbox(HITBOX_RECT_t, Vec(0, 0), 0, 3, 16))
 class Wall_left(Obj):
     def __init__(self, x:float, y:float):
-        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_left"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_left"], Hitbox(HITBOX_RECT_t, Vec(0, 0), 0, 3, 16))
 class Wall_right_up(Obj):
     def __init__(self, x:float, y:float):
-        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_right_up"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_right_up"], Hitbox(HITBOX_RECT_t, Vec(13, 0), 0, 3, 16))
 class Wall_right(Obj):
     def __init__(self, x:float, y:float):
-        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_right"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_right"], Hitbox(HITBOX_RECT_t, Vec(13, 0), 0, 3, 16))
 class Wall_left_down(Obj):
     def __init__(self, x:float, y:float):
-        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_left_down"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_left_down"], Hitbox(HITBOX_RECT_t, Vec(0, 0), 0, 3, 16))
 class Wall_right_down(Obj):
     def __init__(self, x:float, y:float):
-        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_right_down"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_right_down"], Hitbox(HITBOX_RECT_t, Vec(13, 0), 0, 3, 16))
 
 
 
