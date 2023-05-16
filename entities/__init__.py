@@ -2,6 +2,7 @@ import Clothes as c
 from uti.vector import *
 from uti.hitbox import *
 from uti.textures import *
+from interface import *
 import pygame as py
 from  spells import *
 import uuid
@@ -34,6 +35,7 @@ class Character:
         self.uuid=uuid.uuid4()
         self.zoom_out=1
         self.transparent=False # si on peut passer a travers != de invisble
+        self.gui :Gui = None
 
     def upleft(self):
         if self.dir!="u":
