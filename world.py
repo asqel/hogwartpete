@@ -222,7 +222,6 @@ class World:
         
         for i in chunks:
             for k in i.objects:
-                print(k)
                 new_hitbox = k.hitbox.copy()
                 new_hitbox.pos += k.pos
                 if collide_rect_dot(new_hitbox, pos):
