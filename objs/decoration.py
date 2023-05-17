@@ -27,9 +27,13 @@ class Commode(Obj):
     def __init__(self, x: float, y: float):
         super().__init__(self.__class__.__name__,x,y,False,Textures["Obj"]["commode"],Hitbox(HITBOX_RECT_t,Vec(0,0),0,100,50))
 
-class Frigo(Obj):
+class Frigo_up(Obj):
     def __init__(self, x: float, y: float):
-        super().__init__(self.__class__.__name__,x,y,False,Textures["Obj"]["frigo"],Hitbox(HITBOX_RECT_t,Vec(0,0),0,50,100))
+        super().__init__(self.__class__.__name__,x,y,False,Textures["Obj"]["frigo_up"],HITBOX_50X50)
+
+class Frigo_down(Obj):
+    def __init__(self, x: float, y: float):
+        super().__init__(self.__class__.__name__,x,y,False,Textures["Obj"]["frigo_down"],HITBOX_50X50)
 
 class Grogu(Obj):
     def __init__(self, x: float, y: float):
@@ -113,4 +117,5 @@ registerObj(Wall_right_up)
 registerObj(Wall_right)
 registerObj(Wall_left_down)
 registerObj(Wall_right_down)
-registerObj(Frigo)
+registerObj(Frigo_up)
+registerObj(Frigo_down)

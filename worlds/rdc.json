@@ -458,26 +458,6 @@
                     },
                     {
                         "pos": [
-                            0,
-                            -50
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 100,
-                            "w": 50,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Frigo",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
                             150,
                             -50
                         ],
@@ -515,6 +495,26 @@
                         "id": "Wall",
                         "toplayer": 1,
                         "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            -50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 100,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Frigo_up",
+                        "toplayer": false,
+                        "transparent": false
                     }
                 ],
                 "pos": [
@@ -528,26 +528,6 @@
             },
             "0": {
                 "background_obj": [
-                    {
-                        "pos": [
-                            0,
-                            0
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 0,
-                            "w": 0,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
                     {
                         "pos": [
                             50,
@@ -2810,6 +2790,26 @@
                             ]
                         },
                         "id": "Stairs",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            0,
+                            0
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 100,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Frigo_down",
                         "toplayer": false,
                         "transparent": false
                     }
