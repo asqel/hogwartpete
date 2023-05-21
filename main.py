@@ -145,10 +145,9 @@ def server_thread():
 def main():
 
     global pygame_events
-    start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
+    #start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
     
     starting_world = js.load_world("bed room")
-    starting_world.add_Obj(Objs["Snape"](100,100))
     players.append(Character("Jean", "Magie", "pouffsoufle", None, None, None, POUFSOUFFLE_TEXTURES_0, None, 50, 50, starting_world))
 
     players[0].zoom_out = 1

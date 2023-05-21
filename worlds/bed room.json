@@ -14,7 +14,16 @@
                             0
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -25,7 +34,16 @@
                             50
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -36,7 +54,16 @@
                             100
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -47,7 +74,16 @@
                             150
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -58,7 +94,16 @@
                             200
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -69,7 +114,16 @@
                             250
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -80,7 +134,16 @@
                             0
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -91,7 +154,16 @@
                             50
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -102,7 +174,16 @@
                             100
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -113,7 +194,16 @@
                             150
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -124,7 +214,16 @@
                             200
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -135,7 +234,16 @@
                             250
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -146,7 +254,16 @@
                             0
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -157,7 +274,16 @@
                             50
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -168,7 +294,16 @@
                             100
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -179,7 +314,16 @@
                             150
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -190,7 +334,16 @@
                             200
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -201,7 +354,16 @@
                             250
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -212,7 +374,16 @@
                             0
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -223,7 +394,16 @@
                             50
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -234,7 +414,16 @@
                             100
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -245,7 +434,16 @@
                             150
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -256,7 +454,16 @@
                             200
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -267,7 +474,16 @@
                             250
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -278,7 +494,16 @@
                             0
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -289,7 +514,16 @@
                             50
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -300,7 +534,16 @@
                             100
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -311,7 +554,16 @@
                             150
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -322,7 +574,16 @@
                             200
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -333,7 +594,16 @@
                             250
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -344,7 +614,16 @@
                             0
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -355,7 +634,16 @@
                             50
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -366,7 +654,16 @@
                             100
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -377,7 +674,16 @@
                             150
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -388,7 +694,16 @@
                             200
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -399,7 +714,16 @@
                             250
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -410,7 +734,16 @@
                             0
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -421,7 +754,16 @@
                             100
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -432,7 +774,16 @@
                             150
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -443,7 +794,16 @@
                             200
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -454,7 +814,16 @@
                             250
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -465,7 +834,16 @@
                             50
                         ],
                         "data": {},
-                        "hitbox": null,
+                        "hitbox": {
+                            "type": 0,
+                            "h": 0,
+                            "w": 0,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
                         "id": "Wood",
                         "toplayer": false,
                         "transparent": false
@@ -473,7 +851,7 @@
                 ],
                 "Dyn_Obj": [],
                 "entities": [],
-                "hitboxes":[],
+                "hitboxes": [],
                 "objects": [
                     {
                         "pos": [

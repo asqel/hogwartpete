@@ -306,7 +306,7 @@ class World:
         for i in __objects:
             if not i.toplayer:
                 p = i.pos + __offset
-                if -50 <= p.x < scr_w and -50 <= p.y < scr_h:
+                if -100 <= p.x < scr_w and -100 <= p.y < scr_h:
                     screen.blit(i.texture,tuple(p))
                     i.on_draw(self,True)
                 else:
@@ -316,7 +316,7 @@ class World:
         for i in __dyn_obj:
             if not i.toplayer:
                 p = i.pos+__offset
-                if -50 <= p.x < scr_w and -50 <= p.y < scr_h:
+                if -100 <= p.x < scr_w and -100 <= p.y < scr_h:
                     screen.blit(i.texture,tuple(p))
                     i.on_draw(self,True)
                 else:
@@ -350,7 +350,7 @@ class World:
         for i in __objects:
             if i.toplayer:
                 p = i.pos + __offset
-                if -50 <= p.x < scr_w and -50 <= p.y < scr_h:
+                if -100 <= p.x < scr_w and -100 <= p.y < scr_h:
                     screen.blit(i.texture,tuple(p))
                     i.on_draw(self,True)
                 else:
@@ -360,7 +360,7 @@ class World:
         for i in __dyn_obj:
             if i.toplayer:
                 p = i.pos + __offset
-                if -50 <= p.x < scr_w and -50 <= p.y < scr_h:
+                if -100 <= p.x < scr_w and -100 <= p.y < scr_h:
                     screen.blit(i.texture, tuple(p))
                     i.on_draw(self, True)
                 else:
@@ -469,8 +469,7 @@ class World:
 
 
 def newChunk(pos:Vec,world:World) -> Chunk:
-    c=Chunk(pos,world)
-    return c
+    return Chunk(pos,world)
 
 def newWorld(name:str,background_color:list[int]=(0,0,0)):
     return World(name,background_color)

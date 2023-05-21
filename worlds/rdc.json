@@ -2812,6 +2812,26 @@
                         "id": "Frigo_down",
                         "toplayer": false,
                         "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            200
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Madre",
+                        "toplayer": false,
+                        "transparent": false
                     }
                 ],
                 "pos": [
