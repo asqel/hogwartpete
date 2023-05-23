@@ -173,20 +173,37 @@ class Npc:
         self.texture_pos=texture_pos
         self.speed=0.5
         self.transparent=False # si on peut passer a travers != de invisble
-        self.action=action # a function -> action(self, world, user)
-        self.tick=tick # tick(self, world)
     
     def on_draw(self,world,has_been_drawn):
         ...
-    def die():
+    def die(self):
         ...
-
+    def tick(self,world):
+        ...
+    def on_interact(self,world,user):
+        ...
 players:list[Character]=[]
+
+Npcs : dict[str,type] = {}
 
 def new_farine():
     return Npc("farine","gomez",FARINE_TEXTURE,[],Vec(90,90),Vec(8,0),Hitbox(HITBOX_RECT_t,Vec(0,0),0,50,75))
 
+def registerNpc(npc:type):
+    Npcs[npc.__name__]=npc
+    
+module_names=os.listdir(os.path.dirname(os.path.abspath(__file__)))
 
+for i in range(len(module_names)):
+    if module_names[i]=="__init__.py":
+        module_names.pop(i)
+        break
+for i in range(len(module_names)):
+    if module_names[i].endswith(".py"):
+        module_names[i]=module_names[i][:-3]
+
+for i in module_names:
+    imp.import_module(f".{i}", __package__)
 
 
 

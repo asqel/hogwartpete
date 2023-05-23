@@ -292,7 +292,7 @@ class World:
 
 
         __offset = Vec(scr_w // 2, scr_h // 2) - players[0].pos + Vec(players[0].current_texture.get_width() // 2, players[0].current_texture.get_height() // 2)
-        
+
         #draw background objects
         for i in __bg_obj:
             p = i.pos + __offset
@@ -458,7 +458,7 @@ class World:
     
         for i in __entities:
             if i.tick:
-                i.tick(i, self)
+                i.tick(self)
 
         for i in __dyn_objs:
             i.tick(self)

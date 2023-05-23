@@ -147,9 +147,11 @@ def main():
     global pygame_events
     #start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
     
-    starting_world = js.load_world("bed room")
-    players.append(Character("Jean", "Magie", "pouffsoufle", None, None, None, POUFSOUFFLE_TEXTURES_0, None, 50, 50, starting_world))
-
+    starting_world = js.load_world("exterior")
+    players.append(Character("Jean", "Magie", "pouffsoufle", None, None, None, POUFSOUFFLE_TEXTURES_0, None, 250, 250, starting_world))
+    starting_world.add_entity(Npcs["Cat"](Vec(200,200)))
+    for i in starting_world.chuncks[0][0].objects:
+        print(i.__class__.__name__)
     players[0].zoom_out = 1
     players[0].render_distance = 3
 
