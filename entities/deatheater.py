@@ -20,6 +20,11 @@ class Death(Npc):
                 self.pos+=v*self.speed/150
             else:
                 self.pos-=v*self.speed/150
+        if v.squareLength()<=150**2:
+            if world.get_Obj(self.pos-v*self.speed/150).id=="Air":
+                self.pos-=v*self.speed/150
+            else:
+                self.pos+=v*self.speed/150
     
     def tick(self, world):
         self.go_to_player(players[0], world)
