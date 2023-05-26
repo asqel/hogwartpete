@@ -16,7 +16,7 @@ class Madre_gui(Gui):
         screen.blit(mc_font.render("il y a des mange-morts ",0,(0,0,0)), (x+30,y+90-10-5))
         screen.blit(mc_font.render("il y a des mange-morts ",0,(0,0,0)), (x+30,y+90-10+30-5))                    
         
-    def tick(self, events:[py.event.Event]):
+    def tick(self, events:list[py.event.Event]):
         for i in events:
             if i.type == py.KEYDOWN:
                 if i.key == py.K_e:
@@ -34,8 +34,6 @@ class Madre(Obj):
         print(guis)
         user.gui = guis["Madre_gui"](user)
 
-
-    
         
 registerObj(Snape)
 registerObj(Madre)
