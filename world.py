@@ -417,9 +417,22 @@ class World:
                     hit2.pos += players[0].pos
                     if hit1.iscolliding(hit2):
                         v = ( i.pos - players[0].pos )
-                        v = v / v.len()  
+                        if v.len() : 
+                            v = v / v.len()  
+                        else:
+                            v = NULL_VEC
                         players[0].pos -= v * 2 * players[0].speed
                         i.pos += v * 2 * players[0].speed
+                #for k in __objects:
+                #    if k.hitbox : 
+                #        hit1 = i.hitbox.copy()
+                #        hit1.pos += i.pos
+                #        hit2 = k.hitbox.copy()
+                #        hit2.pos += k.pos
+                #        if hit1.iscolliding(hit2):
+                #            v = ( i.pos - k.pos )
+                #            v = v.normalize()
+                #            i.pos += v* 2 * i.speed                            
 
 
             
