@@ -183,6 +183,15 @@ FARINE_TEXTURE=[
 
 ]
 
+SNAPE_TEXTURE=[
+    Textures["player"]["rogue_up"],
+    Textures["player"]["rogue_right"],
+    Textures["player"]["rogue_down"],
+    Textures["player"]["rogue_left"],
+
+]
+
+
 NOTHING_TEXTURE=py.Surface((50,50)).convert_alpha()
 NOTHING_TEXTURE.fill(py.Color(0,0,0,0))
 

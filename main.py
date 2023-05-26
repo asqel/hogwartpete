@@ -149,7 +149,7 @@ def main():
     
     starting_world = js.load_world("exterior")
     players.append(Character("Jean", "Magie", "pouffsoufle", None, None, None, POUFSOUFFLE_TEXTURES_0, None, 300, 300, starting_world))
-    starting_world.add_entity(Npcs["Cat"](Vec(200,200)))
+    starting_world.add_entity(Npcs["Death"](Vec(200,200)))
     for i in starting_world.chuncks[0][0].objects:
         print(i.__class__.__name__)
     players[0].zoom_out = 1
