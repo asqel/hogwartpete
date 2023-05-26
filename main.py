@@ -175,7 +175,8 @@ def main():
     players.append(Character("Jean", "Magie", "pouffsoufle", None, None, None, POUFSOUFFLE_TEXTURES_0, None, 300, 300, starting_world))
     starting_world.add_entity(Npcs["Cat"](Vec(200,200)))
     starting_world.add_Obj(Objs["Madre"](200,200))
-
+    starting_world.add_entity(Npcs["Death"](Vec(200,200)))
+    
     players[0].zoom_out = 1
     players[0].render_distance = 3
 
