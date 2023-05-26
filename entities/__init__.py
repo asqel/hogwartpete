@@ -30,7 +30,7 @@ class Character:
         self.speed=0.5
         self.isvisible=True
         self.render_distance=3
-        self.world=world
+        self.world =world
         self.chunk_border=False
         self.uuid=uuid.uuid4()
         self.zoom_out=1
@@ -176,7 +176,7 @@ class Npc:
     def on_draw(self,world,has_been_drawn):
         ...
     def die(self):
-        ...
+        return 1
     def tick(self,world):
         ...
     def on_interact(self,world,user):

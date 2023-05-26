@@ -48,6 +48,10 @@ class Hitbox:
             
     def copy(self):
         return Hitbox(self.type,self.pos.copy(),self.radius,self.width,self.height)
+    
+    def __str__(self) -> str:
+        if self.type == HITBOX_RECT_t:
+            return f"[w:{str(self.width)}, h:{str(self.height)}, pos:{str(self.pos)}]"
 
 def collide_rect_dot(rect:Hitbox,dot:Vec):
     if rect.pos.x <= dot.x <= rect.pos.x+rect.width:

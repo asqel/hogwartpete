@@ -172,7 +172,7 @@ if not os.path.exists(f"{os.path.dirname(os.path.abspath(__file__))}/worlds/{wor
     print("le monde nexiste pas et vas etre creer")
     starting_world=World(world_name,(0,0,0))
 else:
-    starting_world=js.load_world(world_name)
+    starting_world = js.load_world(world_name)
 
 starting_world.has_to_collide=True
 
@@ -199,3 +199,6 @@ m pour ajouter un obj au background
 l pour enlever un obj au background
     
 """
+
+
+

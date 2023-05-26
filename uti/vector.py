@@ -5,15 +5,16 @@ can be converted to tuple, dict and str  but not list
 can acces values with Vec(3,7)["x"] or Vec(3,7)["y"] or Vec(3,7)[0] or Vec(3,7)[1] or Vec(3,7).x or Vec(3,7).y
 
 operation:
-    Vec+Vec
+    Vec + Vec
+    Vec + tuple[float | int, float | int]
     -Vec
     +Vec
     ~Vec
-    Vec-Vec
-    Vec*(int|float)
-    (int|float)*Vec
-    Vec/(int|float)  
-    Vec//(int|float) 
+    Vec  - Vec
+    Vec - tuple[float | int, float | int]
+    Vec * (int | float)
+    Vec / (int | float)  
+    Vec // (int | float) 
 """
 class Vec:
     
@@ -160,5 +161,8 @@ class Vec:
 
     def copy(self):
         return Vec(self.x,self.y)
+    
+    def __str__(self):
+        return f"({str(int(self.x))}, {str(int(self.y))})"
     
 NULL_VEC=Vec(0,0)

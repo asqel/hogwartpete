@@ -227,6 +227,11 @@ class World:
                 if collide_rect_dot(new_hitbox, pos):
                     return k
         return Objs["Air"](pos.x, pos.y)
+
+    def remove_entity(self, entity : Npc):
+        chunk = self.get_Chunk_from_pos(entity.pos)
+        if entity in chunk.entities:
+            chunk.entities.remove(entity)
     
     def get_dyn_Obj(self, pos:Vec) ->Dynamic_Obj:
         """
@@ -296,7 +301,7 @@ class World:
         #draw background objects
         for i in __bg_obj:
             p = i.pos + __offset
-            if -50 <= p.x < scr_w and -50 <= p.y < scr_h:
+            if -100 <= p.x < scr_w and -100 <= p.y < scr_h:
                 screen.blit(i.texture,tuple(p))
                 i.on_draw(self,True)
             else:
@@ -426,8 +431,7 @@ class World:
         
         if the player is dead(pv <=0) the function will return 1
         """
-        if self.has_to_collide:
-            self.resolve_collision()
+        
 
         chunks : list[Chunk] = []
         for i in range(-players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1):
@@ -452,6 +456,7 @@ class World:
         while p < len(__entities):
             if __entities[p].pv <= 0:
                 if __entities[p].die():
+                    self.remove_entity(__entities[p])
                     __entities.pop(p)
                     continue
             p += 1
@@ -463,6 +468,8 @@ class World:
         for i in __dyn_objs:
             i.tick(self)
 
+        if self.has_to_collide:
+            self.resolve_collision()
 
         self.has_to_collide=False
         return 0

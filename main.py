@@ -46,6 +46,9 @@ def server_thread():
         loop_count += 1
 
         joystick_vec = Vec(0,0)
+        if players[0].gui:
+            players[0].gui.tick(pygame_events)
+            pygame_events = []
         for i in pygame_events:
             if i.type == py.QUIT:
                 running_dict["global"] = False
@@ -89,15 +92,36 @@ def server_thread():
 
                         if players[0].dir == 'd':
                             players[0].world.get_Obj(players[0].pos+(25,50+10)).on_interact(players[0].world,players[0])
-
+                           
                         if players[0].dir == 'l':
                             players[0].world.get_Obj(players[0].pos+(-10,25)).on_interact(players[0].world,players[0])
-                    else:
-                        players[0].gui.on_interact(players[0].gui)
+                elif i.key ==K_a:
+                    if not players[0].gui:
+                        if players[0].dir == 'u':
+                            bullet = Npcs["Bullet"](players[0].pos + (13,-10))
+                            bullet.direction = players[0].dir
+                            players[0].world.get_Chunk_from_pos(players[0].pos).entities.append(bullet)
+                            
+
+                        if players[0].dir == 'r':
+                            bullet = Npcs["Bullet"](players[0].pos + (10+50, 13))
+                            bullet.direction = players[0].dir
+                            players[0].world.get_Chunk_from_pos(players[0].pos).entities.append(bullet)
+
+                        if players[0].dir == 'd':
+                            bullet = Npcs["Bullet"](players[0].pos + (13,50+10))
+                            bullet.direction = players[0].dir
+                            players[0].world.get_Chunk_from_pos(players[0].pos).entities.append(bullet)
+                            
+                        if players[0].dir == 'l':
+                            bullet = Npcs["Bullet"](players[0].pos + (-10,13))
+                            bullet.direction = players[0].dir
+                            players[0].world.get_Chunk_from_pos(players[0].pos).entities.append(bullet)
             elif i.type == py.KEYUP:
                 if i.key == py.K_LCTRL:
                     players[0].speed = 0.5  
-                
+       
+        
         pygame_events = []
         if joystick_count and not players[0].gui:
             players[0].pos += joystick_vec * 4 * players[0].speed
@@ -128,7 +152,7 @@ def server_thread():
     
             elif pushed_keys[py.K_s]:
                 players[0].down()
-    
+        
         if not players[0].gui:
             players[0].world.update()
         
@@ -145,13 +169,13 @@ def server_thread():
 def main():
 
     global pygame_events
-    #start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
+    start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
     
     starting_world = js.load_world("exterior")
     players.append(Character("Jean", "Magie", "pouffsoufle", None, None, None, POUFSOUFFLE_TEXTURES_0, None, 300, 300, starting_world))
     starting_world.add_entity(Npcs["Cat"](Vec(200,200)))
-    for i in starting_world.chuncks[0][0].objects:
-        print(i.__class__.__name__)
+    starting_world.add_Obj(Objs["Madre"](200,200))
+
     players[0].zoom_out = 1
     players[0].render_distance = 3
 
@@ -169,15 +193,13 @@ def main():
                 
         players[0].world : World = players[0].world
         players[0].world.show(screen, players[0].zoom_out)
-        if players[0].gui : 
-            players[0].gui.draw(players[0].gui, screen)
- 
+
         screen.blit(arial.render(f"fps: {int(fps)}", False, (255, 0, 0)), (0, 0))
         screen.blit(arial.render(f"mid tps: {int(g_tps)}", False, (255, 0, 0)), (0, 30))
         screen.blit(arial.render(str(players[0].pos.floor()), False, (255, 0, 0)), (0, 60))
         screen.blit(arial.render(str(players[0].world.get_Chunk_from_pos(players[0].pos).pos), False, (255, 0, 0)), (0, 90))
         if players[0].gui:
-            players[0].gui.draw(players[0].gui, screen)
+            players[0].gui.draw(screen)
         py.display.update()
         t = time()
         if  t - start_time < 1 / 60:
