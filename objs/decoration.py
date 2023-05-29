@@ -3,6 +3,7 @@ from objs import *
 from interface import *
 import world as w
 import jsonizer as js
+from entities import *
 
 class Wood(Obj):
     def __init__(self, x:float, y:float) -> None:
@@ -136,6 +137,8 @@ class Door_frame(Obj):
     def on_interact(self, world, user):
         user.world = js.load_world("exterior")
         user.pos = Vec(400, 400)
+        user.world.add_entity(Npcs["Death"](Vec(500,500)))
+
 
 class plank_void(Obj):
     def __init__(self, x:float, y:float) -> None:
