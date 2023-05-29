@@ -33,6 +33,9 @@
 -fifth line
 -
 0  64 16 16 50 50 $ frigo_up
+16  64 16 16 50 50 $ door_frame
+32  64 16 16 50 50 $ plank_void
 0  80 16 16 50 50 $ frigo_down
 
+48 64 48 48 150 150 $ house
 

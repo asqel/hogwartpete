@@ -5,7 +5,7 @@ import importlib as imp
 
 py.font.init()
 
-mc_font=py.font.Font(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))+"/fonts/Minecraft.otf",20)
+mc_font=py.font.Font(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))+"/fonts/Monocraft.otf",20)
 
 class Gui:
     def __init__(self, name, data, player) -> None:

@@ -31,7 +31,7 @@ class Chunk:
         y=self.top_left_pos.y
         return (Vec(x, y), Vec(x + 999, y), Vec(x, y + 999), Vec(x + 999, y + 999))
 
-    def tick(self):
+    def  tick(self):
         """
         check if entities or objects are outside the chunk but still registered in chunk
         if so then they will be moved to the right chunk
@@ -39,64 +39,75 @@ class Chunk:
         p = 0
         corners = self.get_borders()
         new_chunk_pos = Vec(0,0)
-        while p < self.entities:
+        while p < len(self.entities):
             if self.entities[p].pos.x < corners[0].x:
-                new_chunk_pos += (-1, 0)
-            elif self.entities[p].pos.x > corners[3].x:
-                new_chunk_pos += (1, 0)
+                new_chunk_pos.x -= 1
+            elif self.entities[p].pos.x >= corners[0].x + CHUNK_SIZE:
+                new_chunk_pos.x += 1
 
             if self.entities[p].pos.y < corners[0].y:
-                new_chunk_pos += (0, -1)
-            elif self.entities[p].pos.y > corners[3].y:
-                new_chunk_pos += (0, 1)
+                new_chunk_pos.y -= 1
+            elif self.entities[p].pos.y >= corners[0].y + CHUNK_SIZE:
+                new_chunk_pos.y += 1
 
             if new_chunk_pos != (0,0):
+                print(new_chunk_pos, self.entities[p].pos, self.top_left_pos)
                 self.world.add_entity(self.entities.pop(p))
+                new_chunk_pos = Vec(0,0)
+                continue
+            p += 1
+            new_chunk_pos = Vec(0,0)
         
-        new_chunk_pos = Vec(0,0)
-        while p < self.objects:
-            if self.objects[p].pos.x < corners[0].x:
-                new_chunk_pos += (-1, 0)
-            elif self.objects[p].pos.x > corners[3].x:
-                new_chunk_pos += (1, 0)
-
-            if self.objects[p].pos.y < corners[0].y:
-                new_chunk_pos += (0, -1)
-            elif self.objects[p].pos.y > corners[3].y:
-                new_chunk_pos += (0, 1)
-
-            if new_chunk_pos != (0,0):
-                self.world.add_entity(self.objects.pop(p))
-        
-        new_chunk_pos = Vec(0,0)
-        while p < self.background_obj:
-            if self.background_obj[p].pos.x < corners[0].x:
-                new_chunk_pos += (-1, 0)
-            elif self.background_obj[p].pos.x > corners[3].x:
-                new_chunk_pos += (1, 0)
-
-            if self.background_obj[p].pos.y < corners[0].y:
-                new_chunk_pos += (0, -1)
-            elif self.background_obj[p].pos.y > corners[3].y:
-                new_chunk_pos += (0, 1)
-
-            if new_chunk_pos != (0,0):
-                self.world.add_entity(self.background_obj.pop(p))
-
-        new_chunk_pos = Vec(0,0)
-        while p < self.dyn_objects:
-            if self.dyn_objects[p].pos.x < corners[0].x:
-                new_chunk_pos += (-1, 0)
-            elif self.dyn_objects[p].pos.x > corners[3].x:
-                new_chunk_pos += (1, 0)
-
-            if self.dyn_objects[p].pos.y < corners[0].y:
-                new_chunk_pos += (0, -1)
-            elif self.dyn_objects[p].pos.y > corners[3].y:
-                new_chunk_pos += (0, 1)
-
-            if new_chunk_pos != (0,0):
-                self.world.add_entity(self.dyn_objects.pop(p))
+        #new_chunk_pos = Vec(0,0)
+        #while p < len(self.objects):
+        #    if self.objects[p].pos.x < corners[0].x:
+        #        new_chunk_pos += (-1, 0)
+        #    elif self.objects[p].pos.x > corners[3].x:
+        #        new_chunk_pos += (1, 0)
+#
+        #    if self.objects[p].pos.y < corners[0].y:
+        #        new_chunk_pos += (0, -1)
+        #    elif self.objects[p].pos.y > corners[3].y:
+        #        new_chunk_pos += (0, 1)
+#
+        #    if new_chunk_pos != (0,0):
+        #        self.world.add_entity(self.objects.pop(p))
+        #        p -= 1
+        #    p += 1
+        #
+        #new_chunk_pos = Vec(0,0)
+        #while p < len(self.background_obj):
+        #    if self.background_obj[p].pos.x < corners[0].x:
+        #        new_chunk_pos += (-1, 0)
+        #    elif self.background_obj[p].pos.x > corners[3].x:
+        #        new_chunk_pos += (1, 0)
+#
+        #    if self.background_obj[p].pos.y < corners[0].y:
+        #        new_chunk_pos += (0, -1)
+        #    elif self.background_obj[p].pos.y > corners[3].y:
+        #        new_chunk_pos += (0, 1)
+#
+        #    if new_chunk_pos != (0,0):
+        #        self.world.add_entity(self.background_obj.pop(p))
+        #        p -= 1
+        #    p += 1
+#
+        #new_chunk_pos = Vec(0,0)
+        #while p < len(self.dyn_objects):
+        #    if self.dyn_objects[p].pos.x < corners[0].x:
+        #        new_chunk_pos += (-1, 0)
+        #    elif self.dyn_objects[p].pos.x > corners[3].x:
+        #        new_chunk_pos += (1, 0)
+#
+        #    if self.dyn_objects[p].pos.y < corners[0].y:
+        #        new_chunk_pos += (0, -1)
+        #    elif self.dyn_objects[p].pos.y > corners[3].y:
+        #        new_chunk_pos += (0, 1)
+#
+        #    if new_chunk_pos != (0,0):
+        #        self.world.add_entity(self.dyn_objects.pop(p))
+        #        p -= 1
+        #    p += 1
         
             
 
@@ -112,7 +123,6 @@ class World:
         self.name = name
         self.bg = background_col
         self.chuncks : dict[int, dict[int, Chunk]] = {}# chuncks[x][y]
-        self.id = uuid.uuid4()
         self.has_to_collide = False # this check if collisions have to be computed when player moves it is set to True
                                   # will call chunk.tick if true 
 
@@ -296,7 +306,7 @@ class World:
             __bg_obj.extend(i.background_obj)
 
 
-        __offset = Vec(scr_w // 2, scr_h // 2) - players[0].pos + Vec(players[0].current_texture.get_width() // 2, players[0].current_texture.get_height() // 2)
+        __offset = Vec(scr_w // 2, scr_h // 2) - players[0].pos - Vec(players[0].current_texture.get_width() // 2, players[0].current_texture.get_height() // 2)
 
         #draw background objects
         for i in __bg_obj:
@@ -311,7 +321,7 @@ class World:
         for i in __objects:
             if not i.toplayer:
                 p = i.pos + __offset
-                if -100 <= p.x < scr_w and -100 <= p.y < scr_h:
+                if -150 <= p.x < scr_w and -150 <= p.y < scr_h:
                     screen.blit(i.texture,tuple(p))
                     i.on_draw(self,True)
                 else:
@@ -451,9 +461,9 @@ class World:
             for k in range(-players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1):
                 chunks.append(self.get_Chunk_at(Vec(i, k)))
         
-        if self.has_to_collide:
-            for i in chunks:
-                i.tick()
+
+        for i in chunks:
+            i.tick()
             
         __objs : list[Obj] = []
         __dyn_objs : list[Dynamic_Obj] = []

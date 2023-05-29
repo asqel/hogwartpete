@@ -1,5 +1,6 @@
 from uti import *
 from objs import *
+from interface import *
 import world as w
 import jsonizer as js
 
@@ -99,7 +100,14 @@ class Wall_right_down(Obj):
     def __init__(self, x:float, y:float):
         super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_right_down"], Hitbox(HITBOX_RECT_t, Vec(13, 0), 0, 3, 16))
 
+class House(Obj):
+    def __init__(self, x:float, y:float):
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["house"], Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 150, 150))
 
+    def on_interact(self, world, user):
+        if user.pos.y >= 150 + self.pos.y:
+            user.world = js.load_world("rdc")
+            user.pos = Vec(200, 400)
 
 registerObj(Wood)
 registerObj(Wall)
@@ -119,3 +127,33 @@ registerObj(Wall_left_down)
 registerObj(Wall_right_down)
 registerObj(Frigo_up)
 registerObj(Frigo_down)
+
+
+class Door_frame(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["door_frame"],HITBOX_50X50)
+
+    def on_interact(self, world, user):
+        user.world = js.load_world("exterior")
+        user.pos = Vec(400, 400)
+
+class plank_void(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["plank_void"],HITBOX_50X50)
+
+registerObj(Door_frame)
+registerObj(plank_void)
+registerObj(House)
+
+
+
+class Sign(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["sign"],HITBOX_50X50, {"gui": ""})
+
+    def on_interact(self, world, user):
+        if user.pos.y >= self.pos.y + 50:
+            if self.data["gui"] == "farine":
+                user.gui = guis["Farine_sign"](user)
+
+registerObj(Sign)

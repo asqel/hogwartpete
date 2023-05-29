@@ -19,7 +19,7 @@ class Choose_name(Gui):
                 if i.key == py.K_UP :
                     self.idx -= 1
                     if self.idx < 0: 
-                        self.idx = self.max_idx -1
+                        self.idx = self.max_idx
                         
                 if i.key == py.K_DOWN :
                     self.idx += 1

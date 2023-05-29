@@ -17,12 +17,13 @@ class Bullet(Npc):
         self.direction = "u"
         self.duration = 0
         self.max_duration = 150*3
-        self.speed *= 3.5
+        self.speed *= 4
         
     def tick(self, world :World ):
         self.duration += 1
         if self.duration >= self.max_duration:
             self.pv = 0
+            return 0
         if self.direction == "u":
             self.pos += Vec(0,-1)*self.speed
         elif self.direction == "d":
@@ -34,6 +35,8 @@ class Bullet(Npc):
             
         if world.get_Obj(self.pos).id != "Air":
             self.pv = 0
+            return 0
+
         entities : list[Npc] = []
         for i in range(-1, 2):
             for k in range(-1, 2):
@@ -48,8 +51,7 @@ class Bullet(Npc):
                 if (hit1.iscolliding(hit2)):
                     i.pv = 0
                     self.pv = 0
-                    break
-            
+                    return 0
                 
             
 

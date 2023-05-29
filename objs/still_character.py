@@ -2,6 +2,7 @@ from objs import *
 from uti import *
 from interface import *
 import pygame as py
+from items import *
 
 
 class Madre_gui(Gui):
@@ -21,6 +22,8 @@ class Madre_gui(Gui):
             if i.type == py.KEYDOWN:
                 if i.key == py.K_e:
                     self.player.gui = None
+                    if not self.player.has_item("Wand"):
+                        self.player.add_item(items["Wand"](1))
 
 class Snape(Obj):
     def __init__(self, x:float, y:float) -> None:
@@ -31,10 +34,17 @@ class Madre(Obj):
         super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["madre"],HITBOX_50X50)
 
     def on_interact(self, world, user):
-        print(guis)
         user.gui = guis["Madre_gui"](user)
 
-        
+class Farine(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, False, Textures["player"]["farine_down"],Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 50, 75))
+
+    def on_interact(self, world, user):
+        if user.pos.y >= self.pos.y + 75:
+            user.gui = guis["Farine_shop"](user)
+
 registerObj(Snape)
 registerObj(Madre)
+registerObj(Farine)
 registerGui(Madre_gui)

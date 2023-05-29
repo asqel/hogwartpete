@@ -154,7 +154,7 @@ def main():
             s=py.Surface((texture.get_width(), texture.get_height()))
             s.blit(texture,(0,0))
             s.set_alpha(100)
-            screen.blit(s,(screen.get_width()//2+25,screen.get_height()//2+25))
+            screen.blit(s,(screen.get_width()//2-25,screen.get_height()//2-25))
 
         if not cursor_cooldown:
             cursor_cooldown=40
@@ -176,7 +176,7 @@ else:
 
 starting_world.has_to_collide=True
 
-players.append(Character("","","",None,None,None,[NOTHING_TEXTURE for i in range(4)],None,0,0,starting_world))
+players.append(Character("","","",None,None,[NOTHING_TEXTURE for i in range(4)],None,0,0,starting_world))
 obj_idx=0
 main()
 """

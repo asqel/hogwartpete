@@ -3,17 +3,18 @@ from uti.vector import *
 from uti.hitbox import *
 from uti.textures import *
 from interface import *
+from items import *
 import pygame as py
 from  spells import *
 import uuid
 
 class Character:
-    def __init__(self,name:str,surname:str,maison:str,spells:list[Spell],inventaire,genre:str,texture:list[py.Surface],clothes,x:float,y:float,world):
+    def __init__(self,name:str,surname:str,maison:str,spells:dict[int, Spell],genre:str,texture:list[py.Surface],clothes,x:float,y:float,world):
         self.name=name
         self.surname=surname
         self.house=maison
         self.spells=spells
-        self.inventaire=inventaire
+        self.inventaire : list[Item]=[items["Air"](1) for i in range(10)]
         self.pv=100
         self.pvmax=100
         self.effects=[]
@@ -36,6 +37,7 @@ class Character:
         self.zoom_out=1
         self.transparent=False # si on peut passer a travers != de invisble
         self.gui :Gui = None
+        self.money = 0
 
     def upleft(self):
         if self.dir!="u":
@@ -156,6 +158,32 @@ class Character:
                     if dir=="r":
                         self.pos-=Vec(2,0)*self.speed
                     return 0 
+    def add_item(self, item : Item):
+        """
+        try to add the item to first finded slot 
+        return 0 if the item was not able to be added or not the entire item was added
+        return 1 if the item was able to be added 
+        """
+        for i in range(len(self.inventaire)):
+            if self.inventaire[i].id == "Air":
+                self.inventaire[i] = item
+                return 1
+            if self.inventaire[i].id == item.id:
+                if self.inventaire[i].quantity + item.quantity <= item.max_stack:
+                    self.inventaire[i].quantity += item.quantity
+                    return 1
+                else:
+                    item.quantity -= item.max_stack - self.inventaire[i].quantity
+                    self.inventaire[i].quantity = self.inventaire[i].max_stack
+
+
+        return 0
+    
+    def has_item(self, id: str):
+        for i in self.inventaire:
+            if i.id == id:
+                return 1
+        return 0
 
 class Npc:
     def __init__(self,name:str,surname:str,texture:py.Surface,spells:list[Spell],pos:Vec,texture_pos:Vec=NULL_VEC,hitbox:Hitbox=HITBOX_50X50,action=None,tick=None) -> None:

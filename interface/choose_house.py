@@ -14,7 +14,6 @@ class Choose_house(Gui):
     def tick(self, events: list[py.event.Event]):
         for i in events:
             if i.type == py.KEYDOWN:
-                print(i.key,py.K_e)
                 if i.key == py.K_UP or i.key == py.K_z:
                     self.house_idx -= 1
                     if self.house_idx < 0: 

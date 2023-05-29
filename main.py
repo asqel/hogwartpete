@@ -81,7 +81,8 @@ def server_thread():
 
                 elif i.key == K_LCTRL:
                     players[0].speed = 0.85
-
+                elif i.key == K_f:
+                    players[0].gui = guis["Inventory"]
                 elif i.key ==K_e:
                     if not players[0].gui:
                         if players[0].dir == 'u':
@@ -95,7 +96,7 @@ def server_thread():
                            
                         if players[0].dir == 'l':
                             players[0].world.get_Obj(players[0].pos+(-10,25)).on_interact(players[0].world,players[0])
-                elif i.key ==K_a:
+                elif i.key ==K_a and players[0].has_item("Wand"):
                     if not players[0].gui:
                         if players[0].dir == 'u':
                             bullet = Npcs["Bullet"](players[0].pos + (13,-10))
@@ -131,27 +132,35 @@ def server_thread():
         if not players[0].gui:
             if pushed_keys[py.K_q] and pushed_keys[py.K_s]:
                 players[0].downleft()
+                players[0].world.activate_collision()
             
             elif pushed_keys[py.K_q] and pushed_keys[py.K_z]:
                 players[0].upleft()
+                players[0].world.activate_collision()
             
             elif pushed_keys[py.K_d] and pushed_keys[py.K_z]:
                 players[0].upright()
+                players[0].world.activate_collision()
     
             elif pushed_keys[py.K_d] and pushed_keys[py.K_s]:
                 players[0].downright()
+                players[0].world.activate_collision()
     
             elif pushed_keys[py.K_q]:
                 players[0].left()
+                players[0].world.activate_collision()
     
             elif pushed_keys[py.K_d]:
                 players[0].right()
+                players[0].world.activate_collision()
     
             elif pushed_keys[py.K_z]:
                 players[0].up()
+                players[0].world.activate_collision()
     
             elif pushed_keys[py.K_s]:
                 players[0].down()
+                players[0].world.activate_collision()
         
         if not players[0].gui:
             players[0].world.update()
@@ -165,6 +174,16 @@ def server_thread():
 
     running_dict["server"] = False
 
+def draw_inventory():
+    x, y = screen.get_width()/2 - Textures["other"]["slot_x_10"].get_width()/2, 10
+    screen.blit(Textures["other"]["slot_x_10"], (x,y))
+    for i in range(10):
+        screen.blit(players[0].inventaire[i].texture, (x+46*(i+1)-40, y+6))
+        if players[0].inventaire[i].quantity > 1:
+            screen.blit(mc_font.render(str(players[0].inventaire[i].quantity),False,(0,0,0)), (x+46*(i+1)-25, y+27))
+        
+        
+
 
 def main():
 
@@ -172,10 +191,7 @@ def main():
     start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
     
     starting_world = js.load_world("exterior")
-    players.append(Character("Jean", "Magie", "pouffsoufle", None, None, None, POUFSOUFFLE_TEXTURES_0, None, 300, 300, starting_world))
-    starting_world.add_entity(Npcs["Cat"](Vec(250,250)))
-    starting_world.add_Obj(Objs["Madre"](200,200))
-    starting_world.add_entity(Npcs["Death"](Vec(400,300)))
+    players.append(Character("Jean", "Magie", "pouffsoufle", None, None, POUFSOUFFLE_TEXTURES_0, None, 300, 300, starting_world))
     players[0].gui = guis["Choose_name"](players[0])
     
     players[0].zoom_out = 1
@@ -200,8 +216,10 @@ def main():
         screen.blit(arial.render(f"mid tps: {int(g_tps)}", False, (255, 0, 0)), (0, 30))
         screen.blit(arial.render(str(players[0].pos.floor()), False, (255, 0, 0)), (0, 60))
         screen.blit(arial.render(str(players[0].world.get_Chunk_from_pos(players[0].pos).pos), False, (255, 0, 0)), (0, 90))
+        draw_inventory()
         if players[0].gui:
             players[0].gui.draw(screen)
+
         py.display.update()
         t = time()
         if  t - start_time < 1 / 60:
@@ -209,3 +227,6 @@ def main():
         fps = 1 / (time() - start_time)
 
 main()
+
+
+
