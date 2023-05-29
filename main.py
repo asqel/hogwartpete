@@ -46,7 +46,7 @@ def server_thread():
         loop_count += 1
 
         joystick_vec = Vec(0,0)
-        if players[0].gui:
+        if players[0].gui is not None:
             players[0].gui.tick(pygame_events)
             pygame_events = []
         for i in pygame_events:
@@ -176,6 +176,7 @@ def main():
     starting_world.add_entity(Npcs["Cat"](Vec(250,250)))
     starting_world.add_Obj(Objs["Madre"](200,200))
     starting_world.add_entity(Npcs["Death"](Vec(400,300)))
+    players[0].gui = guis["Choose_name"](players[0])
     
     players[0].zoom_out = 1
     players[0].render_distance = 3
