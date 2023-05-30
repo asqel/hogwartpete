@@ -418,46 +418,6 @@
                     },
                     {
                         "pos": [
-                            450,
-                            -50
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 50,
-                            "w": 50,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wall",
-                        "toplayer": 1,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            500,
-                            -50
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 50,
-                            "w": 50,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wall_right_up",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
                             150,
                             -50
                         ],
@@ -513,6 +473,26 @@
                             ]
                         },
                         "id": "Frigo_up",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            -50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 16,
+                            "w": 3,
+                            "r": 0,
+                            "pos": [
+                                13,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right_up",
                         "toplayer": false,
                         "transparent": false
                     }
@@ -650,186 +630,6 @@
                     },
                     {
                         "pos": [
-                            450,
-                            50
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 50,
-                            "w": 50,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Air",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            450,
-                            50
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 0,
-                            "w": 0,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            450,
-                            150
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 0,
-                            "w": 0,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            450,
-                            100
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 0,
-                            "w": 0,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            450,
-                            200
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 0,
-                            "w": 0,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            450,
-                            250
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 0,
-                            "w": 0,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            450,
-                            300
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 0,
-                            "w": 0,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            450,
-                            350
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 0,
-                            "w": 0,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            450,
-                            400
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 0,
-                            "w": 0,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
                             400,
                             400
                         ],
@@ -2252,26 +2052,6 @@
                         "pos": [
                             250,
                             200
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 0,
-                            "w": 0,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wood",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            450,
-                            0
                         ],
                         "data": {},
                         "hitbox": {
@@ -2355,26 +2135,6 @@
                 "objects": [
                     {
                         "pos": [
-                            450,
-                            450
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 50,
-                            "w": 50,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wall",
-                        "toplayer": 1,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
                             400,
                             450
                         ],
@@ -2416,26 +2176,6 @@
                     {
                         "pos": [
                             300,
-                            450
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 50,
-                            "w": 50,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wall",
-                        "toplayer": 1,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            200,
                             450
                         ],
                         "data": {},
@@ -2555,206 +2295,6 @@
                     },
                     {
                         "pos": [
-                            500,
-                            0
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 50,
-                            "w": 50,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wall_right",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            500,
-                            50
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 50,
-                            "w": 50,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wall_right",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            500,
-                            100
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 50,
-                            "w": 50,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wall_right",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            500,
-                            150
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 50,
-                            "w": 50,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wall_right",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            500,
-                            200
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 50,
-                            "w": 50,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wall_right",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            500,
-                            250
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 50,
-                            "w": 50,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wall_right",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            500,
-                            300
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 50,
-                            "w": 50,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wall_right",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            500,
-                            400
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 50,
-                            "w": 50,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wall_right",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            500,
-                            350
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 50,
-                            "w": 50,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wall_right",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
-                            500,
-                            450
-                        ],
-                        "data": {},
-                        "hitbox": {
-                            "type": 0,
-                            "h": 50,
-                            "w": 50,
-                            "r": 0,
-                            "pos": [
-                                0,
-                                0
-                            ]
-                        },
-                        "id": "Wall_right_down",
-                        "toplayer": false,
-                        "transparent": false
-                    },
-                    {
-                        "pos": [
                             250,
                             0
                         ],
@@ -2830,6 +2370,246 @@
                             ]
                         },
                         "id": "Madre",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            500
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "plank_void",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            450
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Door_frame",
+                        "toplayer": 1,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            0
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 16,
+                            "w": 3,
+                            "r": 0,
+                            "pos": [
+                                13,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            50
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 16,
+                            "w": 3,
+                            "r": 0,
+                            "pos": [
+                                13,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            150
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 16,
+                            "w": 3,
+                            "r": 0,
+                            "pos": [
+                                13,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            100
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 16,
+                            "w": 3,
+                            "r": 0,
+                            "pos": [
+                                13,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            200
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 16,
+                            "w": 3,
+                            "r": 0,
+                            "pos": [
+                                13,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            250
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 16,
+                            "w": 3,
+                            "r": 0,
+                            "pos": [
+                                13,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            300
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 16,
+                            "w": 3,
+                            "r": 0,
+                            "pos": [
+                                13,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            350
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 16,
+                            "w": 3,
+                            "r": 0,
+                            "pos": [
+                                13,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            400
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 16,
+                            "w": 3,
+                            "r": 0,
+                            "pos": [
+                                13,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right",
+                        "toplayer": false,
+                        "transparent": false
+                    },
+                    {
+                        "pos": [
+                            450,
+                            450
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 16,
+                            "w": 3,
+                            "r": 0,
+                            "pos": [
+                                13,
+                                0
+                            ]
+                        },
+                        "id": "Wall_right_down",
                         "toplayer": false,
                         "transparent": false
                     }

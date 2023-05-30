@@ -7,7 +7,7 @@ folders = list(os.listdir(f"{path}/src"))
 Textures:dict[str,dict[str,py.Surface]]={i:{} for i in folders}
 
 py.display.init()
-screen=py.display.set_mode((1080,720),py.RESIZABLE)
+screen=py.display.set_mode((640,480),py.RESIZABLE)
 
 
 """
