@@ -495,6 +495,9 @@ class World:
             self.resolve_collision()
 
         self.has_to_collide=False
+
+        if players[0].pv<=0:
+            players[0].gui=guis["Game_over"](players[0])
         return 0
 
 
