@@ -188,7 +188,7 @@ def draw_inventory():
 def main():
 
     global pygame_events
-    start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
+    #start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
     
     starting_world = js.load_world("exterior")
     players.append(Character("Jean", "Magie", "pouffsoufle", None, None, POUFSOUFFLE_TEXTURES_0, None, 300, 300, starting_world))

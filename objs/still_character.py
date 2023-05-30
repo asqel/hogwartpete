@@ -24,6 +24,7 @@ class Madre_gui(Gui):
                     self.player.gui = None
                     if not self.player.has_item("Wand"):
                         self.player.add_item(items["Wand"](1))
+                        self.player.money += 25
 
 class Snape(Obj):
     def __init__(self, x:float, y:float) -> None:
@@ -38,10 +39,10 @@ class Madre(Obj):
 
 class Farine(Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, False, Textures["player"]["farine_down"],Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 50, 75))
+        super().__init__(self.__class__.__name__, x, y, False, Textures["player"]["farine_right"],Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 50, 75))
 
     def on_interact(self, world, user):
-        if user.pos.y >= self.pos.y + 75:
+        if user.pos.x >= self.pos.x + 50:
             user.gui = guis["Farine_shop"](user)
 
 registerObj(Snape)
