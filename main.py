@@ -84,8 +84,6 @@ def server_thread():
 
                 elif i.key == K_LCTRL:
                     players[0].speed = 0.85
-                elif i.key == K_f:
-                    players[0].gui = guis["Inventory"]
                 elif i.key ==K_e:
                     if not players[0].gui:
                         if players[0].dir == 'u':
@@ -129,7 +127,7 @@ def server_thread():
         pygame_events = []
         if joystick_count and not players[0].gui:
             players[0].pos += joystick_vec * 4 * players[0].speed
-            players[0].update_texture(joystick_vec)
+            players[0].updatedd_texture(joystick_vec)
 
         pushed_keys=py.key.get_pressed()
         if not players[0].gui:
