@@ -53,6 +53,14 @@ class Bullet(Npc):
                     self.pv = 0
                     return 0
                 
+        if players[0].hitbox:
+            hit2 = players[0].hitbox.copy()
+            hit2.pos += players[0].pos
+            if hit1.iscolliding(hit2):
+                players[0].pv = 0
+                self.pv = 0 
+                return 0
+                
             
 
 
