@@ -234,26 +234,3 @@ def main():
         fps = 1 / (time() - start_time)
 
 main()
-
-
-
-
-
-
-
-"""
-                                      operateurs
-                    ╔═════════╗	      │	  │   │	        ╔═════════╗
-a = 3 * 4 + 7.9 --> ║  lexer  ║ --> a = 3 * 4 + 7.9	--> ║  parser ║  --> instruction{
-                    ╚═════════╝	    │   │  	│ 	 │		╚═════════╝             type : "assignation"
-                                symbole │	│	float                           nom : "a"
-                                        │	│	                                valeur :Ast{
-                                         int                                                    +	
-                                                                                            7.9    *
-                                                                                                 3   4
-                                                                                }
-                                                                        }
-                  ╔═══════════════╗                                                  
-intstruction -->  ║  interpreter  ║ --> execute les action demandé par les instructions
-                  ╚═══════════════╝
-"""

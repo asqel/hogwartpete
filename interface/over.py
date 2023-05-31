@@ -18,7 +18,7 @@ class Game_over(Gui):
             
     def draw(self, screen):
         screen.fill((0,0,0))
-        screen.blit(mc_font.render("Vous êtes des merdes vous avez perdu", False, (255,255,255)), (screen.get_width()//2, screen.get_height()//2))
+        screen.blit(mc_font.render("Vous avez perdu", False, (255,255,255)), (screen.get_width()//2, screen.get_height()//2))
         
     
 registerGui(Game_over)
