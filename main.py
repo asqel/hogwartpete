@@ -222,7 +222,7 @@ def main():
         screen.blit(arial.render(str(players[0].pos.floor()), False, (255, 0, 0)), (0, 60))
         screen.blit(arial.render(str(players[0].world.get_Chunk_from_pos(players[0].pos).pos), False, (255, 0, 0)), (0, 90))
         screen.blit(arial.render(str(players[0].money)+" €", False, (255, 0, 0)), (0, 120))
-        screen.blit(arial.render(str(players[0].pv) + " Pv", False, (255, 0, 0)), (0, 120))
+        screen.blit(arial.render(str(players[0].pv) + " Pv", False, (255, 0, 0)), (0, 150))
         draw_inventory()
         if players[0].gui:
             players[0].gui.draw(screen)
