@@ -25,6 +25,9 @@ guis :dict[str,Gui] = {}
 def registerGui(gui : type):
     guis[gui.__name__] = gui
     
+def getGui(name : str, user):
+    return guis[name](user)
+
     
 #import every gui
 module_names=os.listdir(os.path.dirname(os.path.abspath(__file__)))

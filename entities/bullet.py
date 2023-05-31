@@ -18,6 +18,7 @@ class Bullet(Npc):
         self.duration = 0
         self.max_duration = 150*3
         self.speed *= 4
+        self.sender = None
         
     def tick(self, world :World ):
         self.duration += 1
@@ -45,19 +46,19 @@ class Bullet(Npc):
         hit1 = self.hitbox.copy()
         hit1.pos += self.pos
         for i in entities:
-            if i.hitbox and i != self:
+            if i.hitbox and i != self and i != self.sender:
                 hit2 = i.hitbox.copy()
                 hit2.pos += i.pos
                 if (hit1.iscolliding(hit2)):
-                    i.pv = 0
+                    i.pv -= 50
                     self.pv = 0
                     return 0
                 
-        if players[0].hitbox:
+        if players[0].hitbox and self.sender != players[0]:
             hit2 = players[0].hitbox.copy()
             hit2.pos += players[0].pos
             if hit1.iscolliding(hit2):
-                players[0].pv = 0
+                players[0].pv -= 50
                 self.pv = 0 
                 return 0
                 

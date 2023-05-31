@@ -102,21 +102,25 @@ def server_thread():
                         if players[0].dir == 'u':
                             bullet = Npcs["Bullet"](players[0].pos + (13,-10))
                             bullet.direction = players[0].dir
+                            bullet.sender = players[0]
                             players[0].world.get_Chunk_from_pos(players[0].pos).entities.append(bullet)
                             
 
                         if players[0].dir == 'r':
                             bullet = Npcs["Bullet"](players[0].pos + (10+50, 13))
                             bullet.direction = players[0].dir
+                            bullet.sender = players[0]
                             players[0].world.get_Chunk_from_pos(players[0].pos).entities.append(bullet)
 
                         if players[0].dir == 'd':
                             bullet = Npcs["Bullet"](players[0].pos + (13,50+10))
+                            bullet.sender = players[0]
                             bullet.direction = players[0].dir
                             players[0].world.get_Chunk_from_pos(players[0].pos).entities.append(bullet)
                             
                         if players[0].dir == 'l':
                             bullet = Npcs["Bullet"](players[0].pos + (-10,13))
+                            bullet.sender = players[0]
                             bullet.direction = players[0].dir
                             players[0].world.get_Chunk_from_pos(players[0].pos).entities.append(bullet)
             elif i.type == py.KEYUP:
@@ -217,6 +221,8 @@ def main():
         screen.blit(arial.render(f"mid tps: {int(g_tps)}", False, (255, 0, 0)), (0, 30))
         screen.blit(arial.render(str(players[0].pos.floor()), False, (255, 0, 0)), (0, 60))
         screen.blit(arial.render(str(players[0].world.get_Chunk_from_pos(players[0].pos).pos), False, (255, 0, 0)), (0, 90))
+        screen.blit(arial.render(str(players[0].money)+" €", False, (255, 0, 0)), (0, 120))
+        screen.blit(arial.render(str(players[0].pv) + " Pv", False, (255, 0, 0)), (0, 120))
         draw_inventory()
         if players[0].gui:
             players[0].gui.draw(screen)
@@ -231,3 +237,23 @@ main()
 
 
 
+
+
+
+
+"""
+                                      operateurs
+                    ╔═════════╗	      │	  │   │	        ╔═════════╗
+a = 3 * 4 + 7.9 --> ║  lexer  ║ --> a = 3 * 4 + 7.9	--> ║  parser ║  --> instruction{
+                    ╚═════════╝	    │   │  	│ 	 │		╚═════════╝             type : "assignation"
+                                symbole │	│	float                           nom : "a"
+                                        │	│	                                valeur :Ast{
+                                         int                                                    +	
+                                                                                            7.9    *
+                                                                                                 3   4
+                                                                                }
+                                                                        }
+                  ╔═══════════════╗                                                  
+intstruction -->  ║  interpreter  ║ --> execute les action demandé par les instructions
+                  ╚═══════════════╝
+"""

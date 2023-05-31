@@ -45,21 +45,25 @@ class Death(Npc):
 
     def attack(self, world):
         if self.dir == 'u':
-            bullet = Npcs["Bullet"](self.pos + (13,-50))
+            bullet = Npcs["Bullet"](self.pos + (13,-10))
             bullet.direction = self.dir
+            bullet.sender = self
             world.get_Chunk_from_pos(self.pos).entities.append(bullet)
         if self.dir == 'r':
-            bullet = Npcs["Bullet"](self.pos + (100, 13))
+            bullet = Npcs["Bullet"](self.pos + (10 + 50, 13))
             bullet.direction = self.dir
+            bullet.sender = self
             world.get_Chunk_from_pos(self.pos).entities.append(bullet)
         if self.dir == 'd':
-            bullet = Npcs["Bullet"](self.pos + (13,100))
+            bullet = Npcs["Bullet"](self.pos + (13,50 + 10))
             bullet.direction = self.dir
+            bullet.sender = self
             world.get_Chunk_from_pos(self.pos).entities.append(bullet)
                             
         if self.dir == 'l':
-            bullet = Npcs["Bullet"](self.pos + (-50,13))
+            bullet = Npcs["Bullet"](self.pos + (-10,13))
             bullet.direction = self.dir
+            bullet.sender = self
             world.get_Chunk_from_pos(self.pos).entities.append(bullet)
     
     def tick(self, world):

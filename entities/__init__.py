@@ -184,6 +184,13 @@ class Character:
             if i.id == id:
                 return 1
         return 0
+    
+    def open_gui(self, gui_name : str):
+        self.gui = guis[gui_name](self)
+        
+    def close_gui(self):
+        self.gui = None
+        
 
 class Npc:
     def __init__(self,name:str,surname:str,texture:py.Surface,spells:list[Spell],pos:Vec,texture_pos:Vec=NULL_VEC,hitbox:Hitbox=HITBOX_50X50,action=None,tick=None) -> None:
