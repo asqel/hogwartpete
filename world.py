@@ -37,26 +37,12 @@ class Chunk:
         if so then they will be moved to the right chunk
         """
         p = 0
-        corners = self.get_borders()
-        new_chunk_pos = Vec(0,0)
         while p < len(self.entities):
-            if self.entities[p].pos.x < corners[0].x:
-                new_chunk_pos.x -= 1
-            elif self.entities[p].pos.x >= corners[0].x + CHUNK_SIZE:
-                new_chunk_pos.x += 1
-
-            if self.entities[p].pos.y < corners[0].y:
-                new_chunk_pos.y -= 1
-            elif self.entities[p].pos.y >= corners[0].y + CHUNK_SIZE:
-                new_chunk_pos.y += 1
-
-            if new_chunk_pos != (0,0):
-                print(new_chunk_pos, self.entities[p].pos, self.top_left_pos)
-                self.world.add_entity(self.entities.pop(p))
-                new_chunk_pos = Vec(0,0)
+            new_pos = self.entities[p].pos// CHUNK_SIZE
+            if new_pos != self.pos:
+                self.world.get_Chunk_at(new_pos).entities.append(self.entities.pop(p))
                 continue
             p += 1
-            new_chunk_pos = Vec(0,0)
         
         #new_chunk_pos = Vec(0,0)
         #while p < len(self.objects):
@@ -144,7 +130,7 @@ class World:
     def add_hitbox(self, n:Hitbox):
         self.get_Chunk_from_pos(n.pos).hitboxes.append(n)
         
-    def add_backgroung_Obj(self, n:Obj):
+    def add_background_Obj(self, n:Obj):
         self.get_Chunk_from_pos(n.pos).background_obj.append(n) 
     
     def add_Obj(self, n:Obj)->None:

@@ -25,10 +25,10 @@ class Farine_sign(Gui):
         
 
 
-        screen.blit(mc_font.render("Le chef Farine s'est exilé.",0,(0,0,0)), (x+30-6,y+30-10-5))
-        screen.blit(mc_font.render("La légende raconte qu'il",0,(0,0,0)), (x+30-6,y+60-10-5))
-        screen.blit(mc_font.render("vit maintenant dans la",0,(0,0,0)), (x+30-6,y+90-10-5))
-        screen.blit(mc_font.render("forêt...",0,(0,0,0)), (x+30-6,y+120-10-5))
+        screen.blit(mc_font.render("Le chef Farine s'est exilé.",0,(0,0,0)), (x+30-6,y+30-10-10))
+        screen.blit(mc_font.render("La légende raconte qu'il",0,(0,0,0)), (x+30-6,y+60-10-10))
+        screen.blit(mc_font.render("vit maintenant dans la",0,(0,0,0)), (x+30-6,y+90-10-10))
+        screen.blit(mc_font.render("forêt...",0,(0,0,0)), (x+30-6,y+120-10-10))
         
     
 registerGui(Farine_sign)

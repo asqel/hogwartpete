@@ -1,5 +1,6 @@
 import pygame as py
 import os
+from events import *
 path=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 folders = list(os.listdir(f"{path}/src"))
@@ -90,6 +91,8 @@ for i in folders:
     elif i.endswith(".tx"):
         make_texture("",i)
 
+for i in events[Event_on_textures_load_t]:
+    i.function(Textures)
 
 #to acces a texture , Textures[FOLDER_NAME][TEXTURE_NAME]
 #if texture not in folder , Textures[TEXTURE_NAME]

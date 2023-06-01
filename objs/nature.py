@@ -34,7 +34,9 @@ class Grass(Obj):
 class Tree(Obj):
     def __init__(self, x: float, y: float) -> None:
         super().__init__(self.__class__.__name__, x, y,False,Textures["Obj"]["tree"])
-        self.hitbox=Hitbox(HITBOX_RECT_t,Vec(0,0),width=100,height=100)
+        self.hitbox = Hitbox(HITBOX_RECT_t, Vec(0,0), width = 100, height = 100)
+        
+
 
 registerObj(Stone)
 registerObj(Pebble)

@@ -63,7 +63,7 @@ def server_thread():
                 if i.key == K_p:
                     starting_world.add_Obj(Objs[list(Objs.keys())[obj_idx]](*tuple(players[0].pos)))
                 if i.key == K_m:
-                    starting_world.add_backgroung_Obj(Objs[list(Objs.keys())[obj_idx]](*tuple(players[0].pos)))
+                    starting_world.add_background_Obj(Objs[list(Objs.keys())[obj_idx]](*tuple(players[0].pos)))
                 if i.key == K_o:#delete obj att
                     c=starting_world.get_Chunk_from_pos(players[0].pos)
                     for k in c.objects:
@@ -76,6 +76,16 @@ def server_thread():
                         if k.pos == players[0].pos:
                             c.background_obj.remove(k)
                             break
+                        
+                if i.key == K_i:
+                    for i in range(4):
+                        for k in range(4):
+                            starting_world.add_Obj(Objs[list(Objs.keys())[obj_idx]](*tuple(players[0].pos + 50*Vec(i,k))))
+                if i.key == K_k:
+                    for i in range(4):
+                        for k in range(4):
+                            starting_world.add_background_Obj(Objs[list(Objs.keys())[obj_idx]](*tuple(players[0].pos + 50*Vec(i,k))))
+                            
                     
                 
             elif i.type ==py.KEYUP:
@@ -197,6 +207,9 @@ o pour enlver un obj
 
 m pour ajouter un obj au background
 l pour enlever un obj au background
+
+i pour faire un carre de 4x4 d'obj
+k pour faire un carre de 4x4 d'obj de background
     
 """
 
