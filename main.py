@@ -8,6 +8,7 @@ from entities import *
 from time import time, sleep
 from interface import *
 from world import *
+from events import *
 
 from _thread import start_new_thread
 import jsonizer as js
@@ -48,33 +49,16 @@ def server_thread():
         iter_start = time()
         loop_count += 1
 
-        joystick_vec = Vec(0,0)
+        for i in events[Event_before_tick_t]:
+            i.function(players, pygame_events)
+        
         if players[0].gui is not None:
             players[0].gui.tick(pygame_events)
             pygame_events = []
         for i in pygame_events:
             if i.type == py.QUIT:
                 running_dict["global"] = False
-            if i.type == py.JOYBUTTONDOWN:
-                print("Bouton appuyé : ", i.button)
-                if i.button == 1:
-                    players[0].speed = 0.85
-            elif i.type == py.JOYBUTTONUP:
-                print("Bouton relâché : ", i.button)
-                if i.button == 1:
-                    players[0].speed = 0.5
-            elif i.type == JOYAXISMOTION:
-                # Obtenez le nombre d'axes pour le joystick
-                num_axes = joysticks[0].get_numaxes()
-                
-                # Obtenez les vecteurs des axes X et Y pour chaque axe
-                for k in range(num_axes):
-                    axis = joysticks[0].get_axis(k)
-                    if k == 0:  # axe X
-                        joystick_vec.x=axis
-                    elif k == 1:  # axe Y
-                        joystick_vec.y=axis
-
+        
             elif i.type == py.KEYDOWN:
                 if i.key == K_F3:
                     players[0].chunk_border=not players[0].chunk_border
@@ -128,10 +112,6 @@ def server_thread():
                     players[0].speed = 0.5  
        
         
-        pygame_events = []
-        if joystick_count and not players[0].gui:
-            players[0].pos += joystick_vec * 4 * players[0].speed
-            players[0].updatedd_texture(joystick_vec)
 
         pushed_keys=py.key.get_pressed()
         if not players[0].gui:
@@ -169,6 +149,12 @@ def server_thread():
         
         if not players[0].gui:
             players[0].world.update()
+            
+        for i in events[Event_after_tick_t]:
+            i.function(players, pygame_events)
+                
+        pygame_events = []
+        
         
         # tps moyenizer
         moy_fps = 1 / (time() - loop_start) * loop_count if loop_count > 10 else TPS_MAX
@@ -227,6 +213,9 @@ def main():
         if players[0].gui:
             players[0].gui.draw(screen)
 
+        for i in events[Event_on_draw_t]:
+            i.function(players, screen)
+        
         py.display.update()
         t = time()
         if  t - start_time < 1 / 60:

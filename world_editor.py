@@ -184,7 +184,7 @@ au demarrage dans console le nom du monde est demander
 si le monde est deja dans worlds/ alors il sera charger
 sinon un nouveau sera creer
 
-ctrl+space pour enregistrer le monde
+ctrl+S pour enregistrer le monde
 
 space pour afficher les bordure de chunk
 

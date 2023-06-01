@@ -55,7 +55,7 @@ def registerDynamic_Obj(obj:type):
     Dynamic_Objs[obj.__name__]=obj
 
 
-#import every spells
+#import every objs
 module_names=os.listdir(os.path.dirname(os.path.abspath(__file__)))
 
 for i in range(len(module_names)):
