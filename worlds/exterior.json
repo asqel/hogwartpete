@@ -9312,6 +9312,26 @@
                         "id": "House",
                         "toplayer": false,
                         "transparent": false
+                    },
+                    {
+                        "pos": [
+                            600,
+                            550
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Paolo",
+                        "toplayer": false,
+                        "transparent": false
                     }
                 ],
                 "pos": [
@@ -16676,7 +16696,7 @@
                             1150
                         ],
                         "data": {
-                            "gui": "farine"
+                            "gui": "Farine_sign"
                         },
                         "hitbox": {
                             "type": 0,

@@ -31,7 +31,7 @@ class Chunk:
         y=self.top_left_pos.y
         return (Vec(x, y), Vec(x + 999, y), Vec(x, y + 999), Vec(x + 999, y + 999))
 
-    def  tick(self):
+    def tick(self):
         """
         check if entities or objects are outside the chunk but still registered in chunk
         if so then they will be moved to the right chunk
@@ -445,7 +445,7 @@ class World:
         chunks : list[Chunk] = []
         for i in range(-players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1):
             for k in range(-players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1):
-                chunks.append(self.get_Chunk_at(Vec(i, k)))
+                chunks.append(self.get_Chunk_at((i, k) + players[0].pos // CHUNK_SIZE))
         
 
         for i in chunks:

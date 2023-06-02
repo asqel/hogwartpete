@@ -69,7 +69,7 @@ class Death(Npc):
     def tick(self, world):
         self.go_to_player(players[0], world)
         world.activate_collision()
-        random=randint(0,150)
+        random=randint(0,300)
         if random==75:
             self.attack(world)
 

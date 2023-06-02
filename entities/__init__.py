@@ -15,6 +15,7 @@ class Character:
         self.house=maison
         self.spells=spells
         self.inventaire : list[Item]=[items["Air"](1) for i in range(10)]
+        self.inventaire_idx = 0 
         self.pv=100
         self.pvmax=100
         self.effects=[]
@@ -182,6 +183,11 @@ class Character:
 
 
         return 0
+
+    def remove_item_current_slot(self):
+        self.inventaire[self.inventaire_idx].quantity -= 1
+        if self.inventaire[self.inventaire_idx].quantity <= 0:
+            self.inventaire[self.inventaire_idx] = items["Air"](1)
     
     def has_item(self, id: str):
         for i in self.inventaire:

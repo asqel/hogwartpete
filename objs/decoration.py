@@ -156,7 +156,7 @@ class Sign(Obj):
 
     def on_interact(self, world, user):
         if user.pos.y >= self.pos.y + 50:
-            if self.data["gui"] == "farine":
-                user.gui = guis["Farine_sign"](user)
+            if self.data["gui"] != "":
+                user.gui = guis[self.data["gui"]](user)
 
 registerObj(Sign)

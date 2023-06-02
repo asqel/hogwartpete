@@ -19,12 +19,25 @@ class Bullet(Npc):
         self.max_duration = 150*3
         self.speed *= 4
         self.sender = None
+
+        self.frames = [Textures["Spells"][f"basic_spell_{i}"] for i in range(4)]
+        self.frame = 0
+        self.frame_time =18.75*4
+        self.frame_time_count = 0
         
     def tick(self, world :World ):
+        self.frame_time_count += 1
+        if self.frame_time_count >= self.frame_time:
+            self.frame += 1
+            if self.frame >= len(self.frames):
+                self.frame = 0
+        self.current_texture = self.frames[self.frame]
         self.duration += 1
+
         if self.duration >= self.max_duration:
             self.pv = 0
             return 0
+
         if self.direction == "u":
             self.pos += Vec(0,-1)*self.speed
         elif self.direction == "d":
@@ -41,7 +54,7 @@ class Bullet(Npc):
         entities : list[Npc] = []
         for i in range(-1, 2):
             for k in range(-1, 2):
-                entities.extend(world.get_Chunk_at(self.pos // CHUNK_SIZE + (i, k)).entities)
+                entities.extend(world.get_Chunk_at((self.pos // CHUNK_SIZE) + (i, k)).entities)
         
         hit1 = self.hitbox.copy()
         hit1.pos += self.pos
@@ -60,7 +73,8 @@ class Bullet(Npc):
             if hit1.iscolliding(hit2):
                 players[0].pv -= 50
                 self.pv = 0 
-                return 0
+        
+        
                 
             
 
