@@ -43,32 +43,36 @@ class Character:
         if self.dir!="u":
             self.dir="u"
             self.current_texture=self.texture[0]
-        self.pos += Vec(-2,-2)*self.speed
+        self.pos += Vec(0,-2)*self.speed
         self.collisions("u")
+        self.pos += Vec(-2,0)*self.speed
         self.collisions("l")
 
     def upright(self):
         if self.dir!="u":
             self.dir="u"
             self.current_texture=self.texture[0]
-        self.pos += Vec(2,-2)*self.speed
+        self.pos += Vec(0,-2)*self.speed
         self.collisions("u")
+        self.pos += Vec(2,0)*self.speed
         self.collisions("r")
 
     def downleft(self):
         if self.dir!="d":
             self.dir="d"
             self.current_texture=self.texture[2]
-        self.pos += Vec(-2,2)*self.speed
+        self.pos += Vec(0,2)*self.speed
         self.collisions("d")
+        self.pos += Vec(-2,0)*self.speed
         self.collisions("l")
     
     def downright(self):
         if self.dir!="d":
             self.dir="d"
             self.current_texture=self.texture[2]
-        self.pos += Vec(2,2)*self.speed
+        self.pos += Vec(0,2)*self.speed
         self.collisions("d")
+        self.pos += Vec(2,0)*self.speed
         self.collisions("r")
 
     def left(self):
