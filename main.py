@@ -91,7 +91,7 @@ def server_thread():
 
                 elif i.key == K_t:
                     players[0].remove_item_current_slot()
-                    
+
                 elif i.key == K_ESCAPE:
                     players[0].gui = guis["Escape_gui"](players[0])
 
@@ -206,7 +206,7 @@ def draw_inventory():
 def main():
 
     global pygame_events
-    #start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
+    start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
     
     starting_world = js.load_world("bed room")
     players.append(Character("Jean", "Magie", "pouffsoufle", None, None, POUFSOUFFLE_TEXTURES_0, None, 100, 0, starting_world))
