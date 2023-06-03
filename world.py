@@ -484,6 +484,11 @@ class World:
 
         if players[0].pv<=0:
             players[0].gui=guis["Game_over"](players[0])
+        for i in players[0].inventaire:
+            i.on_inventory_tick(self,players[0])
+        for i in range(10):
+            if players[0].inventaire[i].quantity <= 0:
+                players[0].inventaire[i] = items["Air"](1)
         return 0
 
 

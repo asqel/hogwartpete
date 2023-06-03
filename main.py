@@ -91,7 +91,8 @@ def server_thread():
 
                 elif i.key == K_t:
                     players[0].remove_item_current_slot()
-
+                elif i.key == K_r:
+                    players[0].inventaire[players[0].inventaire_idx].on_use(players[0].world, players[0])
                 elif i.key == K_ESCAPE:
                     players[0].gui = guis["Escape_gui"](players[0])
 
@@ -134,6 +135,7 @@ def server_thread():
                             bullet.sender = players[0]
                             bullet.direction = players[0].dir
                             players[0].world.get_Chunk_from_pos(players[0].pos).entities.append(bullet)
+            
             elif i.type == py.KEYUP:
                 if i.key == py.K_LCTRL:
                     players[0].speed = 0.5  
@@ -203,10 +205,12 @@ def draw_inventory():
             py.draw.rect(screen, (255,0,0), py.Rect(x+46*(i+1)-46, y+45,40,5))
 
 
+
+
 def main():
 
     global pygame_events
-    start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
+    #start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
     
     starting_world = js.load_world("bed room")
     players.append(Character("Jean", "Magie", "pouffsoufle", None, None, POUFSOUFFLE_TEXTURES_0, None, 100, 0, starting_world))

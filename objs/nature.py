@@ -13,20 +13,17 @@ class Stone(Obj):
     def __init__(self, x: float, y: float) -> None:
         super().__init__(self.__class__.__name__, x, y,False,Textures["Obj"]["stone"])
         self.hitbox=Hitbox(HITBOX_RECT_t,Vec(0,0),width=50,height=50)
-from random import randint  
+from random import randint , choice 
 class Grass(Obj):
     def __init__(self, x: float, y: float) -> None:
-        texture = [Textures["Obj"]["grass_empty"],
-                   Textures["Obj"]["grass_flowers"],
+        textures = [Textures["Obj"]["grass_flowers"],
                    Textures["Obj"]["grass_roses"]
                    ]
         r = randint(0,100)
-        if 10 <= r <= 100:
-            texture = texture[0]
-        elif 5 <= r < 10:
-            texture = texture[1]
+        if 0 <= r <= 10:
+            texture = choice(textures)
         else:
-            texture = texture[2]
+            texture = Textures["Obj"]["grass_empty"]
         texture = py.transform.rotate(texture, [0, 90, 180, 270][randint(0,3)])
         super().__init__(self.__class__.__name__, x, y,False,texture,HITBOX_50X50)
         
