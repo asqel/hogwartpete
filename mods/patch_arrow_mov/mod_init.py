@@ -39,4 +39,5 @@ def arrow_key_move(players, pygame_events : py.event.Event):
                 
         
 
-registerEvent(Event(Event_after_tick_t, arrow_key_move))
+
+registerEvent(Event(Event_after_tick_t,arrow_key_move))

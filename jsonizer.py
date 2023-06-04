@@ -5,6 +5,7 @@ from uti import *
 import os
 
 path=os.path.dirname(os.path.abspath(__file__))+"/worlds"
+dir_path =os.path.dirname(os.path.abspath(__file__))
 
 def save_vec(pos:Vec):
     return (pos.x,pos.y)
@@ -77,11 +78,15 @@ def load_chunk(d,w):
     c.top_left_pos=load_vec(d["top-left"])
     return c
 
-def load_world(name:str):
+def load_world(name:str, mod = ""):
     import world as wo
     d={}
-    with open(f"{path}/{name}.json") as f:
-        d=json.load(f)
+    if mod != "":
+        with open(f"{dir_path}/mods/{mod}/worlds/{name}.json") as f:
+            d=json.load(f)
+    else : 
+        with open(f"{path}/{name}.json") as f:
+            d=json.load(f)
     w=wo.World(name,d["background"])
     w.chuncks={}
     for i in d["chunks"].keys():

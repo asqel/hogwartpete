@@ -21,6 +21,8 @@ py.font.init()
 FPS_MAX = 60
 TPS_MAX = 150
 
+MOD_ENABLED = True
+
 g_tps = 0
 
 running_dict = {
@@ -211,6 +213,9 @@ def main():
 
     global pygame_events
     #start_new_thread(play_sound, ("nymphe-echo-demo1.flac",))
+    if MOD_ENABLED:
+        import modloader as md
+        md.load_mods()
     
     starting_world = js.load_world("bed room")
     players.append(Character("Jean", "Magie", "pouffsoufle", None, None, POUFSOUFFLE_TEXTURES_0, None, 100, 0, starting_world))
