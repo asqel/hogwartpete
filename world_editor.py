@@ -16,6 +16,9 @@ py.font.init()
 FPS_MAX = 60
 TPS_MAX = 150
 
+MOD_ENABLED = True
+
+
 global g_tps, running_dict 
 g_tps = 0
 
@@ -78,13 +81,13 @@ def server_thread():
                             break
                         
                 if i.key == K_i:
-                    for i in range(4):
+                    for j in range(4):
                         for k in range(4):
-                            starting_world.add_Obj(Objs[list(Objs.keys())[obj_idx]](*tuple(players[0].pos + 50*Vec(i,k))))
+                            starting_world.add_Obj(Objs[list(Objs.keys())[obj_idx]](*tuple(players[0].pos + 50*Vec(j,k))))
                 if i.key == K_k:
-                    for i in range(4):
+                    for j in range(4):
                         for k in range(4):
-                            starting_world.add_background_Obj(Objs[list(Objs.keys())[obj_idx]](*tuple(players[0].pos + 50*Vec(i,k))))
+                            starting_world.add_background_Obj(Objs[list(Objs.keys())[obj_idx]](*tuple(players[0].pos + 50*Vec(j,k))))
                             
                     
                 
@@ -130,6 +133,7 @@ def server_thread():
 def main():
     
     global pygame_events
+    
     
 
     players[0].zoom_out = 1
@@ -177,6 +181,9 @@ def main():
 
 import jsonizer as js
 import os
+if MOD_ENABLED:
+        import modloader as md
+        md.load_mods()
 world_name=input("entrez le nom du monde : ")
 if not os.path.exists(f"{os.path.dirname(os.path.abspath(__file__))}/worlds/{world_name}.json"):
     print("le monde nexiste pas et vas etre creer")
@@ -186,7 +193,9 @@ else:
 
 starting_world.has_to_collide=True
 
+
 players.append(Character("","","",None,None,[NOTHING_TEXTURE for i in range(4)],None,0,0,starting_world))
+players[0].is_world_editor = True
 obj_idx=0
 main()
 """

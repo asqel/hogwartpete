@@ -93,7 +93,7 @@ def server_thread():
 
                 elif i.key == K_t:
                     players[0].remove_item_current_slot()
-                elif i.key == K_r:
+                elif i.key == K_a:
                     players[0].inventaire[players[0].inventaire_idx].on_use(players[0].world, players[0])
                 elif i.key == K_ESCAPE:
                     players[0].gui = guis["Escape_gui"](players[0])
@@ -111,32 +111,6 @@ def server_thread():
                            
                         if players[0].dir == 'l':
                             players[0].world.get_Obj(players[0].pos+(-10,25)).on_interact(players[0].world,players[0])
-                elif i.key ==K_a and players[0].has_item("Wand"):
-                    if not players[0].gui:
-                        if players[0].dir == 'u':
-                            bullet = Npcs["Bullet"](players[0].pos + (13,-25))
-                            bullet.direction = players[0].dir
-                            bullet.sender = players[0]
-                            players[0].world.get_Chunk_from_pos(players[0].pos).entities.append(bullet)
-                            
-
-                        if players[0].dir == 'r':
-                            bullet = Npcs["Bullet"](players[0].pos + (10+50, 13))
-                            bullet.direction = players[0].dir
-                            bullet.sender = players[0]
-                            players[0].world.get_Chunk_from_pos(players[0].pos).entities.append(bullet)
-
-                        if players[0].dir == 'd':
-                            bullet = Npcs["Bullet"](players[0].pos + (13,50+10))
-                            bullet.sender = players[0]
-                            bullet.direction = players[0].dir
-                            players[0].world.get_Chunk_from_pos(players[0].pos).entities.append(bullet)
-                            
-                        if players[0].dir == 'l':
-                            bullet = Npcs["Bullet"](players[0].pos + (-10,13))
-                            bullet.sender = players[0]
-                            bullet.direction = players[0].dir
-                            players[0].world.get_Chunk_from_pos(players[0].pos).entities.append(bullet)
             
             elif i.type == py.KEYUP:
                 if i.key == py.K_LCTRL:
@@ -220,6 +194,10 @@ def main():
     starting_world = js.load_world("bed room")
     players.append(Character("Jean", "Magie", "pouffsoufle", None, None, POUFSOUFFLE_TEXTURES_0, None, 100, 0, starting_world))
     players[0].gui = guis["Choose_name"](players[0])
+    players[0].add_item(items["Super_moule"](1))
+
+    
+
 
     players[0].zoom_out = 1
     players[0].render_distance = 3

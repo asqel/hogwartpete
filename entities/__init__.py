@@ -1,4 +1,3 @@
-import Clothes as c
 from uti.vector import *
 from uti.hitbox import *
 from uti.textures import *
@@ -39,6 +38,7 @@ class Character:
         self.transparent=False # si on peut passer a travers != de invisble
         self.gui :Gui = None
         self.money = 0
+        self.is_world_editor = False
 
     def upleft(self):
         if self.dir!="u":
