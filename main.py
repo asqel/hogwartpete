@@ -217,18 +217,21 @@ def main():
         players[0].world : World = players[0].world
         players[0].world.show(screen, players[0].zoom_out)
 
+        for i in events[Event_on_draw_t]:
+            i.function(players, screen)
+
         screen.blit(arial.render(f"fps: {int(fps)}", False, (255, 0, 0)), (0, 0))
         screen.blit(arial.render(f"mid tps: {int(g_tps)}", False, (255, 0, 0)), (0, 30))
         screen.blit(arial.render(str(players[0].pos.floor()), False, (255, 0, 0)), (0, 60))
         screen.blit(arial.render(str(players[0].world.get_Chunk_from_pos(players[0].pos).pos), False, (255, 0, 0)), (0, 90))
         screen.blit(arial.render(str(players[0].money)+" €", False, (255, 0, 0)), (0, 120))
         screen.blit(arial.render(str(players[0].pv) + " Pv", False, (255, 0, 0)), (0, 150))
+
         draw_inventory()
         if players[0].gui:
             players[0].gui.draw(screen)
 
-        for i in events[Event_on_draw_t]:
-            i.function(players, screen)
+        
         
         py.display.update()
         t = time()
