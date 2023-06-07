@@ -197,6 +197,7 @@ class Fisherman_shop(Gui):
         x = (screen.get_width() - Textures["other"]["text_box"].get_width())/2
         y = screen.get_height() -Textures["other"]["text_box"].get_height() - 20 
         screen.blit(Textures["other"]["text_box"],(x,y))
+        screen.blit(mc_font.render("Edward Findus", 0, (0,0,0)), (x,y+30-15-30-5))
         screen.blit(mc_font.render("Hey matelot ! La pêche ?", 0, (0,0,0)), (x+30,y+30-15))
         screen.blit(mc_font.render("Tu viens pour mes moules ?",0,(0,0,0)), (x+30,y+60-15))
         screen.blit(mc_font.render("    Super moule        1€",0,(0,255,0)if self.idx == 0 and self.player.money >=1 else((255,0,0)if self.idx == 0 else (0,0,0))), (x+30,y+90-15))                    

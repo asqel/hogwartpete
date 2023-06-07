@@ -1,5 +1,5 @@
 import pygame as py
-from uti.vector import *
+from uti import *
 import os
 import importlib as imp
 
@@ -27,6 +27,16 @@ def registerGui(gui : type):
     
 def getGui(name : str, user):
     return guis[name](user)
+
+
+def draw_4_line(screen, text : tuple[str, str, str, str], colors : tuple[tuple[int, int, int], tuple[int, int, int] ,tuple[int, int, int]]):
+    x = (screen.get_width() - Textures["other"]["text_box"].get_width())/2
+    y = screen.get_height() -Textures["other"]["text_box"].get_height() - 20 
+    screen.blit(Textures["other"]["text_box"],(x,y))
+    screen.blit(mc_font.render(text[0], 0, colors[0]), (x+30,y+30-15))
+    screen.blit(mc_font.render(text[1], 0, colors[1]), (x+30,y+60-15))
+    screen.blit(mc_font.render(text[2], 0, colors[2]), (x+30,y+90-15))      
+    screen.blit(mc_font.render(text[3], 0, colors[3]), (x+30,y+90-15+30))                               
 
     
 #import every gui

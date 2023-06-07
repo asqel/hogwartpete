@@ -191,6 +191,8 @@ if not os.path.exists(f"{os.path.dirname(os.path.abspath(__file__))}/worlds/{wor
 else:
     starting_world = js.load_world(world_name)
 
+starting_world.add_hitbox(Hitbox(HITBOX_RECT_t, Vec(0, -10),0 , 7*50, 10))
+
 starting_world.has_to_collide=True
 
 

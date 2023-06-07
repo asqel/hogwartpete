@@ -193,6 +193,7 @@ def main():
     
     starting_world = js.load_world("bed room")
     players.append(Character("Jean", "Magie", "pouffsoufle", None, None, POUFSOUFFLE_TEXTURES_0, None, 100, 0, starting_world))
+    toggle_hitbox()
     players[0].gui = guis["Choose_name"](players[0])
     players[0].add_item(items["Super_moule"](1))
 
