@@ -14,7 +14,7 @@ class Death_statue(Gui):
         ]
         self.text_color = [
             [(0, 0, 0) , (0,0,0), (0,0,0), (0,0,0)],
-            [(0, 0, 0) , (0,0,0), (0,0,0), (0,0,0)],
+            [(0, 0, 0) , (0,0,0), (0,0,0), (0,0,0)]
         ]
         self.text_len = len(self.text)
         super().__init__(self.__class__.__name__, {}, player)

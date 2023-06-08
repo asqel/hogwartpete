@@ -28,7 +28,7 @@ type of event :
     Event_before_tick_t : called before everything on the server
         function : (players : list[Character], pygame_events : pygame.event.Event)
         
-    Event_before_tick_t : called after everything on the server
+    Event_after_tick_t : called after everything on the server
         function : (players : list[Character], pygame_events : pygame.event.Event)
         
     Event_on_draw_t : called after everything has been drawn to the screen

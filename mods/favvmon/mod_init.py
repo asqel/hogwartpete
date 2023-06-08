@@ -70,7 +70,10 @@ class Super_moule(Item):
                 bullet.item = user.inventaire[user.inventaire_idx]
                 user.world.get_Chunk_from_pos(user.pos).entities.append(bullet)
 
-
+    def copy(self):
+        i = super().copy()
+        i.entity = self.entity
+        return i
 
 registerItem(Super_moule)
 
@@ -172,7 +175,7 @@ class Fisherman_shop(Gui):
         self.idx = 0
         self.max_idx = 1
 
-    def tick(self, events: list[Event]):
+    def tick(self, events: list[py.event.Event]):
          for i in events:
             if i.type == py.KEYDOWN:
                 if i.key == py.K_UP :

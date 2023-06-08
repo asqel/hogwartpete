@@ -92,7 +92,7 @@ def server_thread():
                     players[0].inventaire_idx = 9
 
                 elif i.key == K_t:
-                    players[0].remove_item_current_slot()
+                    players[0].drop_item()
                 elif i.key == K_a:
                     players[0].inventaire[players[0].inventaire_idx].on_use(players[0].world, players[0])
                 elif i.key == K_ESCAPE:
@@ -100,6 +100,7 @@ def server_thread():
 
                 elif i.key ==K_e:
                     if not players[0].gui:
+                        
                         if players[0].dir == 'u':
                             players[0].world.get_Obj(players[0].pos+(25,-10)).on_interact(players[0].world,players[0])
 
@@ -190,12 +191,14 @@ def main():
     if MOD_ENABLED:
         import modloader as md
         md.load_mods()
+
+    for i in events[Event_on_textures_load_t]:
+        i.function(Textures)
     
     starting_world = js.load_world("bed room")
     players.append(Character("Jean", "Magie", "pouffsoufle", None, None, POUFSOUFFLE_TEXTURES_0, None, 100, 0, starting_world))
     toggle_hitbox()
     players[0].gui = guis["Choose_name"](players[0])
-    players[0].add_item(items["Super_moule"](1))
 
     
 

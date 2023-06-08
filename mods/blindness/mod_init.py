@@ -15,7 +15,10 @@ def draw(players, screen : pygame.Surface):
         w = new_w
         h = new_h
     screen.blit(texture, (0,0))
+    screen.blit(texture, (0,0))
 
 
 #apply blindness to the player
 #registerEvent(Event(Event_on_draw_t, draw))
+
+

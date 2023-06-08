@@ -188,6 +188,14 @@ class Character:
         self.inventaire[self.inventaire_idx].quantity -= 1
         if self.inventaire[self.inventaire_idx].quantity <= 0:
             self.inventaire[self.inventaire_idx] = items["Air"](1)
+
+    def drop_item(self):
+        if self.inventaire[self.inventaire_idx].id != "Air":
+            item = self.inventaire[self.inventaire_idx].copy()
+            item.quantity = 1
+            self.world.spawn_item(item, self.pos)
+            self.remove_item_current_slot()
+            
     
     def has_item(self, id: str):
         for i in self.inventaire:
@@ -217,6 +225,7 @@ class Npc:
         self.texture_pos=texture_pos
         self.speed=0.5
         self.transparent=False # si on peut passer a travers != de invisble
+        self.collide_player = True
     
     def on_draw(self,world,has_been_drawn):
         ...

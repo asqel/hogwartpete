@@ -5,6 +5,7 @@ from pygame.locals import *
 from uti.textures import *
 from uti.sound import play_sound
 from entities import *
+from events import *
 from time import time, sleep
 from world import *
 
@@ -133,8 +134,8 @@ def server_thread():
 def main():
     
     global pygame_events
-    
-    
+    for i in events[Event_on_textures_load_t]:
+        i.function(Textures)
 
     players[0].zoom_out = 1
     players[0].render_distance=3

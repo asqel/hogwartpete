@@ -261,7 +261,13 @@ class World:
                 if collide_rect_dot(new_hitbox, pos):
                     return k
         return Dynamic_Objs["Air"](pos.x, pos.y)
-            
+    
+    def spawn_item(self, item : Item, pos : Vec):
+        i = Npcs["Item_entity"](pos)
+        i.item = item
+        i.current_texture = item.texture
+        self.add_entity(i)
+
     def show(self, screen:pygame.Surface, zoom_out: int) -> None:
         """
         display everything that has to be rendered on the screen
@@ -405,7 +411,7 @@ class World:
             __hitboxes.extend(i.hitboxes)
             __dyn_obj.extend(i.dyn_objects)
         for i in __entities:
-            if i.hitbox :
+            if i.hitbox and i.collide_player:
                 if players[0].hitbox:
                     hit1 = i.hitbox.copy()
                     hit1.pos += i.pos

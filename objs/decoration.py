@@ -138,6 +138,7 @@ class Door_frame(Obj):
         user.world = js.load_world("exterior")
         user.pos = Vec(400, 400)
         #user.world.add_entity(Npcs["Death"](Vec(1000,1000)))
+        user.world.spawn_item(items["Wand"](1), Vec(1000,1000))
 
 
 class plank_void(Obj):
@@ -157,7 +158,7 @@ class Sign(Obj):
     def on_interact(self, world, user):
         if user.pos.y >= self.pos.y + 50:
             if self.data["gui"] != "":
-                user.gui = guis[self.data["gui"]](user)
+                user.open_gui(self.data["gui"])
 
 registerObj(Sign)
 
