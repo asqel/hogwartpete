@@ -110,6 +110,69 @@ class House(Obj):
             user.world = js.load_world("rdc")
             user.pos = Vec(200, 400)
 
+
+
+class Door_frame(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["door_frame"],HITBOX_50X50)
+
+    def on_interact(self, world, user):
+        user.world = js.load_world("exterior")
+        user.pos = Vec(400, 400)
+        #user.world.add_entity(Npcs["Death"](Vec(1000,1000)))
+        user.world.spawn_item(items["Wand"](1), Vec(1000,1000))
+
+
+class plank_void(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["plank_void"],HITBOX_50X50)
+
+
+
+
+
+class Sign(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["sign"],HITBOX_50X50, {"gui": ""})
+
+    def on_interact(self, world, user):
+        if user.pos.y >= self.pos.y + 50:
+            if self.data["gui"] != "":
+                user.open_gui(self.data["gui"])
+
+
+
+
+class Clay_statue(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["clay_statue"],Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 50, 100))
+
+    def on_interact(self, world, user):
+        user.open_gui("Death_statue")
+class Bridge_middle(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["bridge_middle"],HITBOX_50X50)
+
+class Bridge_end(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["bridge_end"],HITBOX_50X50)
+
+class Bridge_start(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["bridge_start"],HITBOX_50X50)
+
+class Resurrection_stone_pedestal(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["resurrection_stone_pedestal"],Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 50, 100), {"used" : False})
+
+    def on_interact(self, world, user):
+        if not self.data["used"]:
+            if user.add_item(items["Resurrection_stone"](1)):
+                self.data["used"] = True
+                self.texture = Textures["Obj"]["death_pedestal_50x100"]
+
+
+
 registerObj(Wood)
 registerObj(Wall)
 registerObj(Bed_head)
@@ -128,62 +191,12 @@ registerObj(Wall_left_down)
 registerObj(Wall_right_down)
 registerObj(Frigo_up)
 registerObj(Frigo_down)
-
-
-class Door_frame(Obj):
-    def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["door_frame"],HITBOX_50X50)
-
-    def on_interact(self, world, user):
-        user.world = js.load_world("exterior")
-        user.pos = Vec(400, 400)
-        #user.world.add_entity(Npcs["Death"](Vec(1000,1000)))
-        user.world.spawn_item(items["Wand"](1), Vec(1000,1000))
-
-
-class plank_void(Obj):
-    def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["plank_void"],HITBOX_50X50)
-
 registerObj(Door_frame)
 registerObj(plank_void)
 registerObj(House)
-
-
-
-class Sign(Obj):
-    def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["sign"],HITBOX_50X50, {"gui": ""})
-
-    def on_interact(self, world, user):
-        if user.pos.y >= self.pos.y + 50:
-            if self.data["gui"] != "":
-                user.open_gui(self.data["gui"])
-
 registerObj(Sign)
-
-
-
-class Clay_statue(Obj):
-    def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["clay_statue"],Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 50, 100))
-
-    def on_interact(self, world, user):
-        user.open_gui("Death_statue")
-class Bridge_middle(Obj):
-    def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["bridge_middle"],Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 50, 100))
-
-class Bridge_end(Obj):
-    def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["bridge_end"],Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 50, 100))
-
-class Bridge_start(Obj):
-    def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["bridge_start"],Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 50, 100))
-
-
 registerObj(Clay_statue)
 registerObj(Bridge_middle)
 registerObj(Bridge_start)
 registerObj(Bridge_end)
+registerObj(Resurrection_stone_pedestal)

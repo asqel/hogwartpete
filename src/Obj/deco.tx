@@ -63,3 +63,6 @@
 64 144 16 16 50 50 $ bridge_middle
 80 144 16 16 50 50 $ bridge_start
 64 128 16 16 50 50 $ bridge_end
+96 112 16 32 50 100 $ death_pedestal_50x100
+96 128 16 16 50 10 $ death_pedestal_50x50
+80 112 16 32 50 100 $ resurrection_stone_pedestal
