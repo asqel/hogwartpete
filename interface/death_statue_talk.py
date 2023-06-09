@@ -9,9 +9,17 @@ class Death_statue(Gui):
     def __init__(self, player) -> None:
         self.text_idx = 0
         self.text = [
-            ["Ô toi qui entend ma voix, ", "il y a bien longtemps je   ", "fut scellé dans cette    ", "statue en terre cuite.    "],
-            ["Certain me surnome la mort", "d'autre la faucheusse, ici ", "ramène mes 3 reliques.   ", "Tu en sera recompensé.    "],
-        ]
+            [
+            "Ô toi qui entend ma voix,",
+            "écoute. Il y a longtemps,",
+            "j'ai été enfermé dans une",
+            "statue de terre cuite."],
+            [
+            "Certains me nomment la",
+            "mort. Retrouve mes 3",
+            "reliques. Je t'offrirai",
+            "une recompense."]
+            ]
         self.text_color = [
             [(0, 0, 0) , (0,0,0), (0,0,0), (0,0,0)],
             [(0, 0, 0) , (0,0,0), (0,0,0), (0,0,0)]
@@ -39,3 +47,8 @@ class Death_statue(Gui):
 
 
 registerGui(Death_statue)
+
+"""
+
+"""
+
