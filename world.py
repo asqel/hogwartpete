@@ -3,6 +3,7 @@ import pygame
 from objs import *
 from entities import *
 from objs import *
+from events import *
 
 #in pixel (its a square)
 CHUNK_SIZE = 1000
@@ -154,7 +155,9 @@ class World:
         """
         if pos.x not in self.chuncks.keys():
             self.chuncks[pos.x] = {}
-        self.chuncks[pos.x][pos.y]=newChunk(pos, self)
+        self.chuncks[pos.x][pos.y] = newChunk(pos, self)
+        for i in events[Event_on_chunk_generate]:
+            i.function(players, self.chuncks[pos.x][pos.y])
         
     def gen_Chunk_from_pos(self, pos:Vec):
         """

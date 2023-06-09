@@ -12,6 +12,7 @@ Event_before_tick_t = __next_event()
 Event_after_tick_t = __next_event()
 Event_on_draw_t = __next_event()
 Event_on_textures_load_t = __next_event()
+Event_on_chunk_generate = __next_event()
 
 Event_max_t = __next_event()
 
@@ -36,6 +37,9 @@ type of event :
         
     Event_on_textures_load_t:
         function : (Texture : dict[str,dict[str,py.Surface]])
+
+    Event_on_chunk_generate:
+        function : (players : list[Character], chunk : Chunk)
 """
 class Event:
     def __init__(self, type : Event_type, function : 'function'):
