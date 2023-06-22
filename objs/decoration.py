@@ -128,7 +128,12 @@ class plank_void(Obj):
         super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["plank_void"],HITBOX_50X50)
 
 
-
+class Pc(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["pc"],HITBOX_50X50)
+    def on_interact(self, world, user):
+        if user.pos.y >= self.pos.y + 50:
+            user.open_gui("Pc")
 
 
 class Sign(Obj):
@@ -200,3 +205,4 @@ registerObj(Bridge_middle)
 registerObj(Bridge_start)
 registerObj(Bridge_end)
 registerObj(Resurrection_stone_pedestal)
+registerObj(Pc)

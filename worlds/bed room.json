@@ -1212,6 +1212,26 @@
                         "id": "Stairs",
                         "toplayer": false,
                         "transparent": false
+                    },
+                    {
+                        "pos": [
+                            200,
+                            0
+                        ],
+                        "data": {},
+                        "hitbox": {
+                            "type": 0,
+                            "h": 50,
+                            "w": 50,
+                            "r": 0,
+                            "pos": [
+                                0,
+                                0
+                            ]
+                        },
+                        "id": "Pc",
+                        "toplayer": 0,
+                        "transparent": false
                     }
                 ],
                 "pos": [
