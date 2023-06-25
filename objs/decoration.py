@@ -206,3 +206,17 @@ registerObj(Bridge_start)
 registerObj(Bridge_end)
 registerObj(Resurrection_stone_pedestal)
 registerObj(Pc)
+
+
+
+class Cochon_spawner(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, False, Textures["other"]["couchon"],Hitbox(HITBOX_RECT_t,NULL_VEC,0, 100, 100))
+
+    def on_draw(self, world, has_been_drawn):
+        if not players[0].is_world_editor:
+            world.get_Chunk_from_pos(self.pos).objects.remove(self)
+            world.add_entity(Npcs["Couchon"](self.pos))
+
+    
+registerObj(Cochon_spawner)

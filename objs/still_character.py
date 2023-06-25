@@ -70,9 +70,20 @@ class Farine(Obj):
         if user.pos.x >= self.pos.x + 50:
             user.gui = guis["Farine_shop"](user)
 
+
+
+class Fisherman(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, False, Textures["other"]["fisherman"],Hitbox(HITBOX_RECT_t,NULL_VEC,0, 100, 100))
+
+    def on_interact(self, world, user):
+        user.open_gui("Fisherman_shop")
+
+
 registerObj(Snape)
 registerObj(Madre)
 registerObj(Farine)
 registerGui(Madre_gui)
 registerObj(Paolo)
 registerGui(Paolo_gui)
+registerObj(Fisherman)

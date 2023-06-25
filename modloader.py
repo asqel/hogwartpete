@@ -16,16 +16,15 @@ def load_mods():
 
                     else:
                         print(f"{path}/mods/{i}/mod_init.py is not a file")
-                        exit(1)
+                        continue
 
                 else:
                     print(f"{path}/mods/{i}/mod_init.py doesn' exists")
-                    exit(1)
+                    continue
 
             else:
                 print(f'{path}/mods/{i} is not a folder')
-                exit(1)
+                continue
 
     else:
         print(f'{path}/mods is not a folder')
-        exit(1)
