@@ -52,7 +52,7 @@ def save_world(w:"World"):
         for k in w.chuncks[i].keys():
             d["chunks"][i][k]=save_chunk(w.chuncks[i][k])
     with open(f"{path}/{w.name}.json","w") as f:
-        json.dump(d,f,indent=4)
+        json.dump(d,f)
     
 def load_vec(d):
     return Vec(d[0],d[1])
@@ -94,5 +94,5 @@ def load_world(name:str, mod = ""):
             x=int(i)
             y=int(k)
             w.get_Chunk_at(Vec(x,y))
-            w.chuncks[x][y]=load_chunk(d["chunks"][i][k],w)#here i,k because str
+            w.chuncks[x][y]=load_chunk(d["chunks"][i][k],w)#here i,k because str in json
     return w
