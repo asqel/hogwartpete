@@ -11,7 +11,6 @@ class Obj:
         self.toplayer = istop # object is under or above player and entities
         self.pos = Vec(x, y)
         self.hitbox = hitbox
-        self.transparent=False #si on peut passer a travvers ou pas
         self.data = ({} if data is None or not isinstance(data, dict) else data)
     
     def on_interact(self,world,user):

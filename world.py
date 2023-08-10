@@ -306,7 +306,7 @@ class World:
         #draw background objects
         for i in __bg_obj:
             p = i.pos + __offset
-            if -100 <= p.x < scr_w and -100 <= p.y < scr_h:
+            if -i.texture.get_width() <= p.x < scr_w and -i.texture.get_height() <= p.y < scr_h:
                 screen.blit(i.texture,tuple(p))
                 i.on_draw(self,True)
             else:
@@ -316,7 +316,7 @@ class World:
         for i in __objects:
             if not i.toplayer:
                 p = i.pos + __offset
-                if -150 <= p.x < scr_w and -150 <= p.y < scr_h:
+                if -i.texture.get_width() <= p.x < scr_w and -i.texture.get_height() <= p.y < scr_h:
                     screen.blit(i.texture,tuple(p))
                     i.on_draw(self,True)
                 else:
@@ -326,7 +326,7 @@ class World:
         for i in __dyn_obj:
             if not i.toplayer:
                 p = i.pos+__offset
-                if -100 <= p.x < scr_w and -100 <= p.y < scr_h:
+                if -i.texture.get_width() <= p.x < scr_w and -i.texture.get_height() <= p.y < scr_h:
                     screen.blit(i.texture,tuple(p))
                     i.on_draw(self,True)
                 else:
@@ -341,7 +341,7 @@ class World:
         #draw other players
         for i in __players:
             p = i.pos + __offset
-            if -50 <= p.x < scr_w and -50 <= p.y < scr_h and i.isvisible:
+            if -i.current_texture.get_width() <= p.x < scr_w and -i.current_texture.get_height() <= p.y < scr_h:
                 screen.blit(i.current_texture, tuple(p))
                 i.on_draw(self, True)
             else:
@@ -350,7 +350,7 @@ class World:
         #draw entities
         for i in __entities:
             p = i.pos + __offset
-            if -50 <= p.x < scr_w and -50 <= p.y < scr_h and i.isvisible:
+            if -i.current_texture.get_width() <= p.x < scr_w and -i.current_texture.get_height() <= p.y < scr_h:
                 screen.blit(i.current_texture, tuple(p + i.texture_pos))
                 i.on_draw(self, True)
             else:
@@ -360,7 +360,7 @@ class World:
         for i in __objects:
             if i.toplayer:
                 p = i.pos + __offset
-                if -100 <= p.x < scr_w and -100 <= p.y < scr_h:
+                if -i.texture.get_width() <= p.x < scr_w and -i.texture.get_height() <= p.y < scr_h:
                     screen.blit(i.texture,tuple(p))
                     i.on_draw(self,True)
                 else:
@@ -370,7 +370,7 @@ class World:
         for i in __dyn_obj:
             if i.toplayer:
                 p = i.pos + __offset
-                if -100 <= p.x < scr_w and -100 <= p.y < scr_h:
+                if -i.texture.get_width() <= p.x < scr_w and -i.texture.get_height() <= p.y < scr_h:
                     screen.blit(i.texture, tuple(p))
                     i.on_draw(self, True)
                 else:
@@ -473,7 +473,7 @@ class World:
         p = 0
         while p < len(__entities):
             if __entities[p].pv <= 0:
-                if __entities[p].die():
+                if __entities[p].die(self):
                     self.remove_entity(__entities[p])
                     __entities.pop(p)
                     continue

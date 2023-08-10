@@ -131,6 +131,7 @@ class Character:
             __chunks.extend(self.world.get_Chunk_at(Vec(x+i,y+k)) for k in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1))
         for i in __chunks:
             __objects.extend(i.objects)
+            __objects.extend(i.dyn_objects)
             __hitboxes.extend(i.hitboxes)
         for i in __objects:
             if i.hitbox and players[0].hitbox:
@@ -229,7 +230,7 @@ class Npc:
     
     def on_draw(self,world,has_been_drawn):
         ...
-    def die(self):
+    def die(self, world):
         return 1
     def tick(self,world):
         ...
@@ -257,7 +258,5 @@ for i in range(len(module_names)):
 
 for i in module_names:
     imp.import_module(f".{i}", __package__)
-
-
 
 

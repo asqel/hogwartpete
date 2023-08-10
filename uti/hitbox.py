@@ -28,6 +28,8 @@ class Hitbox:
         if not isinstance(other,Hitbox):
             print(f"ERROR: cant detect collision betwenn hitbox and {type(other).__name__}")
             exit(1)
+        if self == HITBOX_0x0 or other == HITBOX_0x0:
+            return 0
         if self.type==HITBOX_RECT_t:
             if other.type==HITBOX_RECT_t:
                 if self.height == self.width == 0 or other.height == other.width == 0  :

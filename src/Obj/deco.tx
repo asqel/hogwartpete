@@ -66,3 +66,14 @@
 96 112 16 32 50 100 $ death_pedestal_50x100
 96 128 16 16 50 10 $ death_pedestal_50x50
 80 112 16 32 50 100 $ resurrection_stone_pedestal
+
+
+0  160 16 16 50 50 $ kitchen_work_station_top
+
+0  176 16 16 50 50 $ kitchen_work_station_left_down
+16 176 16 16 50 50 $ kitchen_work_station_middle_down
+32 176 16 16 50 50 $ kitchen_work_station_right_down
+
+48 160 16 16 50 50 $ cavern_floor
+48 176 16 16 50 50 $ cavern_wall
+64 160 32 32 100 100 $ cavern_entrance

@@ -4,6 +4,7 @@ from objs import *
 import world as w
 import jsonizer as js
 from interface import *
+from items import *
 
 class Cat(Obj):
     def __init__(self, x:float, y:float) -> None:
@@ -46,6 +47,8 @@ class Cat_gui(Gui):
             if i.type == py.KEYDOWN:
                 if i.key == py.K_e:
                     self.player.gui = None
+                    if not self.player.has_item("goggles_of_truth"):
+                        self.player.add_item(items["goggles_of_truth"](1))
 
 registerObj(Cat)
 registerGui(Cat_gui)

@@ -15,7 +15,9 @@ class Death(Npc):
                         HITBOX_50X50
                         )
         self.dir="d"
-        
+    def die(self, world):
+        world.spawn_item(items["Elder_wand"](1),self.pos)
+        return 1
     def go_to_player(self,Player:Character, world):
         v=Player.pos-self.pos
         if v.squareLength()<=10000**2 and v.squareLength()>=150**2:
@@ -24,10 +26,10 @@ class Death(Npc):
             else:
                 self.pos-=v*self.speed/150
         if v.squareLength()<=150**2:
-            if world.get_Obj(self.pos-v*self.speed/150).id=="Air":
-                self.pos-=v*self.speed/150
+            if world.get_Obj(self.pos-v*self.speed/50).id=="Air":
+                self.pos-=v*self.speed/50
             else:
-                self.pos+=v*self.speed/150
+                self.pos+=v*self.speed/50
         v=v.normalize()
         racine=sqrt(2)/2
         if racine<v.x<=1 and -racine<=v.y<=racine:
@@ -72,6 +74,32 @@ class Death(Npc):
         random=randint(0,225)
         if random==75:
             self.attack(world)
+        else:
+            if not(players[0].pos.x - 15 <= self.pos.x <= players[0].pos.x + 15):
+                if players[0].pos.y - 15 <= self.pos.y <= players[0].pos.y + 15:
+                    if randint(0,20) == 1:
+                        if self.dir == "r":
+                            shield = Npcs["Protego"](self.pos + (50, -10))
+                            shield.dir = self.dir
+                            shield.hitbox = Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 50, 70)
+                            world.add_entity(shield)
 
-
+                        elif self.dir == "l":
+                            shield = Npcs["Protego"](self.pos + (-50, -10))
+                            shield.dir = self.dir
+                            shield.hitbox = Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 50, 70)
+                            world.add_entity(shield)
+            elif players[0].pos.x - 15 <= self.pos.x <= players[0].pos.x + 15:
+                if not(players[0].pos.y - 15 <= self.pos.y <= players[0].pos.y + 15):
+                    if randint(0,40) == 1:
+                        if players[0].dir == "u":
+                            shield = Npcs["Protego"](self.pos + (-10, -50))
+                            shield.dir = self.dir
+                            shield.hitbox = Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 70, 50)
+                            world.add_entity(shield)
+                        elif players[0].dir == "d":
+                            shield = Npcs["Protego"](self.pos + (-10, 50))
+                            shield.dir = self.dir
+                            shield.hitbox = Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 70, 50)
+                            world.add_entity(shield)
 registerNpc(Death)

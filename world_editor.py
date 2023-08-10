@@ -200,6 +200,9 @@ starting_world.has_to_collide=True
 players.append(Character("","","",None,None,[NOTHING_TEXTURE for i in range(4)],None,0,0,starting_world))
 players[0].is_world_editor = True
 obj_idx=0
+
+
+
 main()
 """
 au demarrage dans console le nom du monde est demander 

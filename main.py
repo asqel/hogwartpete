@@ -97,21 +97,24 @@ def server_thread():
                     players[0].inventaire[players[0].inventaire_idx].on_use(players[0].world, players[0])
                 elif i.key == K_ESCAPE:
                     players[0].gui = guis["Escape_gui"](players[0])
-
                 elif i.key ==K_e:
                     if not players[0].gui:
                         
                         if players[0].dir == 'u':
                             players[0].world.get_Obj(players[0].pos+(25,-10)).on_interact(players[0].world,players[0])
+                            players[0].world.get_dyn_Obj(players[0].pos+(25,-10)).on_interact(players[0].world,players[0])
 
                         if players[0].dir == 'r':
                             players[0].world.get_Obj(players[0].pos+(10+50, 25)).on_interact(players[0].world,players[0])
+                            players[0].world.get_dyn_Obj(players[0].pos+(10+50, 25)).on_interact(players[0].world,players[0])
 
                         if players[0].dir == 'd':
                             players[0].world.get_Obj(players[0].pos+(25,50+10)).on_interact(players[0].world,players[0])
+                            players[0].world.get_dyn_Obj(players[0].pos+(25,50+10)).on_interact(players[0].world,players[0])
                            
                         if players[0].dir == 'l':
                             players[0].world.get_Obj(players[0].pos+(-10,25)).on_interact(players[0].world,players[0])
+                            players[0].world.get_dyn_Obj(players[0].pos+(-10,25)).on_interact(players[0].world,players[0])
             
             elif i.type == py.KEYUP:
                 if i.key == py.K_LCTRL:
@@ -180,7 +183,9 @@ def draw_inventory():
             screen.blit(mc_font.render(str(players[0].inventaire[i].quantity),False,(0,0,0)), (x+46*(i+1)-25, y+27))
         if players[0].inventaire_idx == i:
             py.draw.rect(screen, (255,0,0), py.Rect(x+46*(i+1)-46, y+45,40,5))
-
+    if players[0].inventaire[players[0].inventaire_idx].id != "Air":
+        text_name = mc_font.render(str(players[0].inventaire[players[0].inventaire_idx].id), False, (0,0,0))
+        screen.blit(text_name, (-text_name.get_width()//2+ screen.get_width()//2,60))
 
 
 

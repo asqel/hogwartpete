@@ -151,7 +151,10 @@ class Clay_statue(Obj):
         super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["clay_statue"],Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 50, 100))
 
     def on_interact(self, world, user):
-        user.open_gui("Death_statue")
+        if user.has_item("Resurrection_stone") and user.has_item("Elder_wand") and user.has_item("Cloak_of_invisibility"):
+            user.open_gui("game_ended")
+        else:
+            user.open_gui("Death_statue")
 class Bridge_middle(Obj):
     def __init__(self, x:float, y:float) -> None:
         super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["bridge_middle"],HITBOX_50X50)
@@ -175,6 +178,49 @@ class Resurrection_stone_pedestal(Obj):
                 self.texture = Textures["Obj"]["death_pedestal_50x100"]
 
 
+class Kitchen_work_station_left_top(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["kitchen_work_station_top"],HITBOX_50X50)
+
+class Kitchen_work_station_middle_top(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["kitchen_work_station_top"],HITBOX_50X50)
+
+class Kitchen_work_station_right_top(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["kitchen_work_station_top"],HITBOX_50X50)
+
+class Kitchen_work_station_left_down(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["kitchen_work_station_left_down"],HITBOX_0x0)
+
+class Kitchen_work_station_middle_down(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["kitchen_work_station_middle_down"],HITBOX_0x0)
+
+class Kitchen_work_station_right_down(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["kitchen_work_station_right_down"],HITBOX_0x0)
+
+class Cavern_floor(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["cavern_floor"],HITBOX_50X50)
+
+
+class Cavern_entrance(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["cavern_entrance"],Hitbox(HITBOX_RECT_t, Vec(0,0), 0, 100, 100))
+
+    def on_interact(self, world, user):
+        if user.pos.y >= self.pos.y + 100:
+            w = user.world
+            user.world = js.load_world("cavern")
+            user.world.old_world = w
+            user.pos = Vec(50,50)
+            user.world.add_entity(Npcs["Death"](Vec(616,616)))
+class Cavern_wall(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["cavern_wall"],HITBOX_50X50)
 
 registerObj(Wood)
 registerObj(Wall)
@@ -204,7 +250,15 @@ registerObj(Bridge_start)
 registerObj(Bridge_end)
 registerObj(Resurrection_stone_pedestal)
 registerObj(Pc)
-
+registerObj(Kitchen_work_station_left_top)
+registerObj(Kitchen_work_station_middle_top)
+registerObj(Kitchen_work_station_right_top)
+registerObj(Kitchen_work_station_left_down)
+registerObj(Kitchen_work_station_middle_down)
+registerObj(Kitchen_work_station_right_down)
+registerObj(Cavern_floor)
+registerObj(Cavern_entrance)
+registerObj(Cavern_wall)
 
 
 class Cochon_spawner(Obj):

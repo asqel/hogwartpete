@@ -63,7 +63,7 @@ class Bullet(Npc):
                 hit2 = i.hitbox.copy()
                 hit2.pos += i.pos
                 if (hit1.iscolliding(hit2)):
-                    i.pv -= 50
+                    i.pv -= 10
                     self.pv = 0
                     return 0
                 
@@ -71,7 +71,7 @@ class Bullet(Npc):
             hit2 = players[0].hitbox.copy()
             hit2.pos += players[0].pos
             if hit1.iscolliding(hit2):
-                players[0].pv -= 50
+                players[0].pv -= 10
                 self.pv = 0 
         
         
