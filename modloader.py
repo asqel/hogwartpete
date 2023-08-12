@@ -1,7 +1,9 @@
 import os 
 import importlib as imp
+from importlib.machinery import SourceFileLoader
 
-path = os.path.dirname(os.path.abspath(__file__))
+
+path = os.path.abspath(".")
 
 mods = []
 
@@ -11,7 +13,8 @@ def load_mods():
             if os.path.isdir(f'{path}/mods/{i}'):
                 if os.path.exists(f'{path}/mods/{i}/mod_init.py'):
                     if not os.path.isdir(f'{path}/mods/{i}/mod_init.py'):
-                        imp.import_module(f"mods.{i}.mod_init",__package__)
+                        SourceFileLoader(f"{i}",f"{path}/mods/{i}/mod_init.py").load_module()
+                        #imp.import_module(f"mods.{i}.mod_init",package=None)
                         mods.append(i)
 
                     else:

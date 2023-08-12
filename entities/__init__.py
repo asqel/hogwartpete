@@ -39,6 +39,8 @@ class Character:
         self.gui :Gui = None
         self.money = 0
         self.is_world_editor = False
+        self.day_count = 0
+        self.tick_count = 0
 
     def upleft(self):
         if self.dir!="u":
@@ -127,12 +129,14 @@ class Character:
         __chunks:list=[]
         __objects:list=[]
         __hitboxes:list[Hitbox]=[]
+        __enitites:list[Npc] =[]
         for i in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1):
             __chunks.extend(self.world.get_Chunk_at(Vec(x+i,y+k)) for k in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1))
         for i in __chunks:
             __objects.extend(i.objects)
             __objects.extend(i.dyn_objects)
             __hitboxes.extend(i.hitboxes)
+            __enitites.extend(i.entities)
         for i in __objects:
             if i.hitbox and players[0].hitbox:
                 hit1=i.hitbox.copy()
@@ -164,6 +168,30 @@ class Character:
                     if dir=="r":
                         self.pos-=Vec(2,0)*self.speed
                     return 0 
+        for i in __enitites:
+            if i.hitbox and players[0].hitbox and i.name != "Item_entity":
+                hit2 = players[0].hitbox.copy()
+                hit2.pos += players[0].pos
+                hit1 = i.hitbox.copy()
+                hit1.pos += i.pos
+                if hit1.iscolliding(hit2):
+                    if dir=="d":
+                        v = self.pos-Vec(0,2)*self.speed
+                        if self.world.get_Obj(v).id == "Air":
+                            self.pos = v
+                    if dir=="u":
+                        v = self.pos - Vec(0,-2)*self.speed
+                        if self.world.get_Obj(v).id == "Air":
+                            self.pos = v
+                    if dir=="l":
+                        v = self.pos - Vec(-2,0)*self.speed
+                        if self.world.get_Obj(v).id == "Air":
+                            self.pos = v
+                    if dir=="r":
+                        v = self.pos - Vec(2,0)*self.speed
+                        if self.world.get_Obj(v).id == "Air":
+                             self.pos = v
+
     def add_item(self, item : Item):
         """
         try to add the item to first finded slot 

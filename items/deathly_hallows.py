@@ -4,19 +4,19 @@ from items import *
 
 class Resurrection_stone(Item):
     def __init__(self, quantity) -> None:
-        super().__init__(self.__class__.__name__, 1, Textures["item"]["resurrection_stone"], quantity)
+        super().__init__(self.__class__.__name__, 1, Textures["item"]["resurrection_stone"], quantity, "Resurrection stone")
 
 class Elder_wand(Item):
     def __init__(self, quantity) -> None:
-        super().__init__(self.__class__.__name__, 1, Textures["item"]["elder_wand"], quantity)
+        super().__init__(self.__class__.__name__, 1, Textures["item"]["elder_wand"], quantity, "Elder wand")
 
 class Cloak_of_invisibility(Item):
     def __init__(self, quantity) -> None:
-        super().__init__(self.__class__.__name__, 1, Textures["item"]["cloak_of_invisibility"], quantity)
+        super().__init__(self.__class__.__name__, 1, Textures["item"]["cloak_of_invisibility"], quantity, "Cloak of invisibility")
 
 class goggles_of_truth(Item):
     def __init__(self, quantity) -> None:
-        super().__init__(self.__class__.__name__, 1, Textures["item"]["goggles_of_truth"], quantity)
+        super().__init__(self.__class__.__name__, 1, Textures["item"]["goggles_of_truth"], quantity, "goggles of truth")
 
 
 registerItem(Resurrection_stone)

@@ -3,7 +3,7 @@ from uti import *
 import entities as en
 class Super_moule(Item):
     def __init__(self, quantity) -> None:
-        super().__init__(self.__class__.__name__, 1, Textures["other"]["moule"], quantity)
+        super().__init__(self.__class__.__name__, 1, Textures["other"]["moule"], quantity, "Super moule")
         self.entity = None
 
     def on_use(self, world, user):

@@ -1,0 +1,12 @@
+supported keys:
+    a-z
+    0-9
+    m1 (left click)
+    m2 (middle click)
+    m3 (right click)
+    lctrl
+    rctrl
+    lshift
+    rshift
+    tab
+    space

@@ -59,6 +59,9 @@ class Bullet(Npc):
         hit1 = self.hitbox.copy()
         hit1.pos += self.pos
         for i in entities:
+            if type(i) == Npcs["Protego"]:
+                if i.sender == self.sender:
+                    continue
             if i.hitbox and i != self and i != self.sender:
                 hit2 = i.hitbox.copy()
                 hit2.pos += i.pos

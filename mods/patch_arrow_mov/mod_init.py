@@ -1,7 +1,6 @@
 from events import *
 import pygame as py
 from uti import* 
-
 def arrow_key_move(players, pygame_events : py.event.Event):
     pushed_keys = py.key.get_pressed()
     if not players[0].gui:

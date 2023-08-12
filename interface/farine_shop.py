@@ -57,11 +57,11 @@ class Farine_shop(Gui):
         x = (screen.get_width() - Textures["other"]["text_box"].get_width())/2
         y = screen.get_height() -Textures["other"]["text_box"].get_height() - 20 
         screen.blit(Textures["other"]["text_box"],(x,y))
-        screen.blit(mc_font.render("le chef Farine", 0, (0,0,0)), (x,y+30-15-30-5))
-        screen.blit(mc_font.render("    taboulé           5 €",0,(0,255,0)if self.idx == 0 and self.player.money >=5 else((255,0,0)if self.idx == 0 else (0,0,0))), (x+30,y+30-15))
-        screen.blit(mc_font.render("    couscous          5 $",0,(0,255,0)if self.idx == 1 and self.player.money >=5 else((255,0,0)if self.idx == 1 else (0,0,0))), (x+30,y+60-15))
-        screen.blit(mc_font.render("    saucisses         5 £",0,(0,255,0)if self.idx == 2 and self.player.money >=5 else((255,0,0)if self.idx == 2 else (0,0,0))), (x+30,y+90-15))                    
-        screen.blit(mc_font.render("            exit",0,(0,255,0)if self.idx == 3 else (0,0,0)), (x+30,y+90-15+30))                    
+        screen.blit(main_font.render("le chef Farine", 0, (0,0,0)), (x,y+30-15-30-5))
+        screen.blit(main_font.render("    taboulé           5 €",0,(0,255,0)if self.idx == 0 and self.player.money >=5 else((255,0,0)if self.idx == 0 else (0,0,0))), (x+30,y+30-15))
+        screen.blit(main_font.render("    couscous          5 $",0,(0,255,0)if self.idx == 1 and self.player.money >=5 else((255,0,0)if self.idx == 1 else (0,0,0))), (x+30,y+60-15))
+        screen.blit(main_font.render("    saucisses         5 £",0,(0,255,0)if self.idx == 2 and self.player.money >=5 else((255,0,0)if self.idx == 2 else (0,0,0))), (x+30,y+90-15))                    
+        screen.blit(main_font.render("            exit",0,(0,255,0)if self.idx == 3 else (0,0,0)), (x+30,y+90-15+30))                    
 
         screen.blit(Textures["item"]["taboule"], (x+30,y+30-15))
         screen.blit(Textures["item"]["couscous"], (x+30,y+60-15))
@@ -86,8 +86,8 @@ class Le_bord(Gui):
         x = (screen.get_width() - Textures["other"]["text_box"].get_width())/2
         y = screen.get_height() -Textures["other"]["text_box"].get_height() - 20 
         screen.blit(Textures["other"]["text_box"],(x,y))
-        screen.blit(mc_font.render("hop hop hop",0,(0,0,0)), (x+30,y+60-15))
-        screen.blit(mc_font.render("pas plus haut qu'le bord !",0,(0,0,0)), (x+30,y+90-15))                    
+        screen.blit(main_font.render("hop hop hop",0,(0,0,0)), (x+30,y+60-15))
+        screen.blit(main_font.render("pas plus haut qu'le bord !",0,(0,0,0)), (x+30,y+90-15))                    
 
 
 

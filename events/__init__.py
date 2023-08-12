@@ -13,16 +13,18 @@ Event_after_tick_t = __next_event()
 Event_on_draw_t = __next_event()
 Event_on_textures_load_t = __next_event()
 Event_on_chunk_generate = __next_event()
+Event_on_world_chunk = __next_event()
 
 Event_max_t = __next_event()
 
-
+Key_event_mouse = 0
+Key_event_key = 0
 
 
 
 
 Event_type = int
-
+Key_event_type = int
 
 """
 type of event :
@@ -40,14 +42,18 @@ type of event :
 
     Event_on_chunk_generate:
         function : (players : list[Character], chunk : Chunk)
+
+    Event_on_world_load:
+        function : (players : list[Character], world)
 """
 class Event:
     def __init__(self, type : Event_type, function : 'function'):
         self.type = type
         self.function = function
-        
-        
+
+
 events :dict[int,list[Event]] ={i : [] for i in range(Event_max_t)} # {type:[events]}
+
 
 def registerEvent(event : Event):
     global events

@@ -9,16 +9,15 @@ class Game_over(Gui):
         
         
     def tick(self, events: list[py.event.Event]):
-        
         for i in events:
             if i.type == py.KEYDOWN:
-                if i.key == py.K_e:
-                    exit(1)
+                if i.key == py.K_ESCAPE:
+                    return "end_game"
                     
             
     def draw(self, screen):
         screen.fill((0,0,0))
-        screen.blit(mc_font.render("Vous avez perdu", False, (255,255,255)), (screen.get_width()//2, screen.get_height()//2))
+        screen.blit(main_font.render("Vous avez perdu", False, (255,255,255)), (screen.get_width()//2, screen.get_height()//2))
         
     
 registerGui(Game_over)

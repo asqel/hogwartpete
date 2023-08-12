@@ -51,10 +51,10 @@ class Choose_house(Gui):
         x = (screen.get_width() - Textures["other"]["text_box"].get_width())/2
         y = screen.get_height() -Textures["other"]["text_box"].get_height() - 20 
         screen.blit(Textures["other"]["text_box"],(x,y))
-        screen.blit(mc_font.render("pouffsoufle",0,(0,255,0)if self.house_idx == 0 else (0,0,0)), (x+30,y+30-15))
-        screen.blit(mc_font.render("griffondor",0,(0,255,0)if self.house_idx == 1 else (0,0,0)), (x+30,y+60-15))
-        screen.blit(mc_font.render("serdaigle",0,(0,255,0)if self.house_idx == 2 else (0,0,0)), (x+30,y+90-15))                    
-        screen.blit(mc_font.render("serpentard",0,(0,255,0)if self.house_idx == 3 else (0,0,0)), (x+30,y+90-15+30))                    
+        screen.blit(main_font.render("pouffsoufle",0,(0,255,0)if self.house_idx == 0 else (0,0,0)), (x+30,y+30-15))
+        screen.blit(main_font.render("griffondor",0,(0,255,0)if self.house_idx == 1 else (0,0,0)), (x+30,y+60-15))
+        screen.blit(main_font.render("serdaigle",0,(0,255,0)if self.house_idx == 2 else (0,0,0)), (x+30,y+90-15))                    
+        screen.blit(main_font.render("serpentard",0,(0,255,0)if self.house_idx == 3 else (0,0,0)), (x+30,y+90-15+30))                    
         
     
     

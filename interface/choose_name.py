@@ -47,9 +47,9 @@ class Choose_name(Gui):
         x = (screen.get_width() - Textures["other"]["text_box"].get_width())/2
         y = screen.get_height() -Textures["other"]["text_box"].get_height() - 20 
         screen.blit(Textures["other"]["text_box"],(x,y))
-        screen.blit(mc_font.render(f"nom : {self.player_name}",0,(0,255,0)if self.idx == 0 else (0,0,0)), (x+30,y+30))
-        screen.blit(mc_font.render(f"prenom : {self.player_surname}",0,(0,255,0)if self.idx == 1 else (0,0,0)), (x+30,y+60))
-        screen.blit(mc_font.render("            confirm",0,(0,255,0)if self.idx == 2 else (0,0,0)), (x+30,y+90))                    
+        screen.blit(main_font.render(f"nom : {self.player_name}",0,(0,255,0)if self.idx == 0 else (0,0,0)), (x+30,y+30))
+        screen.blit(main_font.render(f"prenom : {self.player_surname}",0,(0,255,0)if self.idx == 1 else (0,0,0)), (x+30,y+60))
+        screen.blit(main_font.render("            confirm",0,(0,255,0)if self.idx == 2 else (0,0,0)), (x+30,y+90))                    
         
     
     

@@ -12,10 +12,10 @@ class Madre_gui(Gui):
         x = (screen.get_width() - Textures["other"]["text_box"].get_width())/2
         y = screen.get_height() -Textures["other"]["text_box"].get_height() - 20 
         screen.blit(Textures["other"]["text_box"],(x,y))
-        screen.blit(mc_font.render("Madre", 0, (0,0,0)), (x,y+30-15-30-5))
-        screen.blit(mc_font.render("tiens prends ta baguette,",0,(0,0,0)), (x+30,y+30-10-5))
-        screen.blit(mc_font.render("fait attention dehors",0,(0,0,0)), (x+30,y+60-10-5))
-        screen.blit(mc_font.render("il y a des mange-morts ",0,(0,0,0)), (x+30,y+90-10-5))
+        screen.blit(main_font.render("Madre", 0, (0,0,0)), (x,y+30-15-30-5))
+        screen.blit(main_font.render("tiens prends ta baguette,",0,(0,0,0)), (x+30,y+30-10-5))
+        screen.blit(main_font.render("fait attention dehors",0,(0,0,0)), (x+30,y+60-10-5))
+        screen.blit(main_font.render("il y a des mange-morts ",0,(0,0,0)), (x+30,y+90-10-5))
         
     def tick(self, events:list[py.event.Event]):
         for i in events:
@@ -52,10 +52,10 @@ class Paolo_gui(Gui):
         x = (screen.get_width() - Textures["other"]["text_box"].get_width())/2
         y = screen.get_height() -Textures["other"]["text_box"].get_height() - 20 
         screen.blit(Textures["other"]["text_box"],(x,y))
-        screen.blit(mc_font.render("Connais-tu ProfanOS?",0,(0,0,0)), (x+30,y+30-10-5))
-        screen.blit(mc_font.render("Reste pas sur Windaube",0,(0,0,0)), (x+30,y+60-10-5))
-        screen.blit(mc_font.render("Switch to Linux, ou ProfanOS",0,(0,0,0)), (x+30,y+90-10-5))
-        screen.blit(mc_font.render("https://github.com/elydre/profanOS",0,(0,0,0)), (x+30,y+90-10+30-5))                    
+        screen.blit(main_font.render("Connais-tu ProfanOS?",0,(0,0,0)), (x+30,y+30-10-5))
+        screen.blit(main_font.render("Reste pas sur Windaube",0,(0,0,0)), (x+30,y+60-10-5))
+        screen.blit(main_font.render("Switch to Linux, ou ProfanOS",0,(0,0,0)), (x+30,y+90-10-5))
+        screen.blit(main_font.render("https://github.com/elydre/profanOS",0,(0,0,0)), (x+30,y+90-10+30-5))                    
         
     def tick(self, events:list[py.event.Event]):
         for i in events:

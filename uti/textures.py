@@ -1,14 +1,19 @@
 import pygame as py
 import os
 
-path=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+path=os.path.abspath(".")
 
-folders = list(os.listdir(f"{path}/src"))
+folders = list(os.listdir(f"{path}/assests"))
 
 Textures:dict[str,dict[str,py.Surface]]={i:{} for i in folders}
 
 py.display.init()
-screen = py.display.set_mode((640,480),py.RESIZABLE)
+screen_info = py.display.Info()
+screen_width = screen_info.current_w
+screen_height = screen_info.current_h
+display_screen = py.display.set_mode((500,500),py.RESIZABLE)
+screen = py.Surface((1280,720))
+py.display.set_allow_screensaver(True)
 py.display.set_caption("Hogwartpété")
 
 
@@ -33,15 +38,15 @@ def make_texture(folder:str,tx_file:str):
     global Textures
     png_file=tx_file[:-3]+".png"
     
-    if not os.path.exists(f"{path}/src/{folder}/{png_file}"):
-        print(f"ERROR {path}/src/{folder}/{tx_file} doesent have a matching .png file")
+    if not os.path.exists(f"{path}/assests/{folder}/{png_file}"):
+        print(f"ERROR {path}/assests/{folder}/{tx_file} doesent have a matching .png file")
         exit(1)
-    if not os.path.isfile(f"{path}/src/{folder}/{png_file}"):
-        print(f"ERROR {path}/src/{folder}/{tx_file} doesent have a matching .png file")
+    if not os.path.isfile(f"{path}/assests/{folder}/{png_file}"):
+        print(f"ERROR {path}/assests/{folder}/{tx_file} doesent have a matching .png file")
         exit(1)
         
     images:list[list[str|int]]=[] #name x y w h resize_w resize_h
-    with open(f"{path}/src/{folder}/{tx_file}","r") as f:
+    with open(f"{path}/assests/{folder}/{tx_file}","r") as f:
         lines=f.read().split('\n')
         for i in range(len(lines)):
             lines[i]=lines[i].rstrip('\n')
@@ -50,7 +55,7 @@ def make_texture(folder:str,tx_file:str):
         for i in lines:
             if not i.startswith("-"):
                 if " $ " not in i:
-                    print(f"ERROR in {path}/src/{folder}/{tx_file} missing separator ' $ '")
+                    print(f"ERROR in {path}/assests/{folder}/{tx_file} missing separator ' $ '")
                     exit(1)
                 name=i.split(" $ ")[1].rstrip()
                 numbers=i.split(' $ ')[0].split(" ")
@@ -60,7 +65,7 @@ def make_texture(folder:str,tx_file:str):
                     numbers[i]=numbers[i].rstrip()
                 for i in range(6):
                     if not numbers[i].isdigit():
-                        print(f"ERROR in {path}/src/{folder}/{tx_file} values not number")
+                        print(f"ERROR in {path}/assests/{folder}/{tx_file} values not number")
                         exit(1)
                 images.append([name,
                     int(numbers[0]),
@@ -73,18 +78,17 @@ def make_texture(folder:str,tx_file:str):
     for i in images:
         if folder!="":
             if i[0] in Textures[folder].keys():    
-                print(f"ERROR in textures redefinition of texture in {path}/src/{folder}/{tx_file}")
+                print(f"ERROR in textures redefinition of texture in {path}/assests/{folder}/{tx_file}")
                 exit(1)
-            to_cut=py.image.load(f'{path}/src/{folder}/{png_file}')
+            to_cut=py.image.load(f'{path}/assests/{folder}/{png_file}')
             Textures[folder][i[0]]=py.transform.scale(cut_image(to_cut,i[1],i[2],i[3],i[4]),(i[5],i[6]))
             continue
-        to_cut=py.image.load(f'{path}/src/{folder}/{png_file}')
+        to_cut=py.image.load(f'{path}/assests/{folder}/{png_file}')
         Textures[folder][i[0]]=py.transform.scale(cut_image(to_cut,i[1],i[2],i[3],i[4]),(i[5],i[6]))
-
 for i in folders:
-    if os.path.isdir(f"{path}/src/{i}"):
+    if os.path.isdir(f"{path}/assests/{i}"):
         if i not in ["tiles_animation","not_texture"]:
-            for k in os.listdir(f"{path}/src/{i}"):
+            for k in os.listdir(f"{path}/assests/{i}"):
                 if k.endswith(".tx"):
                     make_texture(i,k)
         else:...

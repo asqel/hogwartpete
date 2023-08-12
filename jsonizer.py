@@ -2,10 +2,11 @@ import json
 from world import *
 from objs import *
 from uti import *
+from events import *
 import os
 
-path=os.path.dirname(os.path.abspath(__file__))+"/worlds"
-dir_path =os.path.dirname(os.path.abspath(__file__))
+path=os.path.abspath(".")+"/worlds"
+dir_path =os.path.abspath(".")
 
 def save_vec(pos:Vec):
     return (pos.x,pos.y)
@@ -122,4 +123,6 @@ def load_world(name:str, mod = ""):
             y=int(k)
             w.get_Chunk_at(Vec(x,y))
             w.chuncks[x][y]=load_chunk(d["chunks"][i][k],w)#here i,k because str in json
+    for i in events[Event_on_world_chunk]:
+        i.function(players, w)
     return w

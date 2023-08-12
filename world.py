@@ -7,7 +7,7 @@ from events import *
 
 #in pixel (its a square)
 CHUNK_SIZE = 1000
-show_hitbox = True
+show_hitbox = False
 
 class Chunk:
     def __init__(self, chunk_pos : 'Vec', world : 'World') -> None:
@@ -395,52 +395,6 @@ class World:
                 py.draw.line(screen, (255, 0, 0), tuple(corn[0] + __offset), tuple(corn[2] + __offset))
                 py.draw.line(screen, (255, 0, 0), tuple(corn[1] + __offset), tuple(corn[3] + __offset))
 
-    def resolve_collision(self):
-        """
-        compute collision 
-        """
-        x=(players[0].pos//CHUNK_SIZE).x
-        y=(players[0].pos//CHUNK_SIZE).y
-        __chunks : list[Chunk] = []
-        __objects : list[Obj] = []
-        __entities : list[Npc] = []
-        __hitboxes : list[Hitbox] = []
-        __dyn_obj : list[Dynamic_Obj] = []
-        for i in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1):
-            __chunks.extend(self.get_Chunk_at(Vec(x + i, y + k)) for k in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1))
-        for i in __chunks:
-            __objects.extend(i.objects)
-            __entities.extend(i.entities)
-            __hitboxes.extend(i.hitboxes)
-            __dyn_obj.extend(i.dyn_objects)
-        for i in __entities:
-            if i.hitbox and i.collide_player:
-                if players[0].hitbox:
-                    hit1 = i.hitbox.copy()
-                    hit1.pos += i.pos
-                    hit2 = players[0].hitbox.copy()
-                    hit2.pos += players[0].pos
-                    if hit1.iscolliding(hit2):
-                        v = ( i.pos - players[0].pos )
-                        if v.len() : 
-                            v = v / v.len()  
-                        else:
-                            v = NULL_VEC
-                        players[0].pos -= v * 2 * players[0].speed
-                        i.pos += v * 2 * players[0].speed
-                #for k in __objects:
-                #    if k.hitbox : 
-                #        hit1 = i.hitbox.copy()
-                #        hit1.pos += i.pos
-                #        hit2 = k.hitbox.copy()
-                #        hit2.pos += k.pos
-                #        if hit1.iscolliding(hit2):
-                #            v = ( i.pos - k.pos )
-                #            v = v.normalize()
-                #            i.pos += v* 2 * i.speed                            
-
-
-            
     def update(self) -> int :
         """
         called each game tick so ~150 times a second
@@ -486,8 +440,6 @@ class World:
         for i in __dyn_objs:
             i.tick(self)
 
-        if self.has_to_collide:
-            self.resolve_collision()
 
         self.has_to_collide=False
 

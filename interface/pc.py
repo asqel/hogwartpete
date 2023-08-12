@@ -23,10 +23,10 @@ class Pc(Gui):
         screen.blit(Textures["other"]["text_box"],(x,y))
         
 
-        screen.blit(mc_font.render("Vous ne reconnaissez pas",0,(0,0,0)), (x+30-6,y+30-10-10))
-        screen.blit(mc_font.render("l'OS quelqu'un a du le",0,(0,0,0)), (x+30-6,y+60-10-10))
-        screen.blit(mc_font.render("changer mais vous le",0,(0,0,0)), (x+30-6,y+90-10-10))
-        screen.blit(mc_font.render("trouvez pas mal.",0,(0,0,0)), (x+30-6,y+120-10-10))
+        screen.blit(main_font.render("Vous ne reconnaissez pas",0,(0,0,0)), (x+30-6,y+30-10-10))
+        screen.blit(main_font.render("l'OS quelqu'un a du le",0,(0,0,0)), (x+30-6,y+60-10-10))
+        screen.blit(main_font.render("changer mais vous le",0,(0,0,0)), (x+30-6,y+90-10-10))
+        screen.blit(main_font.render("trouvez pas mal.",0,(0,0,0)), (x+30-6,y+120-10-10))
         
     
 registerGui(Pc)

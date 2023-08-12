@@ -37,10 +37,10 @@ class Cat_gui(Gui):
         x = (screen.get_width() - Textures["other"]["text_box"].get_width())/2
         y = screen.get_height() -Textures["other"]["text_box"].get_height() - 20 
         screen.blit(Textures["other"]["text_box"],(x,y))
-        screen.blit(mc_font.render("Miaou Miaou Miaou Miaou Miaou,",0,(0,0,0)), (x+30,y+30-10-5))
-        screen.blit(mc_font.render("Miaou Miaou Miaou Miaou Miaou",0,(0,0,0)), (x+30,y+60-10-5))
-        screen.blit(mc_font.render("Miaou Miaou Miaou Miaou Miaou",0,(0,0,0)), (x+30,y+90-10-5))
-        screen.blit(mc_font.render("Miaou Miaou Miaou Miaou Miaou",0,(0,0,0)), (x+30,y+90-10+30-5))
+        screen.blit(main_font.render("Miaou Miaou Miaou Miaou Miaou,",0,(0,0,0)), (x+30,y+30-10-5))
+        screen.blit(main_font.render("Miaou Miaou Miaou Miaou Miaou",0,(0,0,0)), (x+30,y+60-10-5))
+        screen.blit(main_font.render("Miaou Miaou Miaou Miaou Miaou",0,(0,0,0)), (x+30,y+90-10-5))
+        screen.blit(main_font.render("Miaou Miaou Miaou Miaou Miaou",0,(0,0,0)), (x+30,y+90-10+30-5))
     
     def tick(self, events: list[py.event.Event]):
         for i in events:

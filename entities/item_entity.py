@@ -22,6 +22,8 @@ class Item_entity(Npc):
         self.pick_up = 150
         
     def tick(self, world :World ):
+        if world.get_Obj(self.pos + (15, 15)).id != "Air":
+            self.pos += (players[0].pos - self.pos).normalize()*50
         if self.pick_up > 0:
             self.pick_up -= 1
             

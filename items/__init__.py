@@ -3,12 +3,13 @@ import importlib as imp
 import os
 
 class Item:
-    def __init__(self, id : str, max_stack : int, texture : py.Surface, quantity : int) -> None:
+    def __init__(self, id : str, max_stack : int, texture : py.Surface, quantity : int, display_name = None) -> None:
         self.max_stack=max_stack
         self.id=id
         self.texture=texture
         self.quantity=quantity
         self.data = {}
+        self.display_name = display_name
     
     def on_use(self, world, user):
         ...

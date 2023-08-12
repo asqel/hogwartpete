@@ -4,7 +4,7 @@ from uti import *
 
 class Couscous(Item):
     def __init__(self, quantity) -> None:
-        super().__init__(self.__class__.__name__, 2, Textures["item"]["couscous"], quantity)
+        super().__init__(self.__class__.__name__, 2, Textures["item"]["couscous"], quantity, "Couscous")
     def on_use(self, world, user):
         self.quantity -= 1
         user.pv += 10
@@ -12,7 +12,7 @@ class Couscous(Item):
 
 class Sausage(Item):
     def __init__(self, quantity) -> None:
-        super().__init__(self.__class__.__name__, 5, Textures["item"]["saucisses"], quantity)
+        super().__init__(self.__class__.__name__, 5, Textures["item"]["saucisses"], quantity ,"Sausage")
 
     def on_use(self, world, user):
         self.quantity -= 1
@@ -20,7 +20,7 @@ class Sausage(Item):
 
 class Taboule(Item):
     def __init__(self, quantity) -> None:
-        super().__init__(self.__class__.__name__, 3, Textures["item"]["taboule"], quantity)
+        super().__init__(self.__class__.__name__, 3, Textures["item"]["taboule"], quantity, "taboule")
     def on_use(self, world, user):
         self.quantity -= 1
         user.pv += 10

@@ -4,7 +4,7 @@ from entities import *
 
 
 
-class Chest(Obj):
+class Chest_invisibility_clock(Obj):
     def __init__(self, x:float, y:float) -> None:
         super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["chest_0"],HITBOX_50X50)
         self.data["opened"] = 0
@@ -15,7 +15,7 @@ class Chest(Obj):
                 self.data["opened"] = 1
 
     def on_draw(self, world, has_been_drawn):
-        if players[0].has_item("goggles_of_truth"):
+        if players[0].inventaire[players[0].inventaire_idx].id == "goggles_of_truth":
             if self.data["opened"]:
                 self.texture = Textures["Obj"]["chest_1"]
             else:
@@ -26,4 +26,4 @@ class Chest(Obj):
 
 
 
-registerObj(Chest)
+registerObj(Chest_invisibility_clock)
