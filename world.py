@@ -108,9 +108,10 @@ class World:
         ...from_pos : pos of an entity or player or an object
     
     """
-    def __init__(self, name, background_col : list[int]) -> None:
+    def __init__(self, name, background_col : list[int], mod = "") -> None:
         self.name = name
         self.bg = background_col
+        self.mod = mod
         self.loaded_chunks : dict[tuple[int,int],Chunk]= {} #(x,y) : chunk
         self.has_to_collide = False # this check if collisions have to be computed when player moves it is set to True
                                   # will call chunk.tick if true 
@@ -172,13 +173,21 @@ class World:
         return the chunk at {pos} (pos of chunk)
         """
         pos = pos.floor()
-        if tuple(pos) not in self.loaded_chunks:
-            if os.path.exists(f"./worlds/{self.name}/c_{pos.x}_{pos.y}.json"):
-                with open(f"./worlds/{self.name}/c_{pos.x}_{pos.y}.json","r") as f:
-                    self.loaded_chunks[tuple(pos)] = js.load_chunk(json.load(f), self)
+        pos_as_tuple = tuple(pos)
+        if pos_as_tuple not in self.loaded_chunks:
+            if self.mod == "":
+                if os.path.exists(f"./worlds/{self.name}/c_{pos.x}_{pos.y}.json"):
+                    with open(f"./worlds/{self.name}/c_{pos.x}_{pos.y}.json","r") as f:
+                        self.loaded_chunks[pos_as_tuple] = js.load_chunk(json.load(f), self)
+                else:
+                    self.gen_Chunk_at(pos)
             else:
-                self.gen_Chunk_at(pos)
-        return self.loaded_chunks[tuple(pos)]
+                if os.path.exists(f"./mods/{self.mod}/worlds/{self.name}/c_{pos.x}_{pos.y}.json"):
+                    with open(f"./mods/{self.mod}/worlds/{self.name}/c_{pos.x}_{pos.y}.json","r") as f:
+                        self.loaded_chunks[pos_as_tuple] = js.load_chunk(json.load(f), self)
+                else:
+                    self.gen_Chunk_at(pos)
+        return self.loaded_chunks[pos_as_tuple]
 
     def get_Chunk_from_pos(self, pos:Vec)->Chunk:
         """
@@ -192,8 +201,10 @@ class World:
         """
         if tuple(pos) in self.loaded_chunks.keys():
             return True
-        if os.path.exists(f"./worlds/{self.name}/c_{pos.x}_{pos.y}.json"):
-            return True
+        if self.mod == "":
+            return os.path.exists(f"./worlds/{self.name}/c_{pos.x}_{pos.y}.json")
+        else:
+            return os.path.exists(f"./mods/{self.mod}/worlds/{self.name}/c_{pos.x}_{pos.y}.json")
         return False 
 
     def chunk_exists_from_pos(self, pos:Vec) -> bool:
@@ -414,20 +425,20 @@ class World:
         
 
         chunks : list[Chunk] = []
-        for i in range(-players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1):
-            for k in range(-players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1):
-                chunks.append(self.get_Chunk_at((i, k) + players[0].pos // CHUNK_SIZE))
+        distance =players[0].render_distance // 2 + 1
+        chunk_pos = players[0].pos // CHUNK_SIZE
+        for i in range(-distance + 1, distance):
+            for k in range(-distance + 1, distance):
+                chunks.append(self.get_Chunk_at((i, k) + chunk_pos))
         
 
         for i in chunks:
             i.tick()
             
-        __objs : list[Obj] = []
         __dyn_objs : list[Dynamic_Obj] = []
         __entities : list[Npc] = []
 
         for i in chunks:
-            __objs.extend(i.objects)
             __entities.extend(i.entities)
             __dyn_objs.extend(i.dyn_objects)
 

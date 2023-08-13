@@ -150,10 +150,6 @@ def check_keys():
 
 def server_thread():
     global running_dict, g_tps, pygame_events, show_hitbox ,tick_count, day_count
-
-    loop_start = time()
-    loop_count = 0
-
     joystick_count = py.joystick.get_count()
     if joystick_count:
         joysticks = []
@@ -161,14 +157,14 @@ def server_thread():
             joystick = py.joystick.Joystick(i)
             joystick.init()
             joysticks.append(joystick)
-
+    clock = pygame.time.Clock()
     while running_dict["global"]:
-        iter_start = time()
+        t0 = time()
+        
         tick_count += 1
         while tick_count >= day_length:
             tick_count -= day_length
             day_count += 1
-        loop_count += 1
         players[0].day_count = day_count
         players[0].tick_count = tick_count
 
@@ -220,20 +216,19 @@ def server_thread():
                 players[0].world.activate_collision()
 
         if not players[0].gui:
+            t1 = time()
             players[0].world.update()
-            
+            if time() - t1 > 0.00666666666:
+                print(time()-t1)
         for i in events[Event_after_tick_t]:
             i.function(players, pygame_events)
                 
         pygame_events = []
 
 
-        # tps moyenizer
-        moy_fps = 1 / (time() - loop_start) * loop_count if loop_count > 10 else TPS_MAX
-        to_sleep = (1 / TPS_MAX - (time() - iter_start)) - (1 - (moy_fps / TPS_MAX))
-        if to_sleep > 0: sleep(to_sleep)
-
-        g_tps = 1 / (time() - loop_start) * loop_count
+        clock.tick(TPS_MAX)
+        if time() - t0:
+            g_tps = 1/(time() - t0)
 
     running_dict["server"] = False
 

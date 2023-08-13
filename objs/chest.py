@@ -15,7 +15,7 @@ class Chest_invisibility_clock(Obj):
                 self.data["opened"] = 1
 
     def on_draw(self, world, has_been_drawn):
-        if players[0].inventaire[players[0].inventaire_idx].id == "goggles_of_truth":
+        if players[0].inventaire[players[0].inventaire_idx].id == "goggles_of_truth" or players[0].is_world_editor:
             if self.data["opened"]:
                 self.texture = Textures["Obj"]["chest_1"]
             else:

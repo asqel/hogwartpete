@@ -122,6 +122,16 @@ class Character:
             self.current_texture=self.texture[3]
         else:
             self.current_texture=self.texture[1]
+    
+    def update_texture_from_pos(self):
+        if self.dir == "u":
+            self.current_texture = self.texture[0]
+        if self.dir == "r":
+            self.current_texture = self.texture[1]
+        if self.dir == "d":
+            self.current_texture = self.texture[2]
+        if self.dir == "l":
+            self.current_texture = self.texture[3]
             
     def collisions(self,dir:str):
         x=(players[0].pos//1000).x

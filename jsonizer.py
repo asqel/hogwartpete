@@ -108,7 +108,7 @@ def load_world(name:str, mod = ""):
     import world as wo
     d={}
     if mod != "":
-        with open(f"{dir_path}/mods/{mod}/worlds/{name}.json") as f:
+        with open(f"./mods/{mod}/worlds/{name}.json") as f:
             d=json.load(f)
     else : 
         with open(f"{path}/{name}.json") as f:
