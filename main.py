@@ -37,6 +37,7 @@ running_dict = {
 pygame_events=[]
 
 def check_keys():
+    global screen
     global pygame_events
     for i in pygame_events:
         if i.type == py.MOUSEBUTTONDOWN:
@@ -90,56 +91,56 @@ def check_keys():
             if (1, i.button) == key_map[t_sprint]:
                 players[0].speed = 0.5  
         elif i.type == py.KEYDOWN:
-           if i.key == K_F3:
+            if i.key == K_F3:
                 players[0].chunk_border=not players[0].chunk_border
-           elif i.key == K_ASTERISK:
+            elif i.key == K_ASTERISK:
                 toggle_hitbox()
-           elif i.key == key_map[t_sprint]:
+            elif i.key == key_map[t_sprint]:
                 players[0].speed = 0.85
-           elif i.key == key_map[t_slot1]:
+            elif i.key == key_map[t_slot1]:
                 players[0].inventaire_idx = 0
-           elif i.key == key_map[t_slot2]:
+            elif i.key == key_map[t_slot2]:
                 players[0].inventaire_idx = 1
-           elif i.key == key_map[t_slot3]:
+            elif i.key == key_map[t_slot3]:
                 players[0].inventaire_idx = 2
-           elif i.key == key_map[t_slot4]:
+            elif i.key == key_map[t_slot4]:
                 players[0].inventaire_idx = 3
-           elif i.key == key_map[t_slot5]:
+            elif i.key == key_map[t_slot5]:
                 players[0].inventaire_idx = 4
-           elif i.key == key_map[t_slot6]:
+            elif i.key == key_map[t_slot6]:
                 players[0].inventaire_idx = 5
-           elif i.key == key_map[t_slot7]:
+            elif i.key == key_map[t_slot7]:
                 players[0].inventaire_idx = 6
-           elif i.key == key_map[t_slot8]:
+            elif i.key == key_map[t_slot8]:
                 players[0].inventaire_idx = 7
-           elif i.key == key_map[t_slot9]:
+            elif i.key == key_map[t_slot9]:
                 players[0].inventaire_idx = 8
-           elif i.key == key_map[t_slot10]:
+            elif i.key == key_map[t_slot10]:
                 players[0].inventaire_idx = 9
                 players[0].open_gui("game_ended")
                 print(players[0].gui)
-           elif i.key == key_map[t_drop_item]:
+            elif i.key == key_map[t_drop_item]:
                 players[0].drop_item()
-           elif i.key ==key_map[t_use_item]:
+            elif i.key ==key_map[t_use_item]:
                 players[0].inventaire[players[0].inventaire_idx].on_use(players[0].world, players[0])
-           elif i.key == K_ESCAPE:
+            elif i.key == K_ESCAPE:
                 players[0].gui = guis["Escape_gui"](players[0])
-           elif i.key == key_map[t_use_object]:
-               if not players[0].gui:
+            elif i.key == key_map[t_use_object]:
+                if not players[0].gui:
 
-                   if players[0].dir == 'u':
+                    if players[0].dir == 'u':
                         players[0].world.get_Obj(players[0].pos+(25,-10)).on_interact(players[0].world,players[0])
                         players[0].world.get_dyn_Obj(players[0].pos+(25,-10)).on_interact(players[0].world,players[0])
 
-                   if players[0].dir == 'r':
+                    if players[0].dir == 'r':
                         players[0].world.get_Obj(players[0].pos+(10+50, 25)).on_interact(players[0].world,players[0])
                         players[0].world.get_dyn_Obj(players[0].pos+(10+50, 25)).on_interact(players[0].world,players[0])
 
-                   if players[0].dir == 'd':
+                    if players[0].dir == 'd':
                         players[0].world.get_Obj(players[0].pos+(25,50+10)).on_interact(players[0].world,players[0])
                         players[0].world.get_dyn_Obj(players[0].pos+(25,50+10)).on_interact(players[0].world,players[0])
 
-                   if players[0].dir == 'l':
+                    if players[0].dir == 'l':
                         players[0].world.get_Obj(players[0].pos+(-10,25)).on_interact(players[0].world,players[0])
                         players[0].world.get_dyn_Obj(players[0].pos+(-10,25)).on_interact(players[0].world,players[0])
 
@@ -277,10 +278,10 @@ def main():
         for i in events[Event_on_textures_load_t]:
             i.function(Textures)
 
-        starting_world = js.load_world("bed room")
+        starting_world = World("bed room",(125, 125, 125))
         players.append(Character("Jean", "Magie", "pouffsoufle", None, None, POUFSOUFFLE_TEXTURES_0, None, 100, 0, starting_world))
         players[0].gui = guis["Choose_name"](players[0])
-        players[0].pv =1000
+        players[0].pv = 100
 
 
 
@@ -366,7 +367,7 @@ def main():
         sleep(2)
         running_dict["global"] =True
         running_dict["server"] =True
-    
+
 
 
 main()

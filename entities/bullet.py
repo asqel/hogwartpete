@@ -16,6 +16,7 @@ class Bullet(Npc):
                         )
         self.direction = "u"
         self.duration = 0
+        self.transparent = True
         self.max_duration = 150*3
         self.speed *= 4
         self.sender = None

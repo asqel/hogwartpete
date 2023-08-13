@@ -51,16 +51,14 @@ def save_chunk(c:"Chunk"):
 
 
 def save_world(w:"World"):
-    d={
-        "background":[w.bg[0],w.bg[1],w.bg[2]],
-        "chunks":{}
-    }
-    for i in w.chuncks.keys():
-        d["chunks"][i]={}
-        for k in w.chuncks[i].keys():
-            d["chunks"][i][k]=save_chunk(w.chuncks[i][k])
-    with open(f"{path}/{w.name}.json","w") as f:
-        json.dump(d,f)
+    if not os.path.exists(f"./worlds/{w.name}"):
+        os.makedirs(f"./worlds/{w.name}")
+    if not os.path.isdir(f"./worlds/{w.name}"):
+        os.makedirs(f"./worlds/{w.name}")
+    for i in w.loaded_chunks.keys():
+        x ,y = i
+        with open(f"./worlds/{w.name}/c_{x}_{y}.json", "w+") as f:
+            json.dump(save_chunk(w.loaded_chunks[i]), f)
     
 def load_vec(d):
     return Vec(d[0],d[1])

@@ -173,6 +173,27 @@ def main():
 
         if not cursor_cooldown:
             cursor_cooldown=40
+        display_screen.fill((0,0,0))
+        display_screen_width, display_screen_height = display_screen.get_size()
+
+        # Calculer les dimensions ajustées de l'affichage de screen
+        scale_factor_width = display_screen_width / screen.get_width()
+        scale_factor_height = display_screen_height / screen.get_height()
+        scale_factor = min(scale_factor_width, scale_factor_height)
+
+        adjusted_width = int(screen.get_width() * scale_factor)
+        adjusted_height = int(screen.get_height() * scale_factor)
+
+        x_offset = (display_screen_width - adjusted_width) // 2
+        y_offset = (display_screen_height - adjusted_height) // 2
+
+        # Redimensionner l'écran en conservant le rapport de hauteur/largeur
+        scaled_screen = pygame.transform.scale(screen, (adjusted_width, adjusted_height))
+
+        # Dessiner le contenu de scaled_screen sur display_screen
+        display_screen.fill((0, 0, 0))  # Remplir display_screen avec du noir
+        display_screen.blit(scaled_screen, (x_offset, y_offset))
+        py.display.update()
         py.display.update()
         t=time()
         if  t - start_time <1/60:
@@ -186,11 +207,11 @@ if MOD_ENABLED:
         import modloader as md
         md.load_mods()
 world_name=input("entrez le nom du monde : ")
-if not os.path.exists(f"{os.path.dirname(os.path.abspath(__file__))}/worlds/{world_name}.json"):
+if not os.path.exists(f"./worlds/{world_name}"):
     print("le monde nexiste pas et vas etre creer")
     starting_world=World(world_name,(0,0,0))
 else:
-    starting_world = js.load_world(world_name)
+    starting_world = World(world_name, (0,0,0))
 
 
 starting_world.has_to_collide=True

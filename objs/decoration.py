@@ -4,6 +4,7 @@ from interface import *
 import world as w
 import jsonizer as js
 from entities import *
+import world as w
 
 class Wood(Obj):
     def __init__(self, x:float, y:float) -> None:
@@ -47,10 +48,10 @@ class Stairs(Obj):
 
     def on_interact(self, world, user):
         if world.name=="bed room":
-            user.world=js.load_world("rdc")
+            user.world=w.World("rdc",(125, 125, 125))
             user.pos=Vec(100,100)
         else:
-            user.world=js.load_world("bed room")
+            user.world=w.World("bed room",(125, 125, 125))
             user.pos=Vec(100,100)
 
 import random
@@ -107,7 +108,7 @@ class House(Obj):
 
     def on_interact(self, world, user):
         if user.pos.y >= 150 + self.pos.y:
-            user.world = js.load_world("rdc")
+            user.world = w.World("rdc",(125, 125, 125))
             user.pos = Vec(200, 400)
 
 
@@ -117,7 +118,7 @@ class Door_frame(Obj):
         super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["door_frame"],HITBOX_50X50)
 
     def on_interact(self, world, user):
-        user.world = js.load_world("exterior")
+        user.world = w.World("exterior",(0,0,0))
         user.pos = Vec(400, 400)
 
 
@@ -213,11 +214,12 @@ class Cavern_entrance(Obj):
 
     def on_interact(self, world, user):
         if user.pos.y >= self.pos.y + 100:
-            w = user.world
-            user.world = js.load_world("cavern")
-            user.world.old_world = w
+            w_ = user.world
+            user.world = w.World("cavern",(0,0,0))
+            user.world.old_world = w_
             user.pos = Vec(50,50)
             user.world.add_entity(Npcs["Death"](Vec(616,616)))
+            print(user.world.loaded_chunks[tuple((user.pos//1000).floor())].entities)
 class Cavern_wall(Obj):
     def __init__(self, x:float, y:float) -> None:
         super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["cavern_wall"],HITBOX_50X50)

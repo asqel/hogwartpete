@@ -169,7 +169,7 @@ class Character:
                         self.pos-=Vec(2,0)*self.speed
                     return 0 
         for i in __enitites:
-            if i.hitbox and players[0].hitbox and i.name != "Item_entity":
+            if i.hitbox and players[0].hitbox and i.name != "Item_entity" and not i.transparent:
                 hit2 = players[0].hitbox.copy()
                 hit2.pos += players[0].pos
                 hit1 = i.hitbox.copy()

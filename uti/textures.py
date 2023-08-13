@@ -12,7 +12,7 @@ screen_info = py.display.Info()
 screen_width = screen_info.current_w
 screen_height = screen_info.current_h
 display_screen = py.display.set_mode((500,500),py.RESIZABLE)
-screen = py.Surface((1280,720))
+screen = py.Surface((1024,576))
 py.display.set_allow_screensaver(True)
 py.display.set_caption("Hogwartpété")
 

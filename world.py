@@ -4,6 +4,8 @@ from objs import *
 from entities import *
 from objs import *
 from events import *
+import json
+import jsonizer as js
 
 #in pixel (its a square)
 CHUNK_SIZE = 1000
@@ -109,7 +111,7 @@ class World:
     def __init__(self, name, background_col : list[int]) -> None:
         self.name = name
         self.bg = background_col
-        self.chuncks : dict[int, dict[int, Chunk]] = {}# chuncks[x][y]
+        self.loaded_chunks : dict[tuple[int,int],Chunk]= {} #(x,y) : chunk
         self.has_to_collide = False # this check if collisions have to be computed when player moves it is set to True
                                   # will call chunk.tick if true 
 
@@ -153,40 +155,46 @@ class World:
         generate a new chunk at {pos} (pos of chunk)
         if chunk already exist it will be erased
         """
-        if pos.x not in self.chuncks.keys():
-            self.chuncks[pos.x] = {}
-        self.chuncks[pos.x][pos.y] = newChunk(pos, self)
+        if tuple(pos) not in self.loaded_chunks.keys():
+            self.loaded_chunks[tuple(pos)] = newChunk(pos,self)
         for i in events[Event_on_chunk_generate]:
-            i.function(players, self.chuncks[pos.x][pos.y])
+            i.function(players, self.loaded_chunks[pos.x][pos.y])
         
     def gen_Chunk_from_pos(self, pos:Vec):
         """
         generate a new chunk at {pos} (pos of obj/entity)
         if chunk already exist it will be erased
         """
-        self.gen_Chunk_at(pos // CHUNK_SIZE)
+        return self.gen_Chunk_at(pos//1000)
         
     def get_Chunk_at(self, pos:Vec)->Chunk:
         """
         return the chunk at {pos} (pos of chunk)
         """
-        if not self.chunk_exists_at(pos):
-            self.gen_Chunk_at(pos)
-        return self.chuncks[pos.x][pos.y]
+        pos = pos.floor()
+        if tuple(pos) not in self.loaded_chunks:
+            if os.path.exists(f"./worlds/{self.name}/c_{pos.x}_{pos.y}.json"):
+                with open(f"./worlds/{self.name}/c_{pos.x}_{pos.y}.json","r") as f:
+                    self.loaded_chunks[tuple(pos)] = js.load_chunk(json.load(f), self)
+            else:
+                self.gen_Chunk_at(pos)
+        return self.loaded_chunks[tuple(pos)]
 
     def get_Chunk_from_pos(self, pos:Vec)->Chunk:
         """
         return the chunk at {pos} (pos of obj/entity)
         """
-        return self.get_Chunk_at(pos // CHUNK_SIZE)
+        return self.get_Chunk_at(pos//1000)
         
     def chunk_exists_at(self, pos:Vec) -> bool:
         """
         return if the chunk at {pos} exists (pos of chunk)
         """
-        if pos.x not in self.chuncks.keys():
-            return False
-        return pos.y in self.chuncks[pos.x].keys()
+        if tuple(pos) in self.loaded_chunks.keys():
+            return True
+        if os.path.exists(f"./worlds/{self.name}/c_{pos.x}_{pos.y}.json"):
+            return True
+        return False 
 
     def chunk_exists_from_pos(self, pos:Vec) -> bool:
         """
