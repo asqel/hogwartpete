@@ -53,6 +53,8 @@ def registerObj(obj:type):
 def registerDynamic_Obj(obj:type):
     Dynamic_Objs[obj.__name__]=obj
 
+def registerSimpleObj(id : str, texture : py.Surface)
+
 
 #import every objs
 module_names=os.listdir(os.path.dirname(os.path.abspath(__file__)))

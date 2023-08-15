@@ -250,7 +250,20 @@ class World:
         chunk = self.get_Chunk_from_pos(entity.pos)
         if entity in chunk.entities:
             chunk.entities.remove(entity)
-    
+    def remove_obj_at(self, x, y):
+        c = self.get_Chunk_from_pos(Vec(x,y))
+        for i in c.objects:
+            if i.pos.x == x and i.pos.y == y:
+                c.objects.remove(i)
+                break
+    def remove_obj_at_id(self, x, y, id):
+        c = self.get_Chunk_from_pos(Vec(x,y))
+        for i in c.objects:
+            if i.pos.x == x and i.pos.y == y and i.id == id:
+                c.objects.remove(i)
+                break
+    def remove_obj(self, obj : Obj):
+        self.gen_Chunk_from_pos(obj.pos).objects.remove(obj)
     def get_dyn_Obj(self, pos:Vec) ->Dynamic_Obj:
         """
         return the dyn_object at pos or an object that collide with
@@ -413,7 +426,6 @@ class World:
                 py.draw.line(screen, (255, 0, 0), tuple(corn[2] + __offset), tuple(corn[3] + __offset))
                 py.draw.line(screen, (255, 0, 0), tuple(corn[0] + __offset), tuple(corn[2] + __offset))
                 py.draw.line(screen, (255, 0, 0), tuple(corn[1] + __offset), tuple(corn[3] + __offset))
-
     def update(self) -> int :
         """
         called each game tick so ~150 times a second
