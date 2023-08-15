@@ -1,6 +1,8 @@
 from events import *
 import pygame as py
-from uti import* 
+
+from uti import*
+from uti.hitbox import HITBOX_50X50 
 def arrow_key_move(players, pygame_events : py.event.Event):
     pushed_keys = py.key.get_pressed()
     if not players[0].gui:
@@ -40,3 +42,4 @@ def arrow_key_move(players, pygame_events : py.event.Event):
 
 
 registerEvent(Event(Event_after_tick_t,arrow_key_move))
+

@@ -76,4 +76,4 @@
 
 48 160 16 16 50 50 $ cavern_floor
 48 176 16 16 50 50 $ cavern_wall
-64 160 32 32 100 100 $ cavern_entrance
+64 160 48 48 150 150 $ cavern_entrance

@@ -25,6 +25,12 @@ class Taboule(Item):
         self.quantity -= 1
         user.pv += 10
 
+class Spatula(Item):
+    def __init__(self, quantity) -> None:
+        super().__init__(self.__class__.__name__, 3, Textures["item"]["spatula"], quantity, "spatula")
+
+
 registerItem(Couscous)
 registerItem(Taboule)
 registerItem(Sausage)
+registerItem(Spatula)

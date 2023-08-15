@@ -1,7 +1,7 @@
 import os 
 import importlib as imp
 from importlib.machinery import SourceFileLoader
-
+from uti import *
 
 path = os.path.abspath(".")
 
@@ -14,7 +14,8 @@ def load_mods():
                 if os.path.exists(f'{path}/mods/{i}/mod_init.py'):
                     if not os.path.isdir(f'{path}/mods/{i}/mod_init.py'):
                         SourceFileLoader(f"{i}",f"{path}/mods/{i}/mod_init.py").load_module()
-                        #imp.import_module(f"mods.{i}.mod_init",package=None)
+                        make_mod_texture(i)
+                            
                         mods.append(i)
 
                     else:

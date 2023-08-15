@@ -117,8 +117,6 @@ def check_keys():
                 players[0].inventaire_idx = 8
             elif i.key == key_map[t_slot10]:
                 players[0].inventaire_idx = 9
-                players[0].open_gui("game_ended")
-                print(players[0].gui)
             elif i.key == key_map[t_drop_item]:
                 players[0].drop_item()
             elif i.key ==key_map[t_use_item]:
@@ -218,8 +216,6 @@ def server_thread():
         if not players[0].gui:
             t1 = time()
             players[0].world.update()
-            if time() - t1 > 0.00666666666:
-                print(time()-t1)
         for i in events[Event_after_tick_t]:
             i.function(players, pygame_events)
                 

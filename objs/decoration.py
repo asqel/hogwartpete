@@ -214,10 +214,10 @@ class Cavern_floor(Obj):
 
 class Cavern_entrance(Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["cavern_entrance"],Hitbox(HITBOX_RECT_t, Vec(0,0), 0, 100, 100))
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["cavern_entrance"],Hitbox(HITBOX_RECT_t, Vec(0,0), 0, 150, 100))
 
     def on_interact(self, world, user):
-        if user.pos.y >= self.pos.y + 100:
+        if user.pos.y >= self.pos.y + 100 and self.pos.x + 75 < user.pos.x < self.pos.x + 125:
             w_ = user.world
             user.world = w.World("cavern",(0,0,0))
             user.world.old_world = w_
