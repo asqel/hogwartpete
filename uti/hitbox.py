@@ -62,4 +62,5 @@ def collide_rect_dot(rect:Hitbox,dot:Vec):
     return False
 
 HITBOX_50X50=Hitbox(HITBOX_RECT_t,NULL_VEC,0,50,50)
+HITBOX_100X100=Hitbox(HITBOX_RECT_t,NULL_VEC,0,100,100)
 HITBOX_0x0 = Hitbox(HITBOX_RECT_t, Vec(0, 0), 0, 0, 0)

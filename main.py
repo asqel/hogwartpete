@@ -11,8 +11,6 @@ from world import *
 from events import *
 from key_map import *
 from _thread import start_new_thread
-import jsonizer as js
-
 from random import *
 
 py.joystick.init()
@@ -20,12 +18,13 @@ py.font.init()
 
 FPS_MAX = 60
 TPS_MAX = 150
+TPS_MAX_INVERSE = 1 / TPS_MAX
 
 MOD_ENABLED = True
 
 g_tps = 0
 
-tick_count= 0
+tick_count = 0
 day_length = 108000
 day_count = 0 # day = 108000
 
@@ -155,7 +154,6 @@ def server_thread():
             joystick = py.joystick.Joystick(i)
             joystick.init()
             joysticks.append(joystick)
-    clock = pygame.time.Clock()
     while running_dict["global"]:
         t0 = time()
         
@@ -181,48 +179,64 @@ def server_thread():
             
         pushed_keys=py.key.get_pressed()
         if not players[0].gui:
-            if pushed_keys[key_map[t_mov_left]] and pushed_keys[key_map[t_mov_down]]:
-                players[0].downleft()
-                players[0].world.activate_collision()
-            
-            elif pushed_keys[key_map[t_mov_left]] and pushed_keys[key_map[t_mov_up]]:
-                players[0].upleft()
-                players[0].world.activate_collision()
-            
-            elif pushed_keys[key_map[t_mov_right]] and pushed_keys[key_map[t_mov_up]]:
-                players[0].upright()
-                players[0].world.activate_collision()
+            if not players[0].riding:
+                if pushed_keys[key_map[t_mov_left]] and pushed_keys[key_map[t_mov_down]]:
+                    players[0].downleft()
+                    players[0].world.activate_collision()
+
+                elif pushed_keys[key_map[t_mov_left]] and pushed_keys[key_map[t_mov_up]]:
+                    players[0].upleft()
+                    players[0].world.activate_collision()
+
+                elif pushed_keys[key_map[t_mov_right]] and pushed_keys[key_map[t_mov_up]]:
+                    players[0].upright()
+                    players[0].world.activate_collision()
     
-            elif pushed_keys[key_map[t_mov_right]] and pushed_keys[key_map[t_mov_down]]:
-                players[0].downright()
-                players[0].world.activate_collision()
+                elif pushed_keys[key_map[t_mov_right]] and pushed_keys[key_map[t_mov_down]]:
+                    players[0].downright()
+                    players[0].world.activate_collision()
     
-            elif pushed_keys[key_map[t_mov_left]]:
-                players[0].left()
-                players[0].world.activate_collision()
+                elif pushed_keys[key_map[t_mov_left]]:
+                    players[0].left()
+                    players[0].world.activate_collision()
 
-            elif pushed_keys[key_map[t_mov_right]]:
-                players[0].right()
-                players[0].world.activate_collision()
+                elif pushed_keys[key_map[t_mov_right]]:
+                    players[0].right()
+                    players[0].world.activate_collision()
 
-            elif pushed_keys[key_map[t_mov_up]]:
-                players[0].up()
-                players[0].world.activate_collision()
+                elif pushed_keys[key_map[t_mov_up]]:
+                    players[0].up()
+                    players[0].world.activate_collision()
 
-            elif pushed_keys[key_map[t_mov_down]]:
-                players[0].down()
-                players[0].world.activate_collision()
-
+                elif pushed_keys[key_map[t_mov_down]]:
+                    players[0].down()
+                    players[0].world.activate_collision()
+            else:
+                if pushed_keys[key_map[t_mov_left]] and pushed_keys[key_map[t_mov_down]]:
+                    players[0].riding.mov(players[0].world, players[0], "dl")
+                elif pushed_keys[key_map[t_mov_left]] and pushed_keys[key_map[t_mov_up]]:
+                    players[0].riding.mov(players[0].world, players[0], "ul")
+                elif pushed_keys[key_map[t_mov_right]] and pushed_keys[key_map[t_mov_up]]:
+                    players[0].riding.mov(players[0].world, players[0], "ur")
+                elif pushed_keys[key_map[t_mov_right]] and pushed_keys[key_map[t_mov_down]]:
+                    players[0].riding.mov(players[0].world, players[0], "dr")
+                elif pushed_keys[key_map[t_mov_left]]:
+                    players[0].riding.mov(players[0].world, players[0], "l")
+                elif pushed_keys[key_map[t_mov_right]]:
+                    players[0].riding.mov(players[0].world, players[0], "r")
+                elif pushed_keys[key_map[t_mov_up]]:
+                    players[0].riding.mov(players[0].world, players[0], "u")
+                elif pushed_keys[key_map[t_mov_down]]:
+                    players[0].riding.mov(players[0].world, players[0], "d")
         if not players[0].gui:
-            t1 = time()
             players[0].world.update()
         for i in events[Event_after_tick_t]:
             i.function(players, pygame_events)
-                
         pygame_events = []
 
+        if time() - t0 < TPS_MAX_INVERSE:
+            sleep(TPS_MAX_INVERSE - (time() - t0))
 
-        clock.tick(TPS_MAX)
         if time() - t0:
             g_tps = 1/(time() - t0)
 
@@ -273,6 +287,7 @@ def main():
         players.append(Character("Jean", "Magie", "pouffsoufle", None, None, POUFSOUFFLE_TEXTURES_0, None, 100, 0, starting_world))
         players[0].gui = guis["Choose_name"](players[0])
         players[0].pv = 100
+
 
 
 
@@ -362,3 +377,4 @@ def main():
 
 
 main()
+

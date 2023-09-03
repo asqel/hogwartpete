@@ -34,10 +34,13 @@ class Character:
         self.world =world
         self.chunk_border=False
         self.uuid=uuid.uuid4()
+        self.riding : Npc = None # entity wich the player is riding
         self.zoom_out=1
+        self.speed_multiplier : dict[str:int] = {} # name : value
         self.transparent=False # si on peut passer a travers != de invisble
         self.gui :Gui = None
         self.money = 0
+        self.data = {}
         self.is_world_editor = False
         self.day_count = 0
         self.tick_count = 0
@@ -94,7 +97,7 @@ class Character:
 
 
     def up(self):
-        if self.dir!="":
+        if self.dir!="u":
             self.dir="u"
             self.current_texture=self.texture[0]
         self.pos-=Vec(0,2)*self.speed
@@ -263,14 +266,21 @@ class Npc:
         self.pos=pos
         self.texture_pos=texture_pos
         self.speed=0.5
+        self.speed_multiplier : dict[str:int] = {} # name : value
         self.transparent=False # si on peut passer a travers != de invisble
         self.collide_player = True
+        self.world = None
+        self.rider : Character = None
+        self.data = {}
+        self.rider_offset = Vec(0,0)
     
     def on_draw(self,world,has_been_drawn):
         ...
     def die(self, world):
         return 1
     def tick(self,world):
+        ...
+    def mov(self,world,rider,dir : str): #dir : u/d/r/l/ur/ul/dr/dl
         ...
     def on_interact(self,world,user):
         ...

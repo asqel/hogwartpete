@@ -5,13 +5,14 @@ import os
 import importlib as imp
 
 class Obj:
-    def __init__(self, id: str, x: float, y: float, istop: bool, texture: py.Surface, hitbox = HITBOX_50X50, data:dict = None) -> None:
+    def __init__(self, id: str, x: float, y: float, istop: bool, texture: py.Surface, hitbox = HITBOX_50X50, data:dict = None, light = None) -> None:
         self.id = id
         self.texture = texture
         self.toplayer = istop # object is under or above player and entities
         self.pos = Vec(x, y)
         self.hitbox = hitbox
         self.data = ({} if data is None or not isinstance(data, dict) else data)
+        self.light = light
     
     def on_interact(self,world,user):
         ...
@@ -53,7 +54,7 @@ def registerObj(obj:type):
 def registerDynamic_Obj(obj:type):
     Dynamic_Objs[obj.__name__]=obj
 
-def registerSimpleObj(id : str, texture : py.Surface)
+
 
 
 #import every objs

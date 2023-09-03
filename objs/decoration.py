@@ -122,7 +122,7 @@ class Door_frame(Obj):
         super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["door_frame"],HITBOX_50X50)
 
     def on_interact(self, world, user):
-        user.world = w.World("exterior",(0,0,0))
+        user.world = w.World("exterior",(0,0,0),is_outside = True)
         user.pos = Vec(400, 400)
 
 
@@ -217,7 +217,8 @@ class Cavern_entrance(Obj):
         super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["cavern_entrance"],Hitbox(HITBOX_RECT_t, Vec(0,0), 0, 150, 100))
 
     def on_interact(self, world, user):
-        if user.pos.y >= self.pos.y + 100 and self.pos.x + 75 < user.pos.x < self.pos.x + 125:
+        print(self.pos, user.pos)
+        if user.pos.y >= self.pos.y + 90 and self.pos.x + 25 < user.pos.x < self.pos.x + 75:
             w_ = user.world
             user.world = w.World("cavern",(0,0,0))
             user.world.old_world = w_

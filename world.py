@@ -108,14 +108,14 @@ class World:
         ...from_pos : pos of an entity or player or an object
     
     """
-    def __init__(self, name, background_col : list[int], mod = "") -> None:
+    def __init__(self, name, background_col : list[int], mod = "", is_outside = False) -> None:
         self.name = name
         self.bg = background_col
         self.mod = mod
         self.loaded_chunks : dict[tuple[int,int],Chunk]= {} #(x,y) : chunk
         self.has_to_collide = False # this check if collisions have to be computed when player moves it is set to True
                                   # will call chunk.tick if true 
-
+        self.is_outside = is_outside
    
     def activate_collision(self):
         """
@@ -123,7 +123,7 @@ class World:
         when the world tick and has_to_cliide is true then the collision will be called
         """
         self.has_to_collide = True
-        
+
     def add_entity(self, n:Npc)->None:
         """
         add an entity to the world
@@ -250,20 +250,20 @@ class World:
         chunk = self.get_Chunk_from_pos(entity.pos)
         if entity in chunk.entities:
             chunk.entities.remove(entity)
-    def remove_obj_at(self, x, y):
-        c = self.get_Chunk_from_pos(Vec(x,y))
+    def remove_obj_at(self, pos: Vec):
+        c = self.get_Chunk_from_pos(pos)
         for i in c.objects:
-            if i.pos.x == x and i.pos.y == y:
+            if i.pos == pos:
                 c.objects.remove(i)
                 break
-    def remove_obj_at_id(self, x, y, id):
-        c = self.get_Chunk_from_pos(Vec(x,y))
+    def remove_obj_at_id(self, pos: Vec, id):
+        c = self.get_Chunk_from_pos(pos)
         for i in c.objects:
-            if i.pos.x == x and i.pos.y == y and i.id == id:
+            if i.pos == pos and i.id == id:
                 c.objects.remove(i)
                 break
     def remove_obj(self, obj : Obj):
-        self.gen_Chunk_from_pos(obj.pos).objects.remove(obj)
+        self.get_Chunk_from_pos(obj.pos).objects.remove(obj)
     def get_dyn_Obj(self, pos:Vec) ->Dynamic_Obj:
         """
         return the dyn_object at pos or an object that collide with
@@ -318,7 +318,10 @@ class World:
         
         scr_w = screen.get_width() * zoom_out
         scr_h = screen.get_height() * zoom_out
-
+        if players[0].tick_count > 54000 and self.is_outside:
+            new_texture = Textures["other"]["night_layout"].copy()
+        else:
+            new_texture = NOTHING_TEXTURE_1024_576.copy()
         screen.fill(self.bg)
 
         #get chunks in render distance
@@ -353,6 +356,10 @@ class World:
                     i.on_draw(self,True)
                 else:
                     i.on_draw(self,False)
+                if i.light:
+                    p = i.light.pos + __offset + i.pos
+                    if -i.light.texture.get_width() <= p.x < scr_w and -i.light.texture.get_height() <= p.y < scr_h:
+                        new_texture.blit(i.light.texture,tuple(p))
 
         #draw dynamic objects that are not toplayer
         for i in __dyn_obj:
@@ -363,12 +370,22 @@ class World:
                     i.on_draw(self,True)
                 else:
                     i.on_draw(self,False)
+                if i.light:
+                    p = i.light.pos + __offset + i.pos
+                    if -i.light.texture.get_width() <= p.x < scr_w and -i.light.texture.get_height() <= p.y < scr_h:
+                        new_texture.blit(i.light.texture,tuple(p))
 
         #draw user
         if players[0].isvisible:
-            p = players[0].pos + __offset
-            screen.blit(players[0].current_texture, tuple(p))
-            players[0].on_draw(self, True)
+            if not players[0].riding:
+                p = players[0].pos + __offset
+                screen.blit(players[0].current_texture, tuple(p))
+                players[0].on_draw(self, True)
+            else:
+                p = players[0].pos + __offset
+
+                screen.blit(players[0].riding.current_texture, tuple(p))
+                screen.blit(players[0].current_texture,tuple(p + players[0].riding.rider_offset + (players[0].riding.current_texture.get_width()//2 - players[0].current_texture.get_width()//2 ,-players[0].current_texture.get_height())))
 
         #draw other players
         for i in __players:
@@ -397,6 +414,10 @@ class World:
                     i.on_draw(self,True)
                 else:
                     i.on_draw(self,False)
+                if i.light:
+                    p = i.light.pos + __offset + i.pos
+                    if -i.light.texture.get_width() <= p.x < scr_w and -i.light.texture.get_height() <= p.y < scr_h:
+                        new_texture.blit(i.light.texture,tuple(p))
 
         #draw dynamic objects that are toplayer
         for i in __dyn_obj:
@@ -407,6 +428,12 @@ class World:
                     i.on_draw(self, True)
                 else:
                     i.on_draw(self, False)
+                if i.light:
+                    p = i.light.pos + __offset + i.pos
+                    if -i.light.texture.get_width() <= p.x < scr_w and -i.light.texture.get_height() <= p.y < scr_h:
+                        new_texture.blit(i.light.texture,tuple(p))
+        
+        screen.blit(new_texture, (0,0))
 
         #draw hitboxes if theyre are visible
         if show_hitbox:
@@ -467,13 +494,17 @@ class World:
         for i in __entities:
             if i.tick:
                 i.tick(self)
+        if players[0].riding:
+            players[0].riding.tick(self)
 
         for i in __dyn_objs:
             i.tick(self)
 
 
         self.has_to_collide=False
-
+        if players[0].riding:
+            players[0].pos = players[0].riding.pos
+            players[0].riding.world = players[0].world
         if players[0].pv<=0:
             players[0].gui=guis["Game_over"](players[0])
         for i in players[0].inventaire:

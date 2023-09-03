@@ -104,4 +104,5 @@ class Death(Npc):
                         shield.sender = self
                         shield.hitbox = Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 70, 50)
                         world.add_entity(shield)
+    
 registerNpc(Death)

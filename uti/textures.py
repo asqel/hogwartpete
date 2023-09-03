@@ -105,13 +105,17 @@ def make_mod_texture(mod : str):
     global Textures
     global folders
     old_path = path
+    old_folders = folders
     path = f"./mods/{mod}"
-    folders.extend(list(os.listdir(f"{path}/assets")))
-    for i in os.listdir(f"{path}/assets"):
-        if i not in Textures.keys():
-            Textures[i] = {}
-    load_texture(True)
+    if os.path.exists(f"{path}/assets") and os.path.isdir(f"{path}/assets"):
+        folders = list(os.listdir(f"{path}/assets"))
+        for i in os.listdir(f"{path}/assets"):
+            if i not in Textures.keys():
+                Textures[i] = {}
+        load_texture(True)
     path = old_path
+    old_folders.extend(folders)
+    folders = old_folders
 
 
 
@@ -218,6 +222,9 @@ SNAPE_TEXTURE=[
 
 NOTHING_TEXTURE=py.Surface((50,50)).convert_alpha()
 NOTHING_TEXTURE.fill(py.Color(0,0,0,0))
+
+NOTHING_TEXTURE_1024_576=py.Surface((1024,576)).convert_alpha()
+NOTHING_TEXTURE_1024_576.fill(py.Color(0,0,0,0))
 
 texture_ptr=0
 def next_texture():

@@ -1,0 +1,4 @@
+0  0 16 16 50 50 $ horse_track_left
+16 0 16 16 50 50 $ horse_track_middle
+32 0 16 16 50 50 $ horse_track_right
+0 16 32 32 100 100 $ horse_race_sign

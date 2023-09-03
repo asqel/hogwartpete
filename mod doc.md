@@ -62,3 +62,16 @@ we will create an object called Square with a texture red_square in Obj
     
 ### registering the Object :
     registerObj(Square)
+
+
+## create Hitbox : 
+#### first add the imports
+    from uti imports *
+
+#### make the hitbox : 
+    my_hitbox = Hitbox(HITBOX_RECT_t, Vec(x, y), 0, w, h)
+HITBOX_RECT_t : a constant representing the type of the hitbox for now only rectengular are supported\
+Vec(x, y) : the relative position of the hitbox to the entity or the object \
+0 : the radius (not used because it is not a circle)\
+w : the width of the hitbox\
+h : the height of the hitbox
