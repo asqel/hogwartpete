@@ -2,6 +2,7 @@
 import pygame as py
 from pygame.locals import *
 
+from key_map import *
 from uti.textures import *
 from uti.sound import play_sound
 from entities import *
@@ -9,7 +10,6 @@ from time import time, sleep
 from interface import *
 from world import *
 from events import *
-from key_map import *
 from _thread import start_new_thread
 from random import *
 
@@ -38,6 +38,7 @@ pygame_events=[]
 def check_keys():
     global screen
     global pygame_events
+    global key_map
     for i in pygame_events:
         if i.type == py.MOUSEBUTTONDOWN:
             if (1,i.button) == key_map[t_sprint]:
@@ -270,6 +271,7 @@ def main():
     global running_dict
     global players
     global will_end
+    global key_map
     while 1:
         global pygame_events
         global display_screen
@@ -279,7 +281,7 @@ def main():
         if MOD_ENABLED:
             import modloader as md
             md.load_mods()
-
+        load_keys()
         for i in events[Event_on_textures_load_t]:
             i.function(Textures)
 

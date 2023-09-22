@@ -29,6 +29,28 @@ t_slot7 = "slot 7"
 t_slot8 = "slot 8"
 t_slot9 = "slot 9"
 t_slot10 = "slot 10"
+
+key_entries = [
+    t_mov_up,
+    t_mov_down,
+    t_mov_left,
+    t_mov_right,
+    t_proteo,
+    t_use_item,
+    t_drop_item,
+    t_use_object,
+    t_sprint,
+    t_slot1,
+    t_slot2,
+    t_slot3,
+    t_slot4,
+    t_slot5,
+    t_slot6,
+    t_slot7,
+    t_slot8,
+    t_slot9,
+    t_slot10
+]
 """
 key names:
     a-z
@@ -69,9 +91,18 @@ def str_to_code(key : str):
         return (1, 3)
 def load_keys():
     global key_map
+    le_json = {}
     with open("./key_map.json","r") as f:
-        key_map = json.load(f)
+        le_json = json.load(f)
+    for i in le_json.keys():
+        key_map[i]= le_json[i]
     for i in key_map.keys():
         key_map[i]= str_to_code(key_map[i])
-    
-load_keys()
+    for i in key_entries:
+        if i not in key_map.keys():
+            key_map[i] = None
+    return key_map
+
+def register_key_entry(key_entry : str):
+    key_entries.append(key_entry)
+
