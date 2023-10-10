@@ -24,7 +24,7 @@ class Obj:
         return Obj(self.id,self.pos.x,self.pos.y,self.toplayer,self.texture,self.hitbox,self.data)
 
 class Dynamic_Obj:  #Object that can be updated on each tick
-    def __init__(self, id: str, x: float, y: float, istop: bool, texture: py.Surface, hitbox = HITBOX_50X50, data:dict = None) -> None:
+    def __init__(self, id: str, x: float, y: float, istop: bool, texture: py.Surface, hitbox = HITBOX_50X50, data:dict = None, light = None) -> None:
         self.id = id
         self.texture = texture
         self.toplayer = istop # object is under or above player and entities
@@ -32,6 +32,7 @@ class Dynamic_Obj:  #Object that can be updated on each tick
         self.hitbox = hitbox
         self.transparent=False #si on peut passer a travvers ou pas
         self.data = ({} if data is None or not isinstance(data, dict) else data)
+        self.light = light
     
     def on_interact(self,world,user):
         ...
@@ -53,8 +54,6 @@ def registerObj(obj:type):
     
 def registerDynamic_Obj(obj:type):
     Dynamic_Objs[obj.__name__]=obj
-
-
 
 
 #import every objs

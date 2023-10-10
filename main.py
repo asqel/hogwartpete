@@ -235,7 +235,7 @@ def server_thread():
             i.function(players, pygame_events)
         pygame_events = []
 
-        if time() - t0 < TPS_MAX_INVERSE:
+        if TPS_MAX_INVERSE - (time() - t0) > 0:
             sleep(TPS_MAX_INVERSE - (time() - t0))
 
         if time() - t0:
@@ -287,7 +287,7 @@ def main():
 
         starting_world = World("bed room",(125, 125, 125))
         players.append(Character("Jean", "Magie", "pouffsoufle", None, None, POUFSOUFFLE_TEXTURES_0, None, 100, 0, starting_world))
-        players[0].gui = guis["Choose_name"](players[0])
+        players[0].gui = guis["Main_menu"](players[0])
         players[0].pv = 100
 
 
@@ -376,7 +376,4 @@ def main():
         running_dict["global"] =True
         running_dict["server"] =True
 
-
-
 main()
-

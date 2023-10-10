@@ -13,7 +13,7 @@ Event_after_tick_t = __next_event()
 Event_on_draw_t = __next_event()
 Event_on_textures_load_t = __next_event()
 Event_on_chunk_generate = __next_event()
-Event_on_world_chunk = __next_event()
+Event_on_world_load = __next_event()
 
 Event_max_t = __next_event()
 

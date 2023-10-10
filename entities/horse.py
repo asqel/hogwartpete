@@ -22,8 +22,7 @@ class Horse(Npc):
         self.dir="d"
         self.data = {"next" : "l"}
         self.current_texture = self.texture[0]
-        self.rider_offset = Vec(0,30)
-        self.tick_count = 0
+        self.rider_offset = Vec(0,40)
 
     def mov(self, world, rider, dir: str):
         if dir == "l":
@@ -37,16 +36,18 @@ class Horse(Npc):
                 self.next_texture()
                 self.pos += Vec(15,0)
     def tick(self, world):
-        self.tick_count += 1
+        self.rider.data["horse_race_tick"] += 1
         if self.rider:
             self.rider.dir = "r"
             self.rider.update_texture_from_pos()
 
         if -3250 - 50 < self.pos.y < -3250 + 50 and self.pos.x > 2100:
             self.rider.riding = None
-            i = items["Spatula"](1)
-            if not self.rider.add_item(i):
-                self.world.spawn_item(i, self.pos)
+            if self.rider.has_quest_incompleted("horse_race_won"):
+                i = items["Spatula"](1)
+                if not self.rider.add_item(i):
+                    self.world.spawn_item(i, self.pos)
+                self.rider.complete_quest("horse_race_won")
 
     def next_texture(self):
         if self.current_texture == self.texture[0]:
