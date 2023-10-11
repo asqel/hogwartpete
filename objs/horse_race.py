@@ -30,8 +30,10 @@ class Cowboy_horse_race(Obj):
         super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["cowboy_horse_race_down"],Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 50, 59))
 
     def on_interact(self, world, user : Character):
-        user.open_gui("Cowboy_horse_race_gui")
-
+        if user.pos.y >= self.pos.y + 50:
+            user.open_gui("Cowboy_horse_race_gui")
+            if not user.has_quest("horse_race_won"):
+                user.add_quest("horse_race_won", Quest("Beat the record at the horse race"))
 class Cowboy_horse_race_gui(Gui):
     def __init__(self, player : Character) -> None:
         super().__init__(self.__class__.__name__, {}, player)
@@ -52,16 +54,17 @@ class Cowboy_horse_race_gui(Gui):
                         self.idx = 0
                 if i.key == key_map[t_use_object]:
                     if self.idx == 0:
-                        self.user.pos = Vec(900, -3250)
+                        self.user.pos = Vec(900, -3295)
                         self.user.riding = Npcs["Horse"](self.user.pos)
                         self.user.riding.rider = self.user
                         self.user.riding.world = self.user.world
                         self.user.close_gui()
+                        self.user.data["horse_race_tick"] = 0
                     if self.idx == 1:
                         self.user.close_gui()
     def draw(self, screen):
-        x = ["abcdefghijklmnopqrstuvwxyz*"]
-        l = ["salut ma boy bats mon temps",
+        _ = ["abcdefghijklmnopqrstuvwxyz*"]
+        l = ["Salut ma boy bats mon temps",
              "et tu gagneras une spatule.",
              "       pourquoi pas","        au revoir"]
         c = [(0,) * 3] * 4
@@ -73,7 +76,8 @@ class Cowboy_horse_race_gui(Gui):
         elif self.idx == 1:
             c[3] = (0,255,0)
             l[3] = "      > au revoir"
-        draw_4_line(screen, l, c)
+        draw_4_line(screen, l, c, "Texas Mccain")
+       
 
 
 class Public_horse_race(Obj):

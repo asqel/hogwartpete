@@ -116,7 +116,7 @@ class World:
         self.has_to_collide = False # this check if collisions have to be computed when player moves it is set to True
                                   # will call chunk.tick if true 
         self.is_outside = is_outside
-   
+
     def activate_collision(self):
         """
         set has_to_collide to true 
@@ -245,6 +245,39 @@ class World:
                 if collide_rect_dot(new_hitbox, pos):
                     return k
         return Objs["Air"](pos.x, pos.y)
+    
+    def get_background_Obj(self, pos:Vec) ->Obj:
+        """
+        return the object at pos or an object that collide with
+        a dot at pos 
+        if there is not object then object of type air is returned
+        """
+        x = pos.x // CHUNK_SIZE
+        y = pos.y // CHUNK_SIZE
+        chunks = [
+            self.get_Chunk_at(Vec(x, y)),
+            self.get_Chunk_at(Vec(x - 1, y)),
+            self.get_Chunk_at(Vec(x + 1, y)),
+            self.get_Chunk_at(Vec(x, y - 1)),
+            self.get_Chunk_at(Vec(x, y + 1)),
+            self.get_Chunk_at(Vec(x - 1, y - 1)),
+            self.get_Chunk_at(Vec(x - 1, y - 1)),
+            self.get_Chunk_at(Vec(x - 1, y + 1)),
+            self.get_Chunk_at(Vec(x + 1, y - 1))
+        ]
+        # check for pos
+        for i in chunks:
+            for k in i.background_obj:
+                if k.pos == pos:
+                    return k
+        
+        for i in chunks:
+            for k in i.background_obj:
+                new_hitbox = k.hitbox.copy()
+                new_hitbox.pos += k.pos
+                if collide_rect_dot(new_hitbox, pos):
+                    return k
+        return Objs["Air"](pos.x, pos.y)
 
     def remove_entity(self, entity : Npc):
         chunk = self.get_Chunk_from_pos(entity.pos)
@@ -297,6 +330,10 @@ class World:
                     return k
         return Dynamic_Objs["Air"](pos.x, pos.y)
     
+    def on_load(self):
+        for i in events[Event_on_world_load]:
+            i.function(players, self)
+
     def spawn_item(self, item : Item, pos : Vec):
         i = Npcs["Item_entity"](pos)
         i.item = item
@@ -318,10 +355,8 @@ class World:
         
         scr_w = screen.get_width() * zoom_out
         scr_h = screen.get_height() * zoom_out
-        if players[0].tick_count > 54000 and self.is_outside:
-            new_texture = Textures["other"]["night_layout"].copy()
-        else:
-            new_texture = NOTHING_TEXTURE_1024_576.copy()
+        new_texture = get_time_layout(players[0].tick_count, self.is_outside)
+
         screen.fill(self.bg)
 
         #get chunks in render distance
@@ -525,7 +560,17 @@ def toggle_hitbox():
     global show_hitbox
     show_hitbox = not show_hitbox
     
-
-    
-
-    
+def get_time_layout(tick : int, outside : bool):
+    if not outside or tick <= 54000 or tick >= 108000:
+        return NOTHING_TEXTURE_1024_576.copy()
+    if tick > 54000 and tick < 64000:
+        new_texture = Textures["other"]["night_layout"].copy()
+        new_texture.set_alpha(int(25.5 * tick / 1000 - 1377))
+    elif tick >= 64000 and tick <= 98000:
+        new_texture = Textures["other"]["night_layout"].copy()
+    elif tick > 98000:
+        new_texture = Textures["other"]["night_layout"].copy()
+        new_texture.set_alpha(int(-25.5 * tick / 1000 + 2754))
+    else:
+        new_texture = NOTHING_TEXTURE_1024_576.copy()
+    return new_texture

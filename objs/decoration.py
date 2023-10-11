@@ -123,6 +123,7 @@ class Door_frame(Obj):
 
     def on_interact(self, world, user):
         user.world = w.World("exterior",(0,0,0),is_outside = True)
+        user.world.on_load()
         user.pos = Vec(400, 400)
 
 

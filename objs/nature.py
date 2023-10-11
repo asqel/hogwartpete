@@ -1,7 +1,7 @@
 from objs import *
 from uti import *
 
-class Air(Obj):
+class Air(Dynamic_Obj):
     def __init__(self, x:float, y:float) -> None:
         super().__init__(self.__class__.__name__, x, y, False, NOTHING_TEXTURE,Hitbox(HITBOX_RECT_t,Vec(0,0),0,50,50))
 
@@ -30,10 +30,13 @@ class Tree(Obj):
         super().__init__(self.__class__.__name__, x, y,False,Textures["Obj"]["tree"])
         self.hitbox = Hitbox(HITBOX_RECT_t, Vec(0,0), width = 100, height = 100)
         
-
+class Pumpkin(Obj):
+    def __init__(self, x:float, y:float) -> None:
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["pumpkin"],Hitbox(HITBOX_RECT_t, Vec(6, 6), 0, 41, 44))
 
 registerObj(Pebble)
 registerObj(Grass)
 registerObj(Tree)
 registerObj(Air)
+registerObj(Pumpkin)
 registerDynamic_Obj(Air)

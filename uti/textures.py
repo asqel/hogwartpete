@@ -126,14 +126,14 @@ def make_mod_texture(mod : str):
 creation of textures:
     create a file .png and a .tx file that has the same name
     .tx should look like this
-    
+
     (you can start a line by a - and it will be treated as a comment)
-    
+
         posX posY width height in-game_width in-game_height $ name
         -this is a comment
         posX posY width height in-game_width in-game_height $ name
         ...
-    
+
     exemple:
         text.png
         text.tx :
@@ -204,10 +204,10 @@ SERPENTARD_TEXTURES_1=[
 
 
 FARINE_TEXTURE=[
-    Textures["player"]["farine_up"],
-    Textures["player"]["farine_right"],
-    Textures["player"]["farine_down"],
-    Textures["player"]["farine_left"],
+    Textures["player"]["farine:farine_up"],
+    Textures["player"]["farine:farine_right"],
+    Textures["player"]["farine:farine_down"],
+    Textures["player"]["farine:farine_left"],
 
 ]
 

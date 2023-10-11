@@ -1,5 +1,6 @@
 from uti.vector import *
 from uti.hitbox import *
+from quests import *
 from uti.textures import *
 from interface import *
 from items import *
@@ -45,6 +46,8 @@ class Character:
         self.is_world_editor = False
         self.day_count = 0
         self.tick_count = 0
+        self.quests : dict[str, Quest] = {} # incompleted quests
+        self.quests_completed : dict[str, Quest] = {}
 
     def upleft(self):
         if self.dir!="u":
@@ -251,8 +254,28 @@ class Character:
         
     def close_gui(self):
         self.gui = None
-        
+    
+    def has_quest(self, _id : str):
+        return _id in self.quests.keys() or _id in self.quests_completed.keys()
+    
+    def has_quest_done(self, _id : str):
+        return _id in self.quests_completed.keys()
 
+    def has_quest_incompleted(self, _id : str):
+        return _id in self.quests.keys()
+
+    def add_quest(self, _id : str, quest : Quest):
+        self.quests[_id] = quest
+
+    def add_quest_completed(self, quest : Quest):
+        self.quests_completed.append(quest)
+
+    def complete_quest(self, _id):
+        if _id in self.quests.keys():
+            self.quests_completed[_id] = self.quests[_id]
+            self.quests.pop(_id)
+
+    
 class Npc:
     def __init__(self,name:str,surname:str,texture:py.Surface,spells:list[Spell],pos:Vec,texture_pos:Vec=NULL_VEC,hitbox:Hitbox=HITBOX_50X50,action=None,tick=None) -> None:
         self.name=name
