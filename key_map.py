@@ -29,6 +29,7 @@ t_slot7 = "slot 7"
 t_slot8 = "slot 8"
 t_slot9 = "slot 9"
 t_slot10 = "slot 10"
+t_open_chat = "open chat"
 
 key_entries = [
     t_mov_up,
@@ -49,7 +50,8 @@ key_entries = [
     t_slot7,
     t_slot8,
     t_slot9,
-    t_slot10
+    t_slot10,
+    t_open_chat
 ]
 """
 key names:
@@ -61,6 +63,7 @@ key names:
     rshift
     tab
     space
+    enter
     M1 (lclick)
     M2 (midclick)
     M3 (rclick)
@@ -83,6 +86,8 @@ def str_to_code(key : str):
         return py.K_TAB
     if key == "space":
         return py.K_SPACE
+    if key == "enter":
+        return py.K_RETURN
     if key == "m1":
         return (1, 1)
     if key == "m2":

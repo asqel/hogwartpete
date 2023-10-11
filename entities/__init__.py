@@ -8,9 +8,10 @@ from  spells import *
 import uuid
 
 class Character:
-    def __init__(self,name:str,surname:str,maison:str,spells:dict[int, Spell],genre:str,texture:list[py.Surface],clothes,x:float,y:float,world):
+    def __init__(self,name:str,surname:str,maison:str,spells:dict[int, Spell],genre:str,texture:list[py.Surface],clothes,x:float,y:float,world, pseudo : str = None):
         self.name=name
         self.surname=surname
+        self.pseudo = (surname + "_" + name if pseudo is None else pseudo) 
         self.house=maison
         self.spells=spells
         self.inventaire : list[Item]=[items["Air"](1) for i in range(10)]

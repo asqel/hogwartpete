@@ -1,5 +1,6 @@
 import pygame as py
 from interface import *
+from commands import *
 from uti import *
 
 
@@ -8,13 +9,23 @@ class Exec_command(Gui):
         self.command = ""
         self.world = player.world
         self.player = player
+        self.error = ""
+        self.error_tick = 0
+        self.error_max_tick = 180
         super().__init__(self.__class__.__name__, {}, player)
         
         
     def tick(self, events: list[py.event.Event]):
+        if self.error:
+            self.error_tick += 1
+            if self.error_max_tick <= self.error_tick:
+                self.error = ""
         
         for i in events:
             if i.type == py.KEYDOWN:
+                if self.error:
+                    self.error = ""
+                    break
                 if i.key == py.K_ESCAPE:
                     self.player.gui = None
                 elif i.key != py.K_BACKSPACE and i.key != py.K_RETURN:
@@ -22,55 +33,52 @@ class Exec_command(Gui):
                 if i.key == py.K_BACKSPACE:
                     self.command = self.command[:-1]
                 if i.key == py.K_RETURN:
-                    exec_command(self.command, self.world, self.player)
+                    try:
+                        res = exec_command(self.command, self.world, self.player)
+                        if res is not None:
+                            self.error = res
+                            self.error_tick = 0
+                    except Exception as E:
+                        self.error = str(E)
+                        self.error_tick = 0
+
+
+
                     
             
     def draw(self, screen):
         x = (screen.get_width() - Textures["other"]["text_box"].get_width())/2
         y = screen.get_height() -Textures["other"]["text_box"].get_height() - 20 
         screen.blit(Textures["other"]["text_box"],(x,y))
-        screen.blit(main_font.render(f"command : {self.command}",0,(0,255,0)), (x+30,y+30))
+        if self.error:
+            screen.blit(main_font.render(self.error,0,(0,255,0)), (x+30,y+30))
+        else:
+            screen.blit(main_font.render(f"command : {self.command}",0,(0,255,0)), (x+30,y+30))
     
 registerGui(Exec_command)
 
 
 def exec_command(command : str, world, player):
-    args = command.split(" ")
-    #data set x y key value
-    if len(args) == 6:
-        if args[0] == "data":
-            if args[1] == "set":
-                x_negatif = False
-                if args[2].startswith("-"):
-                    x_negatif = True
-                    args[2] = args[2][1:]
-                if args[2].isdigit():
-                    x = int(args[2])
-                elif args[2] == '*':
-                    x = player.pos.x
-                    y_negatif = False
-                    if args[3].startswith("-"):
-                        y_negatif = True
-                        args[3] = args[3][1:]
-                    if args[3].isdigit():
-                        y = int(args[3])
-                    elif args[3] == '*':
-                        y = player.pos.y
-                        key = args[4]
-                        value = args[5]
-                        if y_negatif: y = -y
-                        if x_negatif: x = -x
-                        obj = world.get_Obj(Vec(x,y))
-                        print(x,y)
-                        if obj.id != "Air":
-                            if value.isdecimal():
-                                value = float(value)
-                            elif value.isdigit():
-                                value = int(value)
-                            elif value == "True":
-                                value = True
-                            elif value == "False":
-                                value = False
-                            obj.data[key] = value
-                            
-
+    toks = lexe_command(command)
+    toks_len = len(toks)
+    if toks_len < 1:
+        return
+    if toks[0].type != Cmd_identifier:
+        return
+    com = toks[0].value
+    if com not in commands.keys():
+        return
+    c = commands[com]
+    if c["is_free"]:
+        return c["cmd_func"](toks, player)
+    else:
+        args = []
+        for i in toks:
+            args.append(i.type)
+        args =tuple(args)
+        if args in c["args_func"].keys():
+            return c["args_func"][args](toks, player)
+        elif c["accept_free"]:
+            return c["cmd_func"](toks, player)
+        else:
+            raise Exception(f"ERROR command {toks[0].value} doesnt accept that")
