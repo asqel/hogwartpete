@@ -61,6 +61,7 @@ registerGui(Exec_command)
 def exec_command(command : str, world, player):
     toks = lexe_command(command)
     toks_len = len(toks)
+    print(toks)
     if toks_len < 1:
         return
     if toks[0].type != Cmd_identifier:

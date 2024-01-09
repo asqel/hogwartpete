@@ -291,7 +291,7 @@ def main():
             i.function(Textures)
 
         starting_world = World("bed room",(125, 125, 125))
-        players.append(Character("Jean", "Magie", "pouffsoufle", None, None, POUFSOUFFLE_TEXTURES_0, None, 100, 0, starting_world))
+        players.append(Character(POUFSOUFFLE_TEXTURES_0, 100, 0, starting_world))
         players[0].gui = guis["Main_menu"](players[0])
         players[0].pv = 100
 
@@ -302,7 +302,6 @@ def main():
         players[0].render_distance = 3
 
         start_new_thread(server_thread, ())
-
         arial = py.font.SysFont("Arial", 25, False, False)
         fps = 0
         while running_dict["global"] and running_dict["server"]:

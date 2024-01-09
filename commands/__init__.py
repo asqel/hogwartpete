@@ -1,4 +1,5 @@
 from typing import TypedDict
+from re import escape
 
 Arg_type = int
 Cmd_None = 0
@@ -99,8 +100,9 @@ def lexe_command(text : str):
     p = 0
     l = len(text)
     while p < l:
-        while text[p].isspace():
+        if text[p].isspace():
             p += 1
+            continue
         if text[p] in "01" and p + 1 < l and text[p + 1] in "Bb":
             tokens.append(Token_arg(Cmd_bool, text[p] == '1'))
             p += 2
@@ -135,6 +137,32 @@ def lexe_command(text : str):
                 tokens.append(Token_arg(Cmd_float, float(num)))
             p = end
             continue
+
+        if text[p] == '"':
+            p += 1
+            if p >= l:
+                raise Exception("ERROR lexing command matching \" not found")
+            start = p
+            while (p < l and text[p] != '"'):
+                p += 1
+            if text[p] != '"':
+                raise Exception("ERROR lexing command matching \" not found")
+            tokens.append(Token_arg(Cmd_str, text[start:p]))
+            p += 1
+            continue
+        if text[p] == '\'':
+            p += 1
+            if p >= l:
+                raise Exception("ERROR lexing command matching ' not found")
+            start = p
+            while p < l and text[p] != '\'' :
+                p += 1
+            if text[p] != '\'':
+                raise Exception("ERROR lexing command matching ' not found")
+            tokens.append(Token_arg(Cmd_str, text[start:p]))
+            p += 1
+            continue
+
         start = p
         end = start
         while end < l and not text[end].isspace():

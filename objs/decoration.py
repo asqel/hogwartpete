@@ -218,7 +218,6 @@ class Cavern_entrance(Obj):
         super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["cavern_entrance"],Hitbox(HITBOX_RECT_t, Vec(0,0), 0, 150, 100))
 
     def on_interact(self, world, user):
-        print(self.pos, user.pos)
         if user.pos.y >= self.pos.y + 90 and self.pos.x + 25 < user.pos.x < self.pos.x + 75:
             w_ = user.world
             user.world = w.World("cavern",(0,0,0))
