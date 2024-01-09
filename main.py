@@ -12,6 +12,7 @@ from world import *
 from events import *
 from _thread import start_new_thread
 from random import *
+import signals as sig
 
 py.joystick.init()
 py.font.init()
@@ -64,7 +65,12 @@ def check_keys():
             elif (1,i.button) == key_map[t_slot10]:
                 players[0].inventaire_idx = 9
             elif (1,i.button) == key_map[t_drop_item]:
-                players[0].drop_item()
+                drop_item = False
+                for k in events[Event_on_player_drop_item]:
+                    if k.function(players[0], players[0].inventaire_idx):
+                        drop_item = True
+                if not drop_item:
+                    players[0].drop_item()
             elif (1,i.button) ==key_map[t_use_item]:
                 players[0].inventaire[players[0].inventaire_idx].on_use(players[0].world, players[0])
             elif (1,i.button) == K_ESCAPE:
@@ -118,7 +124,12 @@ def check_keys():
             elif i.key == key_map[t_slot10]:
                 players[0].inventaire_idx = 9
             elif i.key == key_map[t_drop_item]:
-                players[0].drop_item()
+                drop_item = False
+                for k in events[Event_on_player_drop_item]:
+                    if k.function(players[0], players[0].inventaire_idx):
+                        drop_item = True
+                if not drop_item:
+                    players[0].drop_item()
             elif i.key ==key_map[t_use_item]:
                 players[0].inventaire[players[0].inventaire_idx].on_use(players[0].world, players[0])
             elif i.key == K_ESCAPE:
@@ -146,6 +157,14 @@ def check_keys():
             if i.key == key_map[t_sprint]:
                 players[0].speed = 0.5  
 
+
+def do_signals() -> None:
+    while sig.SIGNALS:
+        signal = sig.pop_signal()
+        if signal.name == sig.RESTART_SIGNAL:
+            running_dict["global"] = False
+            running_dict["server"] = False
+
 def server_thread():
     global running_dict, g_tps, pygame_events, show_hitbox ,tick_count, day_count
     joystick_count = py.joystick.get_count()
@@ -164,6 +183,8 @@ def server_thread():
             day_count += 1
         players[0].day_count = day_count
         players[0].tick_count = tick_count
+        
+        do_signals()
 
         for i in events[Event_before_tick_t]:
             i.function(players, pygame_events)
@@ -309,8 +330,7 @@ def main():
                     running_dict["server"] = False
                     will_end = True
                 elif i.type == pygame.KEYDOWN and i.key == py.K_F9:
-                    running_dict["global"] = False
-                    running_dict["server"] = False
+                    sig.send_signal(sig.signal(sig.RESTART_SIGNAL))
                 elif i.type == pygame.KEYDOWN and i.key == pygame.K_F11:
                     fullscreen = not fullscreen
                     if fullscreen:

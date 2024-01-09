@@ -14,6 +14,7 @@ Event_on_draw_t = __next_event()
 Event_on_textures_load_t = __next_event()
 Event_on_chunk_generate = __next_event()
 Event_on_world_load = __next_event()
+Event_on_player_drop_item = __next_event()
 
 Event_max_t = __next_event()
 
@@ -45,6 +46,10 @@ type of event :
 
     Event_on_world_load:
         function : (players : list[Character], world)
+    
+    Event_on_player_drop_item:
+        function : (user : character, slot : int) 
+        // return true to cancel the drop
 """
 class Event:
     def __init__(self, type : Event_type, function : 'function'):

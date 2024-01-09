@@ -1,8 +1,9 @@
 import pygame
+from pygame.event import Event
 from entities import *
 from events import *
 from key_map import *
-
+from interface import *
 
 def wand_events(players, pygame_events : pygame.event.Event):
     if not players[0].inventaire[players[0].inventaire_idx].id == "Wand":
@@ -75,5 +76,25 @@ def shoot_wand(user):
             bullet.sender = user
             bullet.direction = user.dir
             user.world.get_Chunk_from_pos(user.pos).entities.append(bullet)
+
+
+class wand_warning_gui(Gui) :
+    def __init__(self, player) -> None:
+        self.player = player
+        super().__init__("warning gui wand", {}, player)
+
+    def tick(self, events: list[Event]):
+        for i in events:
+            if i.type == py.KEYDOWN and i.key == py.K_e:
+                self.player.close_gui()
+    
+    def draw(self, screen):
+        draw_4_line(screen, ("","vous ne devriez pas lacher","votre baguette",""), ((0,0,0),(0,0,0),(0,0,0),(0,0,0)))
+
+def drop_wand(user : Character, slot : int) -> bool | None :
+    user.gui = wand_warning_gui(user)
+    return True
+
+registerEvent(Event(Event_on_player_drop_item, drop_wand))
 
 registerEvent(Event(Event_after_tick_t, wand_events))
