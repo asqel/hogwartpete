@@ -23,6 +23,8 @@ TPS_MAX_INVERSE = 1 / TPS_MAX
 
 MOD_ENABLED = True
 
+VERSION = "001.00.0"
+
 g_tps = 0
 
 tick_count = 0
@@ -132,6 +134,8 @@ def check_keys():
                     players[0].drop_item()
             elif i.key ==key_map[t_use_item]:
                 players[0].inventaire[players[0].inventaire_idx].on_use(players[0].world, players[0])
+            elif i.key ==key_map[t_open_chat]:
+                players[0].open_gui("Exec_command")
             elif i.key == K_ESCAPE:
                 players[0].gui = guis["Escape_gui"](players[0])
             elif i.key == key_map[t_use_object]:
@@ -256,8 +260,9 @@ def server_thread():
             i.function(players, pygame_events)
         pygame_events = []
 
-        if TPS_MAX_INVERSE - (time() - t0) > 0:
-            sleep(TPS_MAX_INVERSE - (time() - t0))
+        t1 = time()
+        if TPS_MAX_INVERSE > t1 - t0:
+            sleep(TPS_MAX_INVERSE - (t1 - t0))
 
         if time() - t0:
             g_tps = 1/(time() - t0)
@@ -307,7 +312,7 @@ def main():
             i.function(Textures)
 
         starting_world = World("bed room",(125, 125, 125))
-        players.append(Character("Jean", "Magie", "pouffsoufle", None, None, POUFSOUFFLE_TEXTURES_0, None, 100, 0, starting_world))
+        players.append(Character(POUFSOUFFLE_TEXTURES_0, 100, 0, starting_world))
         players[0].gui = guis["Main_menu"](players[0])
         players[0].pv = 100
 
@@ -318,7 +323,6 @@ def main():
         players[0].render_distance = 3
 
         start_new_thread(server_thread, ())
-
         arial = py.font.SysFont("Arial", 25, False, False)
         fps = 0
         while running_dict["global"] and running_dict["server"]:

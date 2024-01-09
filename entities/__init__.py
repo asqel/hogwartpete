@@ -5,43 +5,32 @@ from uti.textures import *
 from interface import *
 from items import *
 import pygame as py
-from  spells import *
-import uuid
 
 class Character:
-    def __init__(self,name:str,surname:str,maison:str,spells:dict[int, Spell],genre:str,texture:list[py.Surface],clothes,x:float,y:float,world):
-        self.name=name
-        self.surname=surname
-        self.house=maison
-        self.spells=spells
-        self.inventaire : list[Item]=[items["Air"](1) for i in range(10)]
+    def __init__(self, texture:list[py.Surface], x : float, y : float, world):
+        self.inventaire : list[Item] = [items["Air"](1) for i in range(10)]
         self.inventaire_idx = 0 
-        self.pv=100
-        self.pvmax=100
-        self.effects=[]
-        self.genre=genre
-        self.hitbox=Hitbox(HITBOX_RECT_t,Vec(0,0),width=50,height=50)
-        self.texture=texture#[UP,RIGHT,DOWN,LEFT]
-        self.current_texture=texture[2]
-        self.clothes=clothes
-        self.pos=Vec(x,y)
-        self.protection=0
-        self.dir:str="d" #d -> down  |  u -> up  |  r -> right  |  l -> left  |
-        self.level=0
-        self.puissance=0
+        self.pv = 100
+        self.pvmax = 100
+        self.effects = []
+        self.hitbox = Hitbox(HITBOX_RECT_t, Vec(0, 0), width = 50, height = 50)
+        self.texture = texture#[UP,RIGHT,DOWN,LEFT]
+        self.current_texture = texture[2]
+        self.pos = Vec(x, y)
+        self.protection = 0
+        self.dir : str = "d" #d -> down  |  u -> up  |  r -> right  |  l -> left  |
+        self.level = 0
         self.speed=0.5
         self.isvisible=True
         self.render_distance=3
-        self.world =world
-        self.chunk_border=False
-        self.uuid=uuid.uuid4()
+        self.world = world
+        self.chunk_border = False
         self.riding : Npc = None # entity wich the player is riding
-        self.zoom_out=1
-        self.speed_multiplier : dict[str:int] = {} # name : value
-        self.transparent=False # si on peut passer a travers != de invisble
-        self.gui :Gui = None
-        self.money = 0
-        self.data = {}
+        self.zoom_out = 1
+        self.speed_multiplier : dict[str, int] = {} # name : value
+        self.transparent = False # si on peut passer a travers != de invisble
+        self.gui : Gui = None #  to convert to list[Gui] use last gui as current gui
+        self.data = {} # str-> str | int | float | list | dict
         self.is_world_editor = False
         self.day_count = 0
         self.tick_count = 0
@@ -266,8 +255,18 @@ class Character:
     def add_quest(self, _id : str, quest : Quest):
         self.quests[_id] = quest
 
-    def add_quest_completed(self, quest : Quest):
-        self.quests_completed.append(quest)
+    def add_quest_completed(self, _id : str, quest : Quest):
+        self.quests_completed[_id] = quest
+
+    def get_quest(self, _id : str):
+        if _id in self.quests.keys():
+            return self.quests[_id]
+        return None
+
+    def get_quest_completed(self, _id : str):
+        if _id in self.quests_completed.keys():
+            return self.quests_completed[_id]
+        return None
 
     def complete_quest(self, _id):
         if _id in self.quests.keys():
@@ -276,7 +275,7 @@ class Character:
 
     
 class Npc:
-    def __init__(self,name:str,surname:str,texture:py.Surface,spells:list[Spell],pos:Vec,texture_pos:Vec=NULL_VEC,hitbox:Hitbox=HITBOX_50X50,action=None,tick=None) -> None:
+    def __init__(self,name:str,surname:str,texture:py.Surface,spells,pos:Vec,texture_pos:Vec=NULL_VEC,hitbox:Hitbox=HITBOX_50X50,action=None,tick=None) -> None:
         self.name=name
         self.surname=surname
         self.texture=texture

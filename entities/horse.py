@@ -47,6 +47,7 @@ class Horse(Npc):
                 i = items["Spatula"](1)
                 if not self.rider.add_item(i):
                     self.world.spawn_item(i, self.pos)
+                self.rider.get_quest("horse_race_won").pourcentage = 100
                 self.rider.complete_quest("horse_race_won")
 
     def next_texture(self):
