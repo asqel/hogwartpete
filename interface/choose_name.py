@@ -1,9 +1,9 @@
 import pygame as py
-from interface import *
-from uti import *
+import interface
+from uti.textures import *
 
 
-class Choose_name(Gui):
+class Choose_name(interface.Gui):
     def __init__(self, player) -> None:
         self.idx = 0
         self.max_idx = 2
@@ -30,7 +30,8 @@ class Choose_name(Gui):
                     if i.key == py.K_e:
                         self.player.name = self.player_name
                         self.player.surname = self.player_surname
-                        self.player.gui = guis["Choose_house"](self.player)
+                        self.player.close_gui()
+                        self.player.open_gui("Choose_house")
                 if self.idx == 1:
                     if i.key != py.K_BACKSPACE:
                         self.player_surname += i.unicode
@@ -47,10 +48,10 @@ class Choose_name(Gui):
         x = (screen.get_width() - Textures["other"]["text_box"].get_width())/2
         y = screen.get_height() -Textures["other"]["text_box"].get_height() - 20 
         screen.blit(Textures["other"]["text_box"],(x,y))
-        screen.blit(main_font.render(f"nom : {self.player_name}",0,(0,255,0)if self.idx == 0 else (0,0,0)), (x+30,y+30))
-        screen.blit(main_font.render(f"prenom : {self.player_surname}",0,(0,255,0)if self.idx == 1 else (0,0,0)), (x+30,y+60))
-        screen.blit(main_font.render("            confirm",0,(0,255,0)if self.idx == 2 else (0,0,0)), (x+30,y+90))                    
+        screen.blit(interface.main_font.render(f"nom : {self.player_name}",0,(0,255,0)if self.idx == 0 else (0,0,0)), (x+30,y+30))
+        screen.blit(interface.main_font.render(f"prenom : {self.player_surname}",0,(0,255,0)if self.idx == 1 else (0,0,0)), (x+30,y+60))
+        screen.blit(interface.main_font.render("            confirm",0,(0,255,0)if self.idx == 2 else (0,0,0)), (x+30,y+90))                    
         
     
     
-registerGui(Choose_name)
+interface.registerGui(Choose_name)

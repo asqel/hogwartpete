@@ -1,15 +1,17 @@
 from uti.vector import *
 from uti.hitbox import *
-from quests import *
 from uti.textures import *
-from interface import *
-from items import *
+import quests
+import uti
+import interface
+import items
 import pygame as py
+import world
+import importlib as imp
 
 class Character:
-    def __init__(self, texture:list[py.Surface], x : float, y : float, world):
-        self.inventaire : list[Item] = [items["Air"](1) for i in range(10)]
-        self.inventaire_idx = 0 
+    def __init__(self, texture:list[py.Surface], x : float, y : float, world, save_name : str):
+        self.save_name = save_name
         self.pv = 100
         self.pvmax = 100
         self.effects = []
@@ -29,13 +31,13 @@ class Character:
         self.zoom_out = 1
         self.speed_multiplier : dict[str, int] = {} # name : value
         self.transparent = False # si on peut passer a travers != de invisble
-        self.gui : Gui = None #  to convert to list[Gui] use last gui as current gui
+        self.guis : list[interface.Gui] = []
         self.data = {} # str-> str | int | float | list | dict
         self.is_world_editor = False
         self.day_count = 0
         self.tick_count = 0
-        self.quests : dict[str, Quest] = {} # incompleted quests
-        self.quests_completed : dict[str, Quest] = {}
+        self.quests : dict[str, quests.Quest] = {} # incompleted quests
+        self.quests_completed : dict[str, quests.Quest] = {}
 
     def upleft(self):
         if self.dir!="u":
@@ -197,51 +199,12 @@ class Character:
                         if self.world.get_Obj(v).id == "Air":
                              self.pos = v
 
-    def add_item(self, item : Item):
-        """
-        try to add the item to first finded slot 
-        return 0 if the item was not able to be added or not the entire item was added
-        return 1 if the item was able to be added 
-        """
-        for i in range(len(self.inventaire)):
-            if self.inventaire[i].id == "Air":
-                self.inventaire[i] = item
-                return 1
-            if self.inventaire[i].id == item.id:
-                if self.inventaire[i].quantity + item.quantity <= item.max_stack:
-                    self.inventaire[i].quantity += item.quantity
-                    return 1
-                else:
-                    item.quantity -= item.max_stack - self.inventaire[i].quantity
-                    self.inventaire[i].quantity = self.inventaire[i].max_stack
-
-
-        return 0
-
-    def remove_item_current_slot(self):
-        self.inventaire[self.inventaire_idx].quantity -= 1
-        if self.inventaire[self.inventaire_idx].quantity <= 0:
-            self.inventaire[self.inventaire_idx] = items["Air"](1)
-
-    def drop_item(self):
-        if self.inventaire[self.inventaire_idx].id != "Air":
-            item = self.inventaire[self.inventaire_idx].copy()
-            item.quantity = 1
-            self.world.spawn_item(item, self.pos)
-            self.remove_item_current_slot()
-            
-    
-    def has_item(self, id: str):
-        for i in self.inventaire:
-            if i.id == id:
-                return 1
-        return 0
-    
     def open_gui(self, gui_name : str):
-        self.gui = guis[gui_name](self)
+        self.guis.append(interface.guis[gui_name](self))
         
     def close_gui(self):
-        self.gui = None
+        if self.guis:
+            self.guis.pop(-1)
     
     def has_quest(self, _id : str):
         return _id in self.quests.keys() or _id in self.quests_completed.keys()
@@ -252,10 +215,10 @@ class Character:
     def has_quest_incompleted(self, _id : str):
         return _id in self.quests.keys()
 
-    def add_quest(self, _id : str, quest : Quest):
+    def add_quest(self, _id : str, quest : quests.Quest):
         self.quests[_id] = quest
 
-    def add_quest_completed(self, _id : str, quest : Quest):
+    def add_quest_completed(self, _id : str, quest : quests.Quest):
         self.quests_completed[_id] = quest
 
     def get_quest(self, _id : str):
@@ -306,9 +269,13 @@ class Npc:
         ...
     def on_interact(self,world,user):
         ...
+
+print("hohohoh")
 players:list[Character]=[]
 
 Npcs : dict[str,type] = {}
+print("hohohoh")
+
 
 def new_farine():
     return Npc("farine","gomez",FARINE_TEXTURE,[],Vec(90,90),Vec(8,0),Hitbox(HITBOX_RECT_t,Vec(0,0),0,50,75))

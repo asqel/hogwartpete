@@ -14,15 +14,11 @@ class Item:
     def on_use(self, world, user):
         ...
         
-    def on_inventory_tick(self, world, user):
-        ...
-
     def copy(self):
         i = items[self.id](self.quantity)
         i.max_stack = self.max_stack
         i.texture = self.texture
         i.data = self.data
-        i.on_inventory_tick = self.on_inventory_tick
         i.on_use = self.on_use
         return i
 

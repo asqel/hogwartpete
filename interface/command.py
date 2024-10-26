@@ -1,10 +1,10 @@
 import pygame as py
-from interface import *
-from commands import *
-from uti import *
+import interface
+import commands as cmd
+from uti.textures import *
 
 
-class Exec_command(Gui):
+class Exec_command(interface.Gui):
     def __init__(self, player) -> None:
         self.command = ""
         self.world = player.world
@@ -27,7 +27,7 @@ class Exec_command(Gui):
                     self.error = ""
                     break
                 if i.key == py.K_ESCAPE:
-                    self.player.gui = None
+                    self.player.close_gui()
                 elif i.key != py.K_BACKSPACE and i.key != py.K_RETURN:
                     self.command += i.unicode
                 if i.key == py.K_BACKSPACE:
@@ -51,25 +51,25 @@ class Exec_command(Gui):
         y = screen.get_height() -Textures["other"]["text_box"].get_height() - 20 
         screen.blit(Textures["other"]["text_box"],(x,y))
         if self.error:
-            screen.blit(main_font.render(self.error,0,(0,255,0)), (x+30,y+30))
+            screen.blit(interface.main_font.render(self.error,0,(0,255,0)), (x+30,y+30))
         else:
-            screen.blit(main_font.render(f"command : {self.command}",0,(0,255,0)), (x+30,y+30))
+            screen.blit(interface.main_font.render(f"command : {self.command}",0,(0,255,0)), (x+30,y+30))
     
-registerGui(Exec_command)
+interface.registerGui(Exec_command)
 
 
 def exec_command(command : str, world, player):
-    toks = lexe_command(command)
+    toks = cmd.lexe_command(command)
     toks_len = len(toks)
     print(toks)
     if toks_len < 1:
         return
-    if toks[0].type != Cmd_identifier:
+    if toks[0].type != cmd.Cmd_identifier:
         return
     com = toks[0].value
-    if com not in commands.keys():
+    if com not in cmd.commands.keys():
         return
-    c = commands[com]
+    c = cmd.commands[com]
     if c["is_free"]:
         return c["cmd_func"](toks, player)
     else:

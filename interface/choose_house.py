@@ -1,10 +1,10 @@
 import pygame as py
-from interface import *
-from uti import *
+from uti.textures import *
+import interface
 
 
 
-class Choose_house(Gui):
+class Choose_house(interface.Gui):
     def __init__(self, player) -> None:
         self.houses = ["p","g","sd","sp"]
         self.house_idx = 0
@@ -44,18 +44,18 @@ class Choose_house(Gui):
                         self.player.house = "serpentard"
                         self.player.texture= SERPENTARD_TEXTURES_0
                         self.player.current_texture = self.player.texture[2]
-                    self.player.gui = None
+                    self.player.close_gui()
                     
 
     def draw(self, screen):
         x = (screen.get_width() - Textures["other"]["text_box"].get_width())/2
         y = screen.get_height() -Textures["other"]["text_box"].get_height() - 20 
         screen.blit(Textures["other"]["text_box"],(x,y))
-        screen.blit(main_font.render("pouffsoufle",0,(0,255,0)if self.house_idx == 0 else (0,0,0)), (x+30,y+30-15))
-        screen.blit(main_font.render("griffondor",0,(0,255,0)if self.house_idx == 1 else (0,0,0)), (x+30,y+60-15))
-        screen.blit(main_font.render("serdaigle",0,(0,255,0)if self.house_idx == 2 else (0,0,0)), (x+30,y+90-15))                    
-        screen.blit(main_font.render("serpentard",0,(0,255,0)if self.house_idx == 3 else (0,0,0)), (x+30,y+90-15+30))                    
+        screen.blit(interface.main_font.render("pouffsoufle",0,(0,255,0)if self.house_idx == 0 else (0,0,0)), (x+30,y+30-15))
+        screen.blit(interface.main_font.render("griffondor",0,(0,255,0)if self.house_idx == 1 else (0,0,0)), (x+30,y+60-15))
+        screen.blit(interface.main_font.render("serdaigle",0,(0,255,0)if self.house_idx == 2 else (0,0,0)), (x+30,y+90-15))                    
+        screen.blit(interface.main_font.render("serpentard",0,(0,255,0)if self.house_idx == 3 else (0,0,0)), (x+30,y+90-15+30))                    
         
     
     
-registerGui(Choose_house)
+interface.registerGui(Choose_house)

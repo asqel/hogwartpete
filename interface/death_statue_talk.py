@@ -1,11 +1,10 @@
 import pygame as py
-from interface import *
-from uti import *
-from items import *
+import interface
+import items
 
 
 
-class Death_statue(Gui):
+class Death_statue(interface.Gui):
     def __init__(self, player) -> None:
         self.text_idx = 0
         self.text = [
@@ -40,13 +39,13 @@ class Death_statue(Gui):
                     
             
     def draw(self, screen):
-        draw_4_line(screen , self.text[self.text_idx], self.text_color[self.text_idx])
+        interface.draw_4_line(screen , self.text[self.text_idx], self.text_color[self.text_idx])
                     
 
 
 
 
-registerGui(Death_statue)
+interface.registerGui(Death_statue)
 
 """
 

@@ -1,65 +1,68 @@
-from objs import *
-from uti import *
-from interface import *
-from entities import *
-import world as w
+import objs
+from uti.textures import *
+from uti.vector import *
+from uti.hitbox import *
+import interface
+import entities
+import world
 
-class Farine_camping_car(Obj):
+class Farine_camping_car(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
         super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["farine:camping_car"],Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 300, 100))
 
     def on_interact(self, world, user):
         if -550 - 25 <= user.pos.x <= -550 + 25:
             w_ = user.world
-            user.world = w.World("farine_camping_car",(0,0,0))
+            user.world = world.World("farine_camping_car",(0,0,0))
             user.world.old_world = w_
 
-class Farine(Obj):
+class Farine(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
         super().__init__(self.__class__.__name__, x, y, False, Textures["player"]["farine:farine_right"],Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 50, 75))
 
     def on_interact(self, world, user):
         if user.pos.x >= self.pos.x + 50:
-            user.gui = guis["Farine_shop"](user)
+            user.close_gui()
+            user.open_gui("Farine_shop")
 
-registerObj(Farine)
-registerObj(Farine_camping_car)
+objs.registerObj(Farine)
+objs.registerObj(Farine_camping_car)
 
 
 
-class Farine_wall_left_up(Obj):
+class Farine_wall_left_up(objs.Obj):
     def __init__(self, x:float, y:float):
         super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["farine:wall_left_up"], Hitbox(HITBOX_RECT_t, Vec(0, 0), 0, 3, 16))
-class Farine_wall_left(Obj):
+class Farine_wall_left(objs.Obj):
     def __init__(self, x:float, y:float):
         super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["farine:wall_left"], Hitbox(HITBOX_RECT_t, Vec(0, 0), 0, 3, 16))
-class Farine_wall_right_up(Obj):
+class Farine_wall_right_up(objs.Obj):
     def __init__(self, x:float, y:float):
         super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["farine:wall_right_up"], Hitbox(HITBOX_RECT_t, Vec(13, 0), 0, 3, 16))
-class Farine_wall_right(Obj):
+class Farine_wall_right(objs.Obj):
     def __init__(self, x:float, y:float):
         super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["farine:wall_right"], Hitbox(HITBOX_RECT_t, Vec(13, 0), 0, 3, 16))
-class Farine_wall_left_down(Obj):
+class Farine_wall_left_down(objs.Obj):
     def __init__(self, x:float, y:float):
         super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["farine:wall_left_down"], Hitbox(HITBOX_RECT_t, Vec(0, 0), 0, 3, 16))
-class Farine_wall_right_down(Obj):
+class Farine_wall_right_down(objs.Obj):
     def __init__(self, x:float, y:float):
         super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["farine:wall_right_down"], Hitbox(HITBOX_RECT_t, Vec(13, 0), 0, 3, 16))
 
-class Farine_wall(Obj):
+class Farine_wall(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
         super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["farine:wall"],HITBOX_50X50)
 
-class Farine_floor(Obj):
+class Farine_floor(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
         super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["farine:floor"],HITBOX_50X50)
 
 
-registerObj(Farine_wall_left)
-registerObj(Farine_wall_left_down)
-registerObj(Farine_wall_left_up)
-registerObj(Farine_wall_right)
-registerObj(Farine_wall_right_down)
-registerObj(Farine_wall_right_up)
-registerObj(Farine_floor)
-registerObj(Farine_wall)
+objs.registerObj(Farine_wall_left)
+objs.registerObj(Farine_wall_left_down)
+objs.registerObj(Farine_wall_left_up)
+objs.registerObj(Farine_wall_right)
+objs.registerObj(Farine_wall_right_down)
+objs.registerObj(Farine_wall_right_up)
+objs.registerObj(Farine_floor)
+objs.registerObj(Farine_wall)

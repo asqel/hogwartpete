@@ -1,9 +1,10 @@
-from entities import *
-from uti import *
+import entities
+from uti.hitbox import *
+from uti.textures import *
 import random
-from world import *
+import world
 
-class Bullet(Npc):
+class Bullet(entities.Npc):
     def __init__(self,pos:Vec) -> None:
         super().__init__(
                         "bullet",
@@ -26,7 +27,7 @@ class Bullet(Npc):
         self.frame_time =18.75*4
         self.frame_time_count = 0
         
-    def tick(self, world :World ):
+    def tick(self, _world : world.World ):
         self.frame_time_count += 1
         if self.frame_time_count >= self.frame_time:
             self.frame += 1
@@ -48,19 +49,19 @@ class Bullet(Npc):
         elif self.direction == "l":
             self.pos += Vec(-1,0)*self.speed   
             
-        if world.get_Obj(self.pos).id != "Air":
+        if _world.get_Obj(self.pos).id != "Air":
             self.pv = 0
             return 0
 
-        entities : list[Npc] = []
+        _entities : list['entities.Npc'] = []
         for i in range(-1, 2):
             for k in range(-1, 2):
-                entities.extend(world.get_Chunk_at((self.pos // CHUNK_SIZE) + (i, k)).entities)
+                _entities.extend(_world.get_Chunk_at((self.pos // world.CHUNK_SIZE) + (i, k)).entities)
         
         hit1 = self.hitbox.copy()
         hit1.pos += self.pos
-        for i in entities:
-            if type(i) == Npcs["Protego"]:
+        for i in _entities:
+            if type(i) == entities.Npcs["Protego"]:
                 if i.sender == self.sender:
                     continue
             if i.hitbox and i != self and i != self.sender:
@@ -71,11 +72,11 @@ class Bullet(Npc):
                     self.pv = 0
                     return 0
                 
-        if players[0].hitbox and self.sender != players[0]:
-            hit2 = players[0].hitbox.copy()
-            hit2.pos += players[0].pos
+        if entities.players[0].hitbox and self.sender != entities.players[0]:
+            hit2 = entities.players[0].hitbox.copy()
+            hit2.pos += entities.players[0].pos
             if hit1.iscolliding(hit2):
-                players[0].pv -= 10
+                entities.players[0].pv -= 10
                 self.pv = 0 
         
         
@@ -83,4 +84,4 @@ class Bullet(Npc):
             
 
 
-registerNpc(Bullet)
+entities.registerNpc(Bullet)

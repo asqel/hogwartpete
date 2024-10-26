@@ -1,9 +1,11 @@
-from entities import *
-from uti import *
+import entities
+from uti.vector import *
+from uti.textures import *
+from uti.hitbox import *
 from math import *
 from random import *
 
-class Horse(Npc):
+class Horse(entities.Npc):
     def __init__(self,pos:Vec) -> None:
         super().__init__(
                         "Horse",
@@ -44,9 +46,9 @@ class Horse(Npc):
         if -3250 - 50 < self.pos.y < -3250 + 50 and self.pos.x > 2100:
             self.rider.riding = None
             if self.rider.has_quest_incompleted("horse_race_won"):
-                i = items["Spatula"](1)
-                if not self.rider.add_item(i):
-                    self.world.spawn_item(i, self.pos)
+                #i = items["Spatula"](1)
+                #if not self.rider.add_item(i):
+                #    self.world.spawn_item(i, self.pos)
                 self.rider.get_quest("horse_race_won").pourcentage = 100
                 self.rider.complete_quest("horse_race_won")
 
@@ -61,4 +63,4 @@ class Horse(Npc):
             self.current_texture = self.texture[0]
 
     
-registerNpc(Horse)
+entities.registerNpc(Horse)

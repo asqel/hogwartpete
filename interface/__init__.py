@@ -1,7 +1,7 @@
 import pygame as py
-from uti import *
 import os
 import importlib as imp
+from uti.textures import *
 
 py.font.init()
 

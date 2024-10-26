@@ -1,5 +1,4 @@
 from typing import TypedDict
-from re import escape
 
 Arg_type = int
 Cmd_None = 0

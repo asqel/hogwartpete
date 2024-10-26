@@ -1,13 +1,11 @@
-from commands import *
-import entities as ent
-import items as it
+import commands as cmd
 
-echo_cmd = new_struct_command()
+echo_cmd = cmd.new_struct_command()
 
 def echo_func(args, user):
     raise Exception(args[1].value)
 
 
-add_arg(echo_cmd, (Cmd_identifier, Cmd_identifier), echo_func)
-add_arg(echo_cmd, (Cmd_identifier, Cmd_str), echo_func)
-register_command("/echo", echo_cmd)
+cmd.add_arg(echo_cmd, (cmd.Cmd_identifier, cmd.Cmd_identifier), echo_func)
+cmd.add_arg(echo_cmd, (cmd.Cmd_identifier, cmd.Cmd_str), echo_func)
+cmd.register_command("/echo", echo_cmd)

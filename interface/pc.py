@@ -1,10 +1,10 @@
 import pygame as py
-from interface import *
-from uti import *
+import interface
+from uti.textures import *
 
 
 
-class Pc(Gui):
+class Pc(interface.Gui):
     def __init__(self, player) -> None:
         super().__init__("Pc", {}, player)
         
@@ -14,7 +14,7 @@ class Pc(Gui):
         for i in events:
             if i.type == py.KEYDOWN:
                 if i.key == py.K_e:
-                    self.player.gui = None
+                    self.player.close_gui()
                     
             
     def draw(self, screen):
@@ -23,10 +23,10 @@ class Pc(Gui):
         screen.blit(Textures["other"]["text_box"],(x,y))
         
 
-        screen.blit(main_font.render("Vous ne reconnaissez pas",0,(0,0,0)), (x+30-6,y+30-10-10))
-        screen.blit(main_font.render("l'OS quelqu'un a du le",0,(0,0,0)), (x+30-6,y+60-10-10))
-        screen.blit(main_font.render("changer mais vous le",0,(0,0,0)), (x+30-6,y+90-10-10))
-        screen.blit(main_font.render("trouvez pas mal.",0,(0,0,0)), (x+30-6,y+120-10-10))
+        screen.blit(interface.main_font.render("Vous ne reconnaissez pas",0,(0,0,0)), (x+30-6,y+30-10-10))
+        screen.blit(interface.main_font.render("l'OS quelqu'un a du le",0,(0,0,0)), (x+30-6,y+60-10-10))
+        screen.blit(interface.main_font.render("changer mais vous le",0,(0,0,0)), (x+30-6,y+90-10-10))
+        screen.blit(interface.main_font.render("trouvez pas mal.",0,(0,0,0)), (x+30-6,y+120-10-10))
         
     
-registerGui(Pc)
+interface.registerGui(Pc)

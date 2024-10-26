@@ -1,9 +1,11 @@
-from entities import *
-from uti import *
+import entities
+from uti.vector import *
+from uti.hitbox import *
+from uti.textures import *
 from math import *
 from random import *
 
-class Death(Npc):
+class Death(entities.Npc):
     def __init__(self,pos:Vec) -> None:
         super().__init__(
                         "Death",
@@ -16,9 +18,8 @@ class Death(Npc):
                         )
         self.dir="d"
     def die(self, world):
-        world.spawn_item(items["Elder_wand"](1),self.pos)
         return 1
-    def go_to_player(self,Player:Character, world):
+    def go_to_player(self,Player : entities.Character, world):
         v=Player.pos-self.pos
         if v.squareLength()<=10000**2 and v.squareLength()>=150**2:
             if world.get_Obj(self.pos+v*self.speed/150).id=="Air":
@@ -47,62 +48,62 @@ class Death(Npc):
 
     def attack(self, world):
         if self.dir == 'u':
-            bullet = Npcs["Bullet"](self.pos + (13,-10))
+            bullet = entities.Npcs["Bullet"](self.pos + (13,-10))
             bullet.direction = self.dir
             bullet.sender = self
             world.get_Chunk_from_pos(self.pos).entities.append(bullet)
         if self.dir == 'r':
-            bullet = Npcs["Bullet"](self.pos + (10 + 50, 13))
+            bullet = entities.Npcs["Bullet"](self.pos + (10 + 50, 13))
             bullet.direction = self.dir
             bullet.sender = self
             world.get_Chunk_from_pos(self.pos).entities.append(bullet)
         if self.dir == 'd':
-            bullet = Npcs["Bullet"](self.pos + (13,50 + 10))
+            bullet = entities.Npcs["Bullet"](self.pos + (13,50 + 10))
             bullet.direction = self.dir
             bullet.sender = self
             world.get_Chunk_from_pos(self.pos).entities.append(bullet)
                             
         if self.dir == 'l':
-            bullet = Npcs["Bullet"](self.pos + (-10,13))
+            bullet = entities.Npcs["Bullet"](self.pos + (-10,13))
             bullet.direction = self.dir
             bullet.sender = self
             world.get_Chunk_from_pos(self.pos).entities.append(bullet)
     
     def tick(self, world):
-        self.go_to_player(players[0], world)
+        self.go_to_player(entities.players[0], world)
         world.activate_collision()
         random=randint(0,225)
         if random==75:
             self.attack(world)
-        if not(players[0].pos.x - 55 <= self.pos.x <= players[0].pos.x + 55):
-            if players[0].pos.y - 55 <= self.pos.y <= players[0].pos.y + 55:
+        if not(entities.players[0].pos.x - 55 <= self.pos.x <= entities.players[0].pos.x + 55):
+            if entities.players[0].pos.y - 55 <= self.pos.y <= entities.players[0].pos.y + 55:
                 if randint(0,75) == 1:
                     if self.dir == "r":
-                        shield = Npcs["Protego"](self.pos + (75, -10))
+                        shield = entities.Npcs["Protego"](self.pos + (75, -10))
                         shield.dir = self.dir
                         shield.sender = self
                         shield.hitbox = Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 50, 70)
                         world.add_entity(shield)
                     elif self.dir == "l":
-                        shield = Npcs["Protego"](self.pos + (-75, -10))
+                        shield = entities.Npcs["Protego"](self.pos + (-75, -10))
                         shield.dir = self.dir
                         shield.sender = self
                         shield.hitbox = Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 50, 70)
                         world.add_entity(shield)
-        elif players[0].pos.x - 55 <= self.pos.x <= players[0].pos.x + 55:
-            if not(players[0].pos.y - 55 <= self.pos.y <= players[0].pos.y + 55):
+        elif entities.players[0].pos.x - 55 <= self.pos.x <= entities.players[0].pos.x + 55:
+            if not(entities.players[0].pos.y - 55 <= self.pos.y <= entities.players[0].pos.y + 55):
                 if randint(0,45) == 1:
                     if self.dir == "u":
-                        shield = Npcs["Protego"](self.pos + (-10, -75))
+                        shield = entities.Npcs["Protego"](self.pos + (-10, -75))
                         shield.dir = self.dir
                         shield.sender = self
                         shield.hitbox = Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 70, 50)
                         world.add_entity(shield)
                     elif self.dir == "d":
-                        shield = Npcs["Protego"](self.pos + (-10, 75))
+                        shield = entities.Npcs["Protego"](self.pos + (-10, 75))
                         shield.dir = self.dir
                         shield.sender = self
                         shield.hitbox = Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 70, 50)
                         world.add_entity(shield)
     
-registerNpc(Death)
+entities.registerNpc(Death)

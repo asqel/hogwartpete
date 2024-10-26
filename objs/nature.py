@@ -1,17 +1,21 @@
-from objs import *
-from uti import *
+from uti.textures import *
+from uti.vector import *
+from uti.hitbox import *
+import objs
+from random import randint , choice 
 
-class Air(Dynamic_Obj):
+
+
+class Air(objs.Dynamic_Obj):
     def __init__(self, x:float, y:float) -> None:
         super().__init__(self.__class__.__name__, x, y, False, NOTHING_TEXTURE,Hitbox(HITBOX_RECT_t,Vec(0,0),0,50,50))
 
-class Pebble(Obj):
+class Pebble(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
         super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["pebble"],HITBOX_50X50)
 
 
-from random import randint , choice 
-class Grass(Obj):
+class Grass(objs.Obj):
     def __init__(self, x: float, y: float) -> None:
         textures = [Textures["Obj"]["grass_flowers"],
                    Textures["Obj"]["grass_roses"]
@@ -25,18 +29,18 @@ class Grass(Obj):
         super().__init__(self.__class__.__name__, x, y,False,texture,HITBOX_50X50)
         
         
-class Tree(Obj):
+class Tree(objs.Obj):
     def __init__(self, x: float, y: float) -> None:
         super().__init__(self.__class__.__name__, x, y,False,Textures["Obj"]["tree"])
         self.hitbox = Hitbox(HITBOX_RECT_t, Vec(0,0), width = 100, height = 100)
         
-class Pumpkin(Obj):
+class Pumpkin(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
         super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["pumpkin"],Hitbox(HITBOX_RECT_t, Vec(6, 6), 0, 41, 44))
 
-registerObj(Pebble)
-registerObj(Grass)
-registerObj(Tree)
-registerObj(Air)
-registerObj(Pumpkin)
-registerDynamic_Obj(Air)
+objs.registerObj(Pebble)
+objs.registerObj(Grass)
+objs.registerObj(Tree)
+objs.registerObj(Air)
+objs.registerObj(Pumpkin)
+objs.registerDynamic_Obj(Air)

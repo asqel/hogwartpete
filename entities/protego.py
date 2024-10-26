@@ -1,10 +1,12 @@
-from entities import *
-from uti import *
+import entities
+from uti.vector import *
+from uti.hitbox import *
+from uti.textures import *
 import random
-from world import *
+import world
 
-class Protego(Npc):
-    def __init__(self,pos:Vec) -> None:
+class Protego(entities.Npc):
+    def __init__(self, pos:Vec) -> None:
         super().__init__(
                         "protego",
                         "protego",
@@ -22,7 +24,7 @@ class Protego(Npc):
         self.sender = None
         self.collide_player = False
         
-    def tick(self, world :World ):
+    def tick(self, world : world.World ):
         self.pos = Vec(self.x, self.y)
         if self.dir == "u":
             self.current_texture = self.texture[0]
@@ -45,4 +47,4 @@ class Protego(Npc):
             
 
 
-registerNpc(Protego)
+entities.registerNpc(Protego)

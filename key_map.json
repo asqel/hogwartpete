@@ -1,13 +1,11 @@
 {
 
-    "mov up" : "z",
+    "mov up" : "w",
     "mov down" : "s",
-    "mov left" : "q",
+    "mov left" : "a",
     "mov right" : "d",
     "protego" : "m3",
     "shoot wand" : "m1",
-    "use item" : "a",
-    "drop item" : "t",
     "use object" : "e",
     "sprint" : "lctrl",
     "slot 1" : "1",

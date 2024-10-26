@@ -1,8 +1,10 @@
 import json
-from world import *
-from objs import *
-from uti import *
-from events import *
+import world
+import objs
+import events
+from uti.vector import *
+from uti.hitbox import *
+import entities
 import os
 
 path=os.path.abspath(".")+"/worlds"
@@ -20,7 +22,7 @@ def save_hitbox(hit:Hitbox):
         "pos":save_vec(hit.pos) 
     } if hit else None
 
-def save_Obj(o:Obj):
+def save_Obj(o : objs.Obj):
     return {
         "pos":save_vec(o.pos),
         "data":o.data,
@@ -29,7 +31,7 @@ def save_Obj(o:Obj):
         "toplayer":o.toplayer,
     }
     
-def save_dyn_Obj(o : Dynamic_Obj):
+def save_dyn_Obj(o : objs.Dynamic_Obj):
     return {
         "pos":save_vec(o.pos),
         "data":o.data,
@@ -38,7 +40,7 @@ def save_dyn_Obj(o : Dynamic_Obj):
         "toplayer":o.toplayer,
     }
     
-def save_chunk(c:"Chunk"):
+def save_chunk(c:"world.Chunk"):
     return {
         "background_obj":[save_Obj(i) for i in c.background_obj] ,   
         "Dyn_Obj":[save_dyn_Obj(i) for i in c.dyn_objects],
@@ -50,7 +52,7 @@ def save_chunk(c:"Chunk"):
     }
 
 
-def save_world(w:"World"):
+def save_world(w:"world.World"):
     if not os.path.exists(f"./worlds/{w.name}"):
         os.makedirs(f"./worlds/{w.name}")
     if not os.path.isdir(f"./worlds/{w.name}"):
@@ -68,26 +70,25 @@ def load_hitbox(d):
         
            
 def load_obj(d):
-    if d["id"] not in Objs.keys():
+    if d["id"] not in objs.Objs.keys():
         return None
-    x=Objs[d["id"]](d["pos"][0],d["pos"][1])
+    x = objs.Objs[d["id"]](d["pos"][0],d["pos"][1])
     x.toplayer=d["toplayer"]
     x.data=d["data"]
     x.hitbox=load_hitbox(d["hitbox"])
     return x
          
 def load_Dyn_obj(d):
-    if d["id"] not in Dynamic_Objs.keys():
+    if d["id"] not in objs.Dynamic_Objs.keys():
         return None
-    x=Dynamic_Objs[d["id"]](d["pos"][0],d["pos"][1])
+    x = objs.Dynamic_Objs[d["id"]](d["pos"][0],d["pos"][1])
     x.toplayer=d["toplayer"]
     x.data=d["data"]
     x.hitbox=load_hitbox(d["hitbox"])
     return x
 
 def load_chunk(d,w):
-    import world as wo
-    c=wo.Chunk(load_vec(d["pos"]),w)    
+    c = world.Chunk(load_vec(d["pos"]),w)    
     for i in d["background_obj"]:
         o = load_obj(i)
         if o:
@@ -105,7 +106,6 @@ def load_chunk(d,w):
     return c
 
 def load_world(name:str, mod = ""):
-    import world as wo
     d={}
     if mod != "":
         with open(f"./mods/{mod}/worlds/{name}.json") as f:
@@ -113,7 +113,7 @@ def load_world(name:str, mod = ""):
     else : 
         with open(f"{path}/{name}.json") as f:
             d=json.load(f)
-    w=wo.World(name,d["background"])
+    w = world.World(name,d["background"])
     w.chuncks={}
     for i in d["chunks"].keys():
         for k in d['chunks'][i].keys():
@@ -121,6 +121,6 @@ def load_world(name:str, mod = ""):
             y=int(k)
             w.get_Chunk_at(Vec(x,y))
             w.chuncks[x][y]=load_chunk(d["chunks"][i][k],w)#here i,k because str in json
-    for i in events[Event_on_world_load]:
-        i.function(players, w)
+    for i in events[events.Event_on_world_load]:
+        i.function(entities.players, w)
     return w

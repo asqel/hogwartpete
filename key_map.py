@@ -111,3 +111,21 @@ def load_keys():
 def register_key_entry(key_entry : str):
     key_entries.append(key_entry)
 
+def is_event_key_pressed(ev: py.event.Event, key: str):
+    if ev.type == py.MOUSEBUTTONDOWN:
+        if (1,ev.button) == key_map[key]:
+            return 1
+    elif ev.type == py.KEYDOWN:
+        if ev.key == key_map[key]:
+            return 1
+    return 0
+
+
+def is_event_key_released(ev: py.event.Event, key: str):
+    if ev.type == py.MOUSEBUTTONUP:
+        if (1,ev.button) == key_map[key]:
+            return 1
+    elif ev.type == py.KEYUP:
+        if ev.key == key_map[key]:
+            return 1
+    return 0

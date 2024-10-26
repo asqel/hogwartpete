@@ -1,7 +1,7 @@
 import os 
 import importlib as imp
 from importlib.machinery import SourceFileLoader
-from uti import *
+from uti.textures import *
 
 path = os.path.abspath(".")
 

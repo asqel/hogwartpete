@@ -1,5 +1,6 @@
-from events import *
+import events
 from uti.vector import *
+from uti.hitbox import *
 from uti.textures import *
 import pygame
 
@@ -26,7 +27,7 @@ def draw(players, screen : pygame.Surface):
                         h = new_h
                     screen.blit(texture, (0,0))
 #apply blindness to the player
-registerEvent(Event(Event_on_draw_t, draw))
+events.registerEvent(events.Event(events.Event_on_draw_t, draw))
 
 
 

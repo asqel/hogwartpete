@@ -1,8 +1,8 @@
 import pygame as py
-from items import *
-from uti import *
+from uti.textures import *
+import items
 
-class Couscous(Item):
+class Couscous(items.Item):
     def __init__(self, quantity) -> None:
         super().__init__(self.__class__.__name__, 2, Textures["item"]["couscous"], quantity, "Couscous")
     def on_use(self, world, user):
@@ -11,7 +11,7 @@ class Couscous(Item):
             user.pv = min(user.pv + 15, 100)
 
 
-class Sausage(Item):
+class Sausage(items.Item):
     def __init__(self, quantity) -> None:
         super().__init__(self.__class__.__name__, 5, Textures["item"]["saucisses"], quantity ,"Sausage")
 
@@ -20,7 +20,7 @@ class Sausage(Item):
             self.quantity -= 1
             user.pv = min(user.pv + 5, 100)
 
-class Taboule(Item):
+class Taboule(items.Item):
     def __init__(self, quantity) -> None:
         super().__init__(self.__class__.__name__, 3, Textures["item"]["taboule"], quantity, "taboule")
     def on_use(self, world, user):
@@ -28,12 +28,12 @@ class Taboule(Item):
             self.quantity -= 1
             user.pv = min(user.pv + 10, 100)
 
-class Spatula(Item):
+class Spatula(items.Item):
     def __init__(self, quantity) -> None:
         super().__init__(self.__class__.__name__, 1, Textures["item"]["spatula"], quantity, "spatula")
 
 
-registerItem(Couscous)
-registerItem(Taboule)
-registerItem(Sausage)
-registerItem(Spatula)
+items.registerItem(Couscous)
+items.registerItem(Taboule)
+items.registerItem(Sausage)
+items.registerItem(Spatula)
