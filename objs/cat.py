@@ -10,7 +10,7 @@ import items
 
 class Cat(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["cat_1"],Hitbox(HITBOX_RECT_t,NULL_VEC,0, 100, 100))
+        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["cat_1"],Hitbox(HITBOX_RECT_t,NULL_VEC,0, 100, 100))
         self.frame=0
         self.maxframe=3
         self.frames=[Textures["Obj"]["cat_1"],Textures["Obj"]["cat_2"],Textures["Obj"]["cat_3"],Textures["Obj"]["cat_4"]]

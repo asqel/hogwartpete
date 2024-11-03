@@ -208,9 +208,9 @@ def main():
         for i in events.events[events.Event_on_textures_load_t]:
             i.function(Textures)
 
-        starting_world = world.World("bed room",(125, 125, 125))
+        starting_world = world.World("starting",(125, 125, 125))
         entities.players.append(entities.Character(POUFSOUFFLE_TEXTURES_0, 100, 0, starting_world, "NULL"))
-        entities.players[0].open_gui("Main_menu")
+        #entities.players[0].open_gui("Main_menu")
         entities.players[0].pv = 100
 
         entities.players[0].zoom_out = 1
@@ -292,5 +292,4 @@ def main():
         running_dict["server"] =True
 
 
-print(entities.players)
 main()

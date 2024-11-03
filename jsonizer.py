@@ -23,33 +23,32 @@ def save_hitbox(hit:Hitbox):
     } if hit else None
 
 def save_Obj(o : objs.Obj):
+    if o is None:
+        return 0
+    if o.id == "Air":
+        return 0
     return {
-        "pos":save_vec(o.pos),
         "data":o.data,
         "hitbox":save_hitbox(o.hitbox),
         "id":o.id,
-        "toplayer":o.toplayer,
-    }
-    
-def save_dyn_Obj(o : objs.Dynamic_Obj):
-    return {
-        "pos":save_vec(o.pos),
-        "data":o.data,
-        "hitbox":save_hitbox(o.hitbox),
-        "id":o.id,
-        "toplayer":o.toplayer,
     }
     
 def save_chunk(c:"world.Chunk"):
-    return {
-        "background_obj":[save_Obj(i) for i in c.background_obj] ,   
-        "Dyn_Obj":[save_dyn_Obj(i) for i in c.dyn_objects],
+    d = {
+        "background_obj":[[0 for i in range(20)] for k in range(20)],   
+        "Dyn_Obj":[[0 for i in range(20)] for k in range(20)],
         "entities":[],
         "hitboxes":[save_hitbox(i) for i in c.hitboxes],
-        "objects":[save_Obj(i) for i in c.objects],
+        "objects":[[0 for i in range(20)] for k in range(20)],
         "pos":save_vec(c.pos),
         "top-left":save_vec(c.top_left_pos)
     }
+    for i in range(20):
+        for k in range(20):
+            d["background_obj"][i][k] = save_Obj(c.background_obj[i][k])
+            d["objects"][i][k] = save_Obj(c.objects[i][k])
+            d["Dyn_Obj"][i][k] = save_Obj(c.dyn_objects[i][k])
+    return d
 
 
 def save_world(w:"world.World"):
@@ -69,58 +68,26 @@ def load_hitbox(d):
     return HITBOX_0x0 if d is None else Hitbox(d["type"],load_vec(d["pos"]),d["r"],d["w"],d["h"]) 
         
            
-def load_obj(d):
+def load_obj(d, x, y):
+    if d is None or d == 0:
+        return None
     if d["id"] not in objs.Objs.keys():
         return None
-    x = objs.Objs[d["id"]](d["pos"][0],d["pos"][1])
-    x.toplayer=d["toplayer"]
-    x.data=d["data"]
-    x.hitbox=load_hitbox(d["hitbox"])
-    return x
-         
-def load_Dyn_obj(d):
-    if d["id"] not in objs.Dynamic_Objs.keys():
-        return None
-    x = objs.Dynamic_Objs[d["id"]](d["pos"][0],d["pos"][1])
-    x.toplayer=d["toplayer"]
+    x = objs.Objs[d["id"]](x, y)
     x.data=d["data"]
     x.hitbox=load_hitbox(d["hitbox"])
     return x
 
-def load_chunk(d,w):
-    c = world.Chunk(load_vec(d["pos"]),w)    
-    for i in d["background_obj"]:
-        o = load_obj(i)
-        if o:
-            c.background_obj.append(o)
-    c.hitboxes=[load_hitbox(i) for i in d["hitboxes"]] 
-    for i in d["objects"]:
-        o = load_obj(i)
-        if o:
-            c.objects.append(o)
-    for i in d["Dyn_Obj"]:
-        o = load_Dyn_obj(i)
-        if o:
-            c.dyn_objects.append(o)
-    c.top_left_pos=load_vec(d["top-left"])
+def load_chunk(d, w):
+    c = world.Chunk(load_vec(d["pos"]), w)
+    for i in range(20):
+        for k in range(20):
+            d["background_obj"][i][k] = load_obj(d["background_obj"][i][k], c.top_left_pos.y + k * 50, c.top_left_pos.y + i * 50)
+            d["objects"][i][k] = load_obj(d["objects"][i][k], c.top_left_pos.y + k * 50, c.top_left_pos.y + i * 50)
+            d["Dyn_Obj"][i][k] = load_obj(d["Dyn_Obj"][i][k], c.top_left_pos.y + k * 50, c.top_left_pos.y + i * 50)
+    c.objects = d["objects"]
+    c.dyn_objects = d["Dyn_Obj"]
+    c.background_obj = d["background_obj"]
+    c.hitboxes = [load_hitbox(i) for i in d["hitboxes"]] 
+    c.top_left_pos = load_vec(d["top-left"])
     return c
-
-def load_world(name:str, mod = ""):
-    d={}
-    if mod != "":
-        with open(f"./mods/{mod}/worlds/{name}.json") as f:
-            d=json.load(f)
-    else : 
-        with open(f"{path}/{name}.json") as f:
-            d=json.load(f)
-    w = world.World(name,d["background"])
-    w.chuncks={}
-    for i in d["chunks"].keys():
-        for k in d['chunks'][i].keys():
-            x=int(i)
-            y=int(k)
-            w.get_Chunk_at(Vec(x,y))
-            w.chuncks[x][y]=load_chunk(d["chunks"][i][k],w)#here i,k because str in json
-    for i in events[events.Event_on_world_load]:
-        i.function(entities.players, w)
-    return w

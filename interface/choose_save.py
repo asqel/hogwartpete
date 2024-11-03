@@ -4,13 +4,15 @@ from math import cos, sin
 import key_map as key
 import saves
 import pygame as py
+import entities
 
 from uti.textures import *
+import saves 
 
 class Choose_save(interface.Gui):
-	def __init__(self, player) -> None:
+	def __init__(self, player: 'entities.Character') -> None:
 		super().__init__("Choose_save", {}, player)
-		self.saves : list[str] = ["asqel", "qui", "quoi", "comment", "eee", "aaaa", "bb", "cc"]
+		self.saves : list[str] = saves.get_saves_names()
 		self.saves.append(None)
 		self.save_idx = 0
 		self.particles = []
@@ -38,6 +40,9 @@ class Choose_save(interface.Gui):
 				if self.save_idx < len(self.saves) - 1:
 					saves.load_save(self.player, self.saves[self.save_idx])
 					self.player.close_gui()
+				else:
+					self.player.close_gui()
+					self.player.open_gui("Create_save")
 			
 	def draw(self, screen):
 		screen.fill((0,0,0))

@@ -35,10 +35,12 @@ running_dict = {
 }
 
 pygame_events=[]
+
+world_editor_layer = 0
     
 
 def server_thread():
-    global running_dict, g_tps, pygame_events, show_hitbox, obj_idx
+    global running_dict, g_tps, pygame_events, show_hitbox, obj_idx, world_editor_layer
 
     loop_start = time()
     loop_count = 0
@@ -69,40 +71,41 @@ def server_thread():
                     elif i.key == K_ASTERISK:
                         world.toggle_hitbox()
                     if i.key == K_LEFT:
-                        obj_idx-=1
-                        if obj_idx==-1:
-                            obj_idx=len(objs.Objs.keys())-1
+                        obj_idx -= 1
+                        if obj_idx == -1:
+                            obj_idx = len(objs.Objs.keys()) - 1
                     if i.key == K_RIGHT:
                         obj_idx+=1
                         if obj_idx == len(objs.Objs.keys()):
                             obj_idx=0
-                    if i.key == K_p:
-                        starting_world.add_Obj(objs.Objs[list(objs.Objs.keys())[obj_idx]](*tuple(entities.players[0].pos)))
-                    if i.key == K_m:
-                        starting_world.add_background_Obj(objs.Objs[list(objs.Objs.keys())[obj_idx]](*tuple(entities.players[0].pos)))
-                    if i.key == K_o:#delete obj att
-                        c = starting_world.get_Chunk_from_pos(entities.players[0].pos)
-                        for k in c.objects:
-                            if k.pos == entities.players[0].pos:
-                                c.objects.remove(k)
-                                break
+                    if i.key == K_UP:
+                        world_editor_layer += 1
+                        if world_editor_layer > 2:
+                            world_editor_layer = 0
+                    if i.key == K_DOWN:
+                        world_editor_layer -= 1
+                        if world_editor_layer < 0:
+                            world_editor_layer = 2
+                    if i.key == K_r:
+                        if world_editor_layer == 0:
+                            starting_world.add_background_Obj(objs.Objs[list(objs.Objs.keys())[obj_idx]](*tuple(entities.players[0].pos)))
+                        elif world_editor_layer == 1:
+                            starting_world.add_Obj(objs.Objs[list(objs.Objs.keys())[obj_idx]](*tuple(entities.players[0].pos)))
+                        elif world_editor_layer == 2:
+                            starting_world.add_Dyn_Obj(objs.Objs[list(objs.Objs.keys())[obj_idx]](*tuple(entities.players[0].pos)))
+                    if i.key == K_t:
+                        if world_editor_layer == 0:
+                            starting_world.remove_background_obj_at(entities.players[0].pos)
+                        elif world_editor_layer == 1:
+                            starting_world.remove_obj_at(entities.players[0].pos)
+                        elif world_editor_layer == 2:
+                            starting_world.remove_dyn_obj_at(entities.players[0].pos)
                     if i.key == K_l:#delete dyn_obj att
                         c=starting_world.get_Chunk_from_pos(entities.players[0].pos)
                         for k in c.background_obj:
                             if k.pos == entities.players[0].pos:
                                 c.background_obj.remove(k)
                                 break
-                            
-                    if i.key == K_i:
-                        for j in range(4):
-                            for k in range(4):
-                                starting_world.add_Obj(objs.Objs[list(objs.Objs.keys())[obj_idx]](*tuple(entities.players[0].pos + 50*Vec(j,k))))
-                    if i.key == K_k:
-                        for j in range(4):
-                            for k in range(4):
-                                starting_world.add_background_Obj(objs.Objs[list(objs.Objs.keys())[obj_idx]](*tuple(entities.players[0].pos + 50*Vec(j,k))))
-
-
 
                 elif i.type ==py.KEYUP:
                     if i.key == py.K_LCTRL:
@@ -112,7 +115,7 @@ def server_thread():
         
         if not entities.players[0].guis:
             pushed_keys=py.key.get_pressed()
-            if pushed_keys[py.K_q] and not cooldown:
+            if pushed_keys[py.K_a] and not cooldown:
                 entities.players[0].pos.x-=50
                 cooldown=20
                 
@@ -120,7 +123,7 @@ def server_thread():
                 entities.players[0].pos.x+=50
                 cooldown=20
                 
-            if pushed_keys[py.K_z] and not cooldown:
+            if pushed_keys[py.K_w] and not cooldown:
                 entities.players[0].pos.y-=50
                 cooldown=20
                 
@@ -146,7 +149,7 @@ def server_thread():
 def main():
     
     global pygame_events
-    for i in events[events.Event_on_textures_load_t]:
+    for i in events.events[events.Event_on_textures_load_t]:
         i.function(Textures)
 
     entities.players[0].zoom_out = 1
@@ -171,6 +174,12 @@ def main():
         screen.blit(arial.render(f"mid tps: {int(g_tps)}", False, (255, 0, 0)), (0, 30))
         screen.blit(arial.render(str(entities.players[0].pos.floor()), False, (255, 0, 0)), (0, 60))
         screen.blit(arial.render(str(entities.players[0].world.get_Chunk_from_pos(entities.players[0].pos).pos), False, (255, 0, 0)), (0, 90))
+        if world_editor_layer == 0:
+            screen.blit(arial.render("background object", False, (255, 0, 0)), (0, 120))
+        if world_editor_layer == 1:
+            screen.blit(arial.render("object", False, (255, 0, 0)), (0, 120))
+        if world_editor_layer == 2:
+            screen.blit(arial.render("dynamic object", False, (255, 0, 0)), (0, 120))
 
         #draw crusor
         if cursor_cooldown:
@@ -229,7 +238,7 @@ starting_world.has_to_collide=True
 
 
 
-entities.players.append(entities.Character("","","",None,None,[NOTHING_TEXTURE for i in range(4)],None,0,0,starting_world))
+entities.players.append(entities.Character([NOTHING_TEXTURE for i in range(4)],0,0,starting_world, "NULL"))
 entities.players[0].is_world_editor = True
 obj_idx=0
 

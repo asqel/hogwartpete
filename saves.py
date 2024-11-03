@@ -4,7 +4,7 @@ import json
 import world
 from uti.vector import *
 import quests
-
+from uti.textures import *
 
 save_dir=os.path.abspath(".")+"/saves"
 
@@ -42,3 +42,14 @@ def load_save(player: 'entities.Character', save_name: str):
 		for i in player.quests.keys():
 			player.quests_completed[i] = quests.Quest(None, None, None, None, None).from_json(player.quests_completed[i])
 
+
+
+def get_saves_names() -> list[str]:
+    l = []
+    for i in os.listdir(os.path.join(path, "saves")):
+        l.append(i.removesuffix(".json"))
+    return l
+
+def create_character(save_name: str) -> 'entities.Character':
+	res : entities.Character = entities.Character(POUFSOUFFLE_TEXTURES_0, 100, 0, world.World("starting", (0, 0, 0)) , save_name)
+	return res

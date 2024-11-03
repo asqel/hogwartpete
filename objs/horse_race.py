@@ -12,23 +12,23 @@ import quests
 
 class Horse_track_left(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["horse_track_left"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["horse_track_left"],HITBOX_50X50)
 
 class Horse_track_middle(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["horse_track_middle"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["horse_track_middle"],HITBOX_50X50)
 
 class Horse_track_right(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["horse_track_right"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["horse_track_right"],HITBOX_50X50)
 
 class Horse_race_sign(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["horse_race_sign"],HITBOX_100X100)
+        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["horse_race_sign"],HITBOX_100X100)
 
 class Cowboy_horse_race(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["cowboy_horse_race_down"],Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 50, 59))
+        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["cowboy_horse_race_down"],Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 50, 59))
 
     def on_interact(self, world, user : 'entities.Character'):
         if user.pos.y >= self.pos.y + 50:
@@ -83,7 +83,7 @@ class Cowboy_horse_race_gui(interface.Gui):
 
 class Public_horse_race(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["public_horse_race"],Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 175, 144))
+        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["public_horse_race"],Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 175, 144))
 
 objs.registerObj(Horse_track_left)
 objs.registerObj(Horse_track_middle)

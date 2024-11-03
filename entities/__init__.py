@@ -140,12 +140,13 @@ class Character:
         for i in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1):
             __chunks.extend(self.world.get_Chunk_at(Vec(x+i,y+k)) for k in range(- players[0].render_distance // 2 + 1, players[0].render_distance // 2 + 1))
         for i in __chunks:
-            __objects.extend(i.objects)
-            __objects.extend(i.dyn_objects)
+            for k in range(20):
+                __objects.extend(i.objects[k])
+                __objects.extend(i.dyn_objects[k])
             __hitboxes.extend(i.hitboxes)
             __enitites.extend(i.entities)
         for i in __objects:
-            if i.hitbox and players[0].hitbox:
+            if i is not None and i.hitbox and players[0].hitbox:
                 hit1=i.hitbox.copy()
                 hit1.pos+=i.pos
                 hit2=players[0].hitbox.copy()
@@ -270,11 +271,9 @@ class Npc:
     def on_interact(self,world,user):
         ...
 
-print("hohohoh")
 players:list[Character]=[]
 
 Npcs : dict[str,type] = {}
-print("hohohoh")
 
 
 def new_farine():
