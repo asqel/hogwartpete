@@ -28,18 +28,18 @@ class Madre_gui(interface.Gui):
 
 class Snape(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["player"]["rogue_down"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, False, Textures["player"]["rogue_down"],HITBOX_50X50)
 
 class Madre(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["madre"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["madre"],HITBOX_50X50)
 
     def on_interact(self, world, user):
         user.open_gui("Madre_gui")
 
 class Paolo(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["paolo"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["paolo"],HITBOX_50X50)
 
     def on_interact(self, world, user):
         user.open_gui("Paolo_gui")
@@ -65,7 +65,7 @@ class Paolo_gui(interface.Gui):
 
 class Fisherman(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["other"]["fisherman"],Hitbox(HITBOX_RECT_t,NULL_VEC,0, 100, 100))
+        super().__init__(self.__class__.__name__, x, y, False, Textures["other"]["fisherman"],Hitbox(HITBOX_RECT_t,NULL_VEC,0, 100, 100))
 
     def on_interact(self, world, user):
         user.open_gui("Fisherman_shop")

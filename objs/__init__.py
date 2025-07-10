@@ -3,35 +3,57 @@ from uti.hitbox import *
 import pygame as py
 import os 
 import importlib as imp
-import world
-import entities
 
 class Obj:
-    def __init__(self, id: str, x: float, y: float, texture: py.Surface, hitbox = HITBOX_50X50, data:dict = None, light = None, does_tick: bool = False) -> None:
+    def __init__(self, id: str, x: float, y: float, istop: bool, texture: py.Surface, hitbox = HITBOX_50X50, data:dict = None, light = None) -> None:
         self.id = id
         self.texture = texture
+        self.toplayer = istop # object is under or above player and entities
         self.pos = Vec(x, y)
         self.hitbox = hitbox
         self.data = ({} if data is None or not isinstance(data, dict) else data)
         self.light = light
-        self.does_tick = does_tick
     
-    def on_interact(self, world: 'world.World', user: 'entities.Character'):
+    def on_interact(self,world,user):
         ...
-    def on_walk_in(self, world: 'world.World', user: 'entities.Character'):
+    def on_walk_in(self,world,user):
         ...
-    def on_draw(self, world: 'world.World', has_been_drawn: bool):
-        ...
-    def on_tick(self, world: 'world.World'):
+    def on_draw(self,world,has_been_drawn):
         ...
     def obj_copy(self):
         return Obj(self.id,self.pos.x,self.pos.y,self.toplayer,self.texture,self.hitbox,self.data)
 
+class Dynamic_Obj:  #Object that can be updated on each tick
+    def __init__(self, id: str, x: float, y: float, istop: bool, texture: py.Surface, hitbox = HITBOX_50X50, data:dict = None, light = None) -> None:
+        self.id = id
+        self.texture = texture
+        self.toplayer = istop # object is under or above player and entities
+        self.pos = Vec(x, y)
+        self.hitbox = hitbox
+        self.transparent=False #si on peut passer a travvers ou pas
+        self.data = ({} if data is None or not isinstance(data, dict) else data)
+        self.light = light
+    
+    def on_interact(self,world,user):
+        ...
+    def on_walk_in(self,world,user):
+        ...
+    def tick(self,world):
+        ...
+    def on_draw(self,world,has_been_drawn):
+        ...
+    def dyn_obj_copy(self):
+        return Obj(self.id,self.pos.x,self.pos.y,self.toplayer,self.texture,self.hitbox,self.data)
+
 Objs={}
+Dynamic_Objs={}
 
 
 def registerObj(obj:type):
     Objs[obj.__name__]=obj
+    
+def registerDynamic_Obj(obj:type):
+    Dynamic_Objs[obj.__name__]=obj
 
 
 #import every objs

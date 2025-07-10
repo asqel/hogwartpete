@@ -9,43 +9,43 @@ import jsonizer
 
 class Wood(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["wood"],HITBOX_0x0)
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wood"],HITBOX_0x0)
 
 class Wall(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["wall"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["wall"],HITBOX_50X50)
 
 class Bed_head(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["bed_0"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["bed_0"],HITBOX_50X50)
         
 class Bed_feet(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["bed_1"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["bed_1"],HITBOX_50X50)
 
 class Mandalorian_poster(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["mandalorian_poster"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["mandalorian_poster"],HITBOX_50X50)
 
 class Commode(objs.Obj):
     def __init__(self, x: float, y: float):
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["commode"],Hitbox(HITBOX_RECT_t,Vec(0,0),0,100,50))
+        super().__init__(self.__class__.__name__,x,y,False,Textures["Obj"]["commode"],Hitbox(HITBOX_RECT_t,Vec(0,0),0,100,50))
 
 class Frigo_up(objs.Obj):
     def __init__(self, x: float, y: float):
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["frigo_up"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__,x,y,False,Textures["Obj"]["frigo_up"],HITBOX_50X50)
 
 class Frigo_down(objs.Obj):
     def __init__(self, x: float, y: float):
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["frigo_down"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__,x,y,False,Textures["Obj"]["frigo_down"],HITBOX_50X50)
 
 class Grogu(objs.Obj):
     def __init__(self, x: float, y: float):
-        super().__init__(self.__class__.__name__,x,y,Textures["Obj"]["grogu"],Hitbox(HITBOX_RECT_t,Vec(0,0),0,25,25))
+        super().__init__(self.__class__.__name__,x,y,False,Textures["Obj"]["grogu"],Hitbox(HITBOX_RECT_t,Vec(0,0),0,25,25))
 
 class Stairs(objs.Obj):
     def __init__(self, x:float, y:float):
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["stairs"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["stairs"],HITBOX_50X50)
 
     def on_interact(self, _world, user):
         if world.name=="bed room":
@@ -67,7 +67,7 @@ class Tv(objs.Obj):
         self.count = 0
         self.frame_idx=0
         self.frames=[[Textures["Obj"]["tv"],Textures["Obj"]["tv_2"]][random.randint(0,1)] for i in range(random.randint(3,20))]
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["tv"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["tv"],HITBOX_50X50)
 
     def on_draw(self, world,has_been_drawn):
         self.count += 1
@@ -85,31 +85,31 @@ class Tv(objs.Obj):
 
 class Empty_commode(objs.Obj):
     def __init__(self, x:float, y:float):
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["empty_commode"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["empty_commode"],HITBOX_50X50)
 
 
 class Wall_left_up(objs.Obj):
     def __init__(self, x:float, y:float):
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["wall_left_up"], Hitbox(HITBOX_RECT_t, Vec(0, 0), 0, 3, 16))
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_left_up"], Hitbox(HITBOX_RECT_t, Vec(0, 0), 0, 3, 16))
 class Wall_left(objs.Obj):
     def __init__(self, x:float, y:float):
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["wall_left"], Hitbox(HITBOX_RECT_t, Vec(0, 0), 0, 3, 16))
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_left"], Hitbox(HITBOX_RECT_t, Vec(0, 0), 0, 3, 16))
 class Wall_right_up(objs.Obj):
     def __init__(self, x:float, y:float):
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["wall_right_up"], Hitbox(HITBOX_RECT_t, Vec(13, 0), 0, 3, 16))
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_right_up"], Hitbox(HITBOX_RECT_t, Vec(13, 0), 0, 3, 16))
 class Wall_right(objs.Obj):
     def __init__(self, x:float, y:float):
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["wall_right"], Hitbox(HITBOX_RECT_t, Vec(13, 0), 0, 3, 16))
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_right"], Hitbox(HITBOX_RECT_t, Vec(13, 0), 0, 3, 16))
 class Wall_left_down(objs.Obj):
     def __init__(self, x:float, y:float):
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["wall_left_down"], Hitbox(HITBOX_RECT_t, Vec(0, 0), 0, 3, 16))
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_left_down"], Hitbox(HITBOX_RECT_t, Vec(0, 0), 0, 3, 16))
 class Wall_right_down(objs.Obj):
     def __init__(self, x:float, y:float):
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["wall_right_down"], Hitbox(HITBOX_RECT_t, Vec(13, 0), 0, 3, 16))
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["wall_right_down"], Hitbox(HITBOX_RECT_t, Vec(13, 0), 0, 3, 16))
 
 class House(objs.Obj):
     def __init__(self, x:float, y:float):
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["house"], Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 150, 150))
+        super().__init__(self.__class__.__name__, x, y, False, Textures["Obj"]["house"], Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 150, 150))
 
     def on_interact(self, _world, user):
         if user.pos.y >= 150 + self.pos.y:
@@ -120,7 +120,7 @@ class House(objs.Obj):
 
 class Door_frame(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["door_frame"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["door_frame"],HITBOX_50X50)
 
     def on_interact(self, _world, user):
         user.world = world.World("exterior",(0,0,0),is_outside = True)
@@ -130,12 +130,12 @@ class Door_frame(objs.Obj):
 
 class plank_void(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["plank_void"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["plank_void"],HITBOX_50X50)
 
 
 class Pc(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["pc"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["pc"],HITBOX_50X50)
     def on_interact(self, world, user):
         if user.pos.y >= self.pos.y + 50:
             user.open_gui("Pc")
@@ -143,7 +143,7 @@ class Pc(objs.Obj):
 
 class Sign(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["sign"],HITBOX_50X50, {"gui": ""})
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["sign"],HITBOX_50X50, {"gui": ""})
 
     def on_interact(self, world, user):
         if user.pos.y >= self.pos.y + 50:
@@ -155,21 +155,21 @@ class Sign(objs.Obj):
 
 class Clay_statue(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["clay_statue"],Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 50, 100))
+        super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["clay_statue"],Hitbox(HITBOX_RECT_t, NULL_VEC, 0, 50, 100))
 
     def on_interact(self, world, user):
         user.open_gui("Death_statue")
 class Bridge_middle(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["bridge_middle"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["bridge_middle"],HITBOX_50X50)
 
 class Bridge_end(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["bridge_end"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["bridge_end"],HITBOX_50X50)
 
 class Bridge_start(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["bridge_start"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["bridge_start"],HITBOX_50X50)
 
 #class Resurrection_stone_pedestal(objs.Obj):
 #    def __init__(self, x:float, y:float) -> None:
@@ -184,36 +184,36 @@ class Bridge_start(objs.Obj):
 
 class Kitchen_work_station_left_top(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["kitchen_work_station_top"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["kitchen_work_station_top"],HITBOX_50X50)
 
 class Kitchen_work_station_middle_top(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["kitchen_work_station_top"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["kitchen_work_station_top"],HITBOX_50X50)
 
 class Kitchen_work_station_right_top(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["kitchen_work_station_top"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["kitchen_work_station_top"],HITBOX_50X50)
 
 class Kitchen_work_station_left_down(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["kitchen_work_station_left_down"],HITBOX_0x0)
+        super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["kitchen_work_station_left_down"],HITBOX_0x0)
 
 class Kitchen_work_station_middle_down(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["kitchen_work_station_middle_down"],HITBOX_0x0)
+        super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["kitchen_work_station_middle_down"],HITBOX_0x0)
 
 class Kitchen_work_station_right_down(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["kitchen_work_station_right_down"],HITBOX_0x0)
+        super().__init__(self.__class__.__name__, x, y, 0, Textures["Obj"]["kitchen_work_station_right_down"],HITBOX_0x0)
 
 class Cavern_floor(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["cavern_floor"],HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["cavern_floor"],HITBOX_50X50)
 
 
 class Cavern_entrance(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["cavern_entrance"],Hitbox(HITBOX_RECT_t, Vec(0,0), 0, 150, 100))
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["cavern_entrance"],Hitbox(HITBOX_RECT_t, Vec(0,0), 0, 150, 100))
 
     def on_interact(self, _world, user):
         if user.pos.y >= self.pos.y + 90 and self.pos.x + 25 < user.pos.x < self.pos.x + 75:
@@ -225,7 +225,7 @@ class Cavern_entrance(objs.Obj):
 
 class Cavern_wall(objs.Obj):
     def __init__(self, x:float, y:float) -> None:
-        super().__init__(self.__class__.__name__, x, y, Textures["Obj"]["cavern_wall"], HITBOX_50X50)
+        super().__init__(self.__class__.__name__, x, y, 1, Textures["Obj"]["cavern_wall"],HITBOX_50X50)
 
 objs.registerObj(Wood)
 objs.registerObj(Wall)

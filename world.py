@@ -22,11 +22,11 @@ class Chunk:
     def __init__(self, chunk_pos : 'Vec', world : 'World') -> None:
         self.pos : Vec = chunk_pos # pos x,y in World:chuncks
         self.top_left_pos : Vec = chunk_pos * CHUNK_SIZE
-        self.world : World = world
+        self.world :World = world
         self.entities : list[entities.Npc]=[]
-        self.objects : list[list[objs.Obj]]=[[None for i in range(20)] for k in range(20)]
-        self.dyn_objects : list[list[objs.Obj]]=[[None for i in range(20)] for k in range(20)]
-        self.background_obj : list[list[objs.Obj]]=[[None for i in range(20)] for k in range(20)]
+        self.objects : list[objs.Obj]=[]
+        self.dyn_objects : list[objs.Dynamic_Obj]=[]
+        self.background_obj : list[objs.Obj] = []
         self.hitboxes : list[Hitbox] = []
 
     def get_borders(self)->list['Vec']:
@@ -131,42 +131,51 @@ class World:
         """
         self.has_to_collide = True
 
-    def add_entity(self, n: 'entities.Npc') -> None:
+    def add_entity(self, n:'entities.Npc')->None:
+        """
+        add an entity to the world
+        if the entity is in a chunk that doesn't exists the chunk will be generated 
+        """
         self.get_Chunk_from_pos(n.pos).entities.append(n)
     
-    def add_hitbox(self, n: Hitbox):
+    def add_hitbox(self, n:Hitbox):
         self.get_Chunk_from_pos(n.pos).hitboxes.append(n)
         
-    def add_background_Obj(self, n: objs.Obj) -> None:
-        c = self.get_Chunk_from_pos(n.pos)
-        c.background_obj[int((n.pos.y - c.top_left_pos.y) // 50)][int((n.pos.x - c.top_left_pos.x) // 50)] = n
+    def add_background_Obj(self, n:objs.Obj):
+        self.get_Chunk_from_pos(n.pos).background_obj.append(n) 
     
-    def add_Obj(self, n: objs.Obj) -> None:
-        c = self.get_Chunk_from_pos(n.pos)
-        c.objects[int((n.pos.y - c.top_left_pos.y) // 50)][int((n.pos.x - c.top_left_pos.x) // 50)] = n
+    def add_Obj(self, n:objs.Obj)->None:
+        """
+        add an Obj to the world
+        if the Obj is in a chunk that doesn't exists the chunk will be generated 
+        """
+        self.get_Chunk_from_pos(n.pos).objects.append(n)
 
-    def add_Dyn_Obj(self, n: objs.Obj) -> None:
-        c = self.get_Chunk_from_pos(n.pos)
-        c.dyn_objects[int((n.pos.y - c.top_left_pos.y) // 50)][int((n.pos.x - c.top_left_pos.x) // 50)] = n
+    def add_Dyn_Obj(self, n:objs.Dynamic_Obj)->None:
+        """
+        add an Dyn_Obj to the world
+        if the Dyn_Obj is in a chunk that doesn't exists the chunk will be generated 
+        """
+        self.get_Chunk_from_pos(n.pos).dyn_objects.append(n)
         
-    def gen_Chunk_at(self, pos:Vec) -> None:
+    def gen_Chunk_at(self, pos:Vec):
         """
         generate a new chunk at {pos} (pos of chunk)
         if chunk already exist it will be erased
         """
         if tuple(pos) not in self.loaded_chunks.keys():
             self.loaded_chunks[tuple(pos)] = newChunk(pos,self)
-        for i in events.events[events.Event_on_chunk_generate]:
+        for i in events[events.Event_on_chunk_generate]:
             i.function(entities.players, self.loaded_chunks[pos.x][pos.y])
         
-    def gen_Chunk_from_pos(self, pos:Vec) -> None:
+    def gen_Chunk_from_pos(self, pos:Vec):
         """
         generate a new chunk at {pos} (pos of obj/entity)
         if chunk already exist it will be erased
         """
         return self.gen_Chunk_at(pos//1000)
         
-    def get_Chunk_at(self, pos: Vec) -> Chunk:
+    def get_Chunk_at(self, pos:Vec)->Chunk:
         """
         return the chunk at {pos} (pos of chunk)
         """
@@ -187,13 +196,13 @@ class World:
                     self.gen_Chunk_at(pos)
         return self.loaded_chunks[pos_as_tuple]
 
-    def get_Chunk_from_pos(self, pos: Vec) -> Chunk:
+    def get_Chunk_from_pos(self, pos:Vec)->Chunk:
         """
         return the chunk at {pos} (pos of obj/entity)
         """
         return self.get_Chunk_at(pos//1000)
         
-    def chunk_exists_at(self, pos: Vec) -> bool:
+    def chunk_exists_at(self, pos:Vec) -> bool:
         """
         return if the chunk at {pos} exists (pos of chunk)
         """
@@ -205,52 +214,131 @@ class World:
             return os.path.exists(f"./mods/{self.mod}/worlds/{self.name}/c_{pos.x}_{pos.y}.json")
         return False 
 
-    def chunk_exists_from_pos(self, pos: Vec) -> bool:
+    def chunk_exists_from_pos(self, pos:Vec) -> bool:
         """
         return if the chunk at {pos} exists (pos of obj/entity)
         """
         return self.chunk_exists_at(pos // CHUNK_SIZE)
     
-    def get_Obj(self, pos: Vec) -> 'objs.Obj':
-        c = self.get_Chunk_from_pos(pos)
-        obj = c.objects[int((pos.y - c.top_left_pos.y) // 50)][int((pos.x - c.top_left_pos.x) // 50)]
-        if obj is not None:
-            return obj
+    def get_Obj(self, pos:Vec) -> 'objs.Obj':
+        """
+        return the object at pos or an object that collide with
+        a dot at pos 
+        if there is not object then object of type air is returned
+        """
+        x = pos.x // CHUNK_SIZE
+        y = pos.y // CHUNK_SIZE
+        chunks = [
+            self.get_Chunk_at(Vec(x, y)),
+            self.get_Chunk_at(Vec(x - 1, y)),
+            self.get_Chunk_at(Vec(x + 1, y)),
+            self.get_Chunk_at(Vec(x, y - 1)),
+            self.get_Chunk_at(Vec(x, y + 1)),
+            self.get_Chunk_at(Vec(x - 1, y - 1)),
+            self.get_Chunk_at(Vec(x - 1, y - 1)),
+            self.get_Chunk_at(Vec(x - 1, y + 1)),
+            self.get_Chunk_at(Vec(x + 1, y - 1))
+        ]
+        # check for pos
+        for i in chunks:
+            for k in i.objects:
+                if k.pos == pos:
+                    return k
+        
+        for i in chunks:
+            for k in i.objects:
+                new_hitbox = k.hitbox.copy()
+                new_hitbox.pos += k.pos
+                if collide_rect_dot(new_hitbox, pos):
+                    return k
         return objs.Objs["Air"](pos.x, pos.y)
     
     def get_background_Obj(self, pos:Vec) -> objs.Obj:
-        c = self.get_Chunk_from_pos(pos)
-        obj = c.background_obj[int((pos.y - c.top_left_pos.y) // 50)][int((pos.x - c.top_left_pos.x) // 50)]
-        if obj is not None:
-            return obj
+        """
+        return the object at pos or an object that collide with
+        a dot at pos 
+        if there is not object then object of type air is returned
+        """
+        x = pos.x // CHUNK_SIZE
+        y = pos.y // CHUNK_SIZE
+        chunks = [
+            self.get_Chunk_at(Vec(x, y)),
+            self.get_Chunk_at(Vec(x - 1, y)),
+            self.get_Chunk_at(Vec(x + 1, y)),
+            self.get_Chunk_at(Vec(x, y - 1)),
+            self.get_Chunk_at(Vec(x, y + 1)),
+            self.get_Chunk_at(Vec(x - 1, y - 1)),
+            self.get_Chunk_at(Vec(x - 1, y - 1)),
+            self.get_Chunk_at(Vec(x - 1, y + 1)),
+            self.get_Chunk_at(Vec(x + 1, y - 1))
+        ]
+        # check for pos
+        for i in chunks:
+            for k in i.background_obj:
+                if k.pos == pos:
+                    return k
+        
+        for i in chunks:
+            for k in i.background_obj:
+                new_hitbox = k.hitbox.copy()
+                new_hitbox.pos += k.pos
+                if collide_rect_dot(new_hitbox, pos):
+                    return k
         return objs.Objs["Air"](pos.x, pos.y)
 
     def remove_entity(self, entity : 'entities.Npc'):
         chunk = self.get_Chunk_from_pos(entity.pos)
         if entity in chunk.entities:
             chunk.entities.remove(entity)
-
-    def remove_background_obj_at(self, pos: Vec):
-        c = self.get_Chunk_from_pos(pos)
-        c.background_obj[int((pos.y - c.top_left_pos.y) // 50)][int((pos.x - c.top_left_pos.x) // 50)] = None
-    
     def remove_obj_at(self, pos: Vec):
         c = self.get_Chunk_from_pos(pos)
-        c.objects[int((pos.y - c.top_left_pos.y) // 50)][int((pos.x - c.top_left_pos.x) // 50)] = None
-  
-    def remove_dyn_obj_at(self, pos: Vec):
+        for i in c.objects:
+            if i.pos == pos:
+                c.objects.remove(i)
+                break
+    def remove_obj_at_id(self, pos: Vec, id):
         c = self.get_Chunk_from_pos(pos)
-        c.dyn_objects[int((pos.y - c.top_left_pos.y) // 50)][int((pos.x - c.top_left_pos.x) // 50)] = None
-
+        for i in c.objects:
+            if i.pos == pos and i.id == id:
+                c.objects.remove(i)
+                break
+    def remove_obj(self, obj : objs.Obj):
+        self.get_Chunk_from_pos(obj.pos).objects.remove(obj)
     def get_dyn_Obj(self, pos:Vec) -> 'objs.Dynamic_Obj':
-        c = self.get_Chunk_from_pos(pos)
-        obj = c.dyn_objects[int((pos.y - c.top_left_pos.y) // 50)][int((pos.x - c.top_left_pos.x) // 50)]
-        if obj is not None:
-            return obj
-        return objs.Objs["Air"](pos.x, pos.y)
+        """
+        return the dyn_object at pos or an object that collide with
+        a dot at pos 
+        if there is not dyn_object then object of type air is returned
+        """
+        x = pos.x // CHUNK_SIZE
+        y = pos.y // CHUNK_SIZE
+        chunks = [
+            self.get_Chunk_at(Vec(x, y)),
+            self.get_Chunk_at(Vec(x - 1, y)),
+            self.get_Chunk_at(Vec(x + 1, y)),
+            self.get_Chunk_at(Vec(x, y - 1)),
+            self.get_Chunk_at(Vec(x, y + 1)),
+            self.get_Chunk_at(Vec(x - 1, y - 1)),
+            self.get_Chunk_at(Vec(x - 1, y - 1)),
+            self.get_Chunk_at(Vec(x - 1, y + 1)),
+            self.get_Chunk_at(Vec(x + 1, y - 1))
+        ]
+        # check for pos
+        for i in chunks:
+            for k in i.dyn_objects:
+                if k.pos == pos:
+                    return k
+                
+        for i in chunks:
+            for k in i.dyn_objects:
+                new_hitbox = k.hitbox.copy()
+                new_hitbox.pos += k.pos
+                if collide_rect_dot(new_hitbox, pos):
+                    return k
+        return objs.Dynamic_Objs["Air"](pos.x, pos.y)
     
     def on_load(self):
-        for i in events.events[events.Event_on_world_load]:
+        for i in events[events.Event_on_world_load]:
             i.function(entities.players, self)
 
     def show(self, screen : py.Surface, zoom_out: int) -> None:
@@ -259,7 +347,7 @@ class World:
         """
         __bg_obj : list[objs.Obj] = []
         __objects : list[objs.Obj] = []
-        __dyn_obj : list[objs.Obj] = []
+        __dyn_obj : list[objs.Dynamic_Obj] = []
         __players : list[entities.Character] = [entities.players[i] for i in range(1,len(entities.players))]#get players except user
         __entities : list[entities.Npc] = []
         __chunks : list[Chunk] = []
@@ -278,19 +366,16 @@ class World:
 
         #get everythings form the chunks
         for i in __chunks:
+            __objects.extend(i.objects)
+            __dyn_obj.extend(i.dyn_objects)
             __entities.extend(i.entities)
-            for k in range(20):
-                __objects.extend(i.objects[k])
-                __dyn_obj.extend(i.dyn_objects[k])
-                __bg_obj.extend(i.background_obj[k])
+            __bg_obj.extend(i.background_obj)
 
 
         __offset = Vec(scr_w // 2, scr_h // 2) - entities.players[0].pos - Vec(entities.players[0].current_texture.get_width() // 2, entities.players[0].current_texture.get_height() // 2)
 
         #draw background objects
         for i in __bg_obj:
-            if i is None:
-                continue
             p = i.pos + __offset
             if -i.texture.get_width() <= p.x < scr_w and -i.texture.get_height() <= p.y < scr_h:
                 screen.blit(i.texture,tuple(p))
@@ -300,18 +385,31 @@ class World:
         
         #draw objects that are not toplayer
         for i in __objects:
-            if i is None:
-                continue
-            p = i.pos + __offset
-            if -i.texture.get_width() <= p.x < scr_w and -i.texture.get_height() <= p.y < scr_h:
-                screen.blit(i.texture,tuple(p))
-                i.on_draw(self,True)
-            else:
-                i.on_draw(self,False)
-            if i.light:
-                p = i.light.pos + __offset + i.pos
-                if -i.light.texture.get_width() <= p.x < scr_w and -i.light.texture.get_height() <= p.y < scr_h:
-                    new_texture.blit(i.light.texture,tuple(p))
+            if not i.toplayer:
+                p = i.pos + __offset
+                if -i.texture.get_width() <= p.x < scr_w and -i.texture.get_height() <= p.y < scr_h:
+                    screen.blit(i.texture,tuple(p))
+                    i.on_draw(self,True)
+                else:
+                    i.on_draw(self,False)
+                if i.light:
+                    p = i.light.pos + __offset + i.pos
+                    if -i.light.texture.get_width() <= p.x < scr_w and -i.light.texture.get_height() <= p.y < scr_h:
+                        new_texture.blit(i.light.texture,tuple(p))
+
+        #draw dynamic objects that are not toplayer
+        for i in __dyn_obj:
+            if not i.toplayer:
+                p = i.pos+__offset
+                if -i.texture.get_width() <= p.x < scr_w and -i.texture.get_height() <= p.y < scr_h:
+                    screen.blit(i.texture,tuple(p))
+                    i.on_draw(self,True)
+                else:
+                    i.on_draw(self,False)
+                if i.light:
+                    p = i.light.pos + __offset + i.pos
+                    if -i.light.texture.get_width() <= p.x < scr_w and -i.light.texture.get_height() <= p.y < scr_h:
+                        new_texture.blit(i.light.texture,tuple(p))
 
         #draw user
         if entities.players[0].isvisible:
@@ -343,19 +441,33 @@ class World:
             else:
                 i.on_draw(self, False)
 
+        #draw objects that are toplayer
+        for i in __objects:
+            if i.toplayer:
+                p = i.pos + __offset
+                if -i.texture.get_width() <= p.x < scr_w and -i.texture.get_height() <= p.y < scr_h:
+                    screen.blit(i.texture,tuple(p))
+                    i.on_draw(self,True)
+                else:
+                    i.on_draw(self,False)
+                if i.light:
+                    p = i.light.pos + __offset + i.pos
+                    if -i.light.texture.get_width() <= p.x < scr_w and -i.light.texture.get_height() <= p.y < scr_h:
+                        new_texture.blit(i.light.texture,tuple(p))
+
+        #draw dynamic objects that are toplayer
         for i in __dyn_obj:
-            if i is None:
-                continue
-            p = i.pos + __offset
-            if -i.texture.get_width() <= p.x < scr_w and -i.texture.get_height() <= p.y < scr_h:
-                screen.blit(i.texture,tuple(p))
-                i.on_draw(self,True)
-            else:
-                i.on_draw(self,False)
-            if i.light:
-                p = i.light.pos + __offset + i.pos
-                if -i.light.texture.get_width() <= p.x < scr_w and -i.light.texture.get_height() <= p.y < scr_h:
-                    new_texture.blit(i.light.texture,tuple(p))
+            if i.toplayer:
+                p = i.pos + __offset
+                if -i.texture.get_width() <= p.x < scr_w and -i.texture.get_height() <= p.y < scr_h:
+                    screen.blit(i.texture, tuple(p))
+                    i.on_draw(self, True)
+                else:
+                    i.on_draw(self, False)
+                if i.light:
+                    p = i.light.pos + __offset + i.pos
+                    if -i.light.texture.get_width() <= p.x < scr_w and -i.light.texture.get_height() <= p.y < scr_h:
+                        new_texture.blit(i.light.texture,tuple(p))
         
         screen.blit(new_texture, (0,0))
 
@@ -398,13 +510,12 @@ class World:
         for i in chunks:
             i.tick()
             
-        __dyn_objs : list[objs.Obj] = []
+        __dyn_objs : list[objs.Dynamic_Obj] = []
         __entities : list[entities.Npc] = []
 
         for i in chunks:
             __entities.extend(i.entities)
-            for k in range(20):
-                __dyn_objs.extend(i.dyn_objects[k])
+            __dyn_objs.extend(i.dyn_objects)
 
 
         p = 0
@@ -423,16 +534,16 @@ class World:
             entities.players[0].riding.tick(self)
 
         for i in __dyn_objs:
-            if i is not None and i.does_tick:
-                i.tick(self)
+            i.tick(self)
 
 
         self.has_to_collide=False
         if entities.players[0].riding:
             entities.players[0].pos = entities.players[0].riding.pos
             entities.players[0].riding.world = entities.players[0].world
-        if entities.players[0].pv <= 0:
-            ...
+        if entities.players[0].pv<=0:
+            entities.players.close_gui()
+            entities.players[0].open_gui("Game_Over")
         return 0
 
 
